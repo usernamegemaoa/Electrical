@@ -1,0 +1,78 @@
+Removed Pin From Net: NetName=GND Pin=R1-0
+Removed Pin From Net: NetName=NetC1_1 Pin=R2-0
+Removed Pin From Net: NetName=GND Pin=R3-1
+Removed Member From Class: ClassName=MISchematic Member=M1
+Removed Member From Class: ClassName=MISchematic Member=M2
+Removed Member From Class: ClassName=MISchematic Member=M3
+Removed Member From Class: ClassName=MISchematic Member=M4
+Removed Member From Class: ClassName=MISchematic Member=M5
+Removed Member From Class: ClassName=MISchematic Member=M6
+Removed Member From Class: ClassName=MISchematic Member=R1
+Removed Member From Class: ClassName=MISchematic Member=R2
+Removed Member From Class: ClassName=MISchematic Member=R3
+Change Component DesignItemId : Designator=C1 Old DesignItemId=0.1 uF Cap New DesignItemId=CAP-0.1uF-16V-CER-0402(1005)
+Change Component Footprint: Designator=C1 Old Footprint=0402(1005) New Footprint=CAP-0402(1005)-R
+Change Component Comment : Designator=C1 Old Comment=0.1 uF Cap New Comment=0.1µF
+Added Component: Designator=J5(HEADER-9-100MIL)
+Added Component: Designator=Q1(E3)
+Added Component: Designator=Q2(E3)
+Added Component: Designator=Q3(E3)
+Added Component: Designator=Q4(E3)
+Added Component: Designator=Q5(E3)
+Added Component: Designator=Q6(E3)
+Added Component: Designator=R13(R-0603(1608)-R)
+Added Component: Designator=R15(R-0603(1608)-R)
+Added Pin To Net: NetName=NetC1_1 Pin=R13-2
+Added Pin To Net: NetName=GND Pin=R15-1
+Added Pin To Net: NetName=BC_P1 Pin=J5-7
+Added Pin To Net: NetName=BC_P1 Pin=Q1-3
+Added Pin To Net: NetName=BC_P1 Pin=Q4-1
+Added Net: Name=BC_P1
+Added Pin To Net: NetName=BC_P2 Pin=J5-4
+Added Pin To Net: NetName=BC_P2 Pin=Q2-3
+Added Pin To Net: NetName=BC_P2 Pin=Q5-1
+Added Net: Name=BC_P2
+Added Pin To Net: NetName=BC_P3 Pin=J5-1
+Added Pin To Net: NetName=BC_P3 Pin=Q3-3
+Added Pin To Net: NetName=BC_P3 Pin=Q6-1
+Added Net: Name=BC_P3
+Added Pin To Net: NetName=HS_P1 Pin=J5-9
+Added Pin To Net: NetName=HS_P1 Pin=Q1-2
+Added Net: Name=HS_P1
+Added Pin To Net: NetName=HS_P2 Pin=J5-6
+Added Pin To Net: NetName=HS_P2 Pin=Q2-2
+Added Net: Name=HS_P2
+Added Pin To Net: NetName=HS_P3 Pin=J5-3
+Added Pin To Net: NetName=HS_P3 Pin=Q3-2
+Added Net: Name=HS_P3
+Added Pin To Net: NetName=LS_P1 Pin=J5-8
+Added Pin To Net: NetName=LS_P1 Pin=Q4-2
+Added Net: Name=LS_P1
+Added Pin To Net: NetName=LS_P2 Pin=J5-5
+Added Pin To Net: NetName=LS_P2 Pin=Q5-2
+Added Net: Name=LS_P2
+Added Pin To Net: NetName=LS_P3 Pin=J5-2
+Added Pin To Net: NetName=LS_P3 Pin=Q6-2
+Added Net: Name=LS_P3
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=R15-2
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=NetQ4_3 Pin=Q4-3
+Added Pin To Net: NetName=NetQ4_3 Pin=Q5-3
+Added Pin To Net: NetName=NetQ4_3 Pin=Q6-3
+Added Pin To Net: NetName=NetQ4_3 Pin=R13-1
+Added Net: Name=NetQ4_3
+Added Pin To Net: NetName=VCC Pin=Q1-1
+Added Pin To Net: NetName=VCC Pin=Q2-1
+Added Pin To Net: NetName=VCC Pin=Q3-1
+Added Net: Name=VCC
+Added Member To Class: ClassName=MISchematic Member=Component J5 Header 9 pin
+Added Member To Class: ClassName=MISchematic Member=Component Q1 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component Q2 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component Q3 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component Q4 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component Q5 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component Q6 IRF6718
+Added Member To Class: ClassName=MISchematic Member=Component R13 51
+Added Member To Class: ClassName=MISchematic Member=Component R15 51
+Added Room: Name=MISchematic

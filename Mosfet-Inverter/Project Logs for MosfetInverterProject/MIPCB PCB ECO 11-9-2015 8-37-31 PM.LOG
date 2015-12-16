@@ -1,0 +1,21 @@
+Added Component: Designator=M1(IR-F6718)
+Added Component: Designator=M2(IR-F6718)
+Added Component: Designator=M3(IR-F6718)
+Added Component: Designator=M4(IR-F6718)
+Added Component: Designator=M5(IR-F6718)
+Added Component: Designator=M6(IR-F6718)
+Added Pin To Net: NetName=NetM4_3 Pin=M4-3
+Added Pin To Net: NetName=NetM4_3 Pin=M4-3
+Added Pin To Net: NetName=NetM4_3 Pin=M5-3
+Added Pin To Net: NetName=NetM4_3 Pin=M5-3
+Added Pin To Net: NetName=NetM4_3 Pin=M6-3
+Added Pin To Net: NetName=NetM4_3 Pin=M6-3
+Added Pin To Net: NetName=NetM4_3 Pin=R1-1
+Added Pin To Net: NetName=NetM4_3 Pin=R2-1
+Added Net: Name=NetM4_3
+Added Member To Class: ClassName=MISchematic Member=Component M1 IR-F6718
+Added Member To Class: ClassName=MISchematic Member=Component M2 IR-F6718
+Added Member To Class: ClassName=MISchematic Member=Component M3 IR-F6718
+Added Member To Class: ClassName=MISchematic Member=Component M4 IR-F6718
+Added Member To Class: ClassName=MISchematic Member=Component M5 IR-F6718
+Added Member To Class: ClassName=MISchematic Member=Component M6 IR-F6718

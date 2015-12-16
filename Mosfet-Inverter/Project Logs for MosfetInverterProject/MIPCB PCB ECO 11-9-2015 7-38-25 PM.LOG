@@ -1,0 +1,8 @@
+Added Component: Designator=C1(0402(1005))
+Added Pin To Net: NetName=NetC1_0 Pin=C1-0
+Added Pin To Net: NetName=NetC1_0 Pin=R3-0
+Added Net: Name=NetC1_0
+Added Pin To Net: NetName=NetC1_1 Pin=C1-1
+Added Pin To Net: NetName=NetC1_1 Pin=R2-0
+Added Net: Name=NetC1_1
+Added Member To Class: ClassName=MISchematic Member=Component C1 0.1 uF Cap

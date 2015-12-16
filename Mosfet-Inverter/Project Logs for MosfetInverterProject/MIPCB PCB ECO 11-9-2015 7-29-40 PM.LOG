@@ -1,0 +1,18 @@
+Added Component: Designator=C?(0402(1005))
+Added Component: Designator=R1(WSHM28182L000FEB)
+Added Component: Designator=R2(0603(1608))
+Added Component: Designator=R3(0603(1608))
+Added Pin To Net: NetName=NetC?_0 Pin=C?-0
+Added Pin To Net: NetName=NetC?_0 Pin=R3-0
+Added Net: Name=NetC?_0
+Added Pin To Net: NetName=NetC?_1 Pin=C?-1
+Added Pin To Net: NetName=NetC?_1 Pin=R2-0
+Added Net: Name=NetC?_1
+Added Pin To Net: NetName=NetR1_0 Pin=R1-0
+Added Pin To Net: NetName=NetR1_0 Pin=R3-1
+Added Net: Name=NetR1_0
+Added Pin To Net: NetName=NetR1_1 Pin=R1-1
+Added Pin To Net: NetName=NetR1_1 Pin=R2-1
+Added Net: Name=NetR1_1
+Added Class: Name=MISchematic
+Added Room: Name=MISchematic
