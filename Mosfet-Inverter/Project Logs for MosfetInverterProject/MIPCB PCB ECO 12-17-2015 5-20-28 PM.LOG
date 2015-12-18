@@ -1,0 +1,8 @@
+Added Component: Designator=U1(SOIC-8)
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=U1-1
+Added Pin To Net: NetName=NetC1_1 Pin=U1-2
+Added Pin To Net: NetName=NetC1_2 Pin=U1-3
+Added Pin To Net: NetName=OP_AMP_VCC Pin=U1-4
+Added Pin To Net: NetName=OP_AMP_GND Pin=U1-8
+Added Member To Class: ClassName=MISchematic Member=Component U1 OP-AMP
+Added Room: Name=MISchematic
