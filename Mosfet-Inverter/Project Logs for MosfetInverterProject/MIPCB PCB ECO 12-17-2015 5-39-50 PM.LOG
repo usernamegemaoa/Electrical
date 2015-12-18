@@ -1,0 +1,5 @@
+Added Component: Designator=R14(R-2818(7146)-R)
+Added Pin To Net: NetName=NetQ4_3 Pin=R14-0
+Added Pin To Net: NetName=BATTERY_GND Pin=R14-1
+Added Member To Class: ClassName=MISchematic Member=Component R14 0.002
+Added Room: Name=MISchematic
