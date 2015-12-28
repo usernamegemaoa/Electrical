@@ -1,0 +1,5 @@
+Added Pin To Net: NetName=NetC1_0 Pin=C1-2
+Added Pin To Net: NetName=OP_AMP_GND Pin=C2-2
+Added Pin To Net: NetName=OP_AMP_GND Pin=C3-2
+Change Net Name : Old Net Name=NetC1_0 New Net Name=NetC1_2
+Added Room: Name=MISchematic
