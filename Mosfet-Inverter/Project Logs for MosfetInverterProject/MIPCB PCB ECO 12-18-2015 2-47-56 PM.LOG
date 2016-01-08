@@ -1,0 +1,29 @@
+Removed Pin From Net: NetName=BC_P2 Pin=BC4-1
+Removed Pin From Net: NetName=BC_P3 Pin=BC5-1
+Change Component DesignItemId : Designator=BC3 Old DesignItemId=Bullet Connector New DesignItemId=Bullet Connector Bottom
+Change Component DesignItemId : Designator=BC5 Old DesignItemId=Bullet Connector New DesignItemId=Bullet Connector Bottom
+Change Component DesignItemId : Designator=BC1 Old DesignItemId=Bullet Connector New DesignItemId=Bullet Connector Top
+Change Component DesignItemId : Designator=BC2 Old DesignItemId=Bullet Connector New DesignItemId=Bullet Connector Top
+Change Component DesignItemId : Designator=BC4 Old DesignItemId=Bullet Connector New DesignItemId=Bullet Connector Top
+Change Component Footprint: Designator=BC3 Old Footprint=SMD_BULLET_CONNECTOR New Footprint=BULLET_CONNECTOR_BOTTOM
+Change Component Footprint: Designator=BC5 Old Footprint=SMD_BULLET_CONNECTOR New Footprint=BULLET_CONNECTOR_BOTTOM
+Change Component Footprint: Designator=BC1 Old Footprint=SMD_BULLET_CONNECTOR New Footprint=BULLET_CONNECTOR_TOP
+Change Component Footprint: Designator=BC2 Old Footprint=SMD_BULLET_CONNECTOR New Footprint=BULLET_CONNECTOR_TOP
+Change Component Footprint: Designator=BC4 Old Footprint=SMD_BULLET_CONNECTOR New Footprint=BULLET_CONNECTOR_TOP
+Change Component Comment : Designator=BC3 Old Comment=Bullet Connector New Comment=Bullet Connector Bottom
+Change Component Comment : Designator=BC5 Old Comment=Bullet Connector New Comment=Bullet Connector Bottom
+Change Component Comment : Designator=BC1 Old Comment=Bullet Connector New Comment=Bullet Connector Top
+Change Component Comment : Designator=BC2 Old Comment=Bullet Connector New Comment=Bullet Connector Top
+Change Component Comment : Designator=BC4 Old Comment=Bullet Connector New Comment=Bullet Connector Top
+Added Component: Designator=BC6(BULLET_CONNECTOR_TOP)
+Added Component: Designator=BC7(BULLET_CONNECTOR_BOTTOM)
+Added Component: Designator=BC8(BULLET_CONNECTOR_TOP)
+Added Pin To Net: NetName=BC_P1 Pin=BC4-1
+Added Pin To Net: NetName=BC_P2 Pin=BC5-1
+Added Pin To Net: NetName=BC_P2 Pin=BC6-1
+Added Pin To Net: NetName=BC_P3 Pin=BC7-1
+Added Pin To Net: NetName=BC_P3 Pin=BC8-1
+Added Member To Class: ClassName=MISchematic Member=Component BC6 Bullet Connector Top
+Added Member To Class: ClassName=MISchematic Member=Component BC7 Bullet Connector Bottom
+Added Member To Class: ClassName=MISchematic Member=Component BC8 Bullet Connector Top
+Added Room: Name=MISchematic

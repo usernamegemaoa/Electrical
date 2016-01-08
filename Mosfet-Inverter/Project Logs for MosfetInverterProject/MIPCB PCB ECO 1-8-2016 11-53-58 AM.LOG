@@ -1,0 +1,27 @@
+Removed Pin From Net: NetName=NetQ1_1 Pin=R1-0
+Removed Pin From Net: NetName=NetQ2_1 Pin=R2-0
+Removed Pin From Net: NetName=NetQ3_1 Pin=R3-0
+Removed Pin From Net: NetName=NetQ4_1 Pin=R4-0
+Removed Pin From Net: NetName=NetQ5_1 Pin=R5-0
+Removed Pin From Net: NetName=NetQ6_1 Pin=R6-0
+Removed Pin From Net: NetName=NetQ4_3 Pin=R14-0
+Change Component DesignItemId : Designator=R1 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component DesignItemId : Designator=R2 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component DesignItemId : Designator=R3 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component DesignItemId : Designator=R4 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component DesignItemId : Designator=R5 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component DesignItemId : Designator=R6 Old DesignItemId=R-18-3W-412210555) New DesignItemId=R-18-3W-4122(10555)
+Change Component Description : Designator=R1 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Description : Designator=R2 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Description : Designator=R3 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Description : Designator=R4 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Description : Designator=R5 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Description : Designator=R6 Old Description=RES 18 OHM 3W 4122(10555) SMD New Description=RES 18OHM 3W 4122(10555) SMD
+Change Component Library : Designator=R1 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=R2 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=R3 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=R4 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=R5 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=R6 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Added Member To Class: ClassName=MISchematic Member=Component J2 Header 3 pin
+Added Room: Name=MISchematic

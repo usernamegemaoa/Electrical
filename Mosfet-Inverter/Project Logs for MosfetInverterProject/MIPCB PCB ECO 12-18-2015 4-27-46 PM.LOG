@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=BC_P1 Pin=BC3-1
+Removed Pin From Net: NetName=BC_P2 Pin=BC5-1
+Removed Pin From Net: NetName=BC_P3 Pin=BC7-1
+Removed Member From Class: ClassName=MISchematic Member=BC3
+Removed Member From Class: ClassName=MISchematic Member=BC5
+Removed Member From Class: ClassName=MISchematic Member=BC7
+Added Room: Name=MISchematic
