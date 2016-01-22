@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=V_REF Pin=J?-1
+Removed Pin From Net: NetName=OP_AMP_GND Pin=J?-4
+Added Pin To Net: NetName=OP_AMP_GND Pin=J?-1
+Added Pin To Net: NetName=V_REF Pin=J?-4
+Added Room: Name=MISchematic

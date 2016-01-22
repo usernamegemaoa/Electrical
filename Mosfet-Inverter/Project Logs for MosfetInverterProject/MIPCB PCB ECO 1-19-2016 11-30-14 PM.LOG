@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=NetC1_1 Pin=R7-1
+Removed Pin From Net: NetName=NetQ4_3 Pin=R7-2
+Removed Pin From Net: NetName=NetC1_2 Pin=R8-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=R8-2
+Removed Pin From Net: NetName=SHUNT_VOLTAGE Pin=U1-1
+Removed Pin From Net: NetName=NetC1_1 Pin=U1-2
+Removed Pin From Net: NetName=NetC1_2 Pin=U1-3
+Removed Pin From Net: NetName=OP_AMP_VCC Pin=U1-4
+Removed Pin From Net: NetName=OP_AMP_GND Pin=U1-8
+Change Component DesignItemId : Designator=U1 Old DesignItemId=OP-AMP New DesignItemId=OP-AMP-CURRENT-SENSE
+Change Component Footprint: Designator=U1 Old Footprint=SOIC-8 New Footprint=SOT-6
+Change Component Comment : Designator=U1 Old Comment=OP-AMP New Comment=INA213A
+Added Pin To Net: NetName=NetQ4_3 Pin=R7-1
+Added Pin To Net: NetName=NetC1_1 Pin=R7-2
+Added Pin To Net: NetName=BATTERY_GND Pin=R8-1
+Added Pin To Net: NetName=NetC1_2 Pin=R8-2
+Added Pin To Net: NetName=OP_AMP_GND Pin=U1-2
+Added Pin To Net: NetName=OP_AMP_VCC Pin=U1-3
+Added Pin To Net: NetName=NetC1_1 Pin=U1-4
+Added Pin To Net: NetName=NetC1_2 Pin=U1-5
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=U1-6
+Added Pin To Net: NetName=NETLABEL1 Pin=U1-1
+Added Net: Name=NETLABEL1
+Added Room: Name=MISchematic

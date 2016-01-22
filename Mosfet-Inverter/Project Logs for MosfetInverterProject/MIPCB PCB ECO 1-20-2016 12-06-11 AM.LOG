@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=J? NewDesignator=J4
+Added Component: Designator=J2(6-32 Threaded Standoff)
+Added Component: Designator=J3(6-32 Threaded Standoff)
+Added Member To Class: ClassName=MISchematic Member=Component J2 Stand-off
+Added Member To Class: ClassName=MISchematic Member=Component J3 Stand-off
+Added Room: Name=MISchematic

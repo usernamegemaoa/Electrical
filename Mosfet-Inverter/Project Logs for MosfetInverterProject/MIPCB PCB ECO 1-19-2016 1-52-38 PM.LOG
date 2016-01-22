@@ -1,0 +1,5 @@
+Change Component DesignItemId : Designator=C2 Old DesignItemId=CAP- 0.22 uF- 6.3 V-CER-0201(0603) New DesignItemId=CAP- 0.22 uF- 10 V-CER-0603(1608)
+Change Component DesignItemId : Designator=C3 Old DesignItemId=CAP- 0.22 uF- 6.3 V-CER-0201(0603) New DesignItemId=CAP- 0.22 uF- 10 V-CER-0603(1608)
+Change Component Footprint: Designator=C2 Old Footprint=CAP-0201(0603) New Footprint=CAP-0603(1608)-R
+Change Component Footprint: Designator=C3 Old Footprint=CAP-0201(0603) New Footprint=CAP-0603(1608)-R
+Added Room: Name=MISchematic

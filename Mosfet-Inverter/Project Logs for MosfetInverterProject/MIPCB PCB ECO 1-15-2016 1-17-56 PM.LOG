@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=NetQ4_3 Pin=R13-1
+Removed Pin From Net: NetName=NetC1_1 Pin=R13-2
+Removed Pin From Net: NetName=BATTERY_GND Pin=R15-1
+Removed Pin From Net: NetName=NetC1_2 Pin=R15-2
+Removed Member From Class: ClassName=MISchematic Member=R13
+Removed Member From Class: ClassName=MISchematic Member=R15
+Change Component DesignItemId : Designator=C2 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.22 uF- 6.3 V-CER-0201(0603)
+Change Component DesignItemId : Designator=C3 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.22 uF- 6.3 V-CER-0201(0603)
+Change Component Footprint: Designator=C2 Old Footprint=CAP-0402(1005)-R New Footprint=CAP-0201(0603)
+Change Component Footprint: Designator=C3 Old Footprint=CAP-0402(1005)-R New Footprint=CAP-0201(0603)
+Change Component Comment : Designator=C2 Old Comment=0.1µF New Comment=0.22 µF
+Change Component Comment : Designator=C3 Old Comment=0.1µF New Comment=0.22 µF
+Change Component Designator: OldDesignator=J? NewDesignator=J1
+Added Component: Designator=R7(R-0402(1005)-R)
+Added Component: Designator=R8(R-0402(1005)-R)
+Added Pin To Net: NetName=NetQ4_3 Pin=R7-1
+Added Pin To Net: NetName=BATTERY_GND Pin=R8-1
+Added Member To Class: ClassName=MISchematic Member=Component R7 75
+Added Member To Class: ClassName=MISchematic Member=Component R8 75
+Added Room: Name=MISchematic

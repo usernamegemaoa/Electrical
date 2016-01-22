@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=SHUNT_VOLTAGE Pin=J2-1
+Removed Pin From Net: NetName=OP_AMP_VCC Pin=J2-2
+Removed Pin From Net: NetName=OP_AMP_GND Pin=J2-3
+Removed Member From Class: ClassName=MISchematic Member=J2
+Added Component: Designator=J?(HEADER-4-100mil)
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=J?-2
+Added Pin To Net: NetName=OP_AMP_VCC Pin=J?-3
+Added Pin To Net: NetName=OP_AMP_GND Pin=J?-4
+Added Pin To Net: NetName=V_REF Pin=J?-1
+Added Pin To Net: NetName=V_REF Pin=U1-1
+Added Net: Name=V_REF
+Added Member To Class: ClassName=MISchematic Member=Component J? Header 4 pin
+Added Room: Name=MISchematic

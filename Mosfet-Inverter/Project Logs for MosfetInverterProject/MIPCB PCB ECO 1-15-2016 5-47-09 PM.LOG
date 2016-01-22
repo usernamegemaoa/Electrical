@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetQ4_3 Pin=R7-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=R8-1
+Added Pin To Net: NetName=OP_AMP_GND Pin=C2-2
+Added Pin To Net: NetName=OP_AMP_GND Pin=C3-2
+Added Pin To Net: NetName=NetC1_1 Pin=R7-1
+Added Pin To Net: NetName=NetQ4_3 Pin=R7-2
+Added Pin To Net: NetName=NetC1_2 Pin=R8-1
+Added Pin To Net: NetName=BATTERY_GND Pin=R8-2
+Added Room: Name=MISchematic
