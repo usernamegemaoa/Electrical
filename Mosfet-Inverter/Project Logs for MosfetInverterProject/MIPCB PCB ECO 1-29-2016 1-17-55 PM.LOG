@@ -1,0 +1,5 @@
+Added Component: Designator=C6(CAP-1210(3225)-R)
+Added Pin To Net: NetName=BATTERY_VCC Pin=C6-1
+Added Pin To Net: NetName=BATTERY_GND Pin=C6-2
+Added Member To Class: ClassName=MISchematic Member=Component C6 10 µF
+Added Room: Name=MISchematic

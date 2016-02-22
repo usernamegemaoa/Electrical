@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=HS_P1 Pin=R1-0
+Added Pin To Net: NetName=HS_P2 Pin=R2-0
+Added Pin To Net: NetName=HS_P3 Pin=R3-0
+Added Pin To Net: NetName=LS_P1 Pin=R4-0
+Added Pin To Net: NetName=LS_P2 Pin=R5-0
+Added Pin To Net: NetName=LS_P3 Pin=R6-0
+Added Room: Name=MISchematic

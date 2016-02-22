@@ -1,0 +1,5 @@
+Added Pin To Net: NetName=OP_AMP_GND Pin=BC2-1
+Added Pin To Net: NetName=OP_AMP_GND Pin=R8-1
+Added Pin To Net: NetName=OP_AMP_GND Pin=R14-1
+Change Net Name : Old Net Name=OP_AMP_GND New Net Name=BATTERY_GND
+Added Room: Name=MISchematic

@@ -1,0 +1,4 @@
+Change Component DesignItemId : Designator=J4 Old DesignItemId=CON-3Pin-100Mil New DesignItemId=CON-4Pin-100Mil
+Change Component Footprint: Designator=J4 Old Footprint=HEADER-3-100MIL New Footprint=HEADER-4-100mil
+Change Component Comment : Designator=J4 Old Comment=Header 3 pin New Comment=Header 4 pin
+Added Room: Name=MISchematic

@@ -1,0 +1,7 @@
+Added Component: Designator=J4(Jack_M)
+Added Pin To Net: NetName=VCC Pin=J4-1
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Pin To Net: NetName=GND Pin=J4-3
+Added Member To Class: ClassName=Gate-Driver Member=Component J4 DC_Power-Jack
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

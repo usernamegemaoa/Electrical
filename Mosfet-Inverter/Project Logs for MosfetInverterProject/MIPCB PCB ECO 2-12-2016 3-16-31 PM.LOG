@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=R1 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R2 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R3 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R4 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R5 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R6 Old Footprint=R-0603(1608)-R New Footprint=R-0805(2012)-R
+Added Room: Name=MISchematic

@@ -1,0 +1,3 @@
+Change Component DesignItemId : Designator=C5 Old DesignItemId=CAP_220uF_63V_THT New DesignItemId=CAP_2200uF_50V_THT
+Change Component Footprint: Designator=C5 Old Footprint=CAPE10.0MM_RAD_30X45MM New Footprint=2200uF_Rad_18x25mm
+Added Room: Name=MISchematic

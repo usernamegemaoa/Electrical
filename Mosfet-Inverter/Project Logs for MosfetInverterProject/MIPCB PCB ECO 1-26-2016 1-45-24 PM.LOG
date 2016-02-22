@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=BATTERY_GND Pin=BC2-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=R8-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=R14-1
+Change Net Name : Old Net Name=BATTERY_GND New Net Name=OP_AMP_GND
+Added Pin To Net: NetName=BATTERY_GND Pin=BC2-1
+Added Pin To Net: NetName=BATTERY_GND Pin=R8-1
+Added Pin To Net: NetName=BATTERY_GND Pin=R14-1
+Added Net: Name=BATTERY_GND
+Added Room: Name=MISchematic

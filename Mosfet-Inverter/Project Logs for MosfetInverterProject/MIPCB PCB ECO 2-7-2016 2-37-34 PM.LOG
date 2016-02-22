@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=SHUNT_VOLTAGE Pin=J4-4
+Removed Pin From Net: NetName=SHUNT_VOLTAGE Pin=U1-6
+Change Component DesignItemId : Designator=J4 Old DesignItemId=CON-4Pin-100Mil New DesignItemId=CON-3Pin-100Mil
+Change Component Footprint: Designator=J4 Old Footprint=HEADER-4-100MIL New Footprint=HEADER-3-100MIL
+Change Component Comment : Designator=J4 Old Comment=Header 4 pin New Comment=Header 3 pin
+Added Component: Designator=R9(R-0402(1005)-R)
+Added Component: Designator=R10(R-0402(1005)-R)
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=J4-3
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=R9-2
+Added Pin To Net: NetName=BATTERY_GND Pin=R10-1
+Added Pin To Net: NetName=SHUNT_VOLTAGE Pin=R10-2
+Added Pin To Net: NetName=OP_AMP_VCC Pin=U1-1
+Added Pin To Net: NetName=NetR9_1 Pin=R9-1
+Added Pin To Net: NetName=NetR9_1 Pin=U1-6
+Added Net: Name=NetR9_1
+Added Member To Class: ClassName=MISchematic Member=Component R9 1K
+Added Member To Class: ClassName=MISchematic Member=Component R10 1K
+Added Room: Name=MISchematic

@@ -1,0 +1,9 @@
+Added Component: Designator=C5(CAPE10.0MM_Rad_10x14mm)
+Added Pin To Net: NetName=OP_AMP_GND Pin=BC2-1
+Added Pin To Net: NetName=BATTERY_VCC Pin=C5-1
+Added Pin To Net: NetName=OP_AMP_GND Pin=C5-2
+Added Pin To Net: NetName=OP_AMP_GND Pin=R8-1
+Added Pin To Net: NetName=OP_AMP_GND Pin=R14-1
+Change Net Name : Old Net Name=OP_AMP_GND New Net Name=BATTERY_GND
+Added Member To Class: ClassName=MISchematic Member=Component C5 Value
+Added Room: Name=MISchematic
