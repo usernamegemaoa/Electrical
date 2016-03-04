@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [MosfetInverterProject.PrjPcb]
+   Generated File[MIPCB.TXT]
+   Generated File[MIPCB.LDP]
+   Generated File[MIPCB.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:48:42 AM On 2/24/2016

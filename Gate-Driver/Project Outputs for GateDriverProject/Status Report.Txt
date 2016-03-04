@@ -1,0 +1,28 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [GateDriverProject.PrjPcb]
+   Generated File[GateDriver_MCU.GTL]
+   Generated File[GateDriver_MCU.GBL]
+   Generated File[GateDriver_MCU.GPB]
+   Generated File[GateDriver_MCU.GPT]
+   Generated File[GateDriver_MCU.GTO]
+   Generated File[GateDriver_MCU.GTP]
+   Generated File[GateDriver_MCU.GTS]
+   Generated File[GateDriver_MCU.GBS]
+   Generated File[GateDriver_MCU.GBP]
+   Generated File[GateDriver_MCU.GBO]
+   Generated File[GateDriver_MCU.GKO]
+   Generated File[GateDriver_MCU.GM1]
+   Generated File[GateDriver_MCU.GM13]
+   Generated File[GateDriver_MCU.GM14]
+   Generated File[GateDriver_MCU.GM15]
+   Generated File[GateDriver_MCU.GD1]
+   Generated File[GateDriver_MCU.GG1]
+   Generated File[GateDriver_MCU.EXTREP]
+   Generated File[GateDriver_MCU.REP]
+
+
+Files Generated   : 19
+Documents Printed : 0
+
+Finished Output Generation At 12:08:38 AM On 2/24/2016
