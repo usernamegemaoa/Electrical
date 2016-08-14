@@ -1,0 +1,12 @@
+Change Component DesignItemId : Designator=C1 Old DesignItemId=CAP-10uF-25V-ALC New DesignItemId=CAP-10uF-63V-TANTB-TC-B
+Change Component DesignItemId : Designator=C2 Old DesignItemId=CAP-10uF-25V-ALC New DesignItemId=CAP-10uF-63V-TANTB-TC-B
+Change Component DesignItemId : Designator=C3 Old DesignItemId=CAP-10uF-25V-ALC New DesignItemId=CAP-10uF-63V-TANTB-TC-B
+Change Component Footprint: Designator=C1 Old Footprint=CAPE5.0mm New Footprint=CAPMP3528X210N
+Change Component Footprint: Designator=C2 Old Footprint=CAPE5.0mm New Footprint=CAPMP3528X210N
+Change Component Footprint: Designator=C3 Old Footprint=CAPE5.0mm New Footprint=CAPMP3528X210N
+Change Component Comment : Designator=C1 Old Comment=515D106M025JA6AE3 New Comment=T55B106M016C0200
+Change Component Comment : Designator=C2 Old Comment=515D106M025JA6AE3 New Comment=T55B106M016C0200
+Change Component Comment : Designator=C3 Old Comment=515D106M025JA6AE3 New Comment=T55B106M016C0200
+Change Component Comment : Designator=C5 Old Comment=TCJC105M063R0300 New Comment=ARMA_PN
+Change Component Comment : Designator=C17 Old Comment=TCJC105M063R0300 New Comment=ARMA_PN
+Change Component Comment : Designator=C19 Old Comment=TCJC105M063R0300 New Comment=ARMA_PN

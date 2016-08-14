@@ -1,0 +1,11 @@
+Output: Simple BOM
+Type  : SimpleBOM
+From  : Variant [[No Variations]] of Project [MosfetInverterProject.PrjPcb]
+   Generated File[MISchematic.BOM]
+   Generated File[MISchematic.CSV]
+
+
+Files Generated   : 2
+Documents Printed : 0
+
+Finished Output Generation At 7:40:10 PM On 5/2/2016

@@ -1,0 +1,87 @@
+
+**** 07/26/16 23:56:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-filters1"  [ C:\Users\Carl\Documents\GitHub\Electrical\filters-PSpiceFiles\SCHEMATIC1\filters1.sim ] 
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "filters1.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\Users\Carl\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.TRAN  0 1000ns 0 
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source FILTERS
+C_C2         N00280 N00280  1n  TC=0,0 
+C_C1         N00256 N00280  1n  TC=0,0 
+R_R1         N00256 N00280  1k TC=0,0 
+V_V1         N00401 0 1.25Vdc
+E_U1         N00280 0 VALUE {LIMIT(V(N00401,N00256)*1E6,0,+3.3V)}
+
+**** RESUMING filters1.cir ****
+.END
+
+**** 07/26/16 23:56:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-filters1"  [ C:\Users\Carl\Documents\GitHub\Electrical\filters-PSpiceFiles\SCHEMATIC1\filters1.sim ] 
+
+
+ ****     INITIAL TRANSIENT SOLUTION       TEMPERATURE =   27.000 DEG C
+
+
+******************************************************************************
+
+
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(N00256)    1.2500 (N00280)    1.2500 (N00401)    1.2500 
+
+
+
+
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
+
+    V_V1         0.000E+00
+
+    TOTAL POWER DISSIPATION   0.00E+00  WATTS
+
+
+
+          JOB CONCLUDED
+
+**** 07/26/16 23:56:57 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-filters1"  [ C:\Users\Carl\Documents\GitHub\Electrical\filters-PSpiceFiles\SCHEMATIC1\filters1.sim ] 
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+  Total job time (using Solver 1)   =         .02
+

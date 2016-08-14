@@ -1,0 +1,35 @@
+﻿Field=#~Integer~#~50|Field=Designator~String~Designator~84|Field=Manufacturer 1~String~Manufacturer 1~71|Field=Manufacturer Part Number 1~String~Manufacturer Part Number 1~71|Field=Supplier 1~String~Supplier 1~36|Field=Supplier Order Qty 1~Integer~Supplier Order Qty 1~64|Field=Supplier Part Number 1~String~Supplier Part Number 1~82|Field=Supplier Subtotal 1~Float~Supplier Subtotal 1~58|Field=Supplier Unit Price 1~Float~Supplier Unit Price 1~62|ReportField=Currency~USD|ReportField=ProductionQuantity~3|ReportField=ProjectFileName~GateDriverProject.PrjPcb|ReportField=ProjectFullPath~C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriverProject.PrjPcb|ReportField=Title~Bill of Materials For Project [GateDriverProject.PrjPcb] (No PCB Document Selected)|ReportField=TotalQuantity~85|ReportField=ReportTime~8:06:00 PM|ReportField=ReportDate~5/2/2016|ReportField=ReportDateTime~5/2/2016 8:06:00 PM|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~5/2/2016|ReportField=CurrentTime~7:45:28 PM|ReportField=Date~12/15/2015|ReportField=DocumentFullPathAndName~C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\Gate-Driver.SchDoc|ReportField=DocumentName~Gate-Driver.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~4/29/2016|ReportField=Organization~|ReportField=ProjectName~GateDriverProject.PrjPcb|ReportField=Revision~1|ReportField=Rule~|ReportField=SheetNumber~1|ReportField=SheetTotal~1|ReportField=Time~|ReportField=Title~Slithr: Gate Driver|ReportField=DataSourceFileName~GateDriverProject.PrjPcb|ReportField=DataSourceFullPath~C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriverProject.PrjPcb|ReportField=PCBDataSourceFileName~GateDriver_MCU.PcbDoc|ReportField=PCBDataSourceFullPath~C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc
+1|C1, C2, C3|||||||
+2|C4, C6, C9|Yageo|CC0805ZKY5V9BB105|Mouser|10|603-CC805ZKY5V9BB105|0.58|0.058
+3|C5, C17, C19|AVX|TCJC105M063R0300|Mouser|10|581-TCJC105M063R0300|14.1|1.41
+4|C7, C10, C11, C14, C15, C16, C24, C25|Yageo|CC0402KRX7R7BB104|Mouser|24|603-CC402KRX7R7BB104|0.216|0.009
+5|C8|Vishay / Sprague|515D106M025JA6AE3|Mouser|3|75-515D106M025JA6AE3|0.42|0.14
+6|C12, C13|Yageo|CC0603FRNPO9BN180|Mouser|10|603-CC603FRNPO9BN180|0.39|0.039
+7|C18, C20, C21|Yageo|CC0402JRNPO9BN200|Mouser|10|603-CC402JRNPO9BN200|0.1|0.01
+8|C22, C23|Yageo|CC0603JRNPO9BN470|Mouser|10|603-CC603JRNPO9BN470|0.21|0.021
+9|D1, D2, D3|Fairchild Semiconductor|ES1D|Mouser|10|512-ES1D|2.27|0.227
+10|D4, D5, D6, D7, D8, D9, D10, D11|Kingbright|APTD3216SURCK|Mouser|24|604-APTD-3216SURCK|4.056|0.169
+11|D12, D13|ON Semiconductor|MBR120VLSFT3G|Mouser|6|863-MBR120VLSFT3G|2.16|0.36
+12|J1|Molex|90136-1110|Mouser|3|538-90136-1110|3.69|1.23
+13|J2|TE Connectivity / AMP|4-103327-6|Mouser|3|571-4-103327-6|0.69|0.23
+14|J3|Molex|90136-1104|Mouser|3|538-90136-1104|3.51|1.17
+15|J4|Vishay / Sprague|515D106M025JA6AE3|Mouser|3|75-515D106M025JA6AE3|0.42|0.14
+16|J5|Molex|90136-1105|Mouser|3|538-90136-1105|3.51|1.17
+17|J6|FCI|10118194-0001LF|Mouser|3|649-10118194-0001LF|1.23|0.41
+18|Q1|Microchip Technology|DN3525N8-G|Mouser|3|689-DN3525N8-G|2.16|0.72
+19|R1|Yageo|RC0402JR-071KL|Mouser|10|603-RC0402JR-071KL|0.07|0.007
+20|R2, R15|Yageo|RC0603FR-0710KL|Mouser|10|603-RC0603FR-0710KL|0.1|0.01
+21|R3, R4, R5, R6, R9, R10|Yageo|RC0402FR-07100RL|Mouser|18|603-RC0402FR-07100RL|0.18|0.01
+22|R7, R8, R11|Yageo|RT0603DRD07820RL|Mouser|10|603-RT0603DRD07820RL|0.77|0.077
+23|R12, R19, R21|Yageo|RC0805FR-0710RL|Mouser|10|603-RC0805FR-0710RL|0.16|0.016
+24|R13, R14|Yageo|RC0603JR-0727RL|Mouser|10|603-RC0603JR-0727RL|0.08|0.008
+25|R16, R18, R23|Yageo|RT0603DRD07750RL|Mouser|10|603-RT0603DRD07750RL|0.77|0.077
+26|R17, R20, R22|Yageo|RT0603FRE07220RL|Mouser|10|603-RT0603FRE07220RL|0.46|0.046
+27|R24, R25, R26, R27, R28, R29, R31, R32|Yageo|RC0603FR-0760R4L|Mouser|24|603-RC0603FR-0760R4L|0.24|0.01
+28|R30|Yageo|RC0603FR-0710KL|Mouser|10|603-RC0603FR-0710KL|0.1|0.01
+29|S1|TE Connectivity / Alcoswitch|2-1437565-8|Mouser|3|506-2-1437565-8|0.42|0.14
+30|T1|ABRACON|ABMM2-8.000MHZ-E2-T|Mouser|3|815-ABMM2-8-E2T|2.79|0.93
+31|U1, U2, U3|International Rectifier|IRS2011SPBF|Mouser|10|942-IRS2011SPBF|17.7|1.77
+32|U4|Microchip Technology|PIC16F917-I/PT|Mouser|3|579-PIC16F917-I/PT|10.77|3.59
+33|U5|ON Semiconductor|MC78M05CDTRKG|Mouser|3|863-MC78M05CDTRKG|1.41|0.47
+34|U6|FTDI|FT230XQ-R|Mouser|3|895-FT230XQ-R|6.12|2.04

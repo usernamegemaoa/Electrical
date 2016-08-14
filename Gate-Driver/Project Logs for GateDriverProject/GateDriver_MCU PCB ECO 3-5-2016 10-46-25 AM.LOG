@@ -1,0 +1,19 @@
+Change Component DesignItemId : Designator=C1 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP-10uF-25V-ALC
+Change Component DesignItemId : Designator=C2 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP-10uF-25V-ALC
+Change Component DesignItemId : Designator=C3 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP-10uF-25V-ALC
+Change Component Footprint: Designator=C1 Old Footprint=TC-B New Footprint=CAPE5.0mm
+Change Component Footprint: Designator=C2 Old Footprint=TC-B New Footprint=CAPE5.0mm
+Change Component Footprint: Designator=C3 Old Footprint=TC-B New Footprint=CAPE5.0mm
+Change Component Comment : Designator=C1 Old Comment=11-000022-ARD New Comment=515D106M025JA6AE3
+Change Component Comment : Designator=C2 Old Comment=11-000022-ARD New Comment=515D106M025JA6AE3
+Change Component Comment : Designator=C3 Old Comment=11-000022-ARD New Comment=515D106M025JA6AE3
+Added Component: Designator=C7(CAP-0603(1608)-R)
+Added Component: Designator=C8(CAPE5.0mm)
+Added Pin To Net: NetName=VCC Pin=C7-1
+Added Pin To Net: NetName=GND Pin=C7-2
+Added Pin To Net: NetName=VCC Pin=C8-1
+Added Pin To Net: NetName=GND Pin=C8-2
+Added Member To Class: ClassName=Gate-Driver Member=Component C7 0.1µF
+Added Member To Class: ClassName=Gate-Driver Member=Component C8 515D106M025JA6AE3
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

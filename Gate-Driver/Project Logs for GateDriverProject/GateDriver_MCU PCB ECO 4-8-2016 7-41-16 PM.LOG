@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=5V Pin=C11-1
+Removed Pin From Net: NetName=5V Pin=U5-3
+Added Component: Designator=Q1(SOT89-3)
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-2
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-2
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-3
+Added Net: Name=NetQ1_1
+Added Pin To Net: NetName=VREG Pin=C11-1
+Added Pin To Net: NetName=VREG Pin=U5-3
+Added Net: Name=VREG
+Added Member To Class: ClassName=MotorMCU Member=Component Q1 DN3525
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

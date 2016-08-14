@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=J2 Old Footprint=HEADER-4-100MIL New Footprint=HEADER-5-100mil
+Change Component Footprint: Designator=J5 Old Footprint=HEADER-4-100MIL New Footprint=HEADER-6-100mil
+Added Pin To Net: NetName=GND Pin=J2-5
+Added Pin To Net: NetName=ICSPCLK Pin=J5-5
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

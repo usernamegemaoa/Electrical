@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=VB1 Pin=J1-1
+Removed Pin From Net: NetName=VB3 Pin=J1-7
+Added Pin To Net: NetName=VB3 Pin=J1-1
+Added Pin To Net: NetName=VB1 Pin=J1-7
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

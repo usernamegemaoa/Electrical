@@ -1,0 +1,94 @@
+Removed Pin From Net: NetName=SENSEA Pin=R11-1
+Removed Pin From Net: NetName=5V Pin=R13-1
+Removed Pin From Net: NetName=SENSEB Pin=R14-1
+Removed Pin From Net: NetName=SENSEC Pin=R15-1
+Removed Pin From Net: NetName=VL3 Pin=R25-1
+Removed Pin From Net: NetName=VB3 Pin=R25-2
+Removed Pin From Net: NetName=NetD4_A Pin=R28-1
+Removed Pin From Net: NetName=NetD5_A Pin=R29-1
+Removed Pin From Net: NetName=NetD6_A Pin=R30-1
+Removed Pin From Net: NetName=NetD7_A Pin=R31-1
+Removed Pin From Net: NetName=NetD8_A Pin=R32-1
+Removed Pin From Net: NetName=NetD9_A Pin=R33-1
+Removed Pin From Net: NetName=NetR28_2 Pin=U4-38
+Removed Pin From Net: NetName=NetR29_2 Pin=U4-39
+Removed Member From Class: ClassName=MotorMCU Member=R13
+Removed Member From Class: ClassName=MotorMCU Member=R14
+Removed Member From Class: ClassName=MotorMCU Member=R15
+Removed Member From Class: ClassName=Gate-Driver Member=R20
+Removed Member From Class: ClassName=Gate-Driver Member=R22
+Removed Member From Class: ClassName=MotorMCU Member=R30
+Removed Member From Class: ClassName=MotorMCU Member=R31
+Removed Member From Class: ClassName=MotorMCU Member=R32
+Removed Member From Class: ClassName=MotorMCU Member=R33
+Change Component DesignItemId : Designator=R7 Old DesignItemId=R-4.7K-62.5 mW-0402(1005)_1 New DesignItemId=R-820-100mW-0603(1608)
+Change Component DesignItemId : Designator=R8 Old DesignItemId=R-4.7K-62.5 mW-0402(1005)_1 New DesignItemId=R-820-100mW-0603(1608)
+Change Component DesignItemId : Designator=R28 Old DesignItemId=R-60-62.5 mW-0805 New DesignItemId=R-60.4-100mW-0805
+Change Component DesignItemId : Designator=R29 Old DesignItemId=R-60-62.5 mW-0805 New DesignItemId=R-60.4-100mW-0805
+Change Component DesignItemId : Designator=R11 Old DesignItemId=R-330-62.5 mW-0402(1005) New DesignItemId=R-820-100mW-0603(1608)
+Change Component DesignItemId : Designator=R25 Old DesignItemId=R-750-62.5 mW-0402(1005) New DesignItemId=R-60.4-100mW-0805
+Change Component DesignItemId : Designator=R16 Old DesignItemId=R-750-62.5 mW-0402(1005) New DesignItemId=R-750-100mW-0603(1608)
+Change Component DesignItemId : Designator=R18 Old DesignItemId=R-750-62.5 mW-0402(1005) New DesignItemId=R-750-100mW-0603(1608)
+Change Component Footprint: Designator=R7 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R8 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R11 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R16 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R18 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R25 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R28 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R29 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Comment : Designator=R7 Old Comment=4.7K New Comment=820
+Change Component Comment : Designator=R8 Old Comment=4.7K New Comment=820
+Change Component Comment : Designator=R28 Old Comment=60 New Comment=60.4
+Change Component Comment : Designator=R29 Old Comment=60 New Comment=60.4
+Change Component Comment : Designator=R11 Old Comment=330 New Comment=820
+Change Component Comment : Designator=R25 Old Comment=750 New Comment=60.4
+Added Component: Designator=C18(CAP-0402(1005)-R)
+Added Component: Designator=C20(CAP-0402(1005)-R)
+Added Component: Designator=C21(CAP-0402(1005)-R)
+Added Component: Designator=R23(R-0603(1608)-R)
+Added Component: Designator=R24(R-0603(1608)-R)
+Added Component: Designator=R26(R-0603(1608)-R)
+Added Component: Designator=R27(R-0603(1608)-R)
+Added Pin To Net: NetName=SENSEA Pin=C18-1
+Added Pin To Net: NetName=GND Pin=C18-2
+Added Pin To Net: NetName=SENSEB Pin=C20-1
+Added Pin To Net: NetName=GND Pin=C20-2
+Added Pin To Net: NetName=SENSEC Pin=C21-1
+Added Pin To Net: NetName=GND Pin=C21-2
+Added Pin To Net: NetName=SENSEA Pin=J5-1
+Added Pin To Net: NetName=SENSEB Pin=J5-2
+Added Pin To Net: NetName=SENSEC Pin=J5-3
+Added Pin To Net: NetName=SENSEA Pin=R7-2
+Added Pin To Net: NetName=SENSEB Pin=R8-2
+Added Pin To Net: NetName=5V Pin=R11-1
+Added Pin To Net: NetName=SENSEC Pin=R11-2
+Added Pin To Net: NetName=VL3 Pin=R23-1
+Added Pin To Net: NetName=VB3 Pin=R23-2
+Added Pin To Net: NetName=NetD4_A Pin=R24-1
+Added Pin To Net: NetName=NetD5_A Pin=R25-1
+Added Pin To Net: NetName=NetD6_A Pin=R26-1
+Added Pin To Net: NetName=NetD7_A Pin=R27-1
+Added Pin To Net: NetName=NetD8_A Pin=R28-1
+Added Pin To Net: NetName=NetD9_A Pin=R29-1
+Added Pin To Net: NetName=NetR28_2 Pin=U4-2
+Added Pin To Net: NetName=NetR29_2 Pin=U4-3
+Added Pin To Net: NetName=NetR24_2 Pin=R24-2
+Added Pin To Net: NetName=NetR24_2 Pin=U4-38
+Added Net: Name=NetR24_2
+Added Pin To Net: NetName=NetR25_2 Pin=R25-2
+Added Pin To Net: NetName=NetR25_2 Pin=U4-39
+Added Net: Name=NetR25_2
+Added Pin To Net: NetName=NetR26_2 Pin=R26-2
+Added Pin To Net: NetName=NetR26_2 Pin=U4-40
+Added Net: Name=NetR26_2
+Added Pin To Net: NetName=NetR27_2 Pin=R27-2
+Added Pin To Net: NetName=NetR27_2 Pin=U4-41
+Added Net: Name=NetR27_2
+Added Member To Class: ClassName=MotorMCU Member=Component C18 20 pF
+Added Member To Class: ClassName=MotorMCU Member=Component C20 20 pF
+Added Member To Class: ClassName=MotorMCU Member=Component C21 20 pF
+Added Member To Class: ClassName=MotorMCU Member=Component R23 750
+Added Member To Class: ClassName=MotorMCU Member=Component R24 60.4
+Added Member To Class: ClassName=MotorMCU Member=Component R26 60.4
+Added Member To Class: ClassName=MotorMCU Member=Component R27 60.4

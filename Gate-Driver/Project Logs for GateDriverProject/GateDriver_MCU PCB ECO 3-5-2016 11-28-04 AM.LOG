@@ -1,0 +1,18 @@
+Change Component Footprint: Designator=C9 Old Footprint=R-0805(2012)-R New Footprint=CAP-0805(2012)-R
+Change Component Footprint: Designator=C4 Old Footprint=TC-B New Footprint=CAP-0805(2012)-R
+Change Component Footprint: Designator=C6 Old Footprint=TC-B New Footprint=CAP-0805(2012)-R
+Added Pin To Net: NetName=NetC9_2 Pin=C9-2
+Added Pin To Net: NetName=NetC4_2 Pin=D1-K
+Added Pin To Net: NetName=NetC6_2 Pin=D2-K
+Added Pin To Net: NetName=NetC9_2 Pin=D3-K
+Added Pin To Net: NetName=NetD1_A Pin=D1-A
+Added Pin To Net: NetName=NetD1_A Pin=R12-1
+Added Net: Name=NetD1_A
+Added Pin To Net: NetName=NetD2_A Pin=D2-A
+Added Pin To Net: NetName=NetD2_A Pin=R19-1
+Added Net: Name=NetD2_A
+Added Pin To Net: NetName=NetD3_A Pin=D3-A
+Added Pin To Net: NetName=NetD3_A Pin=R21-1
+Added Net: Name=NetD3_A
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

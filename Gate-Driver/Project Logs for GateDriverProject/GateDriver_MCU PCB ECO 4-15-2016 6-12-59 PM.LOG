@@ -1,0 +1,11 @@
+Change Component Footprint: Designator=D4 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D5 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D6 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D7 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D8 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D9 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D10 Old Footprint=LED-0805-K New Footprint=LED-1206
+Change Component Footprint: Designator=D11 Old Footprint=LED-0805-K New Footprint=LED-1206
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

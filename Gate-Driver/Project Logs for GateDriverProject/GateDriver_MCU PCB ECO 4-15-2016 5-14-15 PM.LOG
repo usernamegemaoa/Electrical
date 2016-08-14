@@ -1,0 +1,13 @@
+Change Component Comment : Designator=R1 Old Comment=1K New Comment=1 kOhms
+Change Component Comment : Designator=R17 Old Comment=220 New Comment=220 Ohms
+Change Component Comment : Designator=R20 Old Comment=220 New Comment=220 Ohms
+Change Component Comment : Designator=R22 Old Comment=220 New Comment=220 Ohms
+Change Component Comment : Designator=R16 Old Comment=750 New Comment=750 Ohms
+Change Component Comment : Designator=R18 Old Comment=750 New Comment=750 Ohms
+Change Component Comment : Designator=R23 Old Comment=750 New Comment=750 Ohms
+Change Component Comment : Designator=R7 Old Comment=820 New Comment=820 Ohms
+Change Component Comment : Designator=R8 Old Comment=820 New Comment=820 Ohms
+Change Component Comment : Designator=R11 Old Comment=820 New Comment=820 Ohms
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

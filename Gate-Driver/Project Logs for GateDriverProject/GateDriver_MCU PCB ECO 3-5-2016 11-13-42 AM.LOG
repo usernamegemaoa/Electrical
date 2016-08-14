@@ -1,0 +1,50 @@
+Removed Pin From Net: NetName=NetR3_1 Pin=U1-5
+Removed Pin From Net: NetName=NetR4_1 Pin=U1-6
+Removed Pin From Net: NetName=NetR5_1 Pin=U2-5
+Removed Pin From Net: NetName=NetR6_1 Pin=U2-6
+Removed Pin From Net: NetName=NetR9_1 Pin=U3-5
+Removed Pin From Net: NetName=NetR10_1 Pin=U3-6
+Removed Pin From Net: NetName=NetR3_2 Pin=U4-32
+Removed Pin From Net: NetName=NetR4_2 Pin=U4-35
+Removed Pin From Net: NetName=NetR5_2 Pin=U4-36
+Removed Pin From Net: NetName=NetR6_2 Pin=U4-37
+Removed Pin From Net: NetName=NetR9_2 Pin=U4-42
+Removed Pin From Net: NetName=NetR10_2 Pin=U4-43
+Added Component: Designator=R3(R-0402(1005)-R)
+Added Component: Designator=R4(R-0402(1005)-R)
+Added Component: Designator=R5(R-0402(1005)-R)
+Added Component: Designator=R6(R-0402(1005)-R)
+Added Component: Designator=R9(R-0402(1005)-R)
+Added Component: Designator=R10(R-0402(1005)-R)
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetR3_2 Pin=R3-2
+Added Pin To Net: NetName=NetR4_1 Pin=R4-1
+Added Pin To Net: NetName=NetR4_2 Pin=R4-2
+Added Pin To Net: NetName=NetR5_1 Pin=R5-1
+Added Pin To Net: NetName=NetR5_2 Pin=R5-2
+Added Pin To Net: NetName=NetR6_1 Pin=R6-1
+Added Pin To Net: NetName=NetR6_2 Pin=R6-2
+Added Pin To Net: NetName=NetR9_1 Pin=R9-1
+Added Pin To Net: NetName=NetR9_2 Pin=R9-2
+Added Pin To Net: NetName=NetR10_1 Pin=R10-1
+Added Pin To Net: NetName=NetR10_2 Pin=R10-2
+Added Pin To Net: NetName=NetR3_2 Pin=U1-5
+Added Pin To Net: NetName=NetR4_2 Pin=U1-6
+Added Pin To Net: NetName=NetR5_2 Pin=U2-5
+Added Pin To Net: NetName=NetR6_2 Pin=U2-6
+Added Pin To Net: NetName=NetR9_2 Pin=U3-5
+Added Pin To Net: NetName=NetR10_2 Pin=U3-6
+Added Pin To Net: NetName=NetR3_1 Pin=U4-32
+Added Pin To Net: NetName=NetR4_1 Pin=U4-35
+Added Pin To Net: NetName=NetR5_1 Pin=U4-36
+Added Pin To Net: NetName=NetR6_1 Pin=U4-37
+Added Pin To Net: NetName=NetR9_1 Pin=U4-42
+Added Pin To Net: NetName=NetR10_1 Pin=U4-43
+Added Member To Class: ClassName=Gate-Driver Member=Component R3 100
+Added Member To Class: ClassName=Gate-Driver Member=Component R4 100
+Added Member To Class: ClassName=Gate-Driver Member=Component R5 100
+Added Member To Class: ClassName=Gate-Driver Member=Component R6 100
+Added Member To Class: ClassName=Gate-Driver Member=Component R9 100
+Added Member To Class: ClassName=Gate-Driver Member=Component R10 100
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

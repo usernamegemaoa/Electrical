@@ -1,0 +1,6 @@
+* source FILTERS
+C_C2         N00280 N00280  1n  TC=0,0 
+C_C1         N00256 N00280  1n  TC=0,0 
+R_R1         N00256 N00280  1k TC=0,0 
+V_V1         N00401 0 1.25Vdc
+E_U1         N00280 0 VALUE {LIMIT(V(N00401,N00256)*1E6,0,+3.3V)}

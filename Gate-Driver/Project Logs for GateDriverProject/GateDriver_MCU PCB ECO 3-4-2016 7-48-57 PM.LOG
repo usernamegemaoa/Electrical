@@ -1,0 +1,166 @@
+Removed Pin From Net: NetName=VCC Pin=D1-1
+Removed Pin From Net: NetName=VCC Pin=D2-1
+Removed Pin From Net: NetName=VCC Pin=D3-1
+Removed Pin From Net: NetName=5V Pin=R1-2
+Removed Pin From Net: NetName=GND Pin=R28-1
+Removed Pin From Net: NetName=GND Pin=R29-1
+Removed Pin From Net: NetName=GND Pin=R30-1
+Removed Pin From Net: NetName=GND Pin=R31-1
+Removed Pin From Net: NetName=GND Pin=R32-1
+Removed Pin From Net: NetName=GND Pin=R33-1
+Removed Pin From Net: NetName=NetC4_2 Pin=U1-4
+Removed Pin From Net: NetName=NetC6_2 Pin=U3-4
+Removed Pin From Net: NetName=NetLED5_A Pin=U4-2
+Removed Pin From Net: NetName=NetLED6_A Pin=U4-3
+Removed Pin From Net: NetName=NetLED1_A Pin=U4-38
+Removed Pin From Net: NetName=NetLED2_A Pin=U4-39
+Removed Pin From Net: NetName=NetLED3_A Pin=U4-40
+Removed Pin From Net: NetName=NetLED4_A Pin=U4-41
+Change Component DesignItemId : Designator=C4 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP- 1 uF- 50 V-CER-0805(2012)
+Change Component DesignItemId : Designator=C6 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP- 1 uF- 50 V-CER-0805(2012)
+Change Component DesignItemId : Designator=C5 Old DesignItemId=CAP-10uF-16V-TANTB-TC-B New DesignItemId=CAP-1uF-63V-TANTB-TC-C
+Change Component DesignItemId : Designator=D1 Old DesignItemId=DIODE New DesignItemId=DIODE-ES1D
+Change Component DesignItemId : Designator=D2 Old DesignItemId=DIODE New DesignItemId=DIODE-ES1D
+Change Component DesignItemId : Designator=D3 Old DesignItemId=DIODE New DesignItemId=DIODE-ES1D
+Change Component DesignItemId : Designator=R1 Old DesignItemId=R-47K-62.5 mW-0402(1005) New DesignItemId=R-1K-125mW-0603
+Change Component DesignItemId : Designator=R28 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R29 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R30 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R31 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R32 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R33 Old DesignItemId=R-226-62.5 mW-0402(1005) New DesignItemId=R-60-62.5 mW-0805
+Change Component DesignItemId : Designator=R2 Old DesignItemId=R-470-62.5 mW-0402(1005) New DesignItemId=R-10k-125mW-0603
+Change Component Footprint: Designator=R1 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=R2 Old Footprint=R-0402(1005)-R New Footprint=R-0603(1608)-R
+Change Component Footprint: Designator=D1 Old Footprint=SMB New Footprint=DO-214AC
+Change Component Footprint: Designator=D2 Old Footprint=SMB New Footprint=DO-214AC
+Change Component Footprint: Designator=D3 Old Footprint=SMB New Footprint=DO-214AC
+Change Component Footprint: Designator=C5 Old Footprint=TC-B New Footprint=CAPMP6032X280N
+Change Component Comment : Designator=C4 Old Comment=11-000022-ARD New Comment=1 µF
+Change Component Comment : Designator=C6 Old Comment=11-000022-ARD New Comment=1 µF
+Change Component Comment : Designator=C5 Old Comment=11-000022-ARD New Comment=TCJC105M063R0300
+Change Component Comment : Designator=R1 Old Comment=47K New Comment=1k
+Change Component Comment : Designator=R28 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R29 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R30 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R31 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R32 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R33 Old Comment=226 New Comment=60
+Change Component Comment : Designator=R2 Old Comment=470 New Comment=10k
+Change Component Comment : Designator=D1 Old Comment=MUR160 New Comment=Value
+Change Component Comment : Designator=D2 Old Comment=MUR160 New Comment=Value
+Change Component Comment : Designator=D3 Old Comment=MUR160 New Comment=Value
+Change Component Description : Designator=C4 Old Description=CAP, 10uF, 16V, TANT-B New Description=CAP CER 1 UF 50V 10% Y5V 0805
+Change Component Description : Designator=C6 Old Description=CAP, 10uF, 16V, TANT-B New Description=CAP CER 1 UF 50V 10% Y5V 0805
+Change Component Description : Designator=R28 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Description : Designator=R29 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Description : Designator=R30 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Description : Designator=R31 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Description : Designator=R32 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Description : Designator=R33 Old Description=RES 226 OHM 62.5 mW 0402(1005) SMD New Description=RES 60 OHM 62.5 mW  SMD
+Change Component Library : Designator=C4 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=C6 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Added Component: Designator=C16(CAP-0402(1005)-R)
+Added Component: Designator=C17(CAPMP6032X280N)
+Added Component: Designator=C18(R-0805(2012)-R)
+Added Component: Designator=C19(CAPMP6032X280N)
+Added Component: Designator=J6(USB_Connector_5P_MICRO_USB_FCI)
+Added Component: Designator=R12(R-0805(2012)-R)
+Added Component: Designator=R19(R-0805(2012)-R)
+Added Component: Designator=R21(R-0805(2012)-R)
+Added Component: Designator=R34(R-0402(1005)-R)
+Added Component: Designator=R35(R-0402(1005)-R)
+Added Pin To Net: NetName=VB1 Pin=C4-1
+Added Pin To Net: NetName=NetC4_2 Pin=C5-1
+Added Pin To Net: NetName=VB1 Pin=C5-2
+Added Pin To Net: NetName=VB2 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C16-1
+Added Pin To Net: NetName=NetC6_2 Pin=C17-1
+Added Pin To Net: NetName=VB2 Pin=C17-2
+Added Pin To Net: NetName=VB3 Pin=C18-1
+Added Pin To Net: NetName=VB3 Pin=C19-2
+Added Pin To Net: NetName=5V Pin=J6-1
+Added Pin To Net: NetName=GND Pin=J6-5
+Added Pin To Net: NetName=GND Pin=LED1-K
+Added Pin To Net: NetName=GND Pin=LED2-K
+Added Pin To Net: NetName=GND Pin=LED3-K
+Added Pin To Net: NetName=GND Pin=LED4-K
+Added Pin To Net: NetName=GND Pin=LED5-K
+Added Pin To Net: NetName=GND Pin=LED6-K
+Added Pin To Net: NetName=5V Pin=R2-1
+Added Pin To Net: NetName=VCC Pin=R12-0
+Added Pin To Net: NetName=VCC Pin=R19-0
+Added Pin To Net: NetName=VCC Pin=R21-0
+Added Pin To Net: NetName=NetLED1_A Pin=R28-1
+Added Pin To Net: NetName=NetLED2_A Pin=R29-1
+Added Pin To Net: NetName=NetLED3_A Pin=R30-1
+Added Pin To Net: NetName=NetLED4_A Pin=R31-1
+Added Pin To Net: NetName=NetLED5_A Pin=R32-1
+Added Pin To Net: NetName=NetLED6_A Pin=R33-1
+Added Pin To Net: NetName=NetC4_2 Pin=U1-2
+Added Pin To Net: NetName=H1_M Pin=U1-3
+Added Pin To Net: NetName=VB1 Pin=U1-4
+Added Pin To Net: NetName=L1_M Pin=U1-8
+Added Pin To Net: NetName=NetC6_2 Pin=U2-2
+Added Pin To Net: NetName=H2_M Pin=U2-3
+Added Pin To Net: NetName=VB2 Pin=U2-4
+Added Pin To Net: NetName=L2_M Pin=U2-8
+Added Pin To Net: NetName=H3_M Pin=U3-3
+Added Pin To Net: NetName=VB3 Pin=U3-4
+Added Pin To Net: NetName=L3_M Pin=U3-8
+Added Pin To Net: NetName=MCLR Pin=U4-18
+Added Pin To Net: NetName=NetC16_2 Pin=C16-2
+Added Pin To Net: NetName=NetC16_2 Pin=R1-1
+Added Pin To Net: NetName=NetC16_2 Pin=S1-1
+Added Net: Name=NetC16_2
+Added Pin To Net: NetName=NetC18_2 Pin=C19-1
+Added Pin To Net: NetName=NetC18_2 Pin=U3-2
+Added Net: Name=NetC18_2
+Added Pin To Net: NetName=NetD1_1 Pin=R12-1
+Added Net: Name=NetD1_1
+Added Pin To Net: NetName=NetD2_1 Pin=R19-1
+Added Net: Name=NetD2_1
+Added Pin To Net: NetName=NetD3_1 Pin=R21-1
+Added Net: Name=NetD3_1
+Added Pin To Net: NetName=NetJ6_2 Pin=J6-2
+Added Pin To Net: NetName=NetJ6_2 Pin=R34-2
+Added Net: Name=NetJ6_2
+Added Pin To Net: NetName=NetJ6_3 Pin=J6-3
+Added Pin To Net: NetName=NetJ6_3 Pin=R35-2
+Added Net: Name=NetJ6_3
+Added Pin To Net: NetName=NetR28_2 Pin=R28-2
+Added Pin To Net: NetName=NetR28_2 Pin=U4-38
+Added Net: Name=NetR28_2
+Added Pin To Net: NetName=NetR29_2 Pin=R29-2
+Added Pin To Net: NetName=NetR29_2 Pin=U4-39
+Added Net: Name=NetR29_2
+Added Pin To Net: NetName=NetR30_2 Pin=R30-2
+Added Pin To Net: NetName=NetR30_2 Pin=U4-40
+Added Net: Name=NetR30_2
+Added Pin To Net: NetName=NetR31_2 Pin=R31-2
+Added Pin To Net: NetName=NetR31_2 Pin=U4-41
+Added Net: Name=NetR31_2
+Added Pin To Net: NetName=NetR32_2 Pin=R32-2
+Added Pin To Net: NetName=NetR32_2 Pin=U4-2
+Added Net: Name=NetR32_2
+Added Pin To Net: NetName=NetR33_2 Pin=R33-2
+Added Pin To Net: NetName=NetR33_2 Pin=U4-3
+Added Net: Name=NetR33_2
+Added Pin To Net: NetName=RX Pin=R34-1
+Added Pin To Net: NetName=RX Pin=U4-1
+Added Net: Name=RX
+Added Pin To Net: NetName=TX Pin=R35-1
+Added Pin To Net: NetName=TX Pin=U4-44
+Added Net: Name=TX
+Added Member To Class: ClassName=MotorMCU Member=Component C16 0.1 µF
+Added Member To Class: ClassName=Gate-Driver Member=Component C17 TCJC105M063R0300
+Added Member To Class: ClassName=Gate-Driver Member=Component C18 1 µF
+Added Member To Class: ClassName=Gate-Driver Member=Component C19 TCJC105M063R0300
+Added Member To Class: ClassName=MotorMCU Member=Component J6 USB
+Added Member To Class: ClassName=Gate-Driver Member=Component R12 10
+Added Member To Class: ClassName=Gate-Driver Member=Component R19 10
+Added Member To Class: ClassName=Gate-Driver Member=Component R21 10
+Added Member To Class: ClassName=MotorMCU Member=Component R34 22
+Added Member To Class: ClassName=MotorMCU Member=Component R35 22
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

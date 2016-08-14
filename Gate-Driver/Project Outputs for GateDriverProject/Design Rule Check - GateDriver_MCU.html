@@ -1,0 +1,711 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5/2/2016</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:05:57 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc" class="file"><acronym title="C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc">C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">125</td></tr>
+</table>
+</td>
+</table><a name="IDEWO4QFD1WY0MBGJULFDNSNMIEH4LOGCSFXLFPUTBKQ0WDSVEILP"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEC130V1R3Z4VOA4UZAHDJ1UBWG4FHIWH0CFEGTOJYGLLOTF0YSOC">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDQP4GJ1GN3X0LBXZ45SZDXREIDCAR1JCLJ1KS5IHED31Q25BV11G">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLORGYE3ZYGF3GWCGKDKFRZKJ2FX2ZTPVYYY3MTGX5UYZJOQEHEPP">Clearance Constraint (Gap=6mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2TA4WIFABVTFMHQ4DCA2KXQ0OMPZQYURBL3KFQKPY5TIVMLTLFUF">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF03FQPWJ1GEMBE5RXMENWTWF1B0AM3PALGXYR3F0O3MVIPAKHHQ">Width Constraint (Min=6mil) (Max=100mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUBCKOIXZF0HQIHMYPSIDPJJ5YIXB4CE4Y3X5SCK5A2MPKPPFOWLJ">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL5WMOSI4ZGVLMFJUGMTZHLE1GLBNBX0H0GAGRSOHNTEIPIIDPDP">Hole Size Constraint (Min=1mil) (Max=200mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGG514WF2ZJ1AKTYM201XIWEQLPUTS43CBU3TY5PD1M1ABHXEXPRJ">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUCG2QM4GZ0KEMNBU0XETRZRXQL2GQSTCGDPLPSE5LPFOAKVSA2RC">Minimum Solder Mask Sliver (Gap=6mil) (All),(All)</a></td>
+<td class="column2">70</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCVKUCLXBTX40CJZRT3BYAXFZTNB24ZW1Y1GROGMOH1QU13IMVNX">Silk To Solder Mask (Clearance=3mil) (IsPad),(All)</a></td>
+<td class="column2">49</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRDFNRZ0DRSGUHLADTQEQWKVOHI5KZ53G2IXGGAEH1L540LDI3EHI">Silk to Silk (Clearance=3mil) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZOIGP2P1DAGLMOSQTRET5I30UJPI1APDIAXAPPMUKMVKWDNY5RNG">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDVA4NDI0ZXW1TMBUISVX3ZURWONRY4NXDOIGCVWIZHGSDKSOELUZB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">125</td>
+</tr>
+</table><br><a name="IDUCG2QM4GZ0KEMNBU0XETRZRXQL2GQSTCGDPLPSE5LPFOAKVSA2RC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=6mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2366.375mil|Location2.X=2373.625mil|Location1.Y=1381.611mil|Location2.Y=1388.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2366.375mil|Location2.X=2373.625mil|Location1.Y=1381.611mil|Location2.Y=1388.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.473mil &lt; 6mil) Between Via (2370mil,1365mil) from Top Layer to Bottom Layer And Pad D5-A(2350.59mil,1420mil) on Top Layer [Top Solder] Mask Sliver [2.473mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2160.351mil|Location2.Y=2167.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2160.351mil|Location2.Y=2167.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-14(1523.701mil,2151.181mil) on Top Layer And Pad U6-13(1523.701mil,2176.772mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2134.761mil|Location2.Y=2142.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2134.761mil|Location2.Y=2142.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad U6-15(1523.701mil,2125.59mil) on Top Layer And Pad U6-14(1523.701mil,2151.181mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2109.17mil|Location2.Y=2116.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1501.312mil|Location2.X=1508.562mil|Location1.Y=2109.17mil|Location2.Y=2116.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-16(1523.701mil,2100mil) on Top Layer And Pad U6-15(1523.701mil,2125.59mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1473.816mil|Location2.X=1481.066mil|Location1.Y=2054.052mil|Location2.Y=2061.302mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1473.816mil|Location2.X=1481.066mil|Location1.Y=2054.052mil|Location2.Y=2061.302mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-2(1464.646mil,2066.535mil) on Top Layer And Pad U6-1(1490.236mil,2066.535mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1448.225mil|Location2.X=1455.475mil|Location1.Y=2044.147mil|Location2.Y=2051.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1448.225mil|Location2.X=1455.475mil|Location1.Y=2044.147mil|Location2.Y=2051.397mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad U6-3(1439.055mil,2066.535mil) on Top Layer And Pad U6-2(1464.646mil,2066.535mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1422.635mil|Location2.X=1429.885mil|Location1.Y=2044.147mil|Location2.Y=2051.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1422.635mil|Location2.X=1429.885mil|Location1.Y=2044.147mil|Location2.Y=2051.397mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-4(1413.465mil,2066.535mil) on Top Layer And Pad U6-3(1439.055mil,2066.535mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2109.17mil|Location2.Y=2116.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2109.17mil|Location2.Y=2116.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-6(1380mil,2125.59mil) on Top Layer And Pad U6-5(1380mil,2100mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2134.761mil|Location2.Y=2142.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2134.761mil|Location2.Y=2142.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad U6-7(1380mil,2151.181mil) on Top Layer And Pad U6-6(1380mil,2125.59mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2160.351mil|Location2.Y=2167.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.611mil|Location2.X=1364.861mil|Location1.Y=2160.351mil|Location2.Y=2167.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-8(1380mil,2176.772mil) on Top Layer And Pad U6-7(1380mil,2151.181mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1422.635mil|Location2.X=1429.885mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1422.635mil|Location2.X=1429.885mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-10(1439.055mil,2210.236mil) on Top Layer And Pad U6-9(1413.465mil,2210.236mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1448.225mil|Location2.X=1455.475mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1448.225mil|Location2.X=1455.475mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad U6-11(1464.646mil,2210.236mil) on Top Layer And Pad U6-10(1439.055mil,2210.236mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1473.816mil|Location2.X=1481.066mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1473.816mil|Location2.X=1481.066mil|Location1.Y=2187.847mil|Location2.Y=2195.097mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.779mil &lt; 6mil) Between Pad U6-12(1490.236mil,2210.236mil) on Top Layer And Pad U6-11(1464.646mil,2210.236mil) on Top Layer [Top Solder] Mask Sliver [5.779mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.649mil|Location2.X=2347.191mil|Location1.Y=1719.822mil|Location2.Y=1727.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2339.649mil|Location2.X=2347.191mil|Location1.Y=1719.822mil|Location2.Y=1727.523mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.436mil &lt; 6mil) Between Via (2330mil,1740mil) from Top Layer to Bottom Layer And Pad R20-2(2364.409mil,1700mil) on Top Layer [Top Solder] Mask Sliver [4.436mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.544mil|Location2.X=1856.794mil|Location1.Y=2456.375mil|Location2.Y=2463.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.544mil|Location2.X=1856.794mil|Location1.Y=2456.375mil|Location2.Y=2463.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.661mil &lt; 6mil) Between Via (1885mil,2460mil) from Top Layer to Bottom Layer And Pad R31-1(1830.591mil,2445mil) on Top Layer [Top Solder] Mask Sliver [5.661mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.107mil|Location2.X=1775.357mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.107mil|Location2.X=1775.357mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-2(1755.984mil,1872.441mil) on Top Layer And Pad U4-1(1787.48mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1736.611mil|Location2.X=1743.861mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1736.611mil|Location2.X=1743.861mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-3(1724.488mil,1872.441mil) on Top Layer And Pad U4-2(1755.984mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.115mil|Location2.X=1712.365mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.115mil|Location2.X=1712.365mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-4(1692.992mil,1872.441mil) on Top Layer And Pad U4-3(1724.488mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.619mil|Location2.X=1680.869mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.619mil|Location2.X=1680.869mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-5(1661.496mil,1872.441mil) on Top Layer And Pad U4-4(1692.992mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1642.123mil|Location2.X=1649.373mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1642.123mil|Location2.X=1649.373mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-6(1630mil,1872.441mil) on Top Layer And Pad U4-5(1661.496mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610.627mil|Location2.X=1617.877mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610.627mil|Location2.X=1617.877mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-7(1598.504mil,1872.441mil) on Top Layer And Pad U4-6(1630mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.131mil|Location2.X=1586.381mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.131mil|Location2.X=1586.381mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-8(1567.008mil,1872.441mil) on Top Layer And Pad U4-7(1598.504mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.635mil|Location2.X=1554.885mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.635mil|Location2.X=1554.885mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-9(1535.512mil,1872.441mil) on Top Layer And Pad U4-8(1567.008mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.139mil|Location2.X=1523.389mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.139mil|Location2.X=1523.389mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-10(1504.016mil,1872.441mil) on Top Layer And Pad U4-9(1535.512mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.643mil|Location2.X=1491.893mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.643mil|Location2.X=1491.893mil|Location1.Y=1844.21mil|Location2.Y=1851.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-11(1472.52mil,1872.441mil) on Top Layer And Pad U4-10(1504.016mil,1872.441mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1788.107mil|Location2.Y=1795.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1788.107mil|Location2.Y=1795.357mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-13(1407.559mil,1775.984mil) on Top Layer And Pad U4-12(1407.559mil,1807.48mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1756.611mil|Location2.Y=1763.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1756.611mil|Location2.Y=1763.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-14(1407.559mil,1744.488mil) on Top Layer And Pad U4-13(1407.559mil,1775.984mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1725.115mil|Location2.Y=1732.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1725.115mil|Location2.Y=1732.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-15(1407.559mil,1712.992mil) on Top Layer And Pad U4-14(1407.559mil,1744.488mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1693.619mil|Location2.Y=1700.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1693.619mil|Location2.Y=1700.869mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-16(1407.559mil,1681.496mil) on Top Layer And Pad U4-15(1407.559mil,1712.992mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1662.123mil|Location2.Y=1669.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1662.123mil|Location2.Y=1669.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-17(1407.559mil,1650mil) on Top Layer And Pad U4-16(1407.559mil,1681.496mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1630.627mil|Location2.Y=1637.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1630.627mil|Location2.Y=1637.877mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-18(1407.559mil,1618.504mil) on Top Layer And Pad U4-17(1407.559mil,1650mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1599.131mil|Location2.Y=1606.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1599.131mil|Location2.Y=1606.381mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-19(1407.559mil,1587.008mil) on Top Layer And Pad U4-18(1407.559mil,1618.504mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1567.635mil|Location2.Y=1574.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1567.635mil|Location2.Y=1574.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-20(1407.559mil,1555.512mil) on Top Layer And Pad U4-19(1407.559mil,1587.008mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1536.139mil|Location2.Y=1543.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1536.139mil|Location2.Y=1543.389mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-21(1407.559mil,1524.016mil) on Top Layer And Pad U4-20(1407.559mil,1555.512mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1504.643mil|Location2.Y=1511.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.328mil|Location2.X=1386.578mil|Location1.Y=1504.643mil|Location2.Y=1511.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-22(1407.559mil,1492.52mil) on Top Layer And Pad U4-21(1407.559mil,1524.016mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.929mil|Location2.X=1370.179mil|Location1.Y=1520.816mil|Location2.Y=1528.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1362.929mil|Location2.X=1370.179mil|Location1.Y=1520.816mil|Location2.Y=1528.066mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.123mil &lt; 6mil) Between Via (1345mil,1525mil) from Top Layer to Bottom Layer And Pad U4-21(1407.559mil,1524.016mil) on Top Layer [Top Solder] Mask Sliver [5.123mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.643mil|Location2.X=1491.893mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.643mil|Location2.X=1491.893mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-24(1504.016mil,1427.559mil) on Top Layer And Pad U4-23(1472.52mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.139mil|Location2.X=1523.389mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1516.139mil|Location2.X=1523.389mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-25(1535.512mil,1427.559mil) on Top Layer And Pad U4-24(1504.016mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.635mil|Location2.X=1554.885mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.635mil|Location2.X=1554.885mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-26(1567.008mil,1427.559mil) on Top Layer And Pad U4-25(1535.512mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.131mil|Location2.X=1586.381mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.131mil|Location2.X=1586.381mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-27(1598.504mil,1427.559mil) on Top Layer And Pad U4-26(1567.008mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610.627mil|Location2.X=1617.877mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1610.627mil|Location2.X=1617.877mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-28(1630mil,1427.559mil) on Top Layer And Pad U4-27(1598.504mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1642.123mil|Location2.X=1649.373mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1642.123mil|Location2.X=1649.373mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-29(1661.496mil,1427.559mil) on Top Layer And Pad U4-28(1630mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.619mil|Location2.X=1680.869mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1673.619mil|Location2.X=1680.869mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-30(1692.992mil,1427.559mil) on Top Layer And Pad U4-29(1661.496mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.115mil|Location2.X=1712.365mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.115mil|Location2.X=1712.365mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-31(1724.488mil,1427.559mil) on Top Layer And Pad U4-30(1692.992mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1736.611mil|Location2.X=1743.861mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1736.611mil|Location2.X=1743.861mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-32(1755.984mil,1427.559mil) on Top Layer And Pad U4-31(1724.488mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.107mil|Location2.X=1775.357mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.107mil|Location2.X=1775.357mil|Location1.Y=1399.328mil|Location2.Y=1406.578mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-33(1787.48mil,1427.559mil) on Top Layer And Pad U4-32(1755.984mil,1427.559mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1504.643mil|Location2.Y=1511.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1504.643mil|Location2.Y=1511.893mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-35(1852.441mil,1524.016mil) on Top Layer And Pad U4-34(1852.441mil,1492.52mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1536.139mil|Location2.Y=1543.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1536.139mil|Location2.Y=1543.389mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-36(1852.441mil,1555.512mil) on Top Layer And Pad U4-35(1852.441mil,1524.016mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1567.635mil|Location2.Y=1574.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1567.635mil|Location2.Y=1574.885mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-37(1852.441mil,1587.008mil) on Top Layer And Pad U4-36(1852.441mil,1555.512mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1599.131mil|Location2.Y=1606.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1599.131mil|Location2.Y=1606.381mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-38(1852.441mil,1618.504mil) on Top Layer And Pad U4-37(1852.441mil,1587.008mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1630.627mil|Location2.Y=1637.877mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1630.627mil|Location2.Y=1637.877mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-39(1852.441mil,1650mil) on Top Layer And Pad U4-38(1852.441mil,1618.504mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1662.123mil|Location2.Y=1669.373mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1662.123mil|Location2.Y=1669.373mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-40(1852.441mil,1681.496mil) on Top Layer And Pad U4-39(1852.441mil,1650mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1693.619mil|Location2.Y=1700.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1693.619mil|Location2.Y=1700.869mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-41(1852.441mil,1712.992mil) on Top Layer And Pad U4-40(1852.441mil,1681.496mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1725.115mil|Location2.Y=1732.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1725.115mil|Location2.Y=1732.365mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-42(1852.441mil,1744.488mil) on Top Layer And Pad U4-41(1852.441mil,1712.992mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1756.611mil|Location2.Y=1763.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1756.611mil|Location2.Y=1763.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-43(1852.441mil,1775.984mil) on Top Layer And Pad U4-42(1852.441mil,1744.488mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1788.107mil|Location2.Y=1795.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.21mil|Location2.X=1831.46mil|Location1.Y=1788.107mil|Location2.Y=1795.357mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.811mil &lt; 6mil) Between Pad U4-44(1852.441mil,1807.48mil) on Top Layer And Pad U4-43(1852.441mil,1775.984mil) on Top Layer [Top Solder] Mask Sliver [3.811mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1162.769mil|Location2.X=1170.019mil|Location1.Y=2053.855mil|Location2.Y=2061.105mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1162.769mil|Location2.X=1170.019mil|Location1.Y=2053.855mil|Location2.Y=2061.105mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad J6-15(1195mil,2025.984mil) on Multi-Layer And Pad J6-5(1195mil,2073.228mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1162.769mil|Location2.X=1170.019mil|Location1.Y=2187.713mil|Location2.Y=2194.963mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1162.769mil|Location2.X=1170.019mil|Location1.Y=2187.713mil|Location2.Y=2194.963mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 6mil) Between Pad J6-16(1195mil,2222.835mil) on Multi-Layer And Pad J6-1(1195mil,2175.59mil) on Top Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1220.858mil|Location2.X=1229.584mil|Location1.Y=2247.496mil|Location2.Y=2255.791mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1220.858mil|Location2.X=1229.584mil|Location1.Y=2247.496mil|Location2.Y=2255.791mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.275mil &lt; 6mil) Between Via (1240mil,2265mil) from Top Layer to Bottom Layer And Pad J6-16(1195mil,2222.835mil) on Multi-Layer [Top Solder] Mask Sliver [2.275mil] / [Bottom Solder] Mask Sliver [2.275mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2187.157mil|Location2.X=2194.407mil|Location1.Y=1644.082mil|Location2.Y=1651.332mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2187.157mil|Location2.X=2194.407mil|Location1.Y=1644.082mil|Location2.Y=1651.332mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.271mil &lt; 6mil) Between Via (2182.071mil,1629mil) from Top Layer to Bottom Layer And Pad R6-1(2205.315mil,1665mil) on Bottom Layer [Bottom Solder] Mask Sliver [3.271mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2236.375mil|Location2.X=2243.625mil|Location1.Y=2065.47mil|Location2.Y=2072.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2236.375mil|Location2.X=2243.625mil|Location1.Y=2065.47mil|Location2.Y=2072.72mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.189mil &lt; 6mil) Between Via (2240mil,2050mil) from Top Layer to Bottom Layer And Pad R4-2(2239.37mil,2085mil) on Bottom Layer [Bottom Solder] Mask Sliver [0.189mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.903mil|Location2.X=2229.153mil|Location1.Y=2099.78mil|Location2.Y=2107.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.903mil|Location2.X=2229.153mil|Location1.Y=2099.78mil|Location2.Y=2107.03mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.189mil &lt; 6mil) Between Pad U1-6(2240mil,2147.5mil) on Bottom Layer And Pad R4-2(2239.37mil,2085mil) on Bottom Layer [Bottom Solder] Mask Sliver [5.189mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.532mil|Location2.X=2189.782mil|Location1.Y=2099.78mil|Location2.Y=2107.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.532mil|Location2.X=2189.782mil|Location1.Y=2099.78mil|Location2.Y=2107.03mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.189mil &lt; 6mil) Between Pad U1-7(2190mil,2147.5mil) on Bottom Layer And Pad R4-1(2200mil,2085mil) on Bottom Layer [Bottom Solder] Mask Sliver [5.189mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.375mil|Location2.X=2448.625mil|Location1.Y=1681.788mil|Location2.Y=1689.038mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2441.375mil|Location2.X=2448.625mil|Location1.Y=1681.788mil|Location2.Y=1689.038mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.827mil &lt; 6mil) Between Via (2445mil,1665mil) from Top Layer to Bottom Layer And Pad C17-1(2420mil,1737.087mil) on Bottom Layer [Bottom Solder] Mask Sliver [2.827mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2061.375mil|Location2.X=2068.625mil|Location1.Y=1211.237mil|Location2.Y=1218.487mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2061.375mil|Location2.X=2068.625mil|Location1.Y=1211.237mil|Location2.Y=1218.487mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.724mil &lt; 6mil) Between Via (2065mil,1185mil) from Top Layer to Bottom Layer And Pad C1-2(2065mil,1265mil) on Bottom Layer [Bottom Solder] Mask Sliver [1.724mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2154.488mil|Location2.X=2162.194mil|Location1.Y=2099.866mil|Location2.Y=2107.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2154.488mil|Location2.X=2162.194mil|Location1.Y=2099.866mil|Location2.Y=2107.566mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.965mil &lt; 6mil) Between Via (2170mil,2085mil) from Top Layer to Bottom Layer And Pad U1-8(2140mil,2147.5mil) on Bottom Layer [Bottom Solder] Mask Sliver [5.965mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2169.687mil|Location2.X=2176.937mil|Location1.Y=2101.246mil|Location2.Y=2108.496mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2169.687mil|Location2.X=2176.937mil|Location1.Y=2101.246mil|Location2.Y=2108.496mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (2.29mil &lt; 6mil) Between Via (2170mil,2085mil) from Top Layer to Bottom Layer And Pad U1-7(2190mil,2147.5mil) on Bottom Layer [Bottom Solder] Mask Sliver [2.29mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1308.875mil|Location2.X=1316.503mil|Location1.Y=1568.875mil|Location2.Y=1576.576mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1308.875mil|Location2.X=1316.503mil|Location1.Y=1568.875mil|Location2.Y=1576.576mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.012mil &lt; 6mil) Between Via (1325mil,1555mil) from Top Layer to Bottom Layer And Via (1300mil,1590mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5.012mil] / [Bottom Solder] Mask Sliver [5.012mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1251.875mil|Location2.X=1260.604mil|Location1.Y=1660.009mil|Location2.Y=1668.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1251.875mil|Location2.X=1260.604mil|Location1.Y=1660.009mil|Location2.Y=1668.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.45mil &lt; 6mil) Between Via (1270mil,1680mil) from Top Layer to Bottom Layer And Via (1241mil,1649mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4.45mil] / [Bottom Solder] Mask Sliver [4.45mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1224.375mil|Location2.X=1233.105mil|Location1.Y=1630.037mil|Location2.Y=1638.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1224.375mil|Location2.X=1233.105mil|Location1.Y=1630.037mil|Location2.Y=1638.125mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.949mil &lt; 6mil) Between Via (1215mil,1620mil) from Top Layer to Bottom Layer And Via (1241mil,1649mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.949mil] / [Bottom Solder] Mask Sliver [0.949mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDCVKUCLXBTX40CJZRT3BYAXFZTNB24ZW1Y1GROGMOH1QU13IMVNX"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=3mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.696mil|Location2.X=2115.411mil|Location1.Y=1855.814mil|Location2.Y=1862.021mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.696mil|Location2.X=2115.411mil|Location1.Y=1855.814mil|Location2.Y=1862.021mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.014mil &lt; 3mil) Between Arc (2115mil,1835.5mil) on Bottom Overlay And Pad D2-K(2070.354mil,1885mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.014mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1681.379mil|Location2.X=1685.629mil|Location1.Y=2483.06mil|Location2.Y=2487.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1681.379mil|Location2.X=1685.629mil|Location1.Y=2483.06mil|Location2.Y=2487.31mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.188mil &lt; 3mil) Between Track (1683.504mil,2488.78mil)(1746.496mil,2488.78mil) on Top Overlay And Pad D11-A(1698.819mil,2455mil) on Top Layer [Top Overlay] to [Top Solder] clearance [1.188mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1713.5mil|Location2.X=1716.5mil|Location1.Y=2455.784mil|Location2.Y=2458.784mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1713.5mil|Location2.X=1716.5mil|Location1.Y=2455.784mil|Location2.Y=2458.784mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1715mil,2457.284mil)(1715mil,2520.276mil) on Top Overlay And Pad D11-A(1698.819mil,2455mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2169.366mil|Location2.Y=2172.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2169.366mil|Location2.Y=2172.366mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1530.591mil,2079.331mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-13(1523.701mil,2176.772mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2143.776mil|Location2.Y=2146.776mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2143.776mil|Location2.Y=2146.776mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1530.591mil,2079.331mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-14(1523.701mil,2151.181mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2118.185mil|Location2.Y=2121.185mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2118.185mil|Location2.Y=2121.185mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1530.591mil,2079.331mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-15(1523.701mil,2125.59mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2092.595mil|Location2.Y=2095.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.091mil|Location2.X=1532.091mil|Location1.Y=2092.595mil|Location2.Y=2095.595mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1530.591mil,2079.331mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-16(1523.701mil,2100mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.053mil|Location2.X=1487.053mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.053mil|Location2.X=1487.053mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1510.906mil,2059.646mil) on Top Overlay And Pad U6-1(1490.236mil,2066.535mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.902mil|Location2.X=1468.902mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1465.902mil|Location2.X=1468.902mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1510.906mil,2059.646mil) on Top Overlay And Pad U6-2(1464.646mil,2066.535mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.311mil|Location2.X=1443.311mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440.311mil|Location2.X=1443.311mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1510.906mil,2059.646mil) on Top Overlay And Pad U6-3(1439.055mil,2066.535mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1414.72mil|Location2.X=1417.72mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1414.72mil|Location2.X=1417.72mil|Location1.Y=2058.146mil|Location2.Y=2061.146mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1510.906mil,2059.646mil) on Top Overlay And Pad U6-4(1413.465mil,2066.535mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2092.595mil|Location2.Y=2095.595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2092.595mil|Location2.Y=2095.595mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1373.11mil,2217.126mil) on Top Overlay And Pad U6-5(1380mil,2100mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2118.185mil|Location2.Y=2121.185mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2118.185mil|Location2.Y=2121.185mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1373.11mil,2217.126mil) on Top Overlay And Pad U6-6(1380mil,2125.59mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2143.776mil|Location2.Y=2146.776mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2143.776mil|Location2.Y=2146.776mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1373.11mil,2217.126mil) on Top Overlay And Pad U6-7(1380mil,2151.181mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2169.366mil|Location2.Y=2172.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1371.61mil|Location2.X=1374.61mil|Location1.Y=2169.366mil|Location2.Y=2172.366mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2059.646mil)(1373.11mil,2217.126mil) on Top Overlay And Pad U6-8(1380mil,2176.772mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.209mil|Location2.X=1412.209mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1409.209mil|Location2.X=1412.209mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2217.126mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-9(1413.465mil,2210.236mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1434.799mil|Location2.X=1437.799mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1434.799mil|Location2.X=1437.799mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2217.126mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-10(1439.055mil,2210.236mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1460.39mil|Location2.X=1463.39mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1460.39mil|Location2.X=1463.39mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2217.126mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-11(1464.646mil,2210.236mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1485.98mil|Location2.X=1488.98mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1485.98mil|Location2.X=1488.98mil|Location1.Y=2215.626mil|Location2.Y=2218.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1373.11mil,2217.126mil)(1530.591mil,2217.126mil) on Top Overlay And Pad U6-12(1490.236mil,2210.236mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.957mil|Location2.X=1464.207mil|Location1.Y=1421.491mil|Location2.Y=1425.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.957mil|Location2.X=1464.207mil|Location1.Y=1421.491mil|Location2.Y=1425.741mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.021mil &lt; 3mil) Between Text "C16" (1345mil,1380mil) on Top Overlay And Pad U4-23(1472.52mil,1427.559mil) on Top Layer [Top Overlay] to [Top Solder] clearance [1.021mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1168.481mil|Location2.X=1171.481mil|Location1.Y=2069.17mil|Location2.Y=2072.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1168.481mil|Location2.X=1171.481mil|Location1.Y=2069.17mil|Location2.Y=2072.17mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "R14" (1110mil,2075mil) on Top Overlay And Pad J6-5(1195mil,2073.228mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.137mil|Location2.X=1212.137mil|Location1.Y=2091.663mil|Location2.Y=2094.663mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1209.137mil|Location2.X=1212.137mil|Location1.Y=2091.663mil|Location2.Y=2094.663mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "R14" (1110mil,2075mil) on Top Overlay And Pad J6-4(1195mil,2098.819mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.313mil|Location2.X=1178.313mil|Location1.Y=2178.033mil|Location2.Y=2181.033mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.313mil|Location2.X=1178.313mil|Location1.Y=2178.033mil|Location2.Y=2181.033mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "R13" (1120mil,2145mil) on Top Overlay And Pad J6-1(1195mil,2175.59mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1166.925mil|Location2.X=1169.925mil|Location1.Y=2139.642mil|Location2.Y=2142.642mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1166.925mil|Location2.X=1169.925mil|Location1.Y=2139.642mil|Location2.Y=2142.642mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "R13" (1120mil,2145mil) on Top Overlay And Pad J6-2(1195mil,2150mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1211.777mil|Location2.X=1214.777mil|Location1.Y=2114.051mil|Location2.Y=2117.051mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1211.777mil|Location2.X=1214.777mil|Location1.Y=2114.051mil|Location2.Y=2117.051mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "R14" (1110mil,2075mil) on Top Overlay And Pad J6-3(1195mil,2124.409mil) on Top Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2713.264mil|Location2.Y=2716.264mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2713.264mil|Location2.Y=2716.264mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1359.055mil,2714.764mil)(1406.299mil,2714.764mil) on Bottom Overlay And Pad J4-2(1300mil,2651.22mil) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2713.264mil|Location2.Y=2716.264mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2713.264mil|Location2.Y=2716.264mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1359.055mil,2714.764mil)(1359.055mil,2754.134mil) on Bottom Overlay And Pad J4-2(1300mil,2651.22mil) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2685.705mil|Location2.Y=2688.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2685.705mil|Location2.Y=2688.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1359.055mil,2687.205mil)(1359.055mil,2962.795mil) on Bottom Overlay And Pad J4-2(1300mil,2651.22mil) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2685.705mil|Location2.Y=2688.705mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.555mil|Location2.X=1360.555mil|Location1.Y=2685.705mil|Location2.Y=2688.705mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1122.835mil,2687.205mil)(1359.055mil,2687.205mil) on Bottom Overlay And Pad J4-2(1300mil,2651.22mil) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1222.875mil|Location2.X=1227.125mil|Location1.Y=2336.93mil|Location2.Y=2341.18mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1222.875mil|Location2.X=1227.125mil|Location1.Y=2336.93mil|Location2.Y=2341.18mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (1.89mil &lt; 3mil) Between Track (1064.961mil,2333.11mil)(1494.961mil,2333.11mil) on Top Overlay And Pad J4-1(1300mil,2415mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [1.89mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1063.461mil|Location2.X=1066.461mil|Location1.Y=2494.732mil|Location2.Y=2497.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1063.461mil|Location2.X=1066.461mil|Location1.Y=2494.732mil|Location2.Y=2497.732mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1064.961mil,2333.11mil)(1064.961mil,2998.11mil) on Top Overlay And Pad J4-3(1114.961mil,2533.11mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1057.048mil|Location2.X=1061.298mil|Location1.Y=1953.623mil|Location2.Y=1957.873mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1057.048mil|Location2.X=1061.298mil|Location1.Y=1953.623mil|Location2.Y=1957.873mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.677mil &lt; 3mil) Between Track (1020mil,1949.409mil)(1245mil,1949.409mil) on Top Overlay And Pad J6-18(1088.701mil,1986.614mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.677mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1057.048mil|Location2.X=1061.298mil|Location1.Y=2290.946mil|Location2.Y=2295.196mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1057.048mil|Location2.X=1061.298mil|Location1.Y=2290.946mil|Location2.Y=2295.196mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.677mil &lt; 3mil) Between Track (1020mil,2299.409mil)(1245mil,2299.409mil) on Top Overlay And Pad J6-18(1088.701mil,2262.205mil) on Multi-Layer [Top Overlay] to [Top Solder] clearance [2.677mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.933mil|Location2.X=1541.933mil|Location1.Y=2647.511mil|Location2.Y=2650.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.933mil|Location2.X=1541.933mil|Location1.Y=2647.511mil|Location2.Y=2650.511mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1540.433mil,2636.535mil)(1540.433mil,2703.465mil) on Bottom Overlay And Pad D12-K(1563.071mil,2670mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1537.496mil|Location2.X=1540.496mil|Location1.Y=2649.898mil|Location2.Y=2652.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1537.496mil|Location2.X=1540.496mil|Location1.Y=2649.898mil|Location2.Y=2652.898mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1536.496mil,2636.535mil)(1536.496mil,2703.465mil) on Bottom Overlay And Pad D12-K(1563.071mil,2670mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1562.087mil,2642.441mil)(1573.898mil,2636.535mil) on Bottom Overlay And Pad D12-K(1563.071mil,2670mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1562.087mil,2630.63mil)(1562.087mil,2642.441mil) on Bottom Overlay And Pad D12-K(1563.071mil,2670mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.773mil|Location2.X=1576.023mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.773mil|Location2.X=1576.023mil|Location1.Y=2642.983mil|Location2.Y=2647.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1573.898mil,2630.63mil)(1573.898mil,2642.441mil) on Bottom Overlay And Pad D12-K(1563.071mil,2670mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1562.087mil,2552.441mil)(1573.898mil,2546.535mil) on Bottom Overlay And Pad D13-K(1563.071mil,2580mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.962mil|Location2.X=1564.212mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1562.087mil,2540.63mil)(1562.087mil,2552.441mil) on Bottom Overlay And Pad D13-K(1563.071mil,2580mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.773mil|Location2.X=1576.023mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.773mil|Location2.X=1576.023mil|Location1.Y=2552.983mil|Location2.Y=2557.233mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.335mil &lt; 3mil) Between Track (1573.898mil,2540.63mil)(1573.898mil,2552.441mil) on Bottom Overlay And Pad D13-K(1563.071mil,2580mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0.335mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.933mil|Location2.X=1541.933mil|Location1.Y=2557.511mil|Location2.Y=2560.511mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.933mil|Location2.X=1541.933mil|Location1.Y=2557.511mil|Location2.Y=2560.511mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1540.433mil,2546.535mil)(1540.433mil,2613.465mil) on Bottom Overlay And Pad D13-K(1563.071mil,2580mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1537.496mil|Location2.X=1540.496mil|Location1.Y=2559.898mil|Location2.Y=2562.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1537.496mil|Location2.X=1540.496mil|Location1.Y=2559.898mil|Location2.Y=2562.898mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (1536.496mil,2546.535mil)(1536.496mil,2613.465mil) on Bottom Overlay And Pad D13-K(1563.071mil,2580mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1418.514mil|Location2.X=1421.514mil|Location1.Y=2916.687mil|Location2.Y=2919.687mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1418.514mil|Location2.X=1421.514mil|Location1.Y=2916.687mil|Location2.Y=2919.687mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Text "C10" (1465mil,2975mil) on Bottom Overlay And Pad U5-1(1445.669mil,2914.961mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.225mil|Location2.X=2115.225mil|Location1.Y=1861.354mil|Location2.Y=1864.354mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.225mil|Location2.X=2115.225mil|Location1.Y=1861.354mil|Location2.Y=1864.354mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (2115mil,1855.5mil)(2115mil,1877.5mil) on Bottom Overlay And Pad D2-K(2070.354mil,1885mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.225mil|Location2.X=2115.225mil|Location1.Y=1876mil|Location2.Y=1879mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.225mil|Location2.X=2115.225mil|Location1.Y=1876mil|Location2.Y=1879mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 3mil) Between Track (2115mil,1877.5mil)(2325mil,1877.5mil) on Bottom Overlay And Pad D2-K(2070.354mil,1885mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.245mil|Location2.X=2241.495mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2237.245mil|Location2.X=2241.495mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.315mil &lt; 3mil) Between Track (2239.37mil,2104.685mil)(2257.087mil,2104.685mil) on Bottom Overlay And Pad U1-6(2240mil,2147.5mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.315mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.158mil|Location2.X=2184.408mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.158mil|Location2.X=2184.408mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.315mil &lt; 3mil) Between Track (2182.283mil,2104.685mil)(2200mil,2104.685mil) on Bottom Overlay And Pad U1-7(2190mil,2147.5mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.315mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.158mil|Location2.X=2184.408mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.158mil|Location2.X=2184.408mil|Location1.Y=2106.718mil|Location2.Y=2110.968mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.315mil &lt; 3mil) Between Track (2182.283mil,2065.315mil)(2182.283mil,2104.685mil) on Bottom Overlay And Pad U1-7(2190mil,2147.5mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.315mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRDFNRZ0DRSGUHLADTQEQWKVOHI5KZ53G2IXGGAEH1L540LDI3EHI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=3mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1597.714mil|Location2.X=1600.714mil|Location1.Y=2561.547mil|Location2.Y=2564.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1597.714mil|Location2.X=1600.714mil|Location1.Y=2561.547mil|Location2.Y=2564.547mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 3mil) Between Text "D11" (1506.181mil,2515mil) on Top Overlay And Arc (1715mil,2725mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.5mil|Location2.X=2686.5mil|Location1.Y=1352.83mil|Location2.Y=1355.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.5mil|Location2.X=2686.5mil|Location1.Y=1352.83mil|Location2.Y=1355.83mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 3mil) Between Text "R16" (2570mil,1350mil) on Top Overlay And Track (2685mil,1155mil)(2685mil,2305mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.5mil|Location2.X=2686.5mil|Location1.Y=1672.83mil|Location2.Y=1675.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.5mil|Location2.X=2686.5mil|Location1.Y=1672.83mil|Location2.Y=1675.83mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 3mil) Between Text "R18" (2570mil,1670mil) on Top Overlay And Track (2685mil,1155mil)(2685mil,2305mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2677.52mil|Location2.X=2681.77mil|Location1.Y=2060.373mil|Location2.Y=2064.623mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2677.52mil|Location2.X=2681.77mil|Location1.Y=2060.373mil|Location2.Y=2064.623mil|Absolute=True">Silk To Silk Clearance Constraint: (0.709mil &lt; 3mil) Between Text "R23" (2555mil,2055mil) on Top Overlay And Track (2685mil,1155mil)(2685mil,2305mil) on Top Overlay Silk Text to Silk Clearance [0.709mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1498.781mil|Location2.X=1503.031mil|Location1.Y=2512.875mil|Location2.Y=2517.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1498.781mil|Location2.X=1503.031mil|Location1.Y=2512.875mil|Location2.Y=2517.125mil|Absolute=True">Silk To Silk Clearance Constraint: (1.891mil &lt; 3mil) Between Text "D11" (1506.181mil,2515mil) on Top Overlay And Track (1494.961mil,2333.11mil)(1494.961mil,2998.11mil) on Top Overlay Silk Text to Silk Clearance [1.891mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1613.534mil|Location2.X=1616.534mil|Location1.Y=2520.508mil|Location2.Y=2523.508mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Carl\Documents\GitHub\Electrical\Gate-Driver\GateDriver_MCU.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1613.534mil|Location2.X=1616.534mil|Location1.Y=2520.508mil|Location2.Y=2523.508mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 3mil) Between Text "D13" (1720mil,2525mil) on Bottom Overlay And Track (1458.504mil,2518.071mil)(1639.606mil,2518.071mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
