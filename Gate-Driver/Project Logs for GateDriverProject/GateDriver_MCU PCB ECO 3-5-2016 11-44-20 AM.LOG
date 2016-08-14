@@ -1,0 +1,43 @@
+Removed Pin From Net: NetName=5V Pin=J2-4
+Removed Pin From Net: NetName=GND Pin=J2-5
+Removed Pin From Net: NetName=V_SHUNT Pin=J3-1
+Removed Pin From Net: NetName=GND Pin=J3-2
+Removed Pin From Net: NetName=5V Pin=J3-3
+Removed Pin From Net: NetName=MCLR Pin=J5-1
+Removed Pin From Net: NetName=5V Pin=J5-2
+Removed Pin From Net: NetName=GND Pin=J5-3
+Removed Pin From Net: NetName=ICSPDAT Pin=J5-4
+Removed Pin From Net: NetName=ICSPCLK Pin=J5-5
+Removed Member From Class: ClassName=MotorMCU Member=J2
+Removed Member From Class: ClassName=MotorMCU Member=J3
+Removed Member From Class: ClassName=MotorMCU Member=J5
+Added Component: Designator=J?(HEADER-4-100mil)
+Added Component: Designator=J?(HEADER-5-100mil)
+Added Component: Designator=J?(HEADER-6-100mil)
+Added Pin To Net: NetName=MCLR Pin=J?-1
+Added Pin To Net: NetName=V_SHUNT Pin=J?-1
+Added Pin To Net: NetName=5V Pin=J?-2
+Added Pin To Net: NetName=GND Pin=J?-2
+Added Pin To Net: NetName=5V Pin=J?-3
+Added Pin To Net: NetName=GND Pin=J?-3
+Added Pin To Net: NetName=5V Pin=J?-4
+Added Pin To Net: NetName=ICSPDAT Pin=J?-4
+Added Pin To Net: NetName=GND Pin=J?-5
+Added Pin To Net: NetName=ICSPCLK Pin=J?-5
+Added Pin To Net: NetName=NetJ?_1 Pin=J?-1
+Added Pin To Net: NetName=NetJ?_1 Pin=R7-2
+Added Pin To Net: NetName=NetJ?_1 Pin=R11-2
+Added Net: Name=NetJ?_1
+Added Pin To Net: NetName=NetJ?_2 Pin=J?-2
+Added Pin To Net: NetName=NetJ?_2 Pin=R8-2
+Added Pin To Net: NetName=NetJ?_2 Pin=R14-2
+Added Net: Name=NetJ?_2
+Added Pin To Net: NetName=NetJ?_3 Pin=J?-3
+Added Pin To Net: NetName=NetJ?_3 Pin=R13-2
+Added Pin To Net: NetName=NetJ?_3 Pin=R15-2
+Added Net: Name=NetJ?_3
+Added Member To Class: ClassName=MotorMCU Member=Component J? Header 4 pin
+Added Member To Class: ClassName=MotorMCU Member=Component J? Header 5 pin
+Added Member To Class: ClassName=MotorMCU Member=Component J? Header 6 pin
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

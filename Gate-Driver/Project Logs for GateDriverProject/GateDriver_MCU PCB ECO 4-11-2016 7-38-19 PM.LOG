@@ -1,0 +1,44 @@
+Removed Pin From Net: NetName=5V Pin=R2-2
+Removed Pin From Net: NetName=NetD10_A Pin=R31-2
+Removed Pin From Net: NetName=NetD11_A Pin=R32-2
+Removed Member From Class: ClassName=MotorMCU Member=C22
+Removed Member From Class: ClassName=MotorMCU Member=C23
+Removed Member From Class: ClassName=MotorMCU Member=C24
+Removed Member From Class: ClassName=MotorMCU Member=C25
+Removed Member From Class: ClassName=MotorMCU Member=D10
+Removed Member From Class: ClassName=MotorMCU Member=D11
+Removed Member From Class: ClassName=MotorMCU Member=J6
+Removed Member From Class: ClassName=MotorMCU Member=R13
+Removed Member From Class: ClassName=MotorMCU Member=R14
+Removed Member From Class: ClassName=MotorMCU Member=R15
+Removed Member From Class: ClassName=MotorMCU Member=R30
+Removed Member From Class: ClassName=MotorMCU Member=R31
+Removed Member From Class: ClassName=MotorMCU Member=R32
+Added Component: Designator=U?(QFN-16)
+Added Pin To Net: NetName=NetD11_A Pin=R31-1
+Added Pin To Net: NetName=NetD10_A Pin=R32-1
+Added Pin To Net: NetName=GND Pin=U?-3
+Added Pin To Net: NetName=GND Pin=U?-13
+Added Pin To Net: NetName=GND Pin=U?-17
+Added Pin To Net: NetName=NetR31_2 Pin=R31-2
+Added Pin To Net: NetName=NetR31_2 Pin=U?-4
+Added Net: Name=NetR31_2
+Added Pin To Net: NetName=NetR32_2 Pin=R32-2
+Added Pin To Net: NetName=NetR32_2 Pin=U?-16
+Added Net: Name=NetR32_2
+Added Pin To Net: NetName=NetU?_2 Pin=U?-2
+Added Net: Name=NetU?_2
+Added Pin To Net: NetName=NetU?_15 Pin=U?-15
+Added Net: Name=NetU?_15
+Added Pin To Net: NetName=USBDM Pin=C23-1
+Added Pin To Net: NetName=USBDM Pin=R13-1
+Added Pin To Net: NetName=USBDM Pin=U?-7
+Added Net: Name=USBDM
+Added Pin To Net: NetName=USBDP Pin=C22-1
+Added Pin To Net: NetName=USBDP Pin=R14-1
+Added Pin To Net: NetName=USBDP Pin=U?-6
+Added Net: Name=USBDP
+Added Class: Name=MCU-ADDON
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

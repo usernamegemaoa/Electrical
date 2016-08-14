@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: GateDriver_MCU.PcbDoc   5/2/2016  4:06:59 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : GateDriver_MCU.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      15mil (0.381mm)                                           Round             55        PTH        11.01inch (279.67mm)
+T2      28mil (0.711mm)                                           Round             16        PTH        6.14inch (155.85mm)
+T3      35mil (0.899mm)         +/-2mil (0.05mm)                  Round             2         PTH        0.20inch (5.00mm)
+T4      35mil (0.899mm)                                           Round             2         PTH        0.20inch (5.00mm)
+T5      43mil (1.092mm)                                           Round             25        PTH        3.76inch (95.53mm)
+T6      45mil (1.151mm)         +/-2mil (0.05mm)                  Round             2         PTH        0.28inch (7.00mm)
+T7      118mil (3mm)                                              Round             2         PTH        0.22inch (5.58mm)
+T8      138mil (3.5mm)                                            Round             1         PTH        0.00inch (0.00mm)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              105
+
+Total Processing Time (hh:mm:ss) : 00:00:00

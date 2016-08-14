@@ -1,0 +1,8 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=Gate-Driver\GateDriverProject.PrjPcb
+[Project2]
+ProjectPath=Mosfet-Inverter\MosfetInverterProject.PrjPcb
+[Project3]
+ProjectPath=QFN-SWAP\QFN-16\QFN-16.PrjPcb

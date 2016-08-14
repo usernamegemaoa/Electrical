@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=SENSEA Pin=U4-25
+Removed Pin From Net: NetName=SENSEC Pin=U4-27
+Added Pin To Net: NetName=SENSEC Pin=U4-25
+Added Pin To Net: NetName=SENSEA Pin=U4-27

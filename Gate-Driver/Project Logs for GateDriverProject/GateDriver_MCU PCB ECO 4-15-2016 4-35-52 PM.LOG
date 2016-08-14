@@ -1,0 +1,110 @@
+Removed Pin From Net: NetName=GND Pin=D10-K
+Removed Pin From Net: NetName=GND Pin=D11-K
+Removed Pin From Net: NetName=GND Pin=R30-1
+Removed Pin From Net: NetName=NetD11_A Pin=R31-1
+Removed Pin From Net: NetName=NetD10_A Pin=R32-1
+Removed Member From Class: ClassName=MotorMCU Member=C10
+Removed Member From Class: ClassName=MotorMCU Member=C11
+Removed Member From Class: ClassName=MotorMCU Member=Q1
+Removed Member From Class: ClassName=MCU-ADDON Member=R30
+Removed Member From Class: ClassName=MotorMCU Member=U5
+Change Component DesignItemId : Designator=C10 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.1 uF- 16 V-CER-0402(1005)
+Change Component DesignItemId : Designator=C11 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.1 uF- 16 V-CER-0402(1005)
+Change Component DesignItemId : Designator=C14 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.1 uF- 16 V-CER-0402(1005)
+Change Component DesignItemId : Designator=C15 Old DesignItemId=CAP-0.1uF-16V-CER-0402(1005) New DesignItemId=CAP- 0.1 uF- 16 V-CER-0402(1005)
+Change Component DesignItemId : Designator=R12 Old DesignItemId=R-10-125mW-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R19 Old DesignItemId=R-10-125mW-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R21 Old DesignItemId=R-10-125mW-0603 New DesignItemId=R-10-125mW-0805
+Change Component Comment : Designator=C7 Old Comment=0.1 µF New Comment=0.1 uF
+Change Component Comment : Designator=C10 Old Comment=0.1µF New Comment=0.1 uF
+Change Component Comment : Designator=C11 Old Comment=0.1µF New Comment=0.1 uF
+Change Component Comment : Designator=C14 Old Comment=0.1µF New Comment=0.1 uF
+Change Component Comment : Designator=C15 Old Comment=0.1µF New Comment=0.1 uF
+Change Component Comment : Designator=C16 Old Comment=0.1 µF New Comment=0.1 uF
+Change Component Comment : Designator=C24 Old Comment=0.1 µF New Comment=0.1 uF
+Change Component Comment : Designator=C25 Old Comment=0.1 µF New Comment=0.1 uF
+Change Component Comment : Designator=C4 Old Comment=1 µF New Comment=1 uF
+Change Component Comment : Designator=C6 Old Comment=1 µF New Comment=1 uF
+Change Component Comment : Designator=C9 Old Comment=1 µF New Comment=1 uF
+Change Component Comment : Designator=R12 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R19 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R21 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R2 Old Comment=10k New Comment=10 kOhms
+Change Component Comment : Designator=R15 Old Comment=10k New Comment=10 kOhms
+Change Component Comment : Designator=R13 Old Comment=27 New Comment=27 Ohms
+Change Component Comment : Designator=R14 Old Comment=27 New Comment=27 Ohms
+Change Component Comment : Designator=R24 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R25 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R26 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R27 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R28 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R29 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R31 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R32 Old Comment=60.4 New Comment=60.4 Ohms
+Change Component Comment : Designator=R3 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=R4 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=R5 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=R6 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=R9 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=R10 Old Comment=100 New Comment=100 Ohms
+Change Component Comment : Designator=C8 Old Comment=515D106M025JA6AE3 New Comment=10 uF
+Change Component Comment : Designator=C5 Old Comment=ARMA_PN New Comment=1 uF
+Change Component Comment : Designator=C17 Old Comment=ARMA_PN New Comment=1 uF
+Change Component Comment : Designator=C19 Old Comment=ARMA_PN New Comment=1 uF
+Change Component Comment : Designator=U1 Old Comment=IRS2011(S) New Comment=IRS2011
+Change Component Comment : Designator=U2 Old Comment=IRS2011(S) New Comment=IRS2011
+Change Component Comment : Designator=U3 Old Comment=IRS2011(S) New Comment=IRS2011
+Change Component Designator: OldDesignator=U? NewDesignator=U6
+Change Component Description : Designator=C10 Old Description=CAP CER 0.1UF 16V 10% X7R 0402 New Description=CAP CER 0.1 UF 16V 5% X7R 0402
+Change Component Description : Designator=C11 Old Description=CAP CER 0.1UF 16V 10% X7R 0402 New Description=CAP CER 0.1 UF 16V 5% X7R 0402
+Change Component Description : Designator=C14 Old Description=CAP CER 0.1UF 16V 10% X7R 0402 New Description=CAP CER 0.1 UF 16V 5% X7R 0402
+Change Component Description : Designator=C15 Old Description=CAP CER 0.1UF 16V 10% X7R 0402 New Description=CAP CER 0.1 UF 16V 5% X7R 0402
+Change Component Description : Designator=R12 Old Description=RES 10 OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R19 Old Description=RES 10 OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R21 Old Description=RES 10 OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Library : Designator=C10 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=C11 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=C14 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Change Component Library : Designator=C15 Old Library=MasterLibrary.SchLib New Library=CarlLibrary.SchLib
+Added Component: Designator=D12(SOD-123FL)
+Added Component: Designator=D13(SOD-123FL)
+Added Pin To Net: NetName=GND Pin=C24-2
+Added Pin To Net: NetName=GND Pin=C25-2
+Added Pin To Net: NetName=VREG Pin=D12-A
+Added Pin To Net: NetName=NetQ1_1 Pin=D13-A
+Added Pin To Net: NetName=5V Pin=R2-2
+Added Pin To Net: NetName=GND Pin=R15-1
+Added Pin To Net: NetName=VCC Pin=R15-2
+Added Pin To Net: NetName=NetD11_A Pin=R31-2
+Added Pin To Net: NetName=NetD10_A Pin=R32-2
+Change Net Name : Old Net Name=NetQ1_1 New Net Name=NetD13_A
+Added Pin To Net: NetName=3.3V Pin=C25-1
+Added Pin To Net: NetName=3.3V Pin=R31-1
+Added Pin To Net: NetName=3.3V Pin=R32-1
+Added Pin To Net: NetName=3.3V Pin=U6-1
+Added Pin To Net: NetName=3.3V Pin=U6-8
+Added Pin To Net: NetName=3.3V Pin=U6-9
+Added Net: Name=3.3V
+Added Pin To Net: NetName=NetD10_K Pin=D10-K
+Added Pin To Net: NetName=NetD10_K Pin=U6-11
+Added Net: Name=NetD10_K
+Added Pin To Net: NetName=NetD11_K Pin=D11-K
+Added Pin To Net: NetName=NetD11_K Pin=U6-5
+Added Net: Name=NetD11_K
+Added Pin To Net: NetName=NetU4_1 Pin=U4-1
+Added Pin To Net: NetName=NetU4_1 Pin=U6-15
+Added Net: Name=NetU4_1
+Added Pin To Net: NetName=NetU4_44 Pin=U4-44
+Added Pin To Net: NetName=NetU4_44 Pin=U6-2
+Added Net: Name=NetU4_44
+Added Pin To Net: NetName=USB_5V Pin=J6-1
+Added Net: Name=USB_5V
+Added Member To Class: ClassName=MCU-ADDON Member=Component C10 0.1 uF
+Added Member To Class: ClassName=MCU-ADDON Member=Component C11 0.1 uF
+Added Member To Class: ClassName=MCU-ADDON Member=Component D12 MBR120VLSFT3G
+Added Member To Class: ClassName=MCU-ADDON Member=Component D13 MBR120VLSFT3G
+Added Member To Class: ClassName=MCU-ADDON Member=Component Q1 DN3525
+Added Member To Class: ClassName=MCU-ADDON Member=Component U5 FIXED 5V
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

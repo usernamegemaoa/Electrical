@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=VCC Pin=Q1-1
+Removed Pin From Net: NetName=VCC Pin=R15-2
+Added Component: Designator=R30(RES0603X055L)
+Added Pin To Net: NetName=VCC Pin=R30-1
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=NetQ1_1 Pin=R15-2
+Added Pin To Net: NetName=NetQ1_1 Pin=R30-2
+Added Net: Name=NetQ1_1
+Added Member To Class: ClassName=MCU-ADDON Member=Component R30 10k

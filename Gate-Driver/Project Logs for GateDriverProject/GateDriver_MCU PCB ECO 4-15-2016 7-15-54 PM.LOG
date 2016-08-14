@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=NetD11_K Pin=U6-5
+Removed Pin From Net: NetName=NetD10_K Pin=U6-11
+Added Pin To Net: NetName=NetD11_K Pin=U6-11
+Added Pin To Net: NetName=NetD10_K Pin=U6-12
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

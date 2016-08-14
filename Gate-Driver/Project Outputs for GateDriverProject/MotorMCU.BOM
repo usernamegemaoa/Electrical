@@ -1,0 +1,42 @@
+Bill of Material for 
+On 5/2/2016 at 7:14:28 PM
+
+ Comment             Pattern     Quantity  Components
+------------------------------------------------------------------------------
+ 0.1 uF              CAP-0402(1005)-R    8    C7, C10, C11, C14, C15, C16  CAP CER 0.1 UF 16V 5% X7R 0402 
+                                           C24, C25
+ 1 kOhms             R-0402(1005)-R    1    R1                           RES 1K OHM 62.5 mW 0402(1005) SMD 
+ 1 uF                CAP-0805(2012)-R    3    C4, C6, C9                   CAP CER 1 UF 50V 10% Y5V 0805 
+ 1 uF                CAPMP6032X280N    3    C5, C17, C19                 CAP, 1uF, 63V, TANT-B 
+ 10 kOhms            R-0603(1608)-R    2    R2, R15                      RES 10k OHM 1/10W 0603 SMD 
+ 10 Ohms             R-0805(2012)-R    3    R12, R19, R21                RES 10 OHM 1/8W 0805 SMD 
+ 10 uF               CAPE5.0mm        1    C8                           CAP, 10uF, 25V, ALC, 20% 
+ 100 Ohms            R-0402(1005)-R    6    R3, R4, R5, R6, R9, R10      RES 100 OHM 62.5 mW 0402(1005) SMD 
+ 10k                 RES0603X055L     1    R30                          Resistor             
+ 18 pF               CAP-0603(1608)-R    2    C12, C13                     CAP CER 18 pF 10V 5% C0G 0603 
+ 20 pF               CAP-0402(1005)-R    3    C18, C20, C21                CAP CER 20 pF 50V 5% C0G 0402 
+ 220 Ohms            R-0603(1608)-R    3    R17, R20, R22                RES 220 OHM 100 mW 0603(1608) SMD 
+ 27 Ohms             R-0603(1608)-R    2    R13, R14                     RES 27 OHM 100 mW  SMD 
+ 47 pF               CAP-0603(1608)-R    2    C22, C23                     CAP CER 47 pF 50V 5% C0G 0603 
+ 60.4 Ohms           R-0603(1608)-R    8    R24, R25, R26, R27, R28, R29 RES 60.4 OHM 100 mW  SMD 
+                                           R31, R32
+ 750 Ohms            R-0603(1608)-R    3    R16, R18, R23                RES 750 OHM 100 mW 0603(1608) SMD 
+ 820 Ohms            R-0603(1608)-R    3    R7, R8, R11                  RES 820 OHM 100 mW 0603(1608) SMD 
+ 8MHz                CRYSTAL-8MHZ     1    T1                           Oscillator Crystal 8MHz 10ppm 
+ DC_Power-Jack       Jack_M           1    J4                                                
+ DN3525              SOT89-3          1    Q1                           MOSFET N-Channel DEPLETION SMD 
+ FIXED 5V            TO-252           1    U5                           Voltage Regulator IC, DPAK SMD, MC78M05CDTRKG 
+ FT230XQ-R           QFN-16           1    U6                           USB to Basic UART Interface Chip, UHCI/OHCI/EHCI Compatible, USB 2.0 Compatible, -40 to +85 degC, 16-Pin QFN, Pb-Free, Tape and Reel 
+ Header 10 pin       HEADER-10-100MIL    1    J1                           Header, 10pin, .1 pitch 
+ Header 4 pin        HEADER-4-100mil    1    J3                           Header, 4 pin, .1 pitch 
+ Header 5 pin        HEADER-5-100mil    1    J5                           Header, 5 pin, .1 pitch 
+ Header 6 pin        HEADER-6-100mil    1    J2                           Header, 6 pin, .1 pitch 
+ IRS2011             SOIC-8           3    U1, U2, U3                   IC, HS/LS INDEPENDENT DRIVER 
+ MBR120VLSFT3G       SOD-123FL        2    D12, D13                     Diode Schottky SMD 20V 1A SMD 
+ PB_Switch           Pushbutton_switches    1    S1                                                
+ PIC16F917T-I/PT     TQFP-44          1    U4                           Flash-Based, 8-Bit CMOS Microcontroller with LCD Driver and nanoWatt Technology, 8K (x14-Bit words) Program Memory, 608 Bytes Data Memory, 35 I/O pins, 44-Pin TQFP, Standard VDD Range, Industrial Temperature, Tape and Reel 
+ Red                 LED-1206         8    D4, D5, D6, D7, D8, D9, D10  LED, 0805 SMD, Red   
+                                           D11
+ T55B106M016C0200    CAPMP3528X210N    3    C1, C2, C3                   CAP TANT, 10uF, 16V, TANT-B 
+ USB                 USB_Connector_5P_MICRO_USB_FCI    1    J6                           USB_Connector_5P_MICRO_USB_FCI 
+ Value               DO-214AC         3    D1, D2, D3                   DIODE, ES1D Fairchild 

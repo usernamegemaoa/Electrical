@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetD13_A Pin=Q1-1
+Removed Pin From Net: NetName=NetD13_A Pin=Q1-2
+Removed Pin From Net: NetName=NetD13_A Pin=Q1-2
+Added Pin To Net: NetName=VCC Pin=Q1-1
+Added Pin To Net: NetName=USB_5V Pin=Q1-2
+Added Pin To Net: NetName=USB_5V Pin=Q1-2
+Added Room: Name=Gate-Driver
+Added Room: Name=MCU-ADDON
+Added Room: Name=MotorMCU

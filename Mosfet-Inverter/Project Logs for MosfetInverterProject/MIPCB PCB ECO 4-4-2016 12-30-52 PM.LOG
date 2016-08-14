@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=NetQ4_3 Pin=R14-0
+Change Component DesignItemId : Designator=R1 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R2 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R3 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R4 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R5 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component DesignItemId : Designator=R6 Old DesignItemId=R-10-1/8W-0603 New DesignItemId=R-10-125mW-0805
+Change Component Description : Designator=C5 Old Description=Capacitor THT Alum Elec 2200uF 20% 16V New Description=Capacitor THT Alum Elec 2200uF 20% 50V
+Change Component Description : Designator=R1 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R2 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R3 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R4 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R5 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Change Component Description : Designator=R6 Old Description=RES 10OHM 1/8W 0603 SMD New Description=RES 10 OHM 1/8W 0805 SMD
+Added Room: Name=MISchematic

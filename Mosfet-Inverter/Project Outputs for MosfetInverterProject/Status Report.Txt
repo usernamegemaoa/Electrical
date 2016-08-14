@@ -1,12 +1,11 @@
-Output: NC Drill Files
-Type  : NC Drill
-From  : Project [MosfetInverterProject.PrjPcb]
-   Generated File[MIPCB.TXT]
-   Generated File[MIPCB.LDP]
-   Generated File[MIPCB.DRR]
+Output: Simple BOM
+Type  : SimpleBOM
+From  : Variant [[No Variations]] of Project [MosfetInverterProject.PrjPcb]
+   Generated File[MISchematic.BOM]
+   Generated File[MISchematic.CSV]
 
 
-Files Generated   : 3
+Files Generated   : 2
 Documents Printed : 0
 
-Finished Output Generation At 12:48:42 AM On 2/24/2016
+Finished Output Generation At 7:40:10 PM On 5/2/2016

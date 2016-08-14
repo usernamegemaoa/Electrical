@@ -1,0 +1,21 @@
+Removed Pin From Net: NetName=MCLR Pin=J?-1
+Removed Pin From Net: NetName=5V Pin=J?-2
+Removed Pin From Net: NetName=GND Pin=J?-3
+Removed Pin From Net: NetName=ICSPDAT Pin=J?-4
+Removed Pin From Net: NetName=ICSPCLK Pin=J?-5
+Change Component Designator: OldDesignator=J? NewDesignator=J3
+Change Component Designator: OldDesignator=J? NewDesignator=J5
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Added Component: Designator=J2(HEADER-6-100mil)
+Added Pin To Net: NetName=MCLR Pin=J2-1
+Added Pin To Net: NetName=5V Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-3
+Added Pin To Net: NetName=ICSPDAT Pin=J2-4
+Added Pin To Net: NetName=ICSPCLK Pin=J2-5
+Change Net Name : Old Net Name=NetJ?_1 New Net Name=NetJ5_1
+Change Net Name : Old Net Name=NetJ?_2 New Net Name=NetJ5_2
+Change Net Name : Old Net Name=NetJ?_3 New Net Name=NetJ5_3
+Added Member To Class: ClassName=MotorMCU Member=Component J2 Header 6 pin
+Added Member To Class: ClassName=MotorMCU Member=Component J5 Header 5 pin
+Added Room: Name=Gate-Driver
+Added Room: Name=MotorMCU

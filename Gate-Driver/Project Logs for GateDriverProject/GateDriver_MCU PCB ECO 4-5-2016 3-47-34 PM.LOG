@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=GND Pin=C12-1
+Removed Pin From Net: NetName=CLK_IN Pin=C12-2
+Removed Pin From Net: NetName=GND Pin=T1-4
+Change Component DesignItemId : Designator=T1 Old DesignItemId=8 MHZ CRYSTAL New DesignItemId=CRYSTAL_8MHz
+Change Component Footprint: Designator=T1 Old Footprint= New Footprint=CRYSTAL-8MHZ
+Change Component Comment : Designator=T1 Old Comment=8 MHZ CRYSTAL New Comment=8MHz
+Added Pin To Net: NetName=CLK_IN Pin=C12-1
+Added Pin To Net: NetName=GND Pin=C12-2
