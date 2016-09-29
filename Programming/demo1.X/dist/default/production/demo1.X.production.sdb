@@ -1,0 +1,147 @@
+[p LITE_MODE AUTOSTATIC PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F917 ]
+[d frameptr 6 ]
+"38 C:\Users\Carl\MPLABXProjects\demo1.X\blink_led.c
+[v _led_on led_on `(v  1 e 1 0 ]
+"65
+[v _led_off led_off `(v  1 e 1 0 ]
+"42 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\altoft.c
+[v ___altoft __altoft `(f  1 e 3 0 ]
+"32 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awtoft.c
+[v ___awtoft __awtoft `(f  1 e 3 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftge.c
+[v ___ftge __ftge `(b  1 e 0 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"8 C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
+[v _read_hall read_hall `(v  1 e 1 0 ]
+"15
+[v _get_hall_state get_hall_state `(i  1 e 2 0 ]
+"49
+[v _get_direction get_direction `(i  1 e 2 0 ]
+"9 C:\Users\Carl\MPLABXProjects\demo1.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"9 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+[v _setup_mcu setup_mcu `(v  1 e 1 0 ]
+"16
+[v _setup_port setup_port `(v  1 e 1 0 ]
+"30
+[v _init_pin init_pin `(v  1 e 1 0 ]
+"47
+[v _init_hall init_hall `(v  1 e 1 0 ]
+[s S129 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"299 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+[u S138 . 1 `S129 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES138  1 e 1 @7 ]
+[s S45 . 1 `uc 1 RD0 1 0 :1:0 
+`uc 1 RD1 1 0 :1:1 
+`uc 1 RD2 1 0 :1:2 
+`uc 1 RD3 1 0 :1:3 
+`uc 1 RD4 1 0 :1:4 
+`uc 1 RD5 1 0 :1:5 
+`uc 1 RD6 1 0 :1:6 
+`uc 1 RD7 1 0 :1:7 
+]
+"360
+[u S54 . 1 `S45 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES54  1 e 1 @8 ]
+[s S66 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"417
+[u S71 . 1 `S66 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES71  1 e 1 @9 ]
+"1328
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1389
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1450
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1511
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1572
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+"1876
+[v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
+"7 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+[v _init_state init_state `i  1 e 2 0 ]
+"9 C:\Users\Carl\MPLABXProjects\demo1.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"15
+[v main@d d `i  1 a 2 14 ]
+"18
+} 0
+"9 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+[v _setup_mcu setup_mcu `(v  1 e 1 0 ]
+{
+"14
+} 0
+"16
+[v _setup_port setup_port `(v  1 e 1 0 ]
+{
+"28
+} 0
+"30
+[v _init_pin init_pin `(v  1 e 1 0 ]
+{
+"45
+} 0
+"47
+[v _init_hall init_hall `(v  1 e 1 0 ]
+{
+"50
+} 0
+"49 C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
+[v _get_direction get_direction `(i  1 e 2 0 ]
+{
+"52
+[v get_direction@current_state current_state `i  1 a 2 12 ]
+"51
+[v get_direction@direction direction `i  1 a 2 10 ]
+"78
+} 0
+"15
+[v _get_hall_state get_hall_state `(i  1 e 2 0 ]
+{
+"19
+[v get_hall_state@hallC hallC `i  1 a 2 6 ]
+"18
+[v get_hall_state@hallB hallB `i  1 a 2 4 ]
+"17
+[v get_hall_state@hallA hallA `i  1 a 2 2 ]
+"20
+[v get_hall_state@state state `i  1 a 2 0 ]
+"47
+} 0
+"8
+[v _read_hall read_hall `(v  1 e 1 0 ]
+{
+[v read_hall@hall_A hall_A `*.4i  1 a 1 wreg ]
+[v read_hall@hall_A hall_A `*.4i  1 a 1 wreg ]
+[v read_hall@hall_B hall_B `*.4i  1 p 1 0 ]
+[v read_hall@hall_C hall_C `*.4i  1 p 1 1 ]
+"10
+[v read_hall@hall_A hall_A `*.4i  1 a 1 5 ]
+"13
+} 0
