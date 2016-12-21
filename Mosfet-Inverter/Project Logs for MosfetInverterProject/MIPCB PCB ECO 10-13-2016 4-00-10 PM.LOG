@@ -1,0 +1,24 @@
+Removed Pin From Net: NetName=HS_P1 Pin=R1-0
+Removed Pin From Net: NetName=HS_P2 Pin=R2-0
+Removed Pin From Net: NetName=HS_P3 Pin=R3-0
+Removed Pin From Net: NetName=LS_P1 Pin=R4-0
+Removed Pin From Net: NetName=LS_P2 Pin=R5-0
+Removed Pin From Net: NetName=LS_P3 Pin=R6-0
+Change Component Footprint: Designator=R1 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R2 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R3 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R4 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R5 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Footprint: Designator=R6 Old Footprint= New Footprint=R-0805(2012)-R
+Change Component Comment : Designator=R1 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R2 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R3 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R4 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R5 Old Comment=10 New Comment=10 Ohms
+Change Component Comment : Designator=R6 Old Comment=10 New Comment=10 Ohms
+Added Pin To Net: NetName=HS_P1 Pin=R1-2
+Added Pin To Net: NetName=HS_P2 Pin=R2-2
+Added Pin To Net: NetName=HS_P3 Pin=R3-2
+Added Pin To Net: NetName=LS_P1 Pin=R4-2
+Added Pin To Net: NetName=LS_P2 Pin=R5-2
+Added Pin To Net: NetName=LS_P3 Pin=R6-2

@@ -1,0 +1,6 @@
+Added Component: Designator=TP1(S1751-46R)
+Added Component: Designator=TP2(S1751-46R)
+Added Pin To Net: NetName=BATTERY_VCC Pin=TP1-1
+Added Pin To Net: NetName=BATTERY_GND Pin=TP2-1
+Added Member To Class: ClassName=MISchematic Member=Component TP1 S1751-46R
+Added Member To Class: ClassName=MISchematic Member=Component TP2 S1751-46R

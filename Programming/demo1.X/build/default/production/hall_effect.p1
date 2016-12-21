@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"410 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+"410 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
 [s S15 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S15 . RE0 RE1 RE2 RE3 ]
 "409
@@ -7,9 +7,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S14 . . ]
 "417
 [v _PORTEbits `VS14 ~T0 @X0 0 e@9 ]
-"54 micro_setup.h
+"58 micro_setup.h
 [v _init_state `i ~T0 @X0 0 e ]
-"349 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+"349 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
 [s S13 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S13 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
 "348
@@ -18,14 +18,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 "360
 [v _PORTDbits `VS12 ~T0 @X0 0 e@8 ]
 [v F2607 `(v ~T0 @X0 1 tf1`ul ]
-"152 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
+"152 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic.h
 [v __delay `JF2607 ~T0 @X0 0 e ]
 [p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f917.h: 49: extern volatile unsigned char INDF @ 0x000;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
 [; ;pic16f917.h: 51: asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
 [; ;pic16f917.h: 55: extern volatile unsigned char TMR0 @ 0x001;
@@ -2320,8 +2320,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
 [; ;hall_effect.h: 6: void read_hall(int *hall_A, int *hall_B, int *hall_C);
-[; ;hall_effect.h: 8: int get_hall_state(void);
-[; ;hall_effect.h: 10: int initial_state(void);
+[; ;hall_effect.h: 9: int get_hall_state(void);
 [; ;hall_effect.h: 12: int get_direction(void);
 "4 micro_setup.h
 [p x FOSC=HS ]
@@ -2343,11 +2342,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x FCMEN=ON ]
 "13
 [p x DEBUG=ON ]
-[; ;micro_setup.h: 54: extern int init_state;
-[; ;micro_setup.h: 56: void setup_mcu(void);
-[; ;micro_setup.h: 58: void setup_port(void);
-[; ;micro_setup.h: 60: void init_pin(void);
-[; ;micro_setup.h: 62: void init_hall(void);
+[; ;micro_setup.h: 58: extern int init_state;
+[; ;micro_setup.h: 60: void setup_mcu(void);
+[; ;micro_setup.h: 62: void setup_port(void);
+[; ;micro_setup.h: 64: void init_uart(void);
+[; ;micro_setup.h: 66: void init_pin(void);
+[; ;micro_setup.h: 68: void init_hall(void);
 "8 hall_effect.c
 [v _read_hall `(v ~T0 @X0 1 ef3`*i`*i`*i ]
 "9
@@ -2397,9 +2397,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;hall_effect.c: 21: read_hall(&hallA, &hallB, &hallC);
 "21
 [e ( _read_hall (3 , , &U _hallA &U _hallB &U _hallC ]
-[; ;hall_effect.c: 22: if(hallA && !hallB && !hallC)
+[; ;hall_effect.c: 22: if(hallA && !hallB && hallC)
 "22
-[e $ ! && && != _hallA -> 0 `i ! != _hallB -> 0 `i ! != _hallC -> 0 `i 212  ]
+[e $ ! && && != _hallA -> 0 `i ! != _hallB -> 0 `i != _hallC -> 0 `i 212  ]
 [; ;hall_effect.c: 23: {
 "23
 {
@@ -2410,9 +2410,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 212 ]
 [; ;hall_effect.c: 25: }
-[; ;hall_effect.c: 26: if(hallA && hallB && !hallC)
+[; ;hall_effect.c: 26: if(hallA && !hallB && !hallC)
 "26
-[e $ ! && && != _hallA -> 0 `i != _hallB -> 0 `i ! != _hallC -> 0 `i 213  ]
+[e $ ! && && != _hallA -> 0 `i ! != _hallB -> 0 `i ! != _hallC -> 0 `i 213  ]
 [; ;hall_effect.c: 27: {
 "27
 {
@@ -2423,9 +2423,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 213 ]
 [; ;hall_effect.c: 29: }
-[; ;hall_effect.c: 30: if(!hallA && hallB && !hallC)
+[; ;hall_effect.c: 30: if(hallA && hallB && !hallC)
 "30
-[e $ ! && && ! != _hallA -> 0 `i != _hallB -> 0 `i ! != _hallC -> 0 `i 214  ]
+[e $ ! && && != _hallA -> 0 `i != _hallB -> 0 `i ! != _hallC -> 0 `i 214  ]
 [; ;hall_effect.c: 31: {
 "31
 {
@@ -2436,9 +2436,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 214 ]
 [; ;hall_effect.c: 33: }
-[; ;hall_effect.c: 34: if(!hallA && hallB && hallC)
+[; ;hall_effect.c: 34: if(!hallA && hallB && !hallC)
 "34
-[e $ ! && && ! != _hallA -> 0 `i != _hallB -> 0 `i != _hallC -> 0 `i 215  ]
+[e $ ! && && ! != _hallA -> 0 `i != _hallB -> 0 `i ! != _hallC -> 0 `i 215  ]
 [; ;hall_effect.c: 35: {
 "35
 {
@@ -2449,9 +2449,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 215 ]
 [; ;hall_effect.c: 37: }
-[; ;hall_effect.c: 38: if(!hallA && !hallB && hallC)
+[; ;hall_effect.c: 38: if(!hallA && hallB && hallC)
 "38
-[e $ ! && && ! != _hallA -> 0 `i ! != _hallB -> 0 `i != _hallC -> 0 `i 216  ]
+[e $ ! && && ! != _hallA -> 0 `i != _hallB -> 0 `i != _hallC -> 0 `i 216  ]
 [; ;hall_effect.c: 39: {
 "39
 {
@@ -2462,9 +2462,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 216 ]
 [; ;hall_effect.c: 41: }
-[; ;hall_effect.c: 42: if(hallA && !hallB && hallC)
+[; ;hall_effect.c: 42: if(!hallA && !hallB && hallC)
 "42
-[e $ ! && && != _hallA -> 0 `i ! != _hallB -> 0 `i != _hallC -> 0 `i 217  ]
+[e $ ! && && ! != _hallA -> 0 `i ! != _hallB -> 0 `i != _hallC -> 0 `i 217  ]
 [; ;hall_effect.c: 43: {
 "43
 {

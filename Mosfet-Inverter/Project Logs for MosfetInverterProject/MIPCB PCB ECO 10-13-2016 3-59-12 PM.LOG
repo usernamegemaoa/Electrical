@@ -1,0 +1,2 @@
+Change Component Footprint: Designator=R7 Old Footprint=R-0402(1005)-R New Footprint=R-0805(2012)-R
+Added Pin To Net: NetName=NetC3_2 Pin=R8-2

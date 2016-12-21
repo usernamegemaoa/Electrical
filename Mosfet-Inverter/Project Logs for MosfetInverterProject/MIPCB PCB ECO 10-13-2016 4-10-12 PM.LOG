@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=OP_AMP_VCC Pin=U1-1
+Added Pin To Net: NetName=OP_AMP_REF Pin=J4-4
+Added Pin To Net: NetName=OP_AMP_REF Pin=U1-1
+Added Net: Name=OP_AMP_REF

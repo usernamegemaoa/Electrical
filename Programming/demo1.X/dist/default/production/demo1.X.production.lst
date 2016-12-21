@@ -1,1362 +1,2131 @@
 
 
-Microchip Technology PIC LITE Macro Assembler V1.37 build -260352376 
-                                                                                               Sun Jul 17 23:28:34 2016
+Microchip Technology PIC LITE Macro Assembler V1.38 build -256452561 
+                                                                                               Sat Nov 05 18:11:42 2016
 
-Microchip Technology Omniscient Code Generator v1.37 (Free mode) build 201603110536
+Microchip Technology Omniscient Code Generator v1.38 (Free mode) build 201607010351
      1                           	processor	16F917
      2                           	opt	pw 120
      3                           	opt	lm
-     4                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
-     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
-     8                           	psect	maintext,global,class=CODE,split=1,delta=2
-     9                           	psect	text1,local,class=CODE,merge=1,delta=2
-    10                           	psect	text2,local,class=CODE,merge=1,delta=2
-    11                           	psect	text3,local,class=CODE,merge=1,delta=2
-    12                           	psect	text4,local,class=CODE,merge=1,delta=2
-    13                           	psect	text5,local,class=CODE,merge=1,delta=2
-    14                           	psect	text6,local,class=CODE,merge=1,delta=2
-    15                           	psect	text7,local,class=CODE,merge=1,delta=2
-    16                           	dabs	1,0x7E,2
-    17  0000                     	;# 
-    18  0001                     	;# 
-    19  0002                     	;# 
-    20  0003                     	;# 
-    21  0004                     	;# 
-    22  0005                     	;# 
-    23  0006                     	;# 
-    24  0007                     	;# 
-    25  0008                     	;# 
-    26  0009                     	;# 
-    27  000A                     	;# 
-    28  000B                     	;# 
-    29  000C                     	;# 
-    30  000D                     	;# 
-    31  000E                     	;# 
-    32  000E                     	;# 
-    33  000F                     	;# 
-    34  0010                     	;# 
-    35  0011                     	;# 
-    36  0012                     	;# 
-    37  0013                     	;# 
-    38  0014                     	;# 
-    39  0015                     	;# 
-    40  0015                     	;# 
-    41  0016                     	;# 
-    42  0017                     	;# 
-    43  0018                     	;# 
-    44  0019                     	;# 
-    45  001A                     	;# 
-    46  001B                     	;# 
-    47  001B                     	;# 
-    48  001C                     	;# 
-    49  001D                     	;# 
-    50  001E                     	;# 
-    51  001F                     	;# 
-    52  0081                     	;# 
-    53  0085                     	;# 
-    54  0086                     	;# 
-    55  0087                     	;# 
-    56  0088                     	;# 
-    57  0089                     	;# 
-    58  008C                     	;# 
-    59  008D                     	;# 
-    60  008E                     	;# 
-    61  008F                     	;# 
-    62  0090                     	;# 
-    63  0091                     	;# 
-    64  0092                     	;# 
-    65  0093                     	;# 
-    66  0094                     	;# 
-    67  0095                     	;# 
-    68  0095                     	;# 
-    69  0096                     	;# 
-    70  0096                     	;# 
-    71  0097                     	;# 
-    72  0098                     	;# 
-    73  0099                     	;# 
-    74  009C                     	;# 
-    75  009D                     	;# 
-    76  009E                     	;# 
-    77  009F                     	;# 
-    78  0105                     	;# 
-    79  0107                     	;# 
-    80  0108                     	;# 
-    81  0109                     	;# 
-    82  010C                     	;# 
-    83  010C                     	;# 
-    84  010D                     	;# 
-    85  010D                     	;# 
-    86  010E                     	;# 
-    87  010F                     	;# 
-    88  0110                     	;# 
-    89  0111                     	;# 
-    90  0112                     	;# 
-    91  0113                     	;# 
-    92  0114                     	;# 
-    93  0115                     	;# 
-    94  0116                     	;# 
-    95  0117                     	;# 
-    96  0118                     	;# 
-    97  0119                     	;# 
-    98  011A                     	;# 
-    99  011B                     	;# 
-   100  011C                     	;# 
-   101  011D                     	;# 
-   102  011E                     	;# 
-   103  018C                     	;# 
-   104  018D                     	;# 
-   105  0000                     	;# 
-   106  0001                     	;# 
-   107  0002                     	;# 
-   108  0003                     	;# 
-   109  0004                     	;# 
-   110  0005                     	;# 
-   111  0006                     	;# 
-   112  0007                     	;# 
-   113  0008                     	;# 
-   114  0009                     	;# 
-   115  000A                     	;# 
-   116  000B                     	;# 
-   117  000C                     	;# 
-   118  000D                     	;# 
-   119  000E                     	;# 
-   120  000E                     	;# 
-   121  000F                     	;# 
-   122  0010                     	;# 
-   123  0011                     	;# 
-   124  0012                     	;# 
-   125  0013                     	;# 
-   126  0014                     	;# 
-   127  0015                     	;# 
-   128  0015                     	;# 
-   129  0016                     	;# 
-   130  0017                     	;# 
-   131  0018                     	;# 
-   132  0019                     	;# 
-   133  001A                     	;# 
-   134  001B                     	;# 
-   135  001B                     	;# 
-   136  001C                     	;# 
-   137  001D                     	;# 
-   138  001E                     	;# 
-   139  001F                     	;# 
-   140  0081                     	;# 
-   141  0085                     	;# 
-   142  0086                     	;# 
-   143  0087                     	;# 
-   144  0088                     	;# 
-   145  0089                     	;# 
-   146  008C                     	;# 
-   147  008D                     	;# 
-   148  008E                     	;# 
-   149  008F                     	;# 
-   150  0090                     	;# 
-   151  0091                     	;# 
-   152  0092                     	;# 
-   153  0093                     	;# 
-   154  0094                     	;# 
-   155  0095                     	;# 
-   156  0095                     	;# 
-   157  0096                     	;# 
-   158  0096                     	;# 
-   159  0097                     	;# 
-   160  0098                     	;# 
-   161  0099                     	;# 
-   162  009C                     	;# 
-   163  009D                     	;# 
-   164  009E                     	;# 
-   165  009F                     	;# 
-   166  0105                     	;# 
-   167  0107                     	;# 
-   168  0108                     	;# 
-   169  0109                     	;# 
-   170  010C                     	;# 
-   171  010C                     	;# 
-   172  010D                     	;# 
-   173  010D                     	;# 
-   174  010E                     	;# 
-   175  010F                     	;# 
-   176  0110                     	;# 
-   177  0111                     	;# 
-   178  0112                     	;# 
-   179  0113                     	;# 
-   180  0114                     	;# 
-   181  0115                     	;# 
-   182  0116                     	;# 
-   183  0117                     	;# 
-   184  0118                     	;# 
-   185  0119                     	;# 
-   186  011A                     	;# 
-   187  011B                     	;# 
-   188  011C                     	;# 
-   189  011D                     	;# 
-   190  011E                     	;# 
-   191  018C                     	;# 
-   192  018D                     	;# 
-   193  0000                     	;# 
-   194  0001                     	;# 
-   195  0002                     	;# 
-   196  0003                     	;# 
-   197  0004                     	;# 
-   198  0005                     	;# 
-   199  0006                     	;# 
-   200  0007                     	;# 
-   201  0008                     	;# 
-   202  0009                     	;# 
-   203  000A                     	;# 
-   204  000B                     	;# 
-   205  000C                     	;# 
-   206  000D                     	;# 
-   207  000E                     	;# 
-   208  000E                     	;# 
-   209  000F                     	;# 
-   210  0010                     	;# 
-   211  0011                     	;# 
-   212  0012                     	;# 
-   213  0013                     	;# 
-   214  0014                     	;# 
-   215  0015                     	;# 
-   216  0015                     	;# 
-   217  0016                     	;# 
-   218  0017                     	;# 
-   219  0018                     	;# 
-   220  0019                     	;# 
-   221  001A                     	;# 
-   222  001B                     	;# 
-   223  001B                     	;# 
-   224  001C                     	;# 
-   225  001D                     	;# 
-   226  001E                     	;# 
-   227  001F                     	;# 
-   228  0081                     	;# 
-   229  0085                     	;# 
-   230  0086                     	;# 
-   231  0087                     	;# 
-   232  0088                     	;# 
-   233  0089                     	;# 
-   234  008C                     	;# 
-   235  008D                     	;# 
-   236  008E                     	;# 
-   237  008F                     	;# 
-   238  0090                     	;# 
-   239  0091                     	;# 
-   240  0092                     	;# 
-   241  0093                     	;# 
-   242  0094                     	;# 
-   243  0095                     	;# 
-   244  0095                     	;# 
-   245  0096                     	;# 
-   246  0096                     	;# 
-   247  0097                     	;# 
-   248  0098                     	;# 
-   249  0099                     	;# 
-   250  009C                     	;# 
-   251  009D                     	;# 
-   252  009E                     	;# 
-   253  009F                     	;# 
-   254  0105                     	;# 
-   255  0107                     	;# 
-   256  0108                     	;# 
-   257  0109                     	;# 
-   258  010C                     	;# 
-   259  010C                     	;# 
-   260  010D                     	;# 
-   261  010D                     	;# 
-   262  010E                     	;# 
-   263  010F                     	;# 
-   264  0110                     	;# 
-   265  0111                     	;# 
-   266  0112                     	;# 
-   267  0113                     	;# 
-   268  0114                     	;# 
-   269  0115                     	;# 
-   270  0116                     	;# 
-   271  0117                     	;# 
-   272  0118                     	;# 
-   273  0119                     	;# 
-   274  011A                     	;# 
-   275  011B                     	;# 
-   276  011C                     	;# 
-   277  011D                     	;# 
-   278  011E                     	;# 
-   279  018C                     	;# 
-   280  018D                     	;# 
-   281  0000                     	;# 
-   282  0001                     	;# 
-   283  0002                     	;# 
-   284  0003                     	;# 
-   285  0004                     	;# 
-   286  0005                     	;# 
-   287  0006                     	;# 
-   288  0007                     	;# 
-   289  0008                     	;# 
-   290  0009                     	;# 
-   291  000A                     	;# 
-   292  000B                     	;# 
-   293  000C                     	;# 
-   294  000D                     	;# 
-   295  000E                     	;# 
-   296  000E                     	;# 
-   297  000F                     	;# 
-   298  0010                     	;# 
-   299  0011                     	;# 
-   300  0012                     	;# 
-   301  0013                     	;# 
-   302  0014                     	;# 
-   303  0015                     	;# 
-   304  0015                     	;# 
-   305  0016                     	;# 
-   306  0017                     	;# 
-   307  0018                     	;# 
-   308  0019                     	;# 
-   309  001A                     	;# 
-   310  001B                     	;# 
-   311  001B                     	;# 
-   312  001C                     	;# 
-   313  001D                     	;# 
-   314  001E                     	;# 
-   315  001F                     	;# 
-   316  0081                     	;# 
-   317  0085                     	;# 
-   318  0086                     	;# 
-   319  0087                     	;# 
-   320  0088                     	;# 
-   321  0089                     	;# 
-   322  008C                     	;# 
-   323  008D                     	;# 
-   324  008E                     	;# 
-   325  008F                     	;# 
-   326  0090                     	;# 
-   327  0091                     	;# 
-   328  0092                     	;# 
-   329  0093                     	;# 
-   330  0094                     	;# 
-   331  0095                     	;# 
-   332  0095                     	;# 
-   333  0096                     	;# 
-   334  0096                     	;# 
-   335  0097                     	;# 
-   336  0098                     	;# 
-   337  0099                     	;# 
-   338  009C                     	;# 
-   339  009D                     	;# 
-   340  009E                     	;# 
-   341  009F                     	;# 
-   342  0105                     	;# 
-   343  0107                     	;# 
-   344  0108                     	;# 
-   345  0109                     	;# 
-   346  010C                     	;# 
-   347  010C                     	;# 
-   348  010D                     	;# 
-   349  010D                     	;# 
-   350  010E                     	;# 
-   351  010F                     	;# 
-   352  0110                     	;# 
-   353  0111                     	;# 
-   354  0112                     	;# 
-   355  0113                     	;# 
-   356  0114                     	;# 
-   357  0115                     	;# 
-   358  0116                     	;# 
-   359  0117                     	;# 
-   360  0118                     	;# 
-   361  0119                     	;# 
-   362  011A                     	;# 
-   363  011B                     	;# 
-   364  011C                     	;# 
-   365  011D                     	;# 
-   366  011E                     	;# 
-   367  018C                     	;# 
-   368  018D                     	;# 
-   369                           
-   370                           	psect	nvBANK0
-   371  0030                     __pnvBANK0:	
-   372  0030                     _init_state:	
-   373  0030                     	ds	2
-   374  0007                     _PORTCbits	set	7
-   375  0008                     _PORTDbits	set	8
-   376  0009                     _PORTEbits	set	9
-   377  0091                     _ANSEL	set	145
-   378  0085                     _TRISA	set	133
-   379  0086                     _TRISB	set	134
-   380  0087                     _TRISC	set	135
-   381  0088                     _TRISD	set	136
-   382  0089                     _TRISE	set	137
-   383                           
-   384                           ; #config settings
-   385  0000                     
-   386                           	psect	cinit
-   387  07FC                     start_initialization:	
-   388  07FC                     __initialization:	
-   389  07FC                     end_of_initialization:	
-   390                           ;End of C runtime variable initialization code
-   391                           
-   392  07FC                     __end_of__initialization:	
-   393  07FC  0183               	clrf	3
-   394  07FD  120A  118A  2ED3   	ljmp	_main	;jump to C main() function
-   395                           
-   396                           	psect	cstackCOMMON
-   397  0070                     __pcstackCOMMON:	
-   398  0070                     ?_setup_mcu:	
-   399  0070                     ?_setup_port:	
-   400                           ; 1 bytes @ 0x0
-   401                           
-   402  0070                     ??_setup_port:	
-   403                           ; 1 bytes @ 0x0
-   404                           
-   405  0070                     ?_init_pin:	
-   406                           ; 1 bytes @ 0x0
-   407                           
-   408  0070                     ??_init_pin:	
-   409                           ; 1 bytes @ 0x0
-   410                           
-   411  0070                     ?_init_hall:	
-   412                           ; 1 bytes @ 0x0
-   413                           
-   414  0070                     ?_main:	
-   415                           ; 1 bytes @ 0x0
-   416                           
-   417  0070                     ?_read_hall:	
-   418                           ; 1 bytes @ 0x0
-   419                           
-   420  0070                     read_hall@hall_B:	
-   421                           ; 1 bytes @ 0x0
-   422                           
-   423                           
-   424                           ; 1 bytes @ 0x0
-   425  0070                     	ds	1
-   426  0071                     read_hall@hall_C:	
-   427                           
-   428                           ; 1 bytes @ 0x1
-   429  0071                     	ds	1
-   430  0072                     ??_read_hall:	
-   431                           
-   432                           ; 1 bytes @ 0x2
-   433  0072                     	ds	3
-   434  0075                     read_hall@hall_A:	
-   435                           
-   436                           ; 1 bytes @ 0x5
-   437  0075                     	ds	1
-   438  0076                     ?_get_hall_state:	
-   439                           
-   440                           ; 2 bytes @ 0x6
-   441  0076                     	ds	2
-   442  0078                     ??_get_hall_state:	
-   443                           
-   444                           ; 1 bytes @ 0x8
-   445  0078                     	ds	2
-   446  007A                     ??_setup_mcu:	
-   447  007A                     ??_get_direction:	
-   448                           ; 1 bytes @ 0xA
-   449                           
-   450  007A                     ??_init_hall:	
-   451                           ; 1 bytes @ 0xA
-   452                           
-   453                           
-   454                           ; 1 bytes @ 0xA
-   455  007A                     	ds	3
-   456  007D                     ??_main:	
-   457                           
-   458                           	psect	cstackBANK0
-   459  0020                     __pcstackBANK0:	
-   460                           ; 1 bytes @ 0xD
-   461                           
-   462  0020                     get_hall_state@state:	
-   463                           
-   464                           ; 2 bytes @ 0x0
-   465  0020                     	ds	2
-   466  0022                     get_hall_state@hallA:	
-   467                           
-   468                           ; 2 bytes @ 0x2
-   469  0022                     	ds	2
-   470  0024                     get_hall_state@hallB:	
-   471                           
-   472                           ; 2 bytes @ 0x4
-   473  0024                     	ds	2
-   474  0026                     get_hall_state@hallC:	
-   475                           
-   476                           ; 2 bytes @ 0x6
-   477  0026                     	ds	2
-   478  0028                     ?_get_direction:	
-   479                           
-   480                           ; 2 bytes @ 0x8
-   481  0028                     	ds	2
-   482  002A                     get_direction@direction:	
-   483                           
-   484                           ; 2 bytes @ 0xA
-   485  002A                     	ds	2
-   486  002C                     get_direction@current_state:	
-   487                           
-   488                           ; 2 bytes @ 0xC
-   489  002C                     	ds	2
-   490  002E                     main@d:	
-   491                           
-   492                           ; 2 bytes @ 0xE
-   493  002E                     	ds	2
-   494                           
-   495                           	psect	maintext
-   496  06D3                     __pmaintext:	
-   497 ;;
-   498 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   499 ;;
-   500 ;; *************** function _main *****************
-   501 ;; Defined at:
-   502 ;;		line 9 in file "main.c"
-   503 ;; Parameters:    Size  Location     Type
-   504 ;;		None
-   505 ;; Auto vars:     Size  Location     Type
-   506 ;;  d               2   14[BANK0 ] int 
-   507 ;; Return value:  Size  Location     Type
-   508 ;;                  1    wreg      void 
-   509 ;; Registers used:
-   510 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   511 ;; Tracked objects:
-   512 ;;		On entry : B00/0
-   513 ;;		On exit  : 0/0
-   514 ;;		Unchanged: 0/0
-   515 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   516 ;;      Params:         0       0       0       0       0
-   517 ;;      Locals:         0       2       0       0       0
-   518 ;;      Temps:          0       0       0       0       0
-   519 ;;      Totals:         0       2       0       0       0
-   520 ;;Total ram usage:        2 bytes
-   521 ;; Hardware stack levels required when called:    4
-   522 ;; This function calls:
-   523 ;;		_get_direction
-   524 ;;		_setup_mcu
-   525 ;; This function is called by:
-   526 ;;		Startup code after reset
-   527 ;; This function uses a non-reentrant model
-   528 ;;
-   529                           
-   530                           
-   531                           ;psect for function _main
-   532  06D3                     _main:	
-   533                           
-   534                           ;main.c: 11: setup_mcu();
-   535                           
-   536                           ;incstack = 0
-   537                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   538  06D3  120A  118A  26B6  120A  118A  	fcall	_setup_mcu
-   539  06D8                     l7:	
-   540                           ;main.c: 13: while(1)
-   541                           
-   542                           
-   543                           ;main.c: 14: {
-   544                           ;main.c: 15: int d = get_direction();
-   545  06D8  120A  118A  2781  120A  118A  	fcall	_get_direction
-   546  06DD  1283               	bcf	3,5	;RP0=0, select bank0
-   547  06DE  1303               	bcf	3,6	;RP1=0, select bank0
-   548  06DF  0829               	movf	?_get_direction+1,w
-   549  06E0  00AF               	movwf	main@d+1
-   550  06E1  0828               	movf	?_get_direction,w
-   551  06E2  00AE               	movwf	main@d
-   552  06E3  2ED8               	goto	l7
-   553  06E4                     __end_of_main:	
-   554                           ;main.c: 16: }
-   555                           ;main.c: 17: return;
-   556                           
-   557                           
-   558                           	psect	text1
-   559  06B6                     __ptext1:	
-   560 ;; *************** function _setup_mcu *****************
-   561 ;; Defined at:
-   562 ;;		line 9 in file "micro_setup.c"
-   563 ;; Parameters:    Size  Location     Type
-   564 ;;		None
-   565 ;; Auto vars:     Size  Location     Type
-   566 ;;		None
-   567 ;; Return value:  Size  Location     Type
-   568 ;;                  1    wreg      void 
-   569 ;; Registers used:
-   570 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   571 ;; Tracked objects:
-   572 ;;		On entry : 0/0
-   573 ;;		On exit  : 0/0
-   574 ;;		Unchanged: 0/0
-   575 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   576 ;;      Params:         0       0       0       0       0
-   577 ;;      Locals:         0       0       0       0       0
-   578 ;;      Temps:          0       0       0       0       0
-   579 ;;      Totals:         0       0       0       0       0
-   580 ;;Total ram usage:        0 bytes
-   581 ;; Hardware stack levels used:    1
-   582 ;; Hardware stack levels required when called:    3
-   583 ;; This function calls:
-   584 ;;		_init_hall
-   585 ;;		_init_pin
-   586 ;;		_setup_port
-   587 ;; This function is called by:
-   588 ;;		_main
-   589 ;; This function uses a non-reentrant model
-   590 ;;
-   591                           
-   592                           
-   593                           ;psect for function _setup_mcu
-   594  06B6                     _setup_mcu:	
-   595                           
-   596                           ;micro_setup.c: 11: setup_port();
-   597                           
-   598                           ;incstack = 0
-   599                           ; Regs used in _setup_mcu: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   600  06B6  120A  118A  26A9  120A  118A  	fcall	_setup_port
-   601                           
-   602                           ;micro_setup.c: 12: init_pin();
-   603  06BB  120A  118A  26C4  120A  118A  	fcall	_init_pin
-   604                           
-   605                           ;micro_setup.c: 13: init_hall();
-   606  06C0  120A  118A  269F   	fcall	_init_hall
-   607  06C3  0008               	return
-   608  06C4                     __end_of_setup_mcu:	
-   609                           
-   610                           	psect	text2
-   611  06A9                     __ptext2:	
-   612 ;; *************** function _setup_port *****************
-   613 ;; Defined at:
-   614 ;;		line 16 in file "micro_setup.c"
-   615 ;; Parameters:    Size  Location     Type
-   616 ;;		None
-   617 ;; Auto vars:     Size  Location     Type
-   618 ;;		None
-   619 ;; Return value:  Size  Location     Type
-   620 ;;                  1    wreg      void 
-   621 ;; Registers used:
-   622 ;;		wreg, status,2
-   623 ;; Tracked objects:
-   624 ;;		On entry : 0/0
-   625 ;;		On exit  : 0/0
-   626 ;;		Unchanged: 0/0
-   627 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   628 ;;      Params:         0       0       0       0       0
-   629 ;;      Locals:         0       0       0       0       0
-   630 ;;      Temps:          0       0       0       0       0
-   631 ;;      Totals:         0       0       0       0       0
-   632 ;;Total ram usage:        0 bytes
-   633 ;; Hardware stack levels used:    1
-   634 ;; This function calls:
-   635 ;;		Nothing
-   636 ;; This function is called by:
-   637 ;;		_setup_mcu
-   638 ;; This function uses a non-reentrant model
-   639 ;;
-   640                           
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	nvBANK0,global,class=BANK0,space=1,delta=1
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	inittext,global,class=CODE,delta=2
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    11                           	psect	maintext,global,class=CODE,split=1,delta=2
+    12                           	psect	text1,local,class=CODE,merge=1,delta=2
+    13                           	psect	text2,local,class=CODE,merge=1,delta=2
+    14                           	psect	text3,local,class=CODE,merge=1,delta=2
+    15                           	psect	text4,local,class=CODE,merge=1,delta=2
+    16                           	psect	text5,local,class=CODE,merge=1,delta=2
+    17                           	psect	text6,local,class=CODE,merge=1,delta=2
+    18                           	psect	text7,local,class=CODE,merge=1,delta=2
+    19                           	psect	text8,local,class=CODE,merge=1,delta=2
+    20                           	psect	text9,local,class=CODE,merge=1,delta=2
+    21                           	psect	text10,local,class=CODE,merge=1,delta=2
+    22                           	psect	text11,local,class=CODE,merge=1,delta=2
+    23                           	psect	text12,local,class=CODE,merge=1,delta=2
+    24                           	dabs	1,0x7E,2
+    25  0000                     	;# 
+    26  0001                     	;# 
+    27  0002                     	;# 
+    28  0003                     	;# 
+    29  0004                     	;# 
+    30  0005                     	;# 
+    31  0006                     	;# 
+    32  0007                     	;# 
+    33  0008                     	;# 
+    34  0009                     	;# 
+    35  000A                     	;# 
+    36  000B                     	;# 
+    37  000C                     	;# 
+    38  000D                     	;# 
+    39  000E                     	;# 
+    40  000E                     	;# 
+    41  000F                     	;# 
+    42  0010                     	;# 
+    43  0011                     	;# 
+    44  0012                     	;# 
+    45  0013                     	;# 
+    46  0014                     	;# 
+    47  0015                     	;# 
+    48  0015                     	;# 
+    49  0016                     	;# 
+    50  0017                     	;# 
+    51  0018                     	;# 
+    52  0019                     	;# 
+    53  001A                     	;# 
+    54  001B                     	;# 
+    55  001B                     	;# 
+    56  001C                     	;# 
+    57  001D                     	;# 
+    58  001E                     	;# 
+    59  001F                     	;# 
+    60  0081                     	;# 
+    61  0085                     	;# 
+    62  0086                     	;# 
+    63  0087                     	;# 
+    64  0088                     	;# 
+    65  0089                     	;# 
+    66  008C                     	;# 
+    67  008D                     	;# 
+    68  008E                     	;# 
+    69  008F                     	;# 
+    70  0090                     	;# 
+    71  0091                     	;# 
+    72  0092                     	;# 
+    73  0093                     	;# 
+    74  0094                     	;# 
+    75  0095                     	;# 
+    76  0095                     	;# 
+    77  0096                     	;# 
+    78  0096                     	;# 
+    79  0097                     	;# 
+    80  0098                     	;# 
+    81  0099                     	;# 
+    82  009C                     	;# 
+    83  009D                     	;# 
+    84  009E                     	;# 
+    85  009F                     	;# 
+    86  0105                     	;# 
+    87  0107                     	;# 
+    88  0108                     	;# 
+    89  0109                     	;# 
+    90  010C                     	;# 
+    91  010C                     	;# 
+    92  010D                     	;# 
+    93  010D                     	;# 
+    94  010E                     	;# 
+    95  010F                     	;# 
+    96  0110                     	;# 
+    97  0111                     	;# 
+    98  0112                     	;# 
+    99  0113                     	;# 
+   100  0114                     	;# 
+   101  0115                     	;# 
+   102  0116                     	;# 
+   103  0117                     	;# 
+   104  0118                     	;# 
+   105  0119                     	;# 
+   106  011A                     	;# 
+   107  011B                     	;# 
+   108  011C                     	;# 
+   109  011D                     	;# 
+   110  011E                     	;# 
+   111  018C                     	;# 
+   112  018D                     	;# 
+   113  0000                     	;# 
+   114  0001                     	;# 
+   115  0002                     	;# 
+   116  0003                     	;# 
+   117  0004                     	;# 
+   118  0005                     	;# 
+   119  0006                     	;# 
+   120  0007                     	;# 
+   121  0008                     	;# 
+   122  0009                     	;# 
+   123  000A                     	;# 
+   124  000B                     	;# 
+   125  000C                     	;# 
+   126  000D                     	;# 
+   127  000E                     	;# 
+   128  000E                     	;# 
+   129  000F                     	;# 
+   130  0010                     	;# 
+   131  0011                     	;# 
+   132  0012                     	;# 
+   133  0013                     	;# 
+   134  0014                     	;# 
+   135  0015                     	;# 
+   136  0015                     	;# 
+   137  0016                     	;# 
+   138  0017                     	;# 
+   139  0018                     	;# 
+   140  0019                     	;# 
+   141  001A                     	;# 
+   142  001B                     	;# 
+   143  001B                     	;# 
+   144  001C                     	;# 
+   145  001D                     	;# 
+   146  001E                     	;# 
+   147  001F                     	;# 
+   148  0081                     	;# 
+   149  0085                     	;# 
+   150  0086                     	;# 
+   151  0087                     	;# 
+   152  0088                     	;# 
+   153  0089                     	;# 
+   154  008C                     	;# 
+   155  008D                     	;# 
+   156  008E                     	;# 
+   157  008F                     	;# 
+   158  0090                     	;# 
+   159  0091                     	;# 
+   160  0092                     	;# 
+   161  0093                     	;# 
+   162  0094                     	;# 
+   163  0095                     	;# 
+   164  0095                     	;# 
+   165  0096                     	;# 
+   166  0096                     	;# 
+   167  0097                     	;# 
+   168  0098                     	;# 
+   169  0099                     	;# 
+   170  009C                     	;# 
+   171  009D                     	;# 
+   172  009E                     	;# 
+   173  009F                     	;# 
+   174  0105                     	;# 
+   175  0107                     	;# 
+   176  0108                     	;# 
+   177  0109                     	;# 
+   178  010C                     	;# 
+   179  010C                     	;# 
+   180  010D                     	;# 
+   181  010D                     	;# 
+   182  010E                     	;# 
+   183  010F                     	;# 
+   184  0110                     	;# 
+   185  0111                     	;# 
+   186  0112                     	;# 
+   187  0113                     	;# 
+   188  0114                     	;# 
+   189  0115                     	;# 
+   190  0116                     	;# 
+   191  0117                     	;# 
+   192  0118                     	;# 
+   193  0119                     	;# 
+   194  011A                     	;# 
+   195  011B                     	;# 
+   196  011C                     	;# 
+   197  011D                     	;# 
+   198  011E                     	;# 
+   199  018C                     	;# 
+   200  018D                     	;# 
+   201  0000                     	;# 
+   202  0001                     	;# 
+   203  0002                     	;# 
+   204  0003                     	;# 
+   205  0004                     	;# 
+   206  0005                     	;# 
+   207  0006                     	;# 
+   208  0007                     	;# 
+   209  0008                     	;# 
+   210  0009                     	;# 
+   211  000A                     	;# 
+   212  000B                     	;# 
+   213  000C                     	;# 
+   214  000D                     	;# 
+   215  000E                     	;# 
+   216  000E                     	;# 
+   217  000F                     	;# 
+   218  0010                     	;# 
+   219  0011                     	;# 
+   220  0012                     	;# 
+   221  0013                     	;# 
+   222  0014                     	;# 
+   223  0015                     	;# 
+   224  0015                     	;# 
+   225  0016                     	;# 
+   226  0017                     	;# 
+   227  0018                     	;# 
+   228  0019                     	;# 
+   229  001A                     	;# 
+   230  001B                     	;# 
+   231  001B                     	;# 
+   232  001C                     	;# 
+   233  001D                     	;# 
+   234  001E                     	;# 
+   235  001F                     	;# 
+   236  0081                     	;# 
+   237  0085                     	;# 
+   238  0086                     	;# 
+   239  0087                     	;# 
+   240  0088                     	;# 
+   241  0089                     	;# 
+   242  008C                     	;# 
+   243  008D                     	;# 
+   244  008E                     	;# 
+   245  008F                     	;# 
+   246  0090                     	;# 
+   247  0091                     	;# 
+   248  0092                     	;# 
+   249  0093                     	;# 
+   250  0094                     	;# 
+   251  0095                     	;# 
+   252  0095                     	;# 
+   253  0096                     	;# 
+   254  0096                     	;# 
+   255  0097                     	;# 
+   256  0098                     	;# 
+   257  0099                     	;# 
+   258  009C                     	;# 
+   259  009D                     	;# 
+   260  009E                     	;# 
+   261  009F                     	;# 
+   262  0105                     	;# 
+   263  0107                     	;# 
+   264  0108                     	;# 
+   265  0109                     	;# 
+   266  010C                     	;# 
+   267  010C                     	;# 
+   268  010D                     	;# 
+   269  010D                     	;# 
+   270  010E                     	;# 
+   271  010F                     	;# 
+   272  0110                     	;# 
+   273  0111                     	;# 
+   274  0112                     	;# 
+   275  0113                     	;# 
+   276  0114                     	;# 
+   277  0115                     	;# 
+   278  0116                     	;# 
+   279  0117                     	;# 
+   280  0118                     	;# 
+   281  0119                     	;# 
+   282  011A                     	;# 
+   283  011B                     	;# 
+   284  011C                     	;# 
+   285  011D                     	;# 
+   286  011E                     	;# 
+   287  018C                     	;# 
+   288  018D                     	;# 
+   289  0000                     	;# 
+   290  0001                     	;# 
+   291  0002                     	;# 
+   292  0003                     	;# 
+   293  0004                     	;# 
+   294  0005                     	;# 
+   295  0006                     	;# 
+   296  0007                     	;# 
+   297  0008                     	;# 
+   298  0009                     	;# 
+   299  000A                     	;# 
+   300  000B                     	;# 
+   301  000C                     	;# 
+   302  000D                     	;# 
+   303  000E                     	;# 
+   304  000E                     	;# 
+   305  000F                     	;# 
+   306  0010                     	;# 
+   307  0011                     	;# 
+   308  0012                     	;# 
+   309  0013                     	;# 
+   310  0014                     	;# 
+   311  0015                     	;# 
+   312  0015                     	;# 
+   313  0016                     	;# 
+   314  0017                     	;# 
+   315  0018                     	;# 
+   316  0019                     	;# 
+   317  001A                     	;# 
+   318  001B                     	;# 
+   319  001B                     	;# 
+   320  001C                     	;# 
+   321  001D                     	;# 
+   322  001E                     	;# 
+   323  001F                     	;# 
+   324  0081                     	;# 
+   325  0085                     	;# 
+   326  0086                     	;# 
+   327  0087                     	;# 
+   328  0088                     	;# 
+   329  0089                     	;# 
+   330  008C                     	;# 
+   331  008D                     	;# 
+   332  008E                     	;# 
+   333  008F                     	;# 
+   334  0090                     	;# 
+   335  0091                     	;# 
+   336  0092                     	;# 
+   337  0093                     	;# 
+   338  0094                     	;# 
+   339  0095                     	;# 
+   340  0095                     	;# 
+   341  0096                     	;# 
+   342  0096                     	;# 
+   343  0097                     	;# 
+   344  0098                     	;# 
+   345  0099                     	;# 
+   346  009C                     	;# 
+   347  009D                     	;# 
+   348  009E                     	;# 
+   349  009F                     	;# 
+   350  0105                     	;# 
+   351  0107                     	;# 
+   352  0108                     	;# 
+   353  0109                     	;# 
+   354  010C                     	;# 
+   355  010C                     	;# 
+   356  010D                     	;# 
+   357  010D                     	;# 
+   358  010E                     	;# 
+   359  010F                     	;# 
+   360  0110                     	;# 
+   361  0111                     	;# 
+   362  0112                     	;# 
+   363  0113                     	;# 
+   364  0114                     	;# 
+   365  0115                     	;# 
+   366  0116                     	;# 
+   367  0117                     	;# 
+   368  0118                     	;# 
+   369  0119                     	;# 
+   370  011A                     	;# 
+   371  011B                     	;# 
+   372  011C                     	;# 
+   373  011D                     	;# 
+   374  011E                     	;# 
+   375  018C                     	;# 
+   376  018D                     	;# 
+   377  0000                     	;# 
+   378  0001                     	;# 
+   379  0002                     	;# 
+   380  0003                     	;# 
+   381  0004                     	;# 
+   382  0005                     	;# 
+   383  0006                     	;# 
+   384  0007                     	;# 
+   385  0008                     	;# 
+   386  0009                     	;# 
+   387  000A                     	;# 
+   388  000B                     	;# 
+   389  000C                     	;# 
+   390  000D                     	;# 
+   391  000E                     	;# 
+   392  000E                     	;# 
+   393  000F                     	;# 
+   394  0010                     	;# 
+   395  0011                     	;# 
+   396  0012                     	;# 
+   397  0013                     	;# 
+   398  0014                     	;# 
+   399  0015                     	;# 
+   400  0015                     	;# 
+   401  0016                     	;# 
+   402  0017                     	;# 
+   403  0018                     	;# 
+   404  0019                     	;# 
+   405  001A                     	;# 
+   406  001B                     	;# 
+   407  001B                     	;# 
+   408  001C                     	;# 
+   409  001D                     	;# 
+   410  001E                     	;# 
+   411  001F                     	;# 
+   412  0081                     	;# 
+   413  0085                     	;# 
+   414  0086                     	;# 
+   415  0087                     	;# 
+   416  0088                     	;# 
+   417  0089                     	;# 
+   418  008C                     	;# 
+   419  008D                     	;# 
+   420  008E                     	;# 
+   421  008F                     	;# 
+   422  0090                     	;# 
+   423  0091                     	;# 
+   424  0092                     	;# 
+   425  0093                     	;# 
+   426  0094                     	;# 
+   427  0095                     	;# 
+   428  0095                     	;# 
+   429  0096                     	;# 
+   430  0096                     	;# 
+   431  0097                     	;# 
+   432  0098                     	;# 
+   433  0099                     	;# 
+   434  009C                     	;# 
+   435  009D                     	;# 
+   436  009E                     	;# 
+   437  009F                     	;# 
+   438  0105                     	;# 
+   439  0107                     	;# 
+   440  0108                     	;# 
+   441  0109                     	;# 
+   442  010C                     	;# 
+   443  010C                     	;# 
+   444  010D                     	;# 
+   445  010D                     	;# 
+   446  010E                     	;# 
+   447  010F                     	;# 
+   448  0110                     	;# 
+   449  0111                     	;# 
+   450  0112                     	;# 
+   451  0113                     	;# 
+   452  0114                     	;# 
+   453  0115                     	;# 
+   454  0116                     	;# 
+   455  0117                     	;# 
+   456  0118                     	;# 
+   457  0119                     	;# 
+   458  011A                     	;# 
+   459  011B                     	;# 
+   460  011C                     	;# 
+   461  011D                     	;# 
+   462  011E                     	;# 
+   463  018C                     	;# 
+   464  018D                     	;# 
+   465  0000                     	;# 
+   466  0001                     	;# 
+   467  0002                     	;# 
+   468  0003                     	;# 
+   469  0004                     	;# 
+   470  0005                     	;# 
+   471  0006                     	;# 
+   472  0007                     	;# 
+   473  0008                     	;# 
+   474  0009                     	;# 
+   475  000A                     	;# 
+   476  000B                     	;# 
+   477  000C                     	;# 
+   478  000D                     	;# 
+   479  000E                     	;# 
+   480  000E                     	;# 
+   481  000F                     	;# 
+   482  0010                     	;# 
+   483  0011                     	;# 
+   484  0012                     	;# 
+   485  0013                     	;# 
+   486  0014                     	;# 
+   487  0015                     	;# 
+   488  0015                     	;# 
+   489  0016                     	;# 
+   490  0017                     	;# 
+   491  0018                     	;# 
+   492  0019                     	;# 
+   493  001A                     	;# 
+   494  001B                     	;# 
+   495  001B                     	;# 
+   496  001C                     	;# 
+   497  001D                     	;# 
+   498  001E                     	;# 
+   499  001F                     	;# 
+   500  0081                     	;# 
+   501  0085                     	;# 
+   502  0086                     	;# 
+   503  0087                     	;# 
+   504  0088                     	;# 
+   505  0089                     	;# 
+   506  008C                     	;# 
+   507  008D                     	;# 
+   508  008E                     	;# 
+   509  008F                     	;# 
+   510  0090                     	;# 
+   511  0091                     	;# 
+   512  0092                     	;# 
+   513  0093                     	;# 
+   514  0094                     	;# 
+   515  0095                     	;# 
+   516  0095                     	;# 
+   517  0096                     	;# 
+   518  0096                     	;# 
+   519  0097                     	;# 
+   520  0098                     	;# 
+   521  0099                     	;# 
+   522  009C                     	;# 
+   523  009D                     	;# 
+   524  009E                     	;# 
+   525  009F                     	;# 
+   526  0105                     	;# 
+   527  0107                     	;# 
+   528  0108                     	;# 
+   529  0109                     	;# 
+   530  010C                     	;# 
+   531  010C                     	;# 
+   532  010D                     	;# 
+   533  010D                     	;# 
+   534  010E                     	;# 
+   535  010F                     	;# 
+   536  0110                     	;# 
+   537  0111                     	;# 
+   538  0112                     	;# 
+   539  0113                     	;# 
+   540  0114                     	;# 
+   541  0115                     	;# 
+   542  0116                     	;# 
+   543  0117                     	;# 
+   544  0118                     	;# 
+   545  0119                     	;# 
+   546  011A                     	;# 
+   547  011B                     	;# 
+   548  011C                     	;# 
+   549  011D                     	;# 
+   550  011E                     	;# 
+   551  018C                     	;# 
+   552  018D                     	;# 
+   553  0000                     	;# 
+   554  0001                     	;# 
+   555  0002                     	;# 
+   556  0003                     	;# 
+   557  0004                     	;# 
+   558  0005                     	;# 
+   559  0006                     	;# 
+   560  0007                     	;# 
+   561  0008                     	;# 
+   562  0009                     	;# 
+   563  000A                     	;# 
+   564  000B                     	;# 
+   565  000C                     	;# 
+   566  000D                     	;# 
+   567  000E                     	;# 
+   568  000E                     	;# 
+   569  000F                     	;# 
+   570  0010                     	;# 
+   571  0011                     	;# 
+   572  0012                     	;# 
+   573  0013                     	;# 
+   574  0014                     	;# 
+   575  0015                     	;# 
+   576  0015                     	;# 
+   577  0016                     	;# 
+   578  0017                     	;# 
+   579  0018                     	;# 
+   580  0019                     	;# 
+   581  001A                     	;# 
+   582  001B                     	;# 
+   583  001B                     	;# 
+   584  001C                     	;# 
+   585  001D                     	;# 
+   586  001E                     	;# 
+   587  001F                     	;# 
+   588  0081                     	;# 
+   589  0085                     	;# 
+   590  0086                     	;# 
+   591  0087                     	;# 
+   592  0088                     	;# 
+   593  0089                     	;# 
+   594  008C                     	;# 
+   595  008D                     	;# 
+   596  008E                     	;# 
+   597  008F                     	;# 
+   598  0090                     	;# 
+   599  0091                     	;# 
+   600  0092                     	;# 
+   601  0093                     	;# 
+   602  0094                     	;# 
+   603  0095                     	;# 
+   604  0095                     	;# 
+   605  0096                     	;# 
+   606  0096                     	;# 
+   607  0097                     	;# 
+   608  0098                     	;# 
+   609  0099                     	;# 
+   610  009C                     	;# 
+   611  009D                     	;# 
+   612  009E                     	;# 
+   613  009F                     	;# 
+   614  0105                     	;# 
+   615  0107                     	;# 
+   616  0108                     	;# 
+   617  0109                     	;# 
+   618  010C                     	;# 
+   619  010C                     	;# 
+   620  010D                     	;# 
+   621  010D                     	;# 
+   622  010E                     	;# 
+   623  010F                     	;# 
+   624  0110                     	;# 
+   625  0111                     	;# 
+   626  0112                     	;# 
+   627  0113                     	;# 
+   628  0114                     	;# 
+   629  0115                     	;# 
+   630  0116                     	;# 
+   631  0117                     	;# 
+   632  0118                     	;# 
+   633  0119                     	;# 
+   634  011A                     	;# 
+   635  011B                     	;# 
+   636  011C                     	;# 
+   637  011D                     	;# 
+   638  011E                     	;# 
+   639  018C                     	;# 
+   640  018D                     	;# 
    641                           
-   642                           ;psect for function _setup_port
-   643  06A9                     _setup_port:	
+   642                           	psect	idataBANK0
+   643  06F2                     __pidataBANK0:	
    644                           
-   645                           ;micro_setup.c: 18: TRISA = 0b10001111;
-   646                           
-   647                           ;incstack = 0
-   648                           ; Regs used in _setup_port: [wreg+status,2]
-   649  06A9  308F               	movlw	143
-   650  06AA  1683               	bsf	3,5	;RP0=1, select bank1
-   651  06AB  1303               	bcf	3,6	;RP1=0, select bank1
-   652  06AC  0085               	movwf	5	;volatile
-   653                           
-   654                           ;micro_setup.c: 19: TRISB = 0b00000000;
-   655  06AD  0186               	clrf	6	;volatile
-   656                           
-   657                           ;micro_setup.c: 20: TRISC = 0b10000000;
-   658  06AE  3080               	movlw	128
-   659  06AF  0087               	movwf	7	;volatile
-   660                           
-   661                           ;micro_setup.c: 21: TRISD = 0b00000000;
-   662  06B0  0188               	clrf	8	;volatile
-   663                           
-   664                           ;micro_setup.c: 22: TRISE = 0b00000111;
-   665  06B1  3007               	movlw	7
-   666  06B2  0089               	movwf	9	;volatile
+   645                           ;initializer for uart_write_hall_state@F2945
+   646  06F2  3443               	retlw	67
+   647  06F3  3475               	retlw	117
+   648  06F4  3472               	retlw	114
+   649  06F5  3472               	retlw	114
+   650  06F6  3465               	retlw	101
+   651  06F7  346E               	retlw	110
+   652  06F8  3474               	retlw	116
+   653  06F9  3420               	retlw	32
+   654  06FA  3448               	retlw	72
+   655  06FB  3461               	retlw	97
+   656  06FC  346C               	retlw	108
+   657  06FD  346C               	retlw	108
+   658  06FE  3420               	retlw	32
+   659  06FF  3453               	retlw	83
+   660  0700  3474               	retlw	116
+   661  0701  3461               	retlw	97
+   662  0702  3474               	retlw	116
+   663  0703  3465               	retlw	101
+   664  0704  343A               	retlw	58
+   665  0705  3420               	retlw	32
+   666  0706  3400               	retlw	0
    667                           
-   668                           ;micro_setup.c: 24: ANSEL = 0b00001111;
-   669  06B3  300F               	movlw	15
-   670  06B4  0091               	movwf	17	;volatile
-   671  06B5  0008               	return
-   672  06B6                     __end_of_setup_port:	
-   673                           
-   674                           	psect	text3
-   675  06C4                     __ptext3:	
-   676 ;; *************** function _init_pin *****************
-   677 ;; Defined at:
-   678 ;;		line 30 in file "micro_setup.c"
-   679 ;; Parameters:    Size  Location     Type
-   680 ;;		None
-   681 ;; Auto vars:     Size  Location     Type
-   682 ;;		None
-   683 ;; Return value:  Size  Location     Type
-   684 ;;                  1    wreg      void 
-   685 ;; Registers used:
-   686 ;;		None
-   687 ;; Tracked objects:
-   688 ;;		On entry : 0/0
-   689 ;;		On exit  : 0/0
-   690 ;;		Unchanged: 0/0
-   691 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   692 ;;      Params:         0       0       0       0       0
-   693 ;;      Locals:         0       0       0       0       0
-   694 ;;      Temps:          0       0       0       0       0
-   695 ;;      Totals:         0       0       0       0       0
-   696 ;;Total ram usage:        0 bytes
-   697 ;; Hardware stack levels used:    1
-   698 ;; This function calls:
-   699 ;;		Nothing
-   700 ;; This function is called by:
-   701 ;;		_setup_mcu
-   702 ;; This function uses a non-reentrant model
-   703 ;;
-   704                           
-   705                           
-   706                           ;psect for function _init_pin
-   707  06C4                     _init_pin:	
-   708                           
-   709                           ;micro_setup.c: 32: PORTCbits.RC0 = (0);
-   710                           
-   711                           ;incstack = 0
-   712                           ; Regs used in _init_pin: []
-   713  06C4  1283               	bcf	3,5	;RP0=0, select bank0
-   714  06C5  1303               	bcf	3,6	;RP1=0, select bank0
-   715  06C6  1007               	bcf	7,0	;volatile
-   716                           
-   717                           ;micro_setup.c: 33: PORTCbits.RC1 = (0);
-   718  06C7  1087               	bcf	7,1	;volatile
-   719                           
-   720                           ;micro_setup.c: 34: PORTCbits.RC2 = (0);
-   721  06C8  1107               	bcf	7,2	;volatile
-   722                           
-   723                           ;micro_setup.c: 35: PORTCbits.RC3 = (0);
-   724  06C9  1187               	bcf	7,3	;volatile
-   725                           
-   726                           ;micro_setup.c: 36: PORTCbits.RC4 = (0);
-   727  06CA  1207               	bcf	7,4	;volatile
-   728                           
-   729                           ;micro_setup.c: 37: PORTCbits.RC5 = (0);
-   730  06CB  1287               	bcf	7,5	;volatile
-   731                           
-   732                           ;micro_setup.c: 39: PORTDbits.RD0 = (0);
-   733  06CC  1008               	bcf	8,0	;volatile
-   734                           
-   735                           ;micro_setup.c: 40: PORTDbits.RD1 = (0);
-   736  06CD  1088               	bcf	8,1	;volatile
-   737                           
-   738                           ;micro_setup.c: 41: PORTDbits.RD2 = (0);
-   739  06CE  1108               	bcf	8,2	;volatile
-   740                           
-   741                           ;micro_setup.c: 42: PORTDbits.RD3 = (0);
-   742  06CF  1188               	bcf	8,3	;volatile
-   743                           
-   744                           ;micro_setup.c: 43: PORTDbits.RD4 = (0);
-   745  06D0  1208               	bcf	8,4	;volatile
+   668                           ;initializer for uart_write_direction@F2949
+   669  0707  3443               	retlw	67
+   670  0708  3475               	retlw	117
+   671  0709  3472               	retlw	114
+   672  070A  3472               	retlw	114
+   673  070B  3465               	retlw	101
+   674  070C  346E               	retlw	110
+   675  070D  3474               	retlw	116
+   676  070E  3420               	retlw	32
+   677  070F  3444               	retlw	68
+   678  0710  3469               	retlw	105
+   679  0711  3472               	retlw	114
+   680  0712  3465               	retlw	101
+   681  0713  3463               	retlw	99
+   682  0714  3474               	retlw	116
+   683  0715  3469               	retlw	105
+   684  0716  346F               	retlw	111
+   685  0717  346E               	retlw	110
+   686  0718  343A               	retlw	58
+   687  0719  3420               	retlw	32
+   688  071A  3400               	retlw	0
+   689                           
+   690                           	psect	nvBANK0
+   691  0054                     __pnvBANK0:	
+   692  0054                     _init_state:	
+   693  0054                     	ds	2
+   694  001F                     _ADCON0bits	set	31
+   695  001E                     _ADRESH	set	30
+   696  0007                     _PORTCbits	set	7
+   697  0008                     _PORTDbits	set	8
+   698  0009                     _PORTEbits	set	9
+   699  001A                     _RCREG	set	26
+   700  0018                     _RCSTAbits	set	24
+   701  0019                     _TXREG	set	25
+   702  00F9                     _GO_DONE	set	249
+   703  0065                     _RCIF	set	101
+   704  009F                     _ADCON1	set	159
+   705  009E                     _ADRESL	set	158
+   706  0091                     _ANSEL	set	145
+   707  0099                     _SPBRG	set	153
+   708  0085                     _TRISA	set	133
+   709  0086                     _TRISB	set	134
+   710  0087                     _TRISC	set	135
+   711  0088                     _TRISD	set	136
+   712  0089                     _TRISE	set	137
+   713  0098                     _TXSTA	set	152
+   714  04C1                     _TRMT	set	1217
+   715                           
+   716                           ; #config settings
+   717  0000                     
+   718                           	psect	cinit
+   719  07F0                     start_initialization:	
+   720  07F0                     __initialization:	
+   721                           
+   722                           ; Initialize objects allocated to BANK0
+   723  07F0  1383               	bcf	3,7	;select IRP bank0
+   724  07F1  3049               	movlw	low (__pdataBANK0+41)
+   725  07F2  00FD               	movwf	btemp+-1
+   726  07F3  3006               	movlw	high __pidataBANK0
+   727  07F4  00FE               	movwf	btemp
+   728  07F5  30F2               	movlw	low __pidataBANK0
+   729  07F6  00FF               	movwf	btemp+1
+   730  07F7  3020               	movlw	low __pdataBANK0
+   731  07F8  0084               	movwf	4
+   732  07F9  120A  118A  2651   	fcall	init_ram0
+   733  07FC                     end_of_initialization:	
+   734                           ;End of C runtime variable initialization code
+   735                           
+   736  07FC                     __end_of__initialization:	
+   737  07FC  0183               	clrf	3
+   738  07FD  120A  118A  2EAC   	ljmp	_main	;jump to C main() function
+   739                           
+   740                           	psect	dataBANK0
+   741  0020                     __pdataBANK0:	
+   742  0020                     uart_write_hall_state@F2945:	
+   743  0020                     	ds	21
+   744  0035                     uart_write_direction@F2949:	
+   745  0035                     	ds	20
    746                           
-   747                           ;micro_setup.c: 44: PORTDbits.RD5 = (0);
-   748  06D1  1288               	bcf	8,5	;volatile
-   749  06D2  0008               	return
-   750  06D3                     __end_of_init_pin:	
-   751                           
-   752                           	psect	text4
-   753  069F                     __ptext4:	
-   754 ;; *************** function _init_hall *****************
-   755 ;; Defined at:
-   756 ;;		line 47 in file "micro_setup.c"
-   757 ;; Parameters:    Size  Location     Type
-   758 ;;		None
-   759 ;; Auto vars:     Size  Location     Type
-   760 ;;		None
-   761 ;; Return value:  Size  Location     Type
-   762 ;;                  1    wreg      void 
-   763 ;; Registers used:
-   764 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   765 ;; Tracked objects:
-   766 ;;		On entry : 0/0
-   767 ;;		On exit  : 0/0
-   768 ;;		Unchanged: 0/0
-   769 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   770 ;;      Params:         0       0       0       0       0
-   771 ;;      Locals:         0       0       0       0       0
-   772 ;;      Temps:          0       0       0       0       0
-   773 ;;      Totals:         0       0       0       0       0
-   774 ;;Total ram usage:        0 bytes
-   775 ;; Hardware stack levels used:    1
-   776 ;; Hardware stack levels required when called:    2
-   777 ;; This function calls:
-   778 ;;		_get_hall_state
-   779 ;; This function is called by:
-   780 ;;		_setup_mcu
-   781 ;; This function uses a non-reentrant model
-   782 ;;
-   783                           
-   784                           
-   785                           ;psect for function _init_hall
-   786  069F                     _init_hall:	
-   787                           
-   788                           ;micro_setup.c: 49: init_state = get_hall_state();
-   789                           
-   790                           ;incstack = 0
-   791                           ; Regs used in _init_hall: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   792  069F  120A  118A  270C   	fcall	_get_hall_state
-   793  06A2  0877               	movf	?_get_hall_state+1,w
-   794  06A3  1283               	bcf	3,5	;RP0=0, select bank0
-   795  06A4  1303               	bcf	3,6	;RP1=0, select bank0
-   796  06A5  00B1               	movwf	_init_state+1
-   797  06A6  0876               	movf	?_get_hall_state,w
-   798  06A7  00B0               	movwf	_init_state
-   799  06A8  0008               	return
-   800  06A9                     __end_of_init_hall:	
-   801                           
-   802                           	psect	text5
-   803  0781                     __ptext5:	
-   804 ;; *************** function _get_direction *****************
-   805 ;; Defined at:
-   806 ;;		line 49 in file "hall_effect.c"
-   807 ;; Parameters:    Size  Location     Type
-   808 ;;		None
-   809 ;; Auto vars:     Size  Location     Type
-   810 ;;  current_stat    2   12[BANK0 ] int 
-   811 ;;  direction       2   10[BANK0 ] int 
-   812 ;; Return value:  Size  Location     Type
-   813 ;;                  2    8[BANK0 ] int 
-   814 ;; Registers used:
-   815 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-   816 ;; Tracked objects:
-   817 ;;		On entry : 0/0
-   818 ;;		On exit  : 0/0
-   819 ;;		Unchanged: 0/0
-   820 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   821 ;;      Params:         0       2       0       0       0
-   822 ;;      Locals:         0       4       0       0       0
-   823 ;;      Temps:          3       0       0       0       0
-   824 ;;      Totals:         3       6       0       0       0
-   825 ;;Total ram usage:        9 bytes
-   826 ;; Hardware stack levels used:    1
-   827 ;; Hardware stack levels required when called:    2
-   828 ;; This function calls:
-   829 ;;		_get_hall_state
-   830 ;; This function is called by:
-   831 ;;		_main
-   832 ;; This function uses a non-reentrant model
-   833 ;;
-   834                           
-   835                           
-   836                           ;psect for function _get_direction
-   837  0781                     _get_direction:	
+   747                           	psect	inittext
+   748  064D                     init_fetch0:	
+   749                           ;	Called with low address in FSR and high address in W
+   750                           
+   751  064D  087E               	movf	126,w
+   752  064E  008A               	movwf	10
+   753  064F  087F               	movf	127,w
+   754  0650  0082               	movwf	2
+   755  0651                     init_ram0:	
+   756                           ;Called with:
+   757                           ;	high address of idata address in btemp 
+   758                           ;	low address of idata address in btemp+1 
+   759                           ;	low address of data in FSR
+   760                           ;	high address + 1 of data in btemp-1
+   761                           
+   762  0651  264D  120A  118A   	fcall	init_fetch0
+   763  0654  0080               	movwf	0
+   764  0655  0A84               	incf	4,f
+   765  0656  0804               	movf	4,w
+   766  0657  067D               	xorwf	125,w
+   767  0658  1903               	btfsc	3,2
+   768  0659  3400               	retlw	0
+   769  065A  0AFF               	incf	127,f
+   770  065B  1903               	btfsc	3,2
+   771  065C  0AFE               	incf	126,f
+   772  065D  2E51               	goto	init_ram0
+   773                           
+   774                           	psect	cstackCOMMON
+   775  0070                     __pcstackCOMMON:	
+   776  0070                     ?_setup_mcu:	
+   777  0070                     ?_setup_port:	
+   778                           ; 1 bytes @ 0x0
+   779                           
+   780  0070                     ??_setup_port:	
+   781                           ; 1 bytes @ 0x0
+   782                           
+   783  0070                     ?_init_pin:	
+   784                           ; 1 bytes @ 0x0
+   785                           
+   786  0070                     ??_init_pin:	
+   787                           ; 1 bytes @ 0x0
+   788                           
+   789  0070                     ?_init_hall:	
+   790                           ; 1 bytes @ 0x0
+   791                           
+   792  0070                     ?_init_uart:	
+   793                           ; 1 bytes @ 0x0
+   794                           
+   795  0070                     ??_init_uart:	
+   796                           ; 1 bytes @ 0x0
+   797                           
+   798  0070                     ?_main:	
+   799                           ; 1 bytes @ 0x0
+   800                           
+   801  0070                     ?_read_hall:	
+   802                           ; 1 bytes @ 0x0
+   803                           
+   804  0070                     ?_analog_init:	
+   805                           ; 1 bytes @ 0x0
+   806                           
+   807  0070                     ?_uart_write_char:	
+   808                           ; 1 bytes @ 0x0
+   809                           
+   810  0070                     ??_uart_write_char:	
+   811                           ; 1 bytes @ 0x0
+   812                           
+   813  0070                     ?_uart_write_unsigned_int:	
+   814                           ; 1 bytes @ 0x0
+   815                           
+   816  0070                     read_hall@hall_B:	
+   817                           ; 1 bytes @ 0x0
+   818                           
+   819  0070                     uart_write_char@data:	
+   820                           ; 1 bytes @ 0x0
+   821                           
+   822  0070                     analog_init@analog_port:	
+   823                           ; 1 bytes @ 0x0
+   824                           
+   825  0070                     uart_write_unsigned_int@number:	
+   826                           ; 2 bytes @ 0x0
+   827                           
+   828                           
+   829                           ; 2 bytes @ 0x0
+   830  0070                     	ds	1
+   831  0071                     read_hall@hall_C:	
+   832                           
+   833                           ; 1 bytes @ 0x1
+   834  0071                     	ds	1
+   835  0072                     ??_read_hall:	
+   836  0072                     ??_analog_init:	
+   837                           ; 1 bytes @ 0x2
    838                           
-   839                           ;hall_effect.c: 51: int direction;
-   840                           ;hall_effect.c: 52: int current_state = get_hall_state();
+   839  0072                     ??_uart_write_unsigned_int:	
+   840                           ; 1 bytes @ 0x2
    841                           
-   842                           ;incstack = 0
-   843                           ; Regs used in _get_direction: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-   844  0781  120A  118A  270C  120A  118A  	fcall	_get_hall_state
-   845  0786  0877               	movf	?_get_hall_state+1,w
-   846  0787  1283               	bcf	3,5	;RP0=0, select bank0
-   847  0788  1303               	bcf	3,6	;RP1=0, select bank0
-   848  0789  00AD               	movwf	get_direction@current_state+1
-   849  078A  0876               	movf	?_get_hall_state,w
-   850  078B  00AC               	movwf	get_direction@current_state
-   851                           
-   852                           ;hall_effect.c: 53: if((init_state < current_state) || (init_state == 6 && current_state
-      +                           == 1))
-   853  078C  0831               	movf	_init_state+1,w
-   854  078D  3A80               	xorlw	128
-   855  078E  00FA               	movwf	??_get_direction
-   856  078F  082D               	movf	get_direction@current_state+1,w
-   857  0790  3A80               	xorlw	128
-   858  0791  027A               	subwf	??_get_direction,w
-   859  0792  1D03               	skipz
-   860  0793  2F96               	goto	u635
-   861  0794  082C               	movf	get_direction@current_state,w
-   862  0795  0230               	subwf	_init_state,w
-   863  0796                     u635:	
-   864  0796  1C03               	skipc
-   865  0797  2FA3               	goto	l905
-   866  0798  3006               	movlw	6
-   867  0799  1283               	bcf	3,5	;RP0=0, select bank0
-   868  079A  1303               	bcf	3,6	;RP1=0, select bank0
-   869  079B  0630               	xorwf	_init_state,w
-   870  079C  0431               	iorwf	_init_state+1,w
-   871  079D  1D03               	btfss	3,2
-   872  079E  2FBA               	goto	l913
-   873  079F  032C               	decf	get_direction@current_state,w
-   874  07A0  042D               	iorwf	get_direction@current_state+1,w
-   875  07A1  1D03               	btfss	3,2
-   876  07A2  2FBA               	goto	l913
-   877  07A3                     l905:	
-   878                           
-   879                           ;hall_effect.c: 54: {
-   880                           ;hall_effect.c: 55: direction = 1;
-   881  07A3  3001               	movlw	1
-   882  07A4  1283               	bcf	3,5	;RP0=0, select bank0
-   883  07A5  1303               	bcf	3,6	;RP1=0, select bank0
-   884  07A6  00AA               	movwf	get_direction@direction
-   885  07A7  3000               	movlw	0
-   886  07A8  00AB               	movwf	get_direction@direction+1
-   887                           
-   888                           ;hall_effect.c: 56: PORTDbits.RD5 = (1);
-   889  07A9  1688               	bsf	8,5	;volatile
-   890                           
-   891                           ;hall_effect.c: 57: PORTDbits.RD3 = (0);
-   892  07AA  1188               	bcf	8,3	;volatile
+   842  0072                     ?_get_analog:	
+   843                           ; 1 bytes @ 0x2
+   844                           
+   845  0072                     get_analog@port:	
+   846                           ; 2 bytes @ 0x2
+   847                           
+   848                           
+   849                           ; 2 bytes @ 0x2
+   850  0072                     	ds	2
+   851  0074                     ??_get_analog:	
+   852  0074                     uart_write_unsigned_int@char1:	
+   853                           ; 1 bytes @ 0x4
+   854                           
+   855                           
+   856                           ; 1 bytes @ 0x4
+   857  0074                     	ds	1
+   858  0075                     read_hall@hall_A:	
+   859  0075                     uart_write_unsigned_int@char2:	
+   860                           ; 1 bytes @ 0x5
+   861                           
+   862                           
+   863                           ; 1 bytes @ 0x5
+   864  0075                     	ds	1
+   865  0076                     ?_get_hall_state:	
+   866  0076                     get_analog@lsb:	
+   867                           ; 2 bytes @ 0x6
+   868                           
+   869                           
+   870                           ; 2 bytes @ 0x6
+   871  0076                     	ds	2
+   872  0078                     ??_get_hall_state:	
+   873  0078                     get_analog@msb:	
+   874                           ; 1 bytes @ 0x8
+   875                           
+   876                           
+   877                           ; 2 bytes @ 0x8
+   878  0078                     	ds	2
+   879  007A                     ??_setup_mcu:	
+   880  007A                     ??_init_hall:	
+   881                           ; 1 bytes @ 0xA
+   882                           
+   883  007A                     get_analog@output:	
+   884                           ; 1 bytes @ 0xA
+   885                           
+   886                           
+   887                           ; 2 bytes @ 0xA
+   888  007A                     	ds	2
+   889  007C                     ?_uart_write_voltage:	
+   890  007C                     uart_write_voltage@port:	
+   891                           ; 1 bytes @ 0xC
+   892                           
    893                           
-   894                           ;hall_effect.c: 58: PORTDbits.RD1 = (0);
-   895  07AB  1088               	bcf	8,1	;volatile
-   896                           
-   897                           ;hall_effect.c: 59: _delay((unsigned long)((100)*(8000000/4000.0)));
-   898  07AC  3002               	movlw	2
-   899  07AD  00FC               	movwf	??_get_direction+2
-   900  07AE  3004               	movlw	4
-   901  07AF  00FB               	movwf	??_get_direction+1
-   902  07B0  30BA               	movlw	186
-   903  07B1  00FA               	movwf	??_get_direction
-   904  07B2                     u697:	
-   905  07B2  0BFA               	decfsz	??_get_direction,f
-   906  07B3  2FB2               	goto	u697
-   907  07B4  0BFB               	decfsz	??_get_direction+1,f
-   908  07B5  2FB2               	goto	u697
-   909  07B6  0BFC               	decfsz	??_get_direction+2,f
-   910  07B7  2FB2               	goto	u697
-   911  07B8  0000               	nop
-   912                           
-   913                           ;hall_effect.c: 60: }
-   914  07B9  2FF1               	goto	l935
-   915  07BA                     l913:	
-   916                           
-   917                           ;hall_effect.c: 61: else if((init_state > current_state) || (init_state == 1 && current_
-      +                          state == 6))
-   918  07BA  1283               	bcf	3,5	;RP0=0, select bank0
-   919  07BB  1303               	bcf	3,6	;RP1=0, select bank0
-   920  07BC  082D               	movf	get_direction@current_state+1,w
-   921  07BD  3A80               	xorlw	128
-   922  07BE  00FA               	movwf	??_get_direction
-   923  07BF  0831               	movf	_init_state+1,w
-   924  07C0  3A80               	xorlw	128
-   925  07C1  027A               	subwf	??_get_direction,w
-   926  07C2  1D03               	skipz
-   927  07C3  2FC6               	goto	u665
-   928  07C4  0830               	movf	_init_state,w
-   929  07C5  022C               	subwf	get_direction@current_state,w
-   930  07C6                     u665:	
-   931  07C6  1C03               	skipc
-   932  07C7  2FD3               	goto	l919
-   933  07C8  1283               	bcf	3,5	;RP0=0, select bank0
-   934  07C9  1303               	bcf	3,6	;RP1=0, select bank0
-   935  07CA  0330               	decf	_init_state,w
-   936  07CB  0431               	iorwf	_init_state+1,w
-   937  07CC  1D03               	btfss	3,2
-   938  07CD  2FEA               	goto	l927
-   939  07CE  3006               	movlw	6
-   940  07CF  062C               	xorwf	get_direction@current_state,w
-   941  07D0  042D               	iorwf	get_direction@current_state+1,w
-   942  07D1  1D03               	btfss	3,2
-   943  07D2  2FEA               	goto	l927
-   944  07D3                     l919:	
-   945                           
-   946                           ;hall_effect.c: 62: {
-   947                           ;hall_effect.c: 63: direction = 2;
-   948  07D3  3002               	movlw	2
-   949  07D4  1283               	bcf	3,5	;RP0=0, select bank0
-   950  07D5  1303               	bcf	3,6	;RP1=0, select bank0
-   951  07D6  00AA               	movwf	get_direction@direction
-   952  07D7  3000               	movlw	0
-   953  07D8  00AB               	movwf	get_direction@direction+1
-   954                           
-   955                           ;hall_effect.c: 64: PORTDbits.RD5 = (0);
-   956  07D9  1288               	bcf	8,5	;volatile
-   957                           
-   958                           ;hall_effect.c: 65: PORTDbits.RD3 = (1);
-   959  07DA  1588               	bsf	8,3	;volatile
+   894                           ; 2 bytes @ 0xC
+   895  007C                     	ds	2
+   896  007E                     ??_uart_write_voltage:	
+   897                           
+   898                           	psect	cstackBANK0
+   899  0049                     __pcstackBANK0:	
+   900                           ; 1 bytes @ 0xE
+   901                           
+   902  0049                     get_hall_state@state:	
+   903  0049                     uart_write_voltage@voltage:	
+   904                           ; 2 bytes @ 0x0
+   905                           
+   906                           
+   907                           ; 2 bytes @ 0x0
+   908  0049                     	ds	2
+   909  004B                     get_hall_state@hallA:	
+   910                           
+   911                           ; 2 bytes @ 0x2
+   912  004B                     	ds	2
+   913  004D                     get_hall_state@hallB:	
+   914                           
+   915                           ; 2 bytes @ 0x4
+   916  004D                     	ds	2
+   917  004F                     get_hall_state@hallC:	
+   918                           
+   919                           ; 2 bytes @ 0x6
+   920  004F                     	ds	2
+   921  0051                     ??_main:	
+   922                           
+   923                           ; 1 bytes @ 0x8
+   924  0051                     	ds	3
+   925                           
+   926                           	psect	maintext
+   927  06AC                     __pmaintext:	
+   928 ;;
+   929 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   930 ;;
+   931 ;; *************** function _main *****************
+   932 ;; Defined at:
+   933 ;;		line 12 in file "main.c"
+   934 ;; Parameters:    Size  Location     Type
+   935 ;;		None
+   936 ;; Auto vars:     Size  Location     Type
+   937 ;;		None
+   938 ;; Return value:  Size  Location     Type
+   939 ;;                  1    wreg      void 
+   940 ;; Registers used:
+   941 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   942 ;; Tracked objects:
+   943 ;;		On entry : B00/0
+   944 ;;		On exit  : 0/0
+   945 ;;		Unchanged: 0/0
+   946 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   947 ;;      Params:         0       0       0       0       0
+   948 ;;      Locals:         0       0       0       0       0
+   949 ;;      Temps:          0       3       0       0       0
+   950 ;;      Totals:         0       3       0       0       0
+   951 ;;Total ram usage:        3 bytes
+   952 ;; Hardware stack levels required when called:    4
+   953 ;; This function calls:
+   954 ;;		_setup_mcu
+   955 ;;		_uart_write_voltage
+   956 ;; This function is called by:
+   957 ;;		Startup code after reset
+   958 ;; This function uses a non-reentrant model
+   959 ;;
    960                           
-   961                           ;hall_effect.c: 66: PORTDbits.RD1 = (0);
-   962  07DB  1088               	bcf	8,1	;volatile
-   963                           
-   964                           ;hall_effect.c: 67: _delay((unsigned long)((100)*(8000000/4000.0)));
-   965  07DC  3002               	movlw	2
-   966  07DD  00FC               	movwf	??_get_direction+2
-   967  07DE  3004               	movlw	4
-   968  07DF  00FB               	movwf	??_get_direction+1
-   969  07E0  30BA               	movlw	186
-   970  07E1  00FA               	movwf	??_get_direction
-   971  07E2                     u707:	
-   972  07E2  0BFA               	decfsz	??_get_direction,f
-   973  07E3  2FE2               	goto	u707
-   974  07E4  0BFB               	decfsz	??_get_direction+1,f
-   975  07E5  2FE2               	goto	u707
-   976  07E6  0BFC               	decfsz	??_get_direction+2,f
-   977  07E7  2FE2               	goto	u707
-   978  07E8  0000               	nop
-   979                           
-   980                           ;hall_effect.c: 68: }
-   981  07E9  2FF1               	goto	l935
-   982  07EA                     l927:	
-   983                           
-   984                           ;hall_effect.c: 69: else
-   985                           ;hall_effect.c: 70: {
-   986                           ;hall_effect.c: 71: direction = 0;
-   987  07EA  1283               	bcf	3,5	;RP0=0, select bank0
-   988  07EB  1303               	bcf	3,6	;RP1=0, select bank0
-   989  07EC  01AA               	clrf	get_direction@direction
-   990  07ED  01AB               	clrf	get_direction@direction+1
-   991                           
-   992                           ;hall_effect.c: 72: PORTDbits.RD5 = (0);
-   993  07EE  1288               	bcf	8,5	;volatile
-   994                           
-   995                           ;hall_effect.c: 73: PORTDbits.RD3 = (0);
-   996  07EF  1188               	bcf	8,3	;volatile
-   997                           
-   998                           ;hall_effect.c: 74: PORTDbits.RD1 = (0);
-   999  07F0  1088               	bcf	8,1	;volatile
-  1000  07F1                     l935:	
-  1001                           
-  1002                           ;hall_effect.c: 75: }
-  1003                           ;hall_effect.c: 76: init_state = current_state;
-  1004  07F1  1283               	bcf	3,5	;RP0=0, select bank0
-  1005  07F2  1303               	bcf	3,6	;RP1=0, select bank0
-  1006  07F3  082D               	movf	get_direction@current_state+1,w
-  1007  07F4  00B1               	movwf	_init_state+1
-  1008  07F5  082C               	movf	get_direction@current_state,w
-  1009  07F6  00B0               	movwf	_init_state
-  1010                           
-  1011                           ;hall_effect.c: 77: return direction;
-  1012  07F7  082B               	movf	get_direction@direction+1,w
-  1013  07F8  00A9               	movwf	?_get_direction+1
-  1014  07F9  082A               	movf	get_direction@direction,w
-  1015  07FA  00A8               	movwf	?_get_direction
-  1016  07FB  0008               	return
-  1017  07FC                     __end_of_get_direction:	
-  1018                           
-  1019                           	psect	text6
-  1020  070C                     __ptext6:	
-  1021 ;; *************** function _get_hall_state *****************
-  1022 ;; Defined at:
-  1023 ;;		line 15 in file "hall_effect.c"
-  1024 ;; Parameters:    Size  Location     Type
-  1025 ;;		None
-  1026 ;; Auto vars:     Size  Location     Type
-  1027 ;;  hallC           2    6[BANK0 ] int 
-  1028 ;;  hallB           2    4[BANK0 ] int 
-  1029 ;;  hallA           2    2[BANK0 ] int 
-  1030 ;;  state           2    0[BANK0 ] int 
-  1031 ;; Return value:  Size  Location     Type
-  1032 ;;                  2    6[COMMON] int 
-  1033 ;; Registers used:
-  1034 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-  1035 ;; Tracked objects:
-  1036 ;;		On entry : 0/0
-  1037 ;;		On exit  : 0/0
-  1038 ;;		Unchanged: 0/0
-  1039 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1040 ;;      Params:         2       0       0       0       0
-  1041 ;;      Locals:         0       8       0       0       0
-  1042 ;;      Temps:          2       0       0       0       0
-  1043 ;;      Totals:         4       8       0       0       0
-  1044 ;;Total ram usage:       12 bytes
-  1045 ;; Hardware stack levels used:    1
-  1046 ;; Hardware stack levels required when called:    1
-  1047 ;; This function calls:
-  1048 ;;		_read_hall
-  1049 ;; This function is called by:
-  1050 ;;		_init_hall
-  1051 ;;		_get_direction
-  1052 ;;		_hall_LED_state
-  1053 ;; This function uses a non-reentrant model
-  1054 ;;
-  1055                           
-  1056                           
-  1057                           ;psect for function _get_hall_state
-  1058  070C                     _get_hall_state:	
-  1059                           
-  1060                           ;hall_effect.c: 17: int hallA;
-  1061                           ;hall_effect.c: 18: int hallB;
-  1062                           ;hall_effect.c: 19: int hallC;
-  1063                           ;hall_effect.c: 20: int state;
-  1064                           ;hall_effect.c: 21: read_hall(&hallA, &hallB, &hallC);
-  1065                           
-  1066                           ;incstack = 0
-  1067                           ; Regs used in _get_hall_state: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-  1068  070C  3024               	movlw	(low (get_hall_state@hallB| 0))& (0+255)
-  1069  070D  00F8               	movwf	??_get_hall_state
-  1070  070E  0878               	movf	??_get_hall_state,w
-  1071  070F  00F0               	movwf	read_hall@hall_B
-  1072  0710  3026               	movlw	(low (get_hall_state@hallC| 0))& (0+255)
-  1073  0711  00F9               	movwf	??_get_hall_state+1
-  1074  0712  0879               	movf	??_get_hall_state+1,w
-  1075  0713  00F1               	movwf	read_hall@hall_C
-  1076  0714  3022               	movlw	(low (get_hall_state@hallA| 0))& (0+255)
-  1077  0715  120A  118A  26E4  120A  118A  	fcall	_read_hall
-  1078                           
-  1079                           ;hall_effect.c: 22: if(hallA && !hallB && !hallC)
-  1080  071A  1283               	bcf	3,5	;RP0=0, select bank0
-  1081  071B  1303               	bcf	3,6	;RP1=0, select bank0
-  1082  071C  0822               	movf	get_hall_state@hallA,w
-  1083  071D  0423               	iorwf	get_hall_state@hallA+1,w
-  1084  071E  1903               	btfsc	3,2
-  1085  071F  2F2C               	goto	l835
-  1086  0720  0824               	movf	get_hall_state@hallB,w
-  1087  0721  0425               	iorwf	get_hall_state@hallB+1,w
-  1088  0722  1D03               	btfss	3,2
-  1089  0723  2F2C               	goto	l835
-  1090  0724  0826               	movf	get_hall_state@hallC,w
-  1091  0725  0427               	iorwf	get_hall_state@hallC+1,w
-  1092  0726  1D03               	btfss	3,2
-  1093  0727  2F2C               	goto	l835
-  1094                           
-  1095                           ;hall_effect.c: 23: {
-  1096                           ;hall_effect.c: 24: state = 1;
-  1097  0728  3001               	movlw	1
-  1098  0729  00A0               	movwf	get_hall_state@state
-  1099  072A  3000               	movlw	0
-  1100  072B  00A1               	movwf	get_hall_state@state+1
-  1101  072C                     l835:	
-  1102                           
-  1103                           ;hall_effect.c: 25: }
-  1104                           ;hall_effect.c: 26: if(hallA && hallB && !hallC)
-  1105  072C  0822               	movf	get_hall_state@hallA,w
-  1106  072D  0423               	iorwf	get_hall_state@hallA+1,w
-  1107  072E  1903               	btfsc	3,2
-  1108  072F  2F3C               	goto	l843
-  1109  0730  0824               	movf	get_hall_state@hallB,w
-  1110  0731  0425               	iorwf	get_hall_state@hallB+1,w
-  1111  0732  1903               	btfsc	3,2
-  1112  0733  2F3C               	goto	l843
-  1113  0734  0826               	movf	get_hall_state@hallC,w
-  1114  0735  0427               	iorwf	get_hall_state@hallC+1,w
-  1115  0736  1D03               	btfss	3,2
-  1116  0737  2F3C               	goto	l843
+   961                           
+   962                           ;psect for function _main
+   963  06AC                     _main:	
+   964                           
+   965                           ;main.c: 14: setup_mcu();
+   966                           
+   967                           ;incstack = 0
+   968                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   969  06AC  120A  118A  265E  120A  118A  	fcall	_setup_mcu
+   970  06B1                     l9:	
+   971                           ;main.c: 16: while(1)
+   972                           
+   973                           
+   974                           ;main.c: 17: {
+   975                           ;main.c: 18: uart_write_voltage(1);
+   976  06B1  3001               	movlw	1
+   977  06B2  00FC               	movwf	uart_write_voltage@port
+   978  06B3  3000               	movlw	0
+   979  06B4  00FD               	movwf	uart_write_voltage@port+1
+   980  06B5  120A  118A  2671  120A  118A  	fcall	_uart_write_voltage
+   981                           
+   982                           ;main.c: 19: _delay((unsigned long)((500)*(8000000/4000.0)));
+   983  06BA  3006               	movlw	6
+   984  06BB  1283               	bcf	3,5	;RP0=0, select bank0
+   985  06BC  1303               	bcf	3,6	;RP1=0, select bank0
+   986  06BD  00D3               	movwf	??_main+2
+   987  06BE  3013               	movlw	19
+   988  06BF  00D2               	movwf	??_main+1
+   989  06C0  30B1               	movlw	177
+   990  06C1  00D1               	movwf	??_main
+   991  06C2                     u857:	
+   992  06C2  0BD1               	decfsz	??_main,f
+   993  06C3  2EC2               	goto	u857
+   994  06C4  0BD2               	decfsz	??_main+1,f
+   995  06C5  2EC2               	goto	u857
+   996  06C6  0BD3               	decfsz	??_main+2,f
+   997  06C7  2EC2               	goto	u857
+   998  06C8  2EC9               	nop2
+   999  06C9  2EB1               	goto	l9
+  1000  06CA                     __end_of_main:	
+  1001                           ;main.c: 20: }
+  1002                           ;main.c: 21: return;
+  1003                           
+  1004                           
+  1005                           	psect	text1
+  1006  0671                     __ptext1:	
+  1007 ;; *************** function _uart_write_voltage *****************
+  1008 ;; Defined at:
+  1009 ;;		line 85 in file "uart.c"
+  1010 ;; Parameters:    Size  Location     Type
+  1011 ;;  port            2   12[COMMON] int 
+  1012 ;; Auto vars:     Size  Location     Type
+  1013 ;;  voltage         2    0[BANK0 ] unsigned int 
+  1014 ;; Return value:  Size  Location     Type
+  1015 ;;                  1    wreg      void 
+  1016 ;; Registers used:
+  1017 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1018 ;; Tracked objects:
+  1019 ;;		On entry : 0/0
+  1020 ;;		On exit  : 0/0
+  1021 ;;		Unchanged: 0/0
+  1022 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1023 ;;      Params:         2       0       0       0       0
+  1024 ;;      Locals:         0       2       0       0       0
+  1025 ;;      Temps:          0       0       0       0       0
+  1026 ;;      Totals:         2       2       0       0       0
+  1027 ;;Total ram usage:        4 bytes
+  1028 ;; Hardware stack levels used:    1
+  1029 ;; Hardware stack levels required when called:    2
+  1030 ;; This function calls:
+  1031 ;;		_get_analog
+  1032 ;;		_uart_write_char
+  1033 ;;		_uart_write_unsigned_int
+  1034 ;; This function is called by:
+  1035 ;;		_main
+  1036 ;; This function uses a non-reentrant model
+  1037 ;;
+  1038                           
+  1039                           
+  1040                           ;psect for function _uart_write_voltage
+  1041  0671                     _uart_write_voltage:	
+  1042                           
+  1043                           ;uart.c: 87: uart_write_char('v');
+  1044                           
+  1045                           ;incstack = 0
+  1046                           ; Regs used in _uart_write_voltage: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1047  0671  3076               	movlw	118
+  1048  0672  120A  118A  261A  120A  118A  	fcall	_uart_write_char
+  1049                           
+  1050                           ;uart.c: 88: unsigned int voltage = get_analog(port);
+  1051  0677  087D               	movf	uart_write_voltage@port+1,w
+  1052  0678  00F3               	movwf	get_analog@port+1
+  1053  0679  087C               	movf	uart_write_voltage@port,w
+  1054  067A  00F2               	movwf	get_analog@port
+  1055  067B  120A  118A  2748  120A  118A  	fcall	_get_analog
+  1056  0680  0873               	movf	?_get_analog+1,w
+  1057  0681  1283               	bcf	3,5	;RP0=0, select bank0
+  1058  0682  1303               	bcf	3,6	;RP1=0, select bank0
+  1059  0683  00CA               	movwf	uart_write_voltage@voltage+1
+  1060  0684  0872               	movf	?_get_analog,w
+  1061  0685  00C9               	movwf	uart_write_voltage@voltage
+  1062                           
+  1063                           ;uart.c: 89: uart_write_unsigned_int(voltage);
+  1064  0686  084A               	movf	uart_write_voltage@voltage+1,w
+  1065  0687  00F1               	movwf	uart_write_unsigned_int@number+1
+  1066  0688  0849               	movf	uart_write_voltage@voltage,w
+  1067  0689  00F0               	movwf	uart_write_unsigned_int@number
+  1068  068A  120A  118A  268E   	fcall	_uart_write_unsigned_int
+  1069  068D  0008               	return
+  1070  068E                     __end_of_uart_write_voltage:	
+  1071                           
+  1072                           	psect	text2
+  1073  068E                     __ptext2:	
+  1074 ;; *************** function _uart_write_unsigned_int *****************
+  1075 ;; Defined at:
+  1076 ;;		line 27 in file "uart.c"
+  1077 ;; Parameters:    Size  Location     Type
+  1078 ;;  number          2    0[COMMON] unsigned int 
+  1079 ;; Auto vars:     Size  Location     Type
+  1080 ;;  char2           1    5[COMMON] unsigned char 
+  1081 ;;  char1           1    4[COMMON] unsigned char 
+  1082 ;; Return value:  Size  Location     Type
+  1083 ;;                  1    wreg      void 
+  1084 ;; Registers used:
+  1085 ;;		wreg, status,2
+  1086 ;; Tracked objects:
+  1087 ;;		On entry : 0/0
+  1088 ;;		On exit  : 0/0
+  1089 ;;		Unchanged: 0/0
+  1090 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1091 ;;      Params:         2       0       0       0       0
+  1092 ;;      Locals:         2       0       0       0       0
+  1093 ;;      Temps:          2       0       0       0       0
+  1094 ;;      Totals:         6       0       0       0       0
+  1095 ;;Total ram usage:        6 bytes
+  1096 ;; Hardware stack levels used:    1
+  1097 ;; This function calls:
+  1098 ;;		Nothing
+  1099 ;; This function is called by:
+  1100 ;;		_uart_write_voltage
+  1101 ;; This function uses a non-reentrant model
+  1102 ;;
+  1103                           
+  1104                           
+  1105                           ;psect for function _uart_write_unsigned_int
+  1106  068E                     _uart_write_unsigned_int:	
+  1107  068E                     l239:	
+  1108                           ;uart.c: 29: while(!TRMT);
+  1109                           
+  1110                           ;incstack = 0
+  1111                           ; Regs used in _uart_write_unsigned_int: [wreg+status,2]
+  1112                           
+  1113  068E  1683               	bsf	3,5	;RP0=1, select bank1
+  1114  068F  1303               	bcf	3,6	;RP1=0, select bank1
+  1115  0690  1C98               	btfss	24,1	;volatile
+  1116  0691  2E8E               	goto	l239
   1117                           
-  1118                           ;hall_effect.c: 27: {
-  1119                           ;hall_effect.c: 28: state = 2;
-  1120  0738  3002               	movlw	2
-  1121  0739  00A0               	movwf	get_hall_state@state
-  1122  073A  3000               	movlw	0
-  1123  073B  00A1               	movwf	get_hall_state@state+1
-  1124  073C                     l843:	
-  1125                           
-  1126                           ;hall_effect.c: 29: }
-  1127                           ;hall_effect.c: 30: if(!hallA && hallB && !hallC)
-  1128  073C  0822               	movf	get_hall_state@hallA,w
-  1129  073D  0423               	iorwf	get_hall_state@hallA+1,w
-  1130  073E  1D03               	btfss	3,2
-  1131  073F  2F4C               	goto	l851
-  1132  0740  0824               	movf	get_hall_state@hallB,w
-  1133  0741  0425               	iorwf	get_hall_state@hallB+1,w
-  1134  0742  1903               	btfsc	3,2
-  1135  0743  2F4C               	goto	l851
-  1136  0744  0826               	movf	get_hall_state@hallC,w
-  1137  0745  0427               	iorwf	get_hall_state@hallC+1,w
-  1138  0746  1D03               	btfss	3,2
-  1139  0747  2F4C               	goto	l851
-  1140                           
-  1141                           ;hall_effect.c: 31: {
-  1142                           ;hall_effect.c: 32: state = 3;
-  1143  0748  3003               	movlw	3
-  1144  0749  00A0               	movwf	get_hall_state@state
-  1145  074A  3000               	movlw	0
-  1146  074B  00A1               	movwf	get_hall_state@state+1
-  1147  074C                     l851:	
-  1148                           
-  1149                           ;hall_effect.c: 33: }
-  1150                           ;hall_effect.c: 34: if(!hallA && hallB && hallC)
-  1151  074C  0822               	movf	get_hall_state@hallA,w
-  1152  074D  0423               	iorwf	get_hall_state@hallA+1,w
-  1153  074E  1D03               	btfss	3,2
-  1154  074F  2F5C               	goto	l859
-  1155  0750  0824               	movf	get_hall_state@hallB,w
-  1156  0751  0425               	iorwf	get_hall_state@hallB+1,w
-  1157  0752  1903               	btfsc	3,2
-  1158  0753  2F5C               	goto	l859
-  1159  0754  0826               	movf	get_hall_state@hallC,w
-  1160  0755  0427               	iorwf	get_hall_state@hallC+1,w
-  1161  0756  1903               	btfsc	3,2
-  1162  0757  2F5C               	goto	l859
-  1163                           
-  1164                           ;hall_effect.c: 35: {
-  1165                           ;hall_effect.c: 36: state = 4;
-  1166  0758  3004               	movlw	4
-  1167  0759  00A0               	movwf	get_hall_state@state
-  1168  075A  3000               	movlw	0
-  1169  075B  00A1               	movwf	get_hall_state@state+1
-  1170  075C                     l859:	
-  1171                           
-  1172                           ;hall_effect.c: 37: }
-  1173                           ;hall_effect.c: 38: if(!hallA && !hallB && hallC)
-  1174  075C  0822               	movf	get_hall_state@hallA,w
-  1175  075D  0423               	iorwf	get_hall_state@hallA+1,w
-  1176  075E  1D03               	btfss	3,2
-  1177  075F  2F6C               	goto	l867
-  1178  0760  0824               	movf	get_hall_state@hallB,w
-  1179  0761  0425               	iorwf	get_hall_state@hallB+1,w
-  1180  0762  1D03               	btfss	3,2
-  1181  0763  2F6C               	goto	l867
-  1182  0764  0826               	movf	get_hall_state@hallC,w
-  1183  0765  0427               	iorwf	get_hall_state@hallC+1,w
-  1184  0766  1903               	btfsc	3,2
-  1185  0767  2F6C               	goto	l867
-  1186                           
-  1187                           ;hall_effect.c: 39: {
-  1188                           ;hall_effect.c: 40: state = 5;
-  1189  0768  3005               	movlw	5
-  1190  0769  00A0               	movwf	get_hall_state@state
-  1191  076A  3000               	movlw	0
-  1192  076B  00A1               	movwf	get_hall_state@state+1
-  1193  076C                     l867:	
-  1194                           
-  1195                           ;hall_effect.c: 41: }
-  1196                           ;hall_effect.c: 42: if(hallA && !hallB && hallC)
-  1197  076C  0822               	movf	get_hall_state@hallA,w
-  1198  076D  0423               	iorwf	get_hall_state@hallA+1,w
-  1199  076E  1903               	btfsc	3,2
-  1200  076F  2F7C               	goto	l137
-  1201  0770  0824               	movf	get_hall_state@hallB,w
-  1202  0771  0425               	iorwf	get_hall_state@hallB+1,w
-  1203  0772  1D03               	btfss	3,2
-  1204  0773  2F7C               	goto	l137
-  1205  0774  0826               	movf	get_hall_state@hallC,w
-  1206  0775  0427               	iorwf	get_hall_state@hallC+1,w
-  1207  0776  1903               	btfsc	3,2
-  1208  0777  2F7C               	goto	l137
-  1209                           
-  1210                           ;hall_effect.c: 43: {
-  1211                           ;hall_effect.c: 44: state = 6;
-  1212  0778  3006               	movlw	6
-  1213  0779  00A0               	movwf	get_hall_state@state
-  1214  077A  3000               	movlw	0
-  1215  077B  00A1               	movwf	get_hall_state@state+1
-  1216  077C                     l137:	
-  1217                           
-  1218                           ;hall_effect.c: 45: }
-  1219                           ;hall_effect.c: 46: return state;
-  1220  077C  0821               	movf	get_hall_state@state+1,w
-  1221  077D  00F7               	movwf	?_get_hall_state+1
-  1222  077E  0820               	movf	get_hall_state@state,w
-  1223  077F  00F6               	movwf	?_get_hall_state
-  1224  0780  0008               	return
-  1225  0781                     __end_of_get_hall_state:	
-  1226                           
-  1227                           	psect	text7
-  1228  06E4                     __ptext7:	
-  1229 ;; *************** function _read_hall *****************
-  1230 ;; Defined at:
-  1231 ;;		line 8 in file "hall_effect.c"
-  1232 ;; Parameters:    Size  Location     Type
-  1233 ;;  hall_A          1    wreg     PTR int 
-  1234 ;;		 -> get_hall_state@hallA(2), 
-  1235 ;;  hall_B          1    0[COMMON] PTR int 
-  1236 ;;		 -> get_hall_state@hallB(2), 
-  1237 ;;  hall_C          1    1[COMMON] PTR int 
-  1238 ;;		 -> get_hall_state@hallC(2), 
-  1239 ;; Auto vars:     Size  Location     Type
-  1240 ;;  hall_A          1    5[COMMON] PTR int 
-  1241 ;;		 -> get_hall_state@hallA(2), 
-  1242 ;; Return value:  Size  Location     Type
-  1243 ;;                  1    wreg      void 
-  1244 ;; Registers used:
-  1245 ;;		wreg, fsr0l, fsr0h, status,2, status,0
-  1246 ;; Tracked objects:
-  1247 ;;		On entry : 0/0
-  1248 ;;		On exit  : 0/0
-  1249 ;;		Unchanged: 0/0
-  1250 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1251 ;;      Params:         2       0       0       0       0
-  1252 ;;      Locals:         1       0       0       0       0
-  1253 ;;      Temps:          3       0       0       0       0
-  1254 ;;      Totals:         6       0       0       0       0
-  1255 ;;Total ram usage:        6 bytes
-  1256 ;; Hardware stack levels used:    1
-  1257 ;; This function calls:
-  1258 ;;		Nothing
-  1259 ;; This function is called by:
-  1260 ;;		_get_hall_state
-  1261 ;; This function uses a non-reentrant model
-  1262 ;;
-  1263                           
-  1264                           
-  1265                           ;psect for function _read_hall
-  1266  06E4                     _read_hall:	
-  1267                           
-  1268                           ;incstack = 0
-  1269                           ; Regs used in _read_hall: [wreg-fsr0h+status,2+status,0]
-  1270                           ;read_hall@hall_A stored from wreg
-  1271  06E4  00F5               	movwf	read_hall@hall_A
+  1118                           ;uart.c: 30: char char1 = number & 0xFF;
+  1119  0692  0870               	movf	uart_write_unsigned_int@number,w
+  1120  0693  00F2               	movwf	??_uart_write_unsigned_int
+  1121  0694  0872               	movf	??_uart_write_unsigned_int,w
+  1122  0695  00F4               	movwf	uart_write_unsigned_int@char1
+  1123                           
+  1124                           ;uart.c: 31: TXREG = char1;
+  1125  0696  0874               	movf	uart_write_unsigned_int@char1,w
+  1126  0697  1283               	bcf	3,5	;RP0=0, select bank0
+  1127  0698  1303               	bcf	3,6	;RP1=0, select bank0
+  1128  0699  0099               	movwf	25	;volatile
+  1129                           
+  1130                           ;uart.c: 32: _delay((unsigned long)((1)*(8000000/4000.0)));
+  1131  069A  3003               	movlw	3
+  1132  069B  00F3               	movwf	??_uart_write_unsigned_int+1
+  1133  069C  3097               	movlw	151
+  1134  069D  00F2               	movwf	??_uart_write_unsigned_int
+  1135  069E                     u867:	
+  1136  069E  0BF2               	decfsz	??_uart_write_unsigned_int,f
+  1137  069F  2E9E               	goto	u867
+  1138  06A0  0BF3               	decfsz	??_uart_write_unsigned_int+1,f
+  1139  06A1  2E9E               	goto	u867
+  1140  06A2  2EA3               	nop2
+  1141                           
+  1142                           ;uart.c: 33: char char2 = number >> 8;
+  1143  06A3  0871               	movf	uart_write_unsigned_int@number+1,w
+  1144  06A4  00F2               	movwf	??_uart_write_unsigned_int
+  1145  06A5  0872               	movf	??_uart_write_unsigned_int,w
+  1146  06A6  00F5               	movwf	uart_write_unsigned_int@char2
+  1147                           
+  1148                           ;uart.c: 34: TXREG = char2;
+  1149  06A7  0875               	movf	uart_write_unsigned_int@char2,w
+  1150  06A8  1283               	bcf	3,5	;RP0=0, select bank0
+  1151  06A9  1303               	bcf	3,6	;RP1=0, select bank0
+  1152  06AA  0099               	movwf	25	;volatile
+  1153  06AB  0008               	return
+  1154  06AC                     __end_of_uart_write_unsigned_int:	
+  1155                           
+  1156                           	psect	text3
+  1157  061A                     __ptext3:	
+  1158 ;; *************** function _uart_write_char *****************
+  1159 ;; Defined at:
+  1160 ;;		line 12 in file "uart.c"
+  1161 ;; Parameters:    Size  Location     Type
+  1162 ;;  data            1    wreg     unsigned char 
+  1163 ;; Auto vars:     Size  Location     Type
+  1164 ;;  data            1    0[COMMON] unsigned char 
+  1165 ;; Return value:  Size  Location     Type
+  1166 ;;                  1    wreg      void 
+  1167 ;; Registers used:
+  1168 ;;		wreg
+  1169 ;; Tracked objects:
+  1170 ;;		On entry : 0/0
+  1171 ;;		On exit  : 0/0
+  1172 ;;		Unchanged: 0/0
+  1173 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1174 ;;      Params:         0       0       0       0       0
+  1175 ;;      Locals:         1       0       0       0       0
+  1176 ;;      Temps:          0       0       0       0       0
+  1177 ;;      Totals:         1       0       0       0       0
+  1178 ;;Total ram usage:        1 bytes
+  1179 ;; Hardware stack levels used:    1
+  1180 ;; This function calls:
+  1181 ;;		Nothing
+  1182 ;; This function is called by:
+  1183 ;;		_uart_write_voltage
+  1184 ;;		_uart_write_string
+  1185 ;;		_uart_write_hall_state
+  1186 ;;		_uart_write_direction
+  1187 ;; This function uses a non-reentrant model
+  1188 ;;
+  1189                           
+  1190                           
+  1191                           ;psect for function _uart_write_char
+  1192  061A                     _uart_write_char:	
+  1193                           
+  1194                           ;incstack = 0
+  1195                           ; Regs used in _uart_write_char: [wreg]
+  1196                           ;uart_write_char@data stored from wreg
+  1197  061A  00F0               	movwf	uart_write_char@data
+  1198  061B                     l227:	
+  1199                           ;uart.c: 14: while(!TRMT);
+  1200                           
+  1201  061B  1683               	bsf	3,5	;RP0=1, select bank1
+  1202  061C  1303               	bcf	3,6	;RP1=0, select bank1
+  1203  061D  1C98               	btfss	24,1	;volatile
+  1204  061E  2E1B               	goto	l227
+  1205                           
+  1206                           ;uart.c: 16: TXREG = data;
+  1207  061F  0870               	movf	uart_write_char@data,w
+  1208  0620  1283               	bcf	3,5	;RP0=0, select bank0
+  1209  0621  1303               	bcf	3,6	;RP1=0, select bank0
+  1210  0622  0099               	movwf	25	;volatile
+  1211  0623  0008               	return
+  1212  0624                     __end_of_uart_write_char:	
+  1213                           
+  1214                           	psect	text4
+  1215  0748                     __ptext4:	
+  1216 ;; *************** function _get_analog *****************
+  1217 ;; Defined at:
+  1218 ;;		line 48 in file "analog.c"
+  1219 ;; Parameters:    Size  Location     Type
+  1220 ;;  port            2    2[COMMON] int 
+  1221 ;; Auto vars:     Size  Location     Type
+  1222 ;;  output          2   10[COMMON] unsigned int 
+  1223 ;;  msb             2    8[COMMON] unsigned int 
+  1224 ;;  lsb             2    6[COMMON] unsigned int 
+  1225 ;; Return value:  Size  Location     Type
+  1226 ;;                  2    2[COMMON] unsigned int 
+  1227 ;; Registers used:
+  1228 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1229 ;; Tracked objects:
+  1230 ;;		On entry : 0/0
+  1231 ;;		On exit  : 0/0
+  1232 ;;		Unchanged: 0/0
+  1233 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1234 ;;      Params:         2       0       0       0       0
+  1235 ;;      Locals:         6       0       0       0       0
+  1236 ;;      Temps:          2       0       0       0       0
+  1237 ;;      Totals:        10       0       0       0       0
+  1238 ;;Total ram usage:       10 bytes
+  1239 ;; Hardware stack levels used:    1
+  1240 ;; Hardware stack levels required when called:    1
+  1241 ;; This function calls:
+  1242 ;;		_analog_init
+  1243 ;; This function is called by:
+  1244 ;;		_uart_write_voltage
+  1245 ;;		_read_current
+  1246 ;;		_read_phase1
+  1247 ;;		_read_phase2
+  1248 ;;		_read_phase3
+  1249 ;; This function uses a non-reentrant model
+  1250 ;;
+  1251                           
+  1252                           
+  1253                           ;psect for function _get_analog
+  1254  0748                     _get_analog:	
+  1255                           
+  1256                           ;analog.c: 50: analog_init(port);
+  1257                           
+  1258                           ;incstack = 0
+  1259                           ; Regs used in _get_analog: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1260  0748  0873               	movf	get_analog@port+1,w
+  1261  0749  00F1               	movwf	analog_init@analog_port+1
+  1262  074A  0872               	movf	get_analog@port,w
+  1263  074B  00F0               	movwf	analog_init@analog_port
+  1264  074C  120A  118A  271B  120A  118A  	fcall	_analog_init
+  1265                           
+  1266                           ;analog.c: 51: ADCON0bits.GO_DONE = 1;
+  1267  0751  1283               	bcf	3,5	;RP0=0, select bank0
+  1268  0752  1303               	bcf	3,6	;RP1=0, select bank0
+  1269  0753  149F               	bsf	31,1	;volatile
+  1270  0754                     l191:	
+  1271                           ;analog.c: 52: while(GO_DONE) continue;
   1272                           
-  1273                           ;hall_effect.c: 10: *hall_A = PORTEbits.RE2;
-  1274  06E5  1283               	bcf	3,5	;RP0=0, select bank0
-  1275  06E6  1303               	bcf	3,6	;RP1=0, select bank0
-  1276  06E7  0C09               	rrf	9,w	;volatile
-  1277  06E8  00F2               	movwf	??_read_hall
-  1278  06E9  0C72               	rrf	??_read_hall,w
-  1279  06EA  3901               	andlw	1
-  1280  06EB  00F3               	movwf	??_read_hall+1
-  1281  06EC  01F4               	clrf	??_read_hall+2
-  1282  06ED  0875               	movf	read_hall@hall_A,w
-  1283  06EE  0084               	movwf	4
-  1284  06EF  0873               	movf	??_read_hall+1,w
-  1285  06F0  1383               	bcf	3,7	;select IRP bank0
-  1286  06F1  0080               	movwf	0
-  1287  06F2  0A84               	incf	4,f
-  1288  06F3  0874               	movf	??_read_hall+2,w
-  1289  06F4  0080               	movwf	0
-  1290                           
-  1291                           ;hall_effect.c: 11: *hall_B = PORTEbits.RE1;
-  1292  06F5  0C09               	rrf	9,w	;volatile
-  1293  06F6  3901               	andlw	1
-  1294  06F7  00F2               	movwf	??_read_hall
-  1295  06F8  01F3               	clrf	??_read_hall+1
-  1296  06F9  0870               	movf	read_hall@hall_B,w
-  1297  06FA  0084               	movwf	4
-  1298  06FB  0872               	movf	??_read_hall,w
-  1299  06FC  0080               	movwf	0
-  1300  06FD  0A84               	incf	4,f
-  1301  06FE  0873               	movf	??_read_hall+1,w
-  1302  06FF  0080               	movwf	0
-  1303                           
-  1304                           ;hall_effect.c: 12: *hall_C = PORTEbits.RE0;
-  1305  0700  0809               	movf	9,w	;volatile
-  1306  0701  3901               	andlw	1
-  1307  0702  00F2               	movwf	??_read_hall
-  1308  0703  01F3               	clrf	??_read_hall+1
-  1309  0704  0871               	movf	read_hall@hall_C,w
-  1310  0705  0084               	movwf	4
-  1311  0706  0872               	movf	??_read_hall,w
-  1312  0707  0080               	movwf	0
-  1313  0708  0A84               	incf	4,f
-  1314  0709  0873               	movf	??_read_hall+1,w
-  1315  070A  0080               	movwf	0
-  1316  070B  0008               	return
-  1317  070C                     __end_of_read_hall:	
-  1318  007E                     btemp	set	126	;btemp
-  1319  007E                     wtemp	set	126
-  1320  007E                     wtemp0	set	126
-  1321  0080                     wtemp1	set	128
-  1322  0082                     wtemp2	set	130
-  1323  0084                     wtemp3	set	132
-  1324  0086                     wtemp4	set	134
-  1325  0088                     wtemp5	set	136
-  1326  007F                     wtemp6	set	127
-  1327  007E                     ttemp	set	126
-  1328  007E                     ttemp0	set	126
-  1329  0081                     ttemp1	set	129
-  1330  0084                     ttemp2	set	132
-  1331  0087                     ttemp3	set	135
-  1332  007F                     ttemp4	set	127
-  1333  007E                     ltemp	set	126
-  1334  007E                     ltemp0	set	126
-  1335  0082                     ltemp1	set	130
-  1336  0086                     ltemp2	set	134
-  1337  0080                     ltemp3	set	128
+  1273  0754  189F               	btfsc	31,1	;volatile
+  1274  0755  2F54               	goto	l191
+  1275                           
+  1276                           ;analog.c: 54: unsigned int lsb = ADRESL;
+  1277  0756  1683               	bsf	3,5	;RP0=1, select bank1
+  1278  0757  1303               	bcf	3,6	;RP1=0, select bank1
+  1279  0758  081E               	movf	30,w	;volatile
+  1280  0759  00F4               	movwf	??_get_analog
+  1281  075A  01F5               	clrf	??_get_analog+1
+  1282  075B  0874               	movf	??_get_analog,w
+  1283  075C  00F6               	movwf	get_analog@lsb
+  1284  075D  0875               	movf	??_get_analog+1,w
+  1285  075E  00F7               	movwf	get_analog@lsb+1
+  1286                           
+  1287                           ;analog.c: 55: unsigned int msb = ADRESH;
+  1288  075F  1283               	bcf	3,5	;RP0=0, select bank0
+  1289  0760  1303               	bcf	3,6	;RP1=0, select bank0
+  1290  0761  081E               	movf	30,w	;volatile
+  1291  0762  00F4               	movwf	??_get_analog
+  1292  0763  01F5               	clrf	??_get_analog+1
+  1293  0764  0874               	movf	??_get_analog,w
+  1294  0765  00F8               	movwf	get_analog@msb
+  1295  0766  0875               	movf	??_get_analog+1,w
+  1296  0767  00F9               	movwf	get_analog@msb+1
+  1297                           
+  1298                           ;analog.c: 56: unsigned int output = (msb<<8) | lsb;
+  1299  0768  0878               	movf	get_analog@msb,w
+  1300  0769  00F5               	movwf	??_get_analog+1
+  1301  076A  01F4               	clrf	??_get_analog
+  1302  076B  0876               	movf	get_analog@lsb,w
+  1303  076C  0474               	iorwf	??_get_analog,w
+  1304  076D  00FA               	movwf	get_analog@output
+  1305  076E  0877               	movf	get_analog@lsb+1,w
+  1306  076F  0475               	iorwf	??_get_analog+1,w
+  1307  0770  00FB               	movwf	get_analog@output+1
+  1308                           
+  1309                           ;analog.c: 58: ADCON0bits.ADON = 0;
+  1310  0771  101F               	bcf	31,0	;volatile
+  1311                           
+  1312                           ;analog.c: 62: output = 1000;
+  1313  0772  30E8               	movlw	232
+  1314  0773  00FA               	movwf	get_analog@output
+  1315  0774  3003               	movlw	3
+  1316  0775  00FB               	movwf	get_analog@output+1
+  1317                           
+  1318                           ;analog.c: 63: return output;
+  1319  0776  087B               	movf	get_analog@output+1,w
+  1320  0777  00F3               	movwf	?_get_analog+1
+  1321  0778  087A               	movf	get_analog@output,w
+  1322  0779  00F2               	movwf	?_get_analog
+  1323  077A  0008               	return
+  1324  077B                     __end_of_get_analog:	
+  1325                           
+  1326                           	psect	text5
+  1327  071B                     __ptext5:	
+  1328 ;; *************** function _analog_init *****************
+  1329 ;; Defined at:
+  1330 ;;		line 9 in file "analog.c"
+  1331 ;; Parameters:    Size  Location     Type
+  1332 ;;  analog_port     2    0[COMMON] int 
+  1333 ;; Auto vars:     Size  Location     Type
+  1334 ;;		None
+  1335 ;; Return value:  Size  Location     Type
+  1336 ;;                  1    wreg      void 
+  1337 ;; Registers used:
+  1338 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  1339 ;; Tracked objects:
+  1340 ;;		On entry : 0/0
+  1341 ;;		On exit  : 0/0
+  1342 ;;		Unchanged: 0/0
+  1343 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1344 ;;      Params:         2       0       0       0       0
+  1345 ;;      Locals:         0       0       0       0       0
+  1346 ;;      Temps:          0       0       0       0       0
+  1347 ;;      Totals:         2       0       0       0       0
+  1348 ;;Total ram usage:        2 bytes
+  1349 ;; Hardware stack levels used:    1
+  1350 ;; This function calls:
+  1351 ;;		Nothing
+  1352 ;; This function is called by:
+  1353 ;;		_get_analog
+  1354 ;; This function uses a non-reentrant model
+  1355 ;;
+  1356                           
+  1357                           
+  1358                           ;psect for function _analog_init
+  1359  071B                     _analog_init:	
+  1360                           
+  1361                           ;analog.c: 17: ADCON1 = 0b00010000;
+  1362                           
+  1363                           ;incstack = 0
+  1364                           ; Regs used in _analog_init: [wreg-fsr0h+status,2+status,0]
+  1365  071B  3010               	movlw	16
+  1366  071C  1683               	bsf	3,5	;RP0=1, select bank1
+  1367  071D  1303               	bcf	3,6	;RP1=0, select bank1
+  1368  071E  009F               	movwf	31	;volatile
+  1369                           
+  1370                           ;analog.c: 27: ADCON0bits.ADFM = 1;
+  1371  071F  1283               	bcf	3,5	;RP0=0, select bank0
+  1372  0720  1303               	bcf	3,6	;RP1=0, select bank0
+  1373  0721  179F               	bsf	31,7	;volatile
+  1374                           
+  1375                           ;analog.c: 28: switch(analog_port)
+  1376  0722  2F33               	goto	l1188
+  1377  0723                     l1178:	
+  1378                           ;analog.c: 29: {
+  1379                           ;analog.c: 30: case 1:
+  1380                           
+  1381                           
+  1382                           ;analog.c: 31: ADCON0bits.CHS = 0;
+  1383  0723  30E3               	movlw	-29
+  1384  0724  059F               	andwf	31,f	;volatile
+  1385                           
+  1386                           ;analog.c: 32: break;
+  1387  0725  2F46               	goto	l183
+  1388  0726                     l1180:	
+  1389                           ;analog.c: 33: case 2:
+  1390                           
+  1391                           
+  1392                           ;analog.c: 34: ADCON0bits.CHS = 1;
+  1393  0726  081F               	movf	31,w	;volatile
+  1394  0727  39E3               	andlw	-29
+  1395  0728  3804               	iorlw	4
+  1396  0729  2F31               	goto	L2
+  1397  072A                     l1182:	
+  1398                           ;analog.c: 36: case 3:
+  1399                           
+  1400                           ;analog.c: 35: break;
+  1401                           
+  1402                           
+  1403                           ;analog.c: 37: ADCON0bits.CHS = 2;
+  1404  072A  081F               	movf	31,w	;volatile
+  1405  072B  39E3               	andlw	-29
+  1406  072C  3808               	iorlw	8
+  1407  072D  2F31               	goto	L2
+  1408  072E                     l1184:	
+  1409                           ;analog.c: 39: case 4:
+  1410                           
+  1411                           ;analog.c: 38: break;
+  1412                           
+  1413                           
+  1414                           ;analog.c: 40: ADCON0bits.CHS = 3;
+  1415  072E  081F               	movf	31,w	;volatile
+  1416  072F  39E3               	andlw	-29
+  1417  0730  380C               	iorlw	12
+  1418  0731                     L2:	
+  1419  0731  009F               	movwf	31	;volatile
+  1420                           
+  1421                           ;analog.c: 44: }
+  1422                           
+  1423                           ;analog.c: 43: break;
+  1424                           
+  1425                           ;analog.c: 42: default:
+  1426                           
+  1427                           ;analog.c: 41: break;
+  1428  0732  2F46               	goto	l183
+  1429  0733                     l1188:	
+  1430                           
+  1431                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+  1432                           ; Switch size 1, requested type "space"
+  1433                           ; Number of cases is 1, Range of values is 0 to 0
+  1434                           ; switch strategies available:
+  1435                           ; Name         Instructions Cycles
+  1436                           ; simple_byte            4     3 (average)
+  1437                           ; direct_byte           11     8 (fixed)
+  1438                           ; jumptable            260     6 (fixed)
+  1439                           ;	Chosen strategy is simple_byte
+  1440  0733  0871               	movf	analog_init@analog_port+1,w
+  1441  0734  3A00               	xorlw	0	; case 0
+  1442  0735  1903               	skipnz
+  1443  0736  2F38               	goto	l1372
+  1444  0737  2F46               	goto	l183
+  1445  0738                     l1372:	
+  1446                           
+  1447                           ; Switch size 1, requested type "space"
+  1448                           ; Number of cases is 4, Range of values is 1 to 4
+  1449                           ; switch strategies available:
+  1450                           ; Name         Instructions Cycles
+  1451                           ; simple_byte           13     7 (average)
+  1452                           ; direct_byte           23    11 (fixed)
+  1453                           ; jumptable            263     9 (fixed)
+  1454                           ;	Chosen strategy is simple_byte
+  1455  0738  0870               	movf	analog_init@analog_port,w
+  1456  0739  3A01               	xorlw	1	; case 1
+  1457  073A  1903               	skipnz
+  1458  073B  2F23               	goto	l1178
+  1459  073C  3A03               	xorlw	3	; case 2
+  1460  073D  1903               	skipnz
+  1461  073E  2F26               	goto	l1180
+  1462  073F  3A01               	xorlw	1	; case 3
+  1463  0740  1903               	skipnz
+  1464  0741  2F2A               	goto	l1182
+  1465  0742  3A07               	xorlw	7	; case 4
+  1466  0743  1903               	skipnz
+  1467  0744  2F2E               	goto	l1184
+  1468  0745  2F46               	goto	l183
+  1469  0746                     l183:	
+  1470                           
+  1471                           ;analog.c: 45: ADCON0bits.ADON = 1;
+  1472  0746  141F               	bsf	31,0	;volatile
+  1473  0747  0008               	return
+  1474  0748                     __end_of_analog_init:	
+  1475                           
+  1476                           	psect	text6
+  1477  065E                     __ptext6:	
+  1478 ;; *************** function _setup_mcu *****************
+  1479 ;; Defined at:
+  1480 ;;		line 9 in file "micro_setup.c"
+  1481 ;; Parameters:    Size  Location     Type
+  1482 ;;		None
+  1483 ;; Auto vars:     Size  Location     Type
+  1484 ;;		None
+  1485 ;; Return value:  Size  Location     Type
+  1486 ;;                  1    wreg      void 
+  1487 ;; Registers used:
+  1488 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1489 ;; Tracked objects:
+  1490 ;;		On entry : 0/0
+  1491 ;;		On exit  : 0/0
+  1492 ;;		Unchanged: 0/0
+  1493 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1494 ;;      Params:         0       0       0       0       0
+  1495 ;;      Locals:         0       0       0       0       0
+  1496 ;;      Temps:          0       0       0       0       0
+  1497 ;;      Totals:         0       0       0       0       0
+  1498 ;;Total ram usage:        0 bytes
+  1499 ;; Hardware stack levels used:    1
+  1500 ;; Hardware stack levels required when called:    3
+  1501 ;; This function calls:
+  1502 ;;		_init_hall
+  1503 ;;		_init_pin
+  1504 ;;		_init_uart
+  1505 ;;		_setup_port
+  1506 ;; This function is called by:
+  1507 ;;		_main
+  1508 ;; This function uses a non-reentrant model
+  1509 ;;
+  1510                           
+  1511                           
+  1512                           ;psect for function _setup_mcu
+  1513  065E                     _setup_mcu:	
+  1514                           
+  1515                           ;micro_setup.c: 11: setup_port();
+  1516                           
+  1517                           ;incstack = 0
+  1518                           ; Regs used in _setup_mcu: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1519  065E  120A  118A  2631  120A  118A  	fcall	_setup_port
+  1520                           
+  1521                           ;micro_setup.c: 12: init_pin();
+  1522  0663  120A  118A  263E  120A  118A  	fcall	_init_pin
+  1523                           
+  1524                           ;micro_setup.c: 13: init_hall();
+  1525  0668  120A  118A  2610  120A  118A  	fcall	_init_hall
+  1526                           
+  1527                           ;micro_setup.c: 14: init_uart();
+  1528  066D  120A  118A  2624   	fcall	_init_uart
+  1529  0670  0008               	return
+  1530  0671                     __end_of_setup_mcu:	
+  1531                           
+  1532                           	psect	text7
+  1533  0631                     __ptext7:	
+  1534 ;; *************** function _setup_port *****************
+  1535 ;; Defined at:
+  1536 ;;		line 17 in file "micro_setup.c"
+  1537 ;; Parameters:    Size  Location     Type
+  1538 ;;		None
+  1539 ;; Auto vars:     Size  Location     Type
+  1540 ;;		None
+  1541 ;; Return value:  Size  Location     Type
+  1542 ;;                  1    wreg      void 
+  1543 ;; Registers used:
+  1544 ;;		wreg, status,2
+  1545 ;; Tracked objects:
+  1546 ;;		On entry : 0/0
+  1547 ;;		On exit  : 0/0
+  1548 ;;		Unchanged: 0/0
+  1549 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1550 ;;      Params:         0       0       0       0       0
+  1551 ;;      Locals:         0       0       0       0       0
+  1552 ;;      Temps:          0       0       0       0       0
+  1553 ;;      Totals:         0       0       0       0       0
+  1554 ;;Total ram usage:        0 bytes
+  1555 ;; Hardware stack levels used:    1
+  1556 ;; This function calls:
+  1557 ;;		Nothing
+  1558 ;; This function is called by:
+  1559 ;;		_setup_mcu
+  1560 ;; This function uses a non-reentrant model
+  1561 ;;
+  1562                           
+  1563                           
+  1564                           ;psect for function _setup_port
+  1565  0631                     _setup_port:	
+  1566                           
+  1567                           ;micro_setup.c: 19: TRISA = 0b10001111;
+  1568                           
+  1569                           ;incstack = 0
+  1570                           ; Regs used in _setup_port: [wreg+status,2]
+  1571  0631  308F               	movlw	143
+  1572  0632  1683               	bsf	3,5	;RP0=1, select bank1
+  1573  0633  1303               	bcf	3,6	;RP1=0, select bank1
+  1574  0634  0085               	movwf	5	;volatile
+  1575                           
+  1576                           ;micro_setup.c: 21: TRISB = 0b00000000;
+  1577  0635  0186               	clrf	6	;volatile
+  1578                           
+  1579                           ;micro_setup.c: 23: TRISC = 0b10000000;
+  1580  0636  3080               	movlw	128
+  1581  0637  0087               	movwf	7	;volatile
+  1582                           
+  1583                           ;micro_setup.c: 25: TRISD = 0b00000000;
+  1584  0638  0188               	clrf	8	;volatile
+  1585                           
+  1586                           ;micro_setup.c: 27: TRISE = 0b00000111;
+  1587  0639  3007               	movlw	7
+  1588  063A  0089               	movwf	9	;volatile
+  1589                           
+  1590                           ;micro_setup.c: 29: ANSEL = 0b00001111;
+  1591  063B  300F               	movlw	15
+  1592  063C  0091               	movwf	17	;volatile
+  1593  063D  0008               	return
+  1594  063E                     __end_of_setup_port:	
+  1595                           
+  1596                           	psect	text8
+  1597  0624                     __ptext8:	
+  1598 ;; *************** function _init_uart *****************
+  1599 ;; Defined at:
+  1600 ;;		line 34 in file "micro_setup.c"
+  1601 ;; Parameters:    Size  Location     Type
+  1602 ;;		None
+  1603 ;; Auto vars:     Size  Location     Type
+  1604 ;;		None
+  1605 ;; Return value:  Size  Location     Type
+  1606 ;;                  1    wreg      void 
+  1607 ;; Registers used:
+  1608 ;;		wreg
+  1609 ;; Tracked objects:
+  1610 ;;		On entry : 0/0
+  1611 ;;		On exit  : 0/0
+  1612 ;;		Unchanged: 0/0
+  1613 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1614 ;;      Params:         0       0       0       0       0
+  1615 ;;      Locals:         0       0       0       0       0
+  1616 ;;      Temps:          0       0       0       0       0
+  1617 ;;      Totals:         0       0       0       0       0
+  1618 ;;Total ram usage:        0 bytes
+  1619 ;; Hardware stack levels used:    1
+  1620 ;; This function calls:
+  1621 ;;		Nothing
+  1622 ;; This function is called by:
+  1623 ;;		_setup_mcu
+  1624 ;; This function uses a non-reentrant model
+  1625 ;;
+  1626                           
+  1627                           
+  1628                           ;psect for function _init_uart
+  1629  0624                     _init_uart:	
+  1630                           
+  1631                           ;micro_setup.c: 36: TXSTA = 0b00100000;
+  1632                           
+  1633                           ;incstack = 0
+  1634                           ; Regs used in _init_uart: [wreg]
+  1635  0624  3020               	movlw	32
+  1636  0625  1683               	bsf	3,5	;RP0=1, select bank1
+  1637  0626  1303               	bcf	3,6	;RP1=0, select bank1
+  1638  0627  0098               	movwf	24	;volatile
+  1639                           
+  1640                           ;micro_setup.c: 48: SPBRG = 12;
+  1641  0628  300C               	movlw	12
+  1642  0629  0099               	movwf	25	;volatile
+  1643                           
+  1644                           ;micro_setup.c: 61: RCSTAbits.SPEN=1;
+  1645  062A  1283               	bcf	3,5	;RP0=0, select bank0
+  1646  062B  1303               	bcf	3,6	;RP1=0, select bank0
+  1647  062C  1798               	bsf	24,7	;volatile
+  1648                           
+  1649                           ;micro_setup.c: 62: RCSTAbits.RX9=0;
+  1650  062D  1318               	bcf	24,6	;volatile
+  1651                           
+  1652                           ;micro_setup.c: 63: RCSTAbits.CREN=1;
+  1653  062E  1618               	bsf	24,4	;volatile
+  1654                           
+  1655                           ;micro_setup.c: 64: RCSTAbits.ADDEN=0;
+  1656  062F  1198               	bcf	24,3	;volatile
+  1657  0630  0008               	return
+  1658  0631                     __end_of_init_uart:	
+  1659                           
+  1660                           	psect	text9
+  1661  063E                     __ptext9:	
+  1662 ;; *************** function _init_pin *****************
+  1663 ;; Defined at:
+  1664 ;;		line 73 in file "micro_setup.c"
+  1665 ;; Parameters:    Size  Location     Type
+  1666 ;;		None
+  1667 ;; Auto vars:     Size  Location     Type
+  1668 ;;		None
+  1669 ;; Return value:  Size  Location     Type
+  1670 ;;                  1    wreg      void 
+  1671 ;; Registers used:
+  1672 ;;		None
+  1673 ;; Tracked objects:
+  1674 ;;		On entry : 0/0
+  1675 ;;		On exit  : 0/0
+  1676 ;;		Unchanged: 0/0
+  1677 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1678 ;;      Params:         0       0       0       0       0
+  1679 ;;      Locals:         0       0       0       0       0
+  1680 ;;      Temps:          0       0       0       0       0
+  1681 ;;      Totals:         0       0       0       0       0
+  1682 ;;Total ram usage:        0 bytes
+  1683 ;; Hardware stack levels used:    1
+  1684 ;; This function calls:
+  1685 ;;		Nothing
+  1686 ;; This function is called by:
+  1687 ;;		_setup_mcu
+  1688 ;; This function uses a non-reentrant model
+  1689 ;;
+  1690                           
+  1691                           
+  1692                           ;psect for function _init_pin
+  1693  063E                     _init_pin:	
+  1694                           
+  1695                           ;micro_setup.c: 75: PORTCbits.RC0 = (0);
+  1696                           
+  1697                           ;incstack = 0
+  1698                           ; Regs used in _init_pin: []
+  1699  063E  1283               	bcf	3,5	;RP0=0, select bank0
+  1700  063F  1303               	bcf	3,6	;RP1=0, select bank0
+  1701  0640  1007               	bcf	7,0	;volatile
+  1702                           
+  1703                           ;micro_setup.c: 76: PORTCbits.RC1 = (0);
+  1704  0641  1087               	bcf	7,1	;volatile
+  1705                           
+  1706                           ;micro_setup.c: 77: PORTCbits.RC2 = (0);
+  1707  0642  1107               	bcf	7,2	;volatile
+  1708                           
+  1709                           ;micro_setup.c: 78: PORTCbits.RC3 = (0);
+  1710  0643  1187               	bcf	7,3	;volatile
+  1711                           
+  1712                           ;micro_setup.c: 79: PORTCbits.RC4 = (0);
+  1713  0644  1207               	bcf	7,4	;volatile
+  1714                           
+  1715                           ;micro_setup.c: 80: PORTCbits.RC5 = (0);
+  1716  0645  1287               	bcf	7,5	;volatile
+  1717                           
+  1718                           ;micro_setup.c: 82: PORTDbits.RD0 = (0);
+  1719  0646  1008               	bcf	8,0	;volatile
+  1720                           
+  1721                           ;micro_setup.c: 83: PORTDbits.RD1 = (0);
+  1722  0647  1088               	bcf	8,1	;volatile
+  1723                           
+  1724                           ;micro_setup.c: 84: PORTDbits.RD2 = (0);
+  1725  0648  1108               	bcf	8,2	;volatile
+  1726                           
+  1727                           ;micro_setup.c: 85: PORTDbits.RD3 = (0);
+  1728  0649  1188               	bcf	8,3	;volatile
+  1729                           
+  1730                           ;micro_setup.c: 86: PORTDbits.RD4 = (0);
+  1731  064A  1208               	bcf	8,4	;volatile
+  1732                           
+  1733                           ;micro_setup.c: 87: PORTDbits.RD5 = (0);
+  1734  064B  1288               	bcf	8,5	;volatile
+  1735  064C  0008               	return
+  1736  064D                     __end_of_init_pin:	
+  1737                           
+  1738                           	psect	text10
+  1739  0610                     __ptext10:	
+  1740 ;; *************** function _init_hall *****************
+  1741 ;; Defined at:
+  1742 ;;		line 90 in file "micro_setup.c"
+  1743 ;; Parameters:    Size  Location     Type
+  1744 ;;		None
+  1745 ;; Auto vars:     Size  Location     Type
+  1746 ;;		None
+  1747 ;; Return value:  Size  Location     Type
+  1748 ;;                  1    wreg      void 
+  1749 ;; Registers used:
+  1750 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1751 ;; Tracked objects:
+  1752 ;;		On entry : 0/0
+  1753 ;;		On exit  : 0/0
+  1754 ;;		Unchanged: 0/0
+  1755 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1756 ;;      Params:         0       0       0       0       0
+  1757 ;;      Locals:         0       0       0       0       0
+  1758 ;;      Temps:          0       0       0       0       0
+  1759 ;;      Totals:         0       0       0       0       0
+  1760 ;;Total ram usage:        0 bytes
+  1761 ;; Hardware stack levels used:    1
+  1762 ;; Hardware stack levels required when called:    2
+  1763 ;; This function calls:
+  1764 ;;		_get_hall_state
+  1765 ;; This function is called by:
+  1766 ;;		_setup_mcu
+  1767 ;; This function uses a non-reentrant model
+  1768 ;;
+  1769                           
+  1770                           
+  1771                           ;psect for function _init_hall
+  1772  0610                     _init_hall:	
+  1773                           
+  1774                           ;micro_setup.c: 92: init_state = get_hall_state();
+  1775                           
+  1776                           ;incstack = 0
+  1777                           ; Regs used in _init_hall: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1778  0610  120A  118A  277B   	fcall	_get_hall_state
+  1779  0613  0877               	movf	?_get_hall_state+1,w
+  1780  0614  1283               	bcf	3,5	;RP0=0, select bank0
+  1781  0615  1303               	bcf	3,6	;RP1=0, select bank0
+  1782  0616  00D5               	movwf	_init_state+1
+  1783  0617  0876               	movf	?_get_hall_state,w
+  1784  0618  00D4               	movwf	_init_state
+  1785  0619  0008               	return
+  1786  061A                     __end_of_init_hall:	
+  1787                           
+  1788                           	psect	text11
+  1789  077B                     __ptext11:	
+  1790 ;; *************** function _get_hall_state *****************
+  1791 ;; Defined at:
+  1792 ;;		line 15 in file "hall_effect.c"
+  1793 ;; Parameters:    Size  Location     Type
+  1794 ;;		None
+  1795 ;; Auto vars:     Size  Location     Type
+  1796 ;;  hallC           2    6[BANK0 ] int 
+  1797 ;;  hallB           2    4[BANK0 ] int 
+  1798 ;;  hallA           2    2[BANK0 ] int 
+  1799 ;;  state           2    0[BANK0 ] int 
+  1800 ;; Return value:  Size  Location     Type
+  1801 ;;                  2    6[COMMON] int 
+  1802 ;; Registers used:
+  1803 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1804 ;; Tracked objects:
+  1805 ;;		On entry : 0/0
+  1806 ;;		On exit  : 0/0
+  1807 ;;		Unchanged: 0/0
+  1808 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1809 ;;      Params:         2       0       0       0       0
+  1810 ;;      Locals:         0       8       0       0       0
+  1811 ;;      Temps:          2       0       0       0       0
+  1812 ;;      Totals:         4       8       0       0       0
+  1813 ;;Total ram usage:       12 bytes
+  1814 ;; Hardware stack levels used:    1
+  1815 ;; Hardware stack levels required when called:    1
+  1816 ;; This function calls:
+  1817 ;;		_read_hall
+  1818 ;; This function is called by:
+  1819 ;;		_init_hall
+  1820 ;;		_hall_LED_state
+  1821 ;;		_get_direction
+  1822 ;;		_uart_write_hall_state
+  1823 ;; This function uses a non-reentrant model
+  1824 ;;
+  1825                           
+  1826                           
+  1827                           ;psect for function _get_hall_state
+  1828  077B                     _get_hall_state:	
+  1829                           
+  1830                           ;hall_effect.c: 17: int hallA;
+  1831                           ;hall_effect.c: 18: int hallB;
+  1832                           ;hall_effect.c: 19: int hallC;
+  1833                           ;hall_effect.c: 20: int state;
+  1834                           ;hall_effect.c: 21: read_hall(&hallA, &hallB, &hallC);
+  1835                           
+  1836                           ;incstack = 0
+  1837                           ; Regs used in _get_hall_state: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1838  077B  304D               	movlw	(low (get_hall_state@hallB| 0))& (0+255)
+  1839  077C  00F8               	movwf	??_get_hall_state
+  1840  077D  0878               	movf	??_get_hall_state,w
+  1841  077E  00F0               	movwf	read_hall@hall_B
+  1842  077F  304F               	movlw	(low (get_hall_state@hallC| 0))& (0+255)
+  1843  0780  00F9               	movwf	??_get_hall_state+1
+  1844  0781  0879               	movf	??_get_hall_state+1,w
+  1845  0782  00F1               	movwf	read_hall@hall_C
+  1846  0783  304B               	movlw	(low (get_hall_state@hallA| 0))& (0+255)
+  1847  0784  120A  118A  26CA  120A  118A  	fcall	_read_hall
+  1848                           
+  1849                           ;hall_effect.c: 22: if(hallA && !hallB && hallC)
+  1850  0789  1283               	bcf	3,5	;RP0=0, select bank0
+  1851  078A  1303               	bcf	3,6	;RP1=0, select bank0
+  1852  078B  084B               	movf	get_hall_state@hallA,w
+  1853  078C  044C               	iorwf	get_hall_state@hallA+1,w
+  1854  078D  1903               	btfsc	3,2
+  1855  078E  2F9B               	goto	l1132
+  1856  078F  084D               	movf	get_hall_state@hallB,w
+  1857  0790  044E               	iorwf	get_hall_state@hallB+1,w
+  1858  0791  1D03               	btfss	3,2
+  1859  0792  2F9B               	goto	l1132
+  1860  0793  084F               	movf	get_hall_state@hallC,w
+  1861  0794  0450               	iorwf	get_hall_state@hallC+1,w
+  1862  0795  1903               	btfsc	3,2
+  1863  0796  2F9B               	goto	l1132
+  1864                           
+  1865                           ;hall_effect.c: 23: {
+  1866                           ;hall_effect.c: 24: state = 1;
+  1867  0797  3001               	movlw	1
+  1868  0798  00C9               	movwf	get_hall_state@state
+  1869  0799  3000               	movlw	0
+  1870  079A  00CA               	movwf	get_hall_state@state+1
+  1871  079B                     l1132:	
+  1872                           
+  1873                           ;hall_effect.c: 25: }
+  1874                           ;hall_effect.c: 26: if(hallA && !hallB && !hallC)
+  1875  079B  084B               	movf	get_hall_state@hallA,w
+  1876  079C  044C               	iorwf	get_hall_state@hallA+1,w
+  1877  079D  1903               	btfsc	3,2
+  1878  079E  2FAB               	goto	l1140
+  1879  079F  084D               	movf	get_hall_state@hallB,w
+  1880  07A0  044E               	iorwf	get_hall_state@hallB+1,w
+  1881  07A1  1D03               	btfss	3,2
+  1882  07A2  2FAB               	goto	l1140
+  1883  07A3  084F               	movf	get_hall_state@hallC,w
+  1884  07A4  0450               	iorwf	get_hall_state@hallC+1,w
+  1885  07A5  1D03               	btfss	3,2
+  1886  07A6  2FAB               	goto	l1140
+  1887                           
+  1888                           ;hall_effect.c: 27: {
+  1889                           ;hall_effect.c: 28: state = 2;
+  1890  07A7  3002               	movlw	2
+  1891  07A8  00C9               	movwf	get_hall_state@state
+  1892  07A9  3000               	movlw	0
+  1893  07AA  00CA               	movwf	get_hall_state@state+1
+  1894  07AB                     l1140:	
+  1895                           
+  1896                           ;hall_effect.c: 29: }
+  1897                           ;hall_effect.c: 30: if(hallA && hallB && !hallC)
+  1898  07AB  084B               	movf	get_hall_state@hallA,w
+  1899  07AC  044C               	iorwf	get_hall_state@hallA+1,w
+  1900  07AD  1903               	btfsc	3,2
+  1901  07AE  2FBB               	goto	l1148
+  1902  07AF  084D               	movf	get_hall_state@hallB,w
+  1903  07B0  044E               	iorwf	get_hall_state@hallB+1,w
+  1904  07B1  1903               	btfsc	3,2
+  1905  07B2  2FBB               	goto	l1148
+  1906  07B3  084F               	movf	get_hall_state@hallC,w
+  1907  07B4  0450               	iorwf	get_hall_state@hallC+1,w
+  1908  07B5  1D03               	btfss	3,2
+  1909  07B6  2FBB               	goto	l1148
+  1910                           
+  1911                           ;hall_effect.c: 31: {
+  1912                           ;hall_effect.c: 32: state = 3;
+  1913  07B7  3003               	movlw	3
+  1914  07B8  00C9               	movwf	get_hall_state@state
+  1915  07B9  3000               	movlw	0
+  1916  07BA  00CA               	movwf	get_hall_state@state+1
+  1917  07BB                     l1148:	
+  1918                           
+  1919                           ;hall_effect.c: 33: }
+  1920                           ;hall_effect.c: 34: if(!hallA && hallB && !hallC)
+  1921  07BB  084B               	movf	get_hall_state@hallA,w
+  1922  07BC  044C               	iorwf	get_hall_state@hallA+1,w
+  1923  07BD  1D03               	btfss	3,2
+  1924  07BE  2FCB               	goto	l1156
+  1925  07BF  084D               	movf	get_hall_state@hallB,w
+  1926  07C0  044E               	iorwf	get_hall_state@hallB+1,w
+  1927  07C1  1903               	btfsc	3,2
+  1928  07C2  2FCB               	goto	l1156
+  1929  07C3  084F               	movf	get_hall_state@hallC,w
+  1930  07C4  0450               	iorwf	get_hall_state@hallC+1,w
+  1931  07C5  1D03               	btfss	3,2
+  1932  07C6  2FCB               	goto	l1156
+  1933                           
+  1934                           ;hall_effect.c: 35: {
+  1935                           ;hall_effect.c: 36: state = 4;
+  1936  07C7  3004               	movlw	4
+  1937  07C8  00C9               	movwf	get_hall_state@state
+  1938  07C9  3000               	movlw	0
+  1939  07CA  00CA               	movwf	get_hall_state@state+1
+  1940  07CB                     l1156:	
+  1941                           
+  1942                           ;hall_effect.c: 37: }
+  1943                           ;hall_effect.c: 38: if(!hallA && hallB && hallC)
+  1944  07CB  084B               	movf	get_hall_state@hallA,w
+  1945  07CC  044C               	iorwf	get_hall_state@hallA+1,w
+  1946  07CD  1D03               	btfss	3,2
+  1947  07CE  2FDB               	goto	l1164
+  1948  07CF  084D               	movf	get_hall_state@hallB,w
+  1949  07D0  044E               	iorwf	get_hall_state@hallB+1,w
+  1950  07D1  1903               	btfsc	3,2
+  1951  07D2  2FDB               	goto	l1164
+  1952  07D3  084F               	movf	get_hall_state@hallC,w
+  1953  07D4  0450               	iorwf	get_hall_state@hallC+1,w
+  1954  07D5  1903               	btfsc	3,2
+  1955  07D6  2FDB               	goto	l1164
+  1956                           
+  1957                           ;hall_effect.c: 39: {
+  1958                           ;hall_effect.c: 40: state = 5;
+  1959  07D7  3005               	movlw	5
+  1960  07D8  00C9               	movwf	get_hall_state@state
+  1961  07D9  3000               	movlw	0
+  1962  07DA  00CA               	movwf	get_hall_state@state+1
+  1963  07DB                     l1164:	
+  1964                           
+  1965                           ;hall_effect.c: 41: }
+  1966                           ;hall_effect.c: 42: if(!hallA && !hallB && hallC)
+  1967  07DB  084B               	movf	get_hall_state@hallA,w
+  1968  07DC  044C               	iorwf	get_hall_state@hallA+1,w
+  1969  07DD  1D03               	btfss	3,2
+  1970  07DE  2FEB               	goto	l150
+  1971  07DF  084D               	movf	get_hall_state@hallB,w
+  1972  07E0  044E               	iorwf	get_hall_state@hallB+1,w
+  1973  07E1  1D03               	btfss	3,2
+  1974  07E2  2FEB               	goto	l150
+  1975  07E3  084F               	movf	get_hall_state@hallC,w
+  1976  07E4  0450               	iorwf	get_hall_state@hallC+1,w
+  1977  07E5  1903               	btfsc	3,2
+  1978  07E6  2FEB               	goto	l150
+  1979                           
+  1980                           ;hall_effect.c: 43: {
+  1981                           ;hall_effect.c: 44: state = 6;
+  1982  07E7  3006               	movlw	6
+  1983  07E8  00C9               	movwf	get_hall_state@state
+  1984  07E9  3000               	movlw	0
+  1985  07EA  00CA               	movwf	get_hall_state@state+1
+  1986  07EB                     l150:	
+  1987                           
+  1988                           ;hall_effect.c: 45: }
+  1989                           ;hall_effect.c: 46: return state;
+  1990  07EB  084A               	movf	get_hall_state@state+1,w
+  1991  07EC  00F7               	movwf	?_get_hall_state+1
+  1992  07ED  0849               	movf	get_hall_state@state,w
+  1993  07EE  00F6               	movwf	?_get_hall_state
+  1994  07EF  0008               	return
+  1995  07F0                     __end_of_get_hall_state:	
+  1996                           
+  1997                           	psect	text12
+  1998  06CA                     __ptext12:	
+  1999 ;; *************** function _read_hall *****************
+  2000 ;; Defined at:
+  2001 ;;		line 8 in file "hall_effect.c"
+  2002 ;; Parameters:    Size  Location     Type
+  2003 ;;  hall_A          1    wreg     PTR int 
+  2004 ;;		 -> get_hall_state@hallA(2), 
+  2005 ;;  hall_B          1    0[COMMON] PTR int 
+  2006 ;;		 -> get_hall_state@hallB(2), 
+  2007 ;;  hall_C          1    1[COMMON] PTR int 
+  2008 ;;		 -> get_hall_state@hallC(2), 
+  2009 ;; Auto vars:     Size  Location     Type
+  2010 ;;  hall_A          1    5[COMMON] PTR int 
+  2011 ;;		 -> get_hall_state@hallA(2), 
+  2012 ;; Return value:  Size  Location     Type
+  2013 ;;                  1    wreg      void 
+  2014 ;; Registers used:
+  2015 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+  2016 ;; Tracked objects:
+  2017 ;;		On entry : 0/0
+  2018 ;;		On exit  : 0/0
+  2019 ;;		Unchanged: 0/0
+  2020 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2021 ;;      Params:         2       0       0       0       0
+  2022 ;;      Locals:         1       0       0       0       0
+  2023 ;;      Temps:          3       0       0       0       0
+  2024 ;;      Totals:         6       0       0       0       0
+  2025 ;;Total ram usage:        6 bytes
+  2026 ;; Hardware stack levels used:    1
+  2027 ;; This function calls:
+  2028 ;;		Nothing
+  2029 ;; This function is called by:
+  2030 ;;		_get_hall_state
+  2031 ;; This function uses a non-reentrant model
+  2032 ;;
+  2033                           
+  2034                           
+  2035                           ;psect for function _read_hall
+  2036  06CA                     _read_hall:	
+  2037                           
+  2038                           ;incstack = 0
+  2039                           ; Regs used in _read_hall: [wreg-fsr0h+status,2+status,0]
+  2040                           ;read_hall@hall_A stored from wreg
+  2041  06CA  00F5               	movwf	read_hall@hall_A
+  2042                           
+  2043                           ;hall_effect.c: 10: *hall_A = PORTEbits.RE2;
+  2044  06CB  1283               	bcf	3,5	;RP0=0, select bank0
+  2045  06CC  1303               	bcf	3,6	;RP1=0, select bank0
+  2046  06CD  0C09               	rrf	9,w	;volatile
+  2047  06CE  00F2               	movwf	??_read_hall
+  2048  06CF  0C72               	rrf	??_read_hall,w
+  2049  06D0  3901               	andlw	1
+  2050  06D1  00F3               	movwf	??_read_hall+1
+  2051  06D2  01F4               	clrf	??_read_hall+2
+  2052  06D3  0875               	movf	read_hall@hall_A,w
+  2053  06D4  0084               	movwf	4
+  2054  06D5  0873               	movf	??_read_hall+1,w
+  2055  06D6  1383               	bcf	3,7	;select IRP bank0
+  2056  06D7  0080               	movwf	0
+  2057  06D8  0A84               	incf	4,f
+  2058  06D9  0874               	movf	??_read_hall+2,w
+  2059  06DA  0080               	movwf	0
+  2060                           
+  2061                           ;hall_effect.c: 11: *hall_B = PORTEbits.RE1;
+  2062  06DB  0C09               	rrf	9,w	;volatile
+  2063  06DC  3901               	andlw	1
+  2064  06DD  00F2               	movwf	??_read_hall
+  2065  06DE  01F3               	clrf	??_read_hall+1
+  2066  06DF  0870               	movf	read_hall@hall_B,w
+  2067  06E0  0084               	movwf	4
+  2068  06E1  0872               	movf	??_read_hall,w
+  2069  06E2  0080               	movwf	0
+  2070  06E3  0A84               	incf	4,f
+  2071  06E4  0873               	movf	??_read_hall+1,w
+  2072  06E5  0080               	movwf	0
+  2073                           
+  2074                           ;hall_effect.c: 12: *hall_C = PORTEbits.RE0;
+  2075  06E6  0809               	movf	9,w	;volatile
+  2076  06E7  3901               	andlw	1
+  2077  06E8  00F2               	movwf	??_read_hall
+  2078  06E9  01F3               	clrf	??_read_hall+1
+  2079  06EA  0871               	movf	read_hall@hall_C,w
+  2080  06EB  0084               	movwf	4
+  2081  06EC  0872               	movf	??_read_hall,w
+  2082  06ED  0080               	movwf	0
+  2083  06EE  0A84               	incf	4,f
+  2084  06EF  0873               	movf	??_read_hall+1,w
+  2085  06F0  0080               	movwf	0
+  2086  06F1  0008               	return
+  2087  06F2                     __end_of_read_hall:	
+  2088  007E                     btemp	set	126	;btemp
+  2089  007E                     wtemp	set	126
+  2090  007E                     wtemp0	set	126
+  2091  0080                     wtemp1	set	128
+  2092  0082                     wtemp2	set	130
+  2093  0084                     wtemp3	set	132
+  2094  0086                     wtemp4	set	134
+  2095  0088                     wtemp5	set	136
+  2096  007F                     wtemp6	set	127
+  2097  007E                     ttemp	set	126
+  2098  007E                     ttemp0	set	126
+  2099  0081                     ttemp1	set	129
+  2100  0084                     ttemp2	set	132
+  2101  0087                     ttemp3	set	135
+  2102  007F                     ttemp4	set	127
+  2103  007E                     ltemp	set	126
+  2104  007E                     ltemp0	set	126
+  2105  0082                     ltemp1	set	130
+  2106  0086                     ltemp2	set	134
+  2107  0080                     ltemp3	set	128
 
 
 Data Sizes:
     Strings     0
     Constant    0
-    Data        0
+    Data        41
     BSS         0
     Persistent  2
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14     13      13
-    BANK0            80     16      18
+    COMMON           14     14      14
+    BANK0            80     11      54
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            80      0       0
@@ -1375,16 +2144,15 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
-    _main->_get_direction
+    _main->_uart_write_voltage
+    _uart_write_voltage->_get_analog
+    _get_analog->_analog_init
     _init_hall->_get_hall_state
-    _get_direction->_get_hall_state
     _get_hall_state->_read_hall
 
 Critical Paths under _main in BANK0
 
-    _main->_get_direction
     _init_hall->_get_hall_state
-    _get_direction->_get_hall_state
 
 Critical Paths under _main in BANK1
 
@@ -1403,26 +2171,44 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 2     2      0    1527
-                                             14 BANK0      2     2      0
-                      _get_direction
+ (0) _main                                                 3     3      0    1390
+                                              8 BANK0      3     3      0
                           _setup_mcu
+                 _uart_write_voltage
+ ---------------------------------------------------------------------------------
+ (1) _uart_write_voltage                                   4     2      2     695
+                                             12 COMMON     2     0      2
+                                              0 BANK0      2     2      0
+                         _get_analog
+                    _uart_write_char
+            _uart_write_unsigned_int
+ ---------------------------------------------------------------------------------
+ (2) _uart_write_unsigned_int                              6     4      2     143
+                                              0 COMMON     6     4      2
+ ---------------------------------------------------------------------------------
+ (2) _uart_write_char                                      1     1      0      22
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _get_analog                                          10     8      2     432
+                                              2 COMMON    10     8      2
+                        _analog_init
+ ---------------------------------------------------------------------------------
+ (3) _analog_init                                          2     0      2      75
+                                              0 COMMON     2     0      2
  ---------------------------------------------------------------------------------
  (1) _setup_mcu                                            0     0      0     695
                           _init_hall
                            _init_pin
+                          _init_uart
                          _setup_port
  ---------------------------------------------------------------------------------
  (2) _setup_port                                           0     0      0       0
  ---------------------------------------------------------------------------------
+ (2) _init_uart                                            0     0      0       0
+ ---------------------------------------------------------------------------------
  (2) _init_pin                                             0     0      0       0
  ---------------------------------------------------------------------------------
  (2) _init_hall                                            0     0      0     695
-                     _get_hall_state
- ---------------------------------------------------------------------------------
- (1) _get_direction                                        9     7      2     831
-                                             10 COMMON     3     3      0
-                                              8 BANK0      6     4      2
                      _get_hall_state
  ---------------------------------------------------------------------------------
  (3) _get_hall_state                                      12    10      2     695
@@ -1439,86 +2225,110 @@ Call Graph Tables:
  Call Graph Graphs:
 
  _main (ROOT)
-   _get_direction
-     _get_hall_state
-       _read_hall
    _setup_mcu
      _init_hall
        _get_hall_state
          _read_hall
      _init_pin
+     _init_uart
      _setup_port
+   _uart_write_voltage
+     _get_analog
+       _analog_init
+     _uart_write_char
+     _uart_write_unsigned_int
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BITCOMMON            E      0       0       0        0.0%
-EEDATA             100      0       0       0        0.0%
-NULL                 0      0       0       0        0.0%
-CODE                 0      0       0       0        0.0%
-COMMON               E      D       D       1       92.9%
-BITSFR0              0      0       0       1        0.0%
-SFR0                 0      0       0       1        0.0%
-BITSFR1              0      0       0       2        0.0%
-SFR1                 0      0       0       2        0.0%
-STACK                0      0       0       2        0.0%
-BITBANK0            50      0       0       3        0.0%
-BANK0               50     10      12       4       22.5%
-BITSFR3              0      0       0       4        0.0%
-SFR3                 0      0       0       4        0.0%
-BITBANK1            50      0       0       5        0.0%
-BITSFR2              0      0       0       5        0.0%
-SFR2                 0      0       0       5        0.0%
-BANK1               50      0       0       6        0.0%
-BITBANK3            60      0       0       7        0.0%
 BANK3               60      0       0       8        0.0%
+BITBANK3            60      0       0       7        0.0%
+SFR3                 0      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
 BANK2               50      0       0       9        0.0%
-ABS                  0      0      1F      10        0.0%
 BITBANK2            50      0       0      11        0.0%
-DATA                 0      0      1F      12        0.0%
+SFR2                 0      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+BANK1               50      0       0       6        0.0%
+BITBANK1            50      0       0       5        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR1              0      0       0       2        0.0%
+BANK0               50      B      36       4       67.5%
+BITBANK0            50      0       0       3        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+COMMON               E      E       E       1      100.0%
+BITCOMMON            E      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+DATA                 0      0      44      12        0.0%
+ABS                  0      0      44      10        0.0%
+NULL                 0      0       0       0        0.0%
+STACK                0      0       0       2        0.0%
+EEDATA             100      0       0       0        0.0%
 
 
-Microchip Technology PIC Macro Assembler V1.37 build -260352376 
-Symbol Table                                                                                   Sun Jul 17 23:28:34 2016
+Microchip Technology PIC Macro Assembler V1.38 build -256452561 
+Symbol Table                                                                                   Sat Nov 05 18:11:42 2016
 
-                         l7 06D8                 __CFG_CP$OFF 0000                         l137 077C  
-                       l913 07BA                         l905 07A3                         l851 074C  
-                       l843 073C                         l835 072C                         l927 07EA  
-                       l919 07D3                         l935 07F1                         l867 076C  
-                       l859 075C                __CFG_CPD$OFF 0000                         u707 07E2  
-                       u635 0796                         u665 07C6                         u697 07B2  
-                       fsr0 0004                         indf 0000                __CFG_IESO$ON 0000  
-              __CFG_FOSC$HS 0000               __CFG_DEBUG$ON 0000               __CFG_FCMEN$ON 0000  
-                      _main 06D3                        btemp 007E               __CFG_BOREN$ON 0000  
-                      ltemp 007E                        start 0000                        ttemp 007E  
-                      wtemp 007E               __CFG_MCLRE$ON 0000                       ?_main 0070  
-             __CFG_WDTE$OFF 0000                       _ANSEL 0091             ??_get_direction 007A  
-                     _TRISA 0085                       _TRISB 0086                       _TRISC 0087  
-                     _TRISD 0088                       _TRISE 0089                       main@d 002E  
-                     ltemp0 007E                       ltemp1 0082                       ltemp2 0086  
-                     ltemp3 0080                       ttemp0 007E                       ttemp1 0081  
-                     ttemp2 0084                       ttemp3 0087                       ttemp4 007F  
-                     status 0003                       wtemp0 007E                       wtemp1 0080  
-                     wtemp2 0082                       wtemp3 0084                       wtemp4 0086  
-                     wtemp5 0088                       wtemp6 007F             __initialization 07FC  
-              __end_of_main 06E4                      ??_main 007D         get_hall_state@hallA 0022  
-       get_hall_state@hallB 0024         get_hall_state@hallC 0026            ??_get_hall_state 0078  
-       get_hall_state@state 0020              __CFG_PWRTE$OFF 0000            __end_of_init_pin 06D3  
-   __end_of__initialization 07FC              __pcstackCOMMON 0070          __size_of_init_hall 000A  
-        __size_of_read_hall 0028                  __pmaintext 06D3          __size_of_setup_mcu 000E  
-                 ?_init_pin 0070                  _init_state 0030                     __ptext1 06B6  
-                   __ptext2 06A9                     __ptext3 06C4                     __ptext4 069F  
-                   __ptext5 0781                     __ptext6 070C                     __ptext7 06E4  
-         __end_of_init_hall 06A9           __end_of_read_hall 070C       __end_of_get_direction 07FC  
-      end_of_initialization 07FC                  ??_init_pin 0070           __end_of_setup_mcu 06C4  
-                 _PORTCbits 0007                   _PORTDbits 0008                   _PORTEbits 0009  
-                _setup_port 06A9         start_initialization 07FC     __size_of_get_hall_state 0075  
-               ?_setup_port 0070                   ___latbits 0002               __pcstackBANK0 0020  
-                 __pnvBANK0 0030           __size_of_init_pin 000F             read_hall@hall_A 0075  
-           read_hall@hall_B 0070             read_hall@hall_C 0071                   _init_hall 069F  
-                 _read_hall 06E4         __size_of_setup_port 000D                   _setup_mcu 06B6  
-                ?_init_hall 0070                  ?_read_hall 0070      get_direction@direction 002A  
-            _get_hall_state 070C      __size_of_get_direction 007B                  ?_setup_mcu 0070  
-             __size_of_main 0011                    _init_pin 06C4      __end_of_get_hall_state 0781  
-              ??_setup_port 0070               _get_direction 0781                 ??_init_hall 007A  
-               ??_read_hall 0072             ?_get_hall_state 0076          __end_of_setup_port 06B6  
-               ??_setup_mcu 007A  get_direction@current_state 002C              ?_get_direction 0028  
+                               l9 06B1                                 pc 0002                       __CFG_CP$OFF 0000  
+                              fsr 0004                               l150 07EB                               l227 061B  
+                             l183 0746                               l191 0754                               l239 068E  
+                    __CFG_CPD$OFF 0000                               u857 06C2                               u867 069E  
+                             fsr0 0004                               indf 0000                      __CFG_IESO$ON 0000  
+                    __CFG_FOSC$HS 0000                     get_analog@lsb 0076                     get_analog@msb 0078  
+                            l1140 07AB                              l1132 079B                              l1164 07DB  
+                            l1156 07CB                              l1148 07BB                              l1180 0726  
+                            l1182 072A                              l1184 072E                              l1178 0723  
+                            l1372 0738                              l1188 0733                     __CFG_DEBUG$ON 0000  
+                            _RCIF 0065                              _TRMT 04C1                     __CFG_FCMEN$ON 0000  
+                            _main 06AC                              btemp 007E  __size_of_uart_write_unsigned_int 001E  
+                   __CFG_BOREN$ON 0000                              ltemp 007E                              start 0000  
+                            ttemp 007E                              wtemp 007E                     __CFG_MCLRE$ON 0000  
+                  get_analog@port 0072          __size_of_uart_write_char 000A                             ?_main 0070  
+                   __CFG_WDTE$OFF 0000                             _ANSEL 0091                             _RCREG 001A  
+                           _SPBRG 0099                             _TRISA 0085                             _TRISB 0086  
+                           _TRISC 0087                             _TRISD 0088                             _TRISE 0089  
+                           _TXREG 0019                             _TXSTA 0098                             pclath 000A  
+                           ltemp0 007E                             ltemp1 0082                             ltemp2 0086  
+                           ltemp3 0080                             ttemp0 007E                             ttemp1 0081  
+                           ttemp2 0084                             ttemp3 0087                             ttemp4 007F  
+                           status 0003                             wtemp0 007E                             wtemp1 0080  
+                           wtemp2 0082                             wtemp3 0084                             wtemp4 0086  
+                           wtemp5 0088                             wtemp6 007F              __size_of_analog_init 002D  
+                 __initialization 07F0                      __end_of_main 06CA                            ??_main 0051  
+                          _ADCON1 009F               get_hall_state@hallA 004B               get_hall_state@hallB 004D  
+             get_hall_state@hallC 004F                  ??_get_hall_state 0078                            _ADRESH 001E  
+                          _ADRESL 009E               get_hall_state@state 0049                    __CFG_PWRTE$OFF 0000  
+                __end_of_init_pin 064D                 ??_uart_write_char 0070       __size_of_uart_write_voltage 001D  
+         _uart_write_unsigned_int 068E           __end_of__initialization 07FC                    __pcstackCOMMON 0070  
+                    __pidataBANK0 06F2                  get_analog@output 007A                __size_of_init_hall 000A  
+              __size_of_init_uart 000D                __size_of_read_hall 0028                        __pmaintext 06AC  
+       uart_write_direction@F2949 0035                        _get_analog 0748                           _GO_DONE 00F9  
+              __size_of_setup_mcu 0013         ??_uart_write_unsigned_int 0072                         ?_init_pin 0070  
+                      _init_state 0054                           __ptext1 0671                           __ptext2 068E  
+                         __ptext3 061A                           __ptext4 0748                           __ptext5 071B  
+                         __ptext6 065E                           __ptext7 0631                           __ptext8 0624  
+                         __ptext9 063E                 __end_of_init_hall 061A                 __end_of_init_uart 0631  
+               __end_of_read_hall 06F2              end_of_initialization 07FC                     ??_analog_init 0072  
+                      ??_init_pin 0070                 __end_of_setup_mcu 0671                         _RCSTAbits 0018  
+ __end_of_uart_write_unsigned_int 06AC                   _uart_write_char 061A                         _PORTCbits 0007  
+                       _PORTDbits 0008                         _PORTEbits 0009                        _setup_port 0631  
+                     ?_get_analog 0072               __end_of_analog_init 0748            uart_write_voltage@port 007C  
+      __end_of_uart_write_voltage 068E               start_initialization 07F0               uart_write_char@data 0070  
+         __end_of_uart_write_char 0624           __size_of_get_hall_state 0075               __size_of_get_analog 0033  
+                      init_fetch0 064D                       __pdataBANK0 0020                       ?_setup_port 0070  
+                       ___latbits 0002                     __pcstackBANK0 0049                       _analog_init 071B  
+                       __pnvBANK0 0054                 __size_of_init_pin 000F                   read_hall@hall_A 0075  
+                 read_hall@hall_B 0070                   read_hall@hall_C 0071      uart_write_unsigned_int@char1 0074  
+    uart_write_unsigned_int@char2 0075                         _init_hall 0610                         _init_uart 0624  
+                       _read_hall 06CA               __size_of_setup_port 000D                  ?_uart_write_char 0070  
+                       _setup_mcu 065E                        _ADCON0bits 001F                      ??_get_analog 0074  
+        ?_uart_write_unsigned_int 0070                        ?_init_hall 0070                        ?_init_uart 0070  
+                      ?_read_hall 0070                    _get_hall_state 077B                __end_of_get_analog 077B  
+                      ?_setup_mcu 0070                          __ptext10 0610                          __ptext11 077B  
+                        __ptext12 06CA            analog_init@analog_port 0070                _uart_write_voltage 0671  
+                   __size_of_main 001E                          _init_pin 063E            __end_of_get_hall_state 07F0  
+             ?_uart_write_voltage 007C                      ??_setup_port 0070        uart_write_hall_state@F2945 0020  
+            ??_uart_write_voltage 007E                          init_ram0 0651                       ??_init_hall 007A  
+                     ??_init_uart 0070                       ??_read_hall 0072                      ?_analog_init 0070  
+                 ?_get_hall_state 0076                __end_of_setup_port 063E         uart_write_voltage@voltage 0049  
+                     ??_setup_mcu 007A     uart_write_unsigned_int@number 0070  

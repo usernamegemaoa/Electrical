@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=BATTERY_VCC Pin=C7-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=C7-2
+Removed Pin From Net: NetName=BATTERY_VCC Pin=C8-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=C8-2
+Removed Member From Class: ClassName=MISchematic Member=C7
+Removed Member From Class: ClassName=MISchematic Member=C8

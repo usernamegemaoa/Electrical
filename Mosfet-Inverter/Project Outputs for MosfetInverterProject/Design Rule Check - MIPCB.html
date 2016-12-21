@@ -1,0 +1,650 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD16\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10/13/2016</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4:49:32 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc" class="file"><acronym title="C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc">C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">102</td></tr>
+</table>
+</td>
+</table><a name="IDS3EQXGGQR5ANGHTOG4CXUXM5IOVNNB1T0ZG03WH4PU5YNY5OSDG"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2LAMYOZB5KRXCAIU1M5SSAMWVDRNOOHUOOVE4TH1042ZIQH4MT3L">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3ZYPZRQ3WSI3PSY3OAIOOQH11EM400WEH0EN1ZPS2NQBYI3DZROD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMJ2JNYD5IOZVB2R2HNE3DY4BVFQWFXLRKXGJQHHP4U4WKS3NQ2LN">Clearance Constraint (Gap=6mil) (All),(InNetClass('All Nets'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDSE4P2WE1H14OMSGY5CWQSDAXLKEDNGQAVVYVMLCN4Y2RUX0X2KZP">Power Plane Connect Rule(Direct Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRJLWEYUFCBDPHAWGWHICK5CZ1O20TK1H0HAGG2OLSN3OOJLKP5WC">Width Constraint (Min=6mil) (Max=50mil) (Preferred=20mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLQJGUJZLFU0WC1YHLSZ3W4B3PJKYQVMMUBCXI2NSIEYQDZSMZGRD">Height Constraint (Min=0mil) (Max=1968.504mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAOMV4LB5TR2WJZTFR4FAZB3IPD5JDMQ5MEEW4DEKNWWIF0ARB52">Hole Size Constraint (Min=13mil) (Max=150mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNQVVYSPHLROZKYLIASJYVNUV3KIBJZRXEHL5FXMUJLXKMGFR3RMG">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOETZZH2NB4R2MTHZP5LCJKAWSE1EBIKCG35BPQIRH00WTG2OHMB">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAXDSFNJCFFGACLYDGVNL1XWMWNXQ24UGLR3FGKP4DEAZZH2SYITC">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">87</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJSTPEGWKBMX1DUBVDARCOHYG5DWUKGXWSK4SHJFYJWYWMQ44FIL">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3D5JGBRGQMY5I3ZKNGT3MY21ZP5HUKOK4ZTB5XGXPZR4D5DBK12F">Silk primitive without silk layer</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4XIIXOSZZVMIDULMVX2YOK5YECKKFJTNRGRCY4O0K0I2YQIOCAEN">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWO1CKOP2BVARMCOGVD242JINEHW0YVCIXGOVPUHU5LNO1WTXCD2H">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">102</td>
+</tr>
+</table><br><a name="ID3ZYPZRQ3WSI3PSY3OAIOOQH11EM400WEH0EN1ZPS2NQBYI3DZROD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1210mil|Location2.X=1410mil|Location1.Y=1535mil|Location2.Y=2035mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1210mil|Location2.X=1410mil|Location1.Y=1535mil|Location2.Y=2035mil|Absolute=True">Un-Routed Net Constraint: Net BATTERY_VCC Between Area Fill (310mil,425mil) (640mil,635mil) on Bottom Layer And Area Fill (310mil,935mil) (640mil,1150mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1210mil|Location2.X=1440mil|Location1.Y=2050mil|Location2.Y=2555mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1210mil|Location2.X=1440mil|Location1.Y=2050mil|Location2.Y=2555mil|Absolute=True">Un-Routed Net Constraint: Net BATTERY_VCC Between Area Fill (310mil,935mil) (640mil,1150mil) on Bottom Layer And Area Fill (340mil,1455mil) (600mil,2230mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1375mil|Location2.X=1575mil|Location1.Y=976.772mil|Location2.Y=1548.818mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1375mil|Location2.X=1575mil|Location1.Y=976.772mil|Location2.Y=1548.818mil|Absolute=True">Un-Routed Net Constraint: Net BATTERY_VCC Between Pad Q3-2(475mil,76.772mil) on Bottom Layer And Track (475mil,448.818mil)(475mil,609.252mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.001mil|Location2.X=2259.331mil|Location1.Y=1150mil|Location2.Y=1350mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705.001mil|Location2.X=2259.331mil|Location1.Y=1150mil|Location2.Y=1350mil|Absolute=True">Un-Routed Net Constraint: Net BC_P3 Between Track (475mil,250mil)(805.001mil,250mil) on Bottom Layer And Track (1159.331mil,250mil)(1360mil,250mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.418mil|Location2.X=2260.748mil|Location1.Y=1665mil|Location2.Y=1865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1706.418mil|Location2.X=2260.748mil|Location1.Y=1665mil|Location2.Y=1865mil|Absolute=True">Un-Routed Net Constraint: Net BC_P2 Between Track (475.236mil,765mil)(806.418mil,765mil) on Bottom Layer And Track (1160.748mil,765mil)(1365mil,765mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705mil|Location2.X=2259.33mil|Location1.Y=2180mil|Location2.Y=2380mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705mil|Location2.X=2259.33mil|Location1.Y=2180mil|Location2.Y=2380mil|Absolute=True">Un-Routed Net Constraint: Net BC_P1 Between Track (475.001mil,1280mil)(805mil,1280mil) on Bottom Layer And Track (1159.33mil,1280mil)(1365mil,1280mil) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDOETZZH2NB4R2MTHZP5LCJKAWSE1EBIKCG35BPQIRH00WTG2OHMB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.934mil|Location2.X=1608.184mil|Location1.Y=2751.58mil|Location2.Y=2762.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.934mil|Location2.X=1608.184mil|Location1.Y=2751.58mil|Location2.Y=2762.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad U1-4(618.307mil,1744.409mil) on Top Layer And Pad U1-5(618.307mil,1770mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.934mil|Location2.X=1608.184mil|Location1.Y=2777.17mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1596.934mil|Location2.X=1608.184mil|Location1.Y=2777.17mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad U1-6(618.307mil,1795.591mil) on Top Layer And Pad U1-5(618.307mil,1770mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.32mil|Location2.X=1521.57mil|Location1.Y=2777.17mil|Location2.Y=2788.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.32mil|Location2.X=1521.57mil|Location1.Y=2777.17mil|Location2.Y=2788.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad U1-2(531.693mil,1770mil) on Top Layer And Pad U1-1(531.693mil,1795.591mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.32mil|Location2.X=1521.57mil|Location1.Y=2751.58mil|Location2.Y=2762.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.32mil|Location2.X=1521.57mil|Location1.Y=2751.58mil|Location2.Y=2762.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad U1-3(531.693mil,1744.409mil) on Top Layer And Pad U1-2(531.693mil,1770mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.407mil|Location2.X=2121.657mil|Location1.Y=3074.375mil|Location2.Y=3085.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.407mil|Location2.X=2121.657mil|Location1.Y=3074.375mil|Location2.Y=3085.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.937mil &lt; 10mil) Between Pad C5-2(1061.85mil,2080mil) on Multi-Layer And Pad BC2-1(1250mil,2030mil) on Bottom Layer [Bottom Solder] Mask Sliver [9.937mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAXDSFNJCFFGACLYDGVNL1XWMWNXQ24UGLR3FGKP4DEAZZH2SYITC"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1602.993mil|Location2.X=1614.243mil|Location1.Y=1476.816mil|Location2.Y=1488.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1602.993mil|Location2.X=1614.243mil|Location1.Y=1476.816mil|Location2.Y=1488.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (614.055mil,468.661mil)(614.055mil,551.339mil) on Top Overlay And Pad R6-1(589.449mil,510mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1495.757mil|Location2.X=1507.007mil|Location1.Y=1476.816mil|Location2.Y=1488.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1495.757mil|Location2.X=1507.007mil|Location1.Y=1476.816mil|Location2.Y=1488.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (495.945mil,468.661mil)(495.945mil,551.339mil) on Top Overlay And Pad R6-2(520.551mil,510mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1617.993mil|Location2.X=1629.243mil|Location1.Y=1776.816mil|Location2.Y=1788.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1617.993mil|Location2.X=1629.243mil|Location1.Y=1776.816mil|Location2.Y=1788.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (629.055mil,768.661mil)(629.055mil,851.339mil) on Top Overlay And Pad R5-1(604.449mil,810mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.757mil|Location2.X=1522.007mil|Location1.Y=1776.816mil|Location2.Y=1788.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1510.757mil|Location2.X=1522.007mil|Location1.Y=1776.816mil|Location2.Y=1788.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (510.945mil,768.661mil)(510.945mil,851.339mil) on Top Overlay And Pad R5-2(535.551mil,810mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.993mil|Location2.X=1479.243mil|Location1.Y=2076.816mil|Location2.Y=2088.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1467.993mil|Location2.X=1479.243mil|Location1.Y=2076.816mil|Location2.Y=2088.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (479.055mil,1068.661mil)(479.055mil,1151.339mil) on Top Overlay And Pad R4-1(454.449mil,1110mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1360.757mil|Location2.X=1372.007mil|Location1.Y=2076.816mil|Location2.Y=2088.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1360.757mil|Location2.X=1372.007mil|Location1.Y=2076.816mil|Location2.Y=2088.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (360.945mil,1068.661mil)(360.945mil,1151.339mil) on Top Overlay And Pad R4-2(385.551mil,1110mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1457.993mil|Location2.X=1469.243mil|Location1.Y=1576.816mil|Location2.Y=1588.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1457.993mil|Location2.X=1469.243mil|Location1.Y=1576.816mil|Location2.Y=1588.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (469.055mil,568.661mil)(469.055mil,651.339mil) on Top Overlay And Pad R3-1(444.449mil,610mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.757mil|Location2.X=1362.007mil|Location1.Y=1576.816mil|Location2.Y=1588.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.757mil|Location2.X=1362.007mil|Location1.Y=1576.816mil|Location2.Y=1588.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (350.945mil,568.661mil)(350.945mil,651.339mil) on Top Overlay And Pad R3-2(375.551mil,610mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1457.993mil|Location2.X=1469.243mil|Location1.Y=1876.816mil|Location2.Y=1888.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1457.993mil|Location2.X=1469.243mil|Location1.Y=1876.816mil|Location2.Y=1888.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (469.055mil,868.661mil)(469.055mil,951.339mil) on Top Overlay And Pad R2-1(444.449mil,910mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.757mil|Location2.X=1362.007mil|Location1.Y=1876.816mil|Location2.Y=1888.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350.757mil|Location2.X=1362.007mil|Location1.Y=1876.816mil|Location2.Y=1888.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (350.945mil,868.661mil)(350.945mil,951.339mil) on Top Overlay And Pad R2-2(375.551mil,910mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1622.993mil|Location2.X=1634.243mil|Location1.Y=2176.816mil|Location2.Y=2188.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1622.993mil|Location2.X=1634.243mil|Location1.Y=2176.816mil|Location2.Y=2188.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (634.055mil,1168.661mil)(634.055mil,1251.339mil) on Top Overlay And Pad R1-1(609.449mil,1210mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.757mil|Location2.X=1527.007mil|Location1.Y=2176.816mil|Location2.Y=2188.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515.757mil|Location2.X=1527.007mil|Location1.Y=2176.816mil|Location2.Y=2188.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (515.945mil,1168.661mil)(515.945mil,1251.339mil) on Top Overlay And Pad R1-2(540.551mil,1210mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.993mil|Location2.X=2044.243mil|Location1.Y=2686.816mil|Location2.Y=2698.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.993mil|Location2.X=2044.243mil|Location1.Y=2686.816mil|Location2.Y=2698.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (1044.055mil,1678.661mil)(1044.055mil,1761.339mil) on Top Overlay And Pad R7-1(1019.449mil,1720mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.757mil|Location2.X=1937.007mil|Location1.Y=2686.816mil|Location2.Y=2698.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.757mil|Location2.X=1937.007mil|Location1.Y=2686.816mil|Location2.Y=2698.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (925.945mil,1678.661mil)(925.945mil,1761.339mil) on Top Overlay And Pad R7-2(950.551mil,1720mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.757mil|Location2.X=1937.007mil|Location1.Y=2796.816mil|Location2.Y=2808.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.757mil|Location2.X=1937.007mil|Location1.Y=2796.816mil|Location2.Y=2808.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (925.945mil,1788.661mil)(925.945mil,1871.339mil) on Top Overlay And Pad R8-2(950.551mil,1830mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.993mil|Location2.X=2044.243mil|Location1.Y=2796.816mil|Location2.Y=2808.066mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2032.993mil|Location2.X=2044.243mil|Location1.Y=2796.816mil|Location2.Y=2808.066mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (1044.055mil,1788.661mil)(1044.055mil,1871.339mil) on Top Overlay And Pad R8-1(1019.449mil,1830mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.45mil|Location2.X=2579.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.45mil|Location2.X=2579.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (1565mil,2110mil)(1565mil,2235mil) on Top Overlay And Pad TP2-1(1650mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720.3mil|Location2.X=2731.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720.3mil|Location2.X=2731.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (1735mil,2110mil)(1735mil,2235mil) on Top Overlay And Pad TP2-1(1650mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720.3mil|Location2.X=2731.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2720.3mil|Location2.X=2731.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (1735mil,10mil)(1735mil,2235mil) on Top Overlay And Pad TP2-1(1650mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1013.45mil|Location2.X=1024.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1013.45mil|Location2.X=1024.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (10mil,2110mil)(10mil,2235mil) on Top Overlay And Pad TP1-1(95mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1165.3mil|Location2.X=1176.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1165.3mil|Location2.X=1176.55mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (180mil,2110mil)(180mil,2235mil) on Top Overlay And Pad TP1-1(95mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1013.45mil|Location2.X=1024.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1013.45mil|Location2.X=1024.7mil|Location1.Y=3124.021mil|Location2.Y=3135.271mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.15mil &lt; 10mil) Between Track (10mil,10mil)(10mil,2235mil) on Top Overlay And Pad TP1-1(95mil,2170mil) on Top Layer [Top Overlay] to [Top Solder] clearance [8.15mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.816mil|Location2.X=1843.066mil|Location1.Y=2822.993mil|Location2.Y=2834.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.816mil|Location2.X=1843.066mil|Location1.Y=2822.993mil|Location2.Y=2834.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (823.661mil,1834.055mil)(906.339mil,1834.055mil) on Top Overlay And Pad C3-2(865mil,1809.449mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.816mil|Location2.X=1843.066mil|Location1.Y=2715.757mil|Location2.Y=2727.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.816mil|Location2.X=1843.066mil|Location1.Y=2715.757mil|Location2.Y=2727.007mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (823.661mil,1715.945mil)(906.339mil,1715.945mil) on Top Overlay And Pad C3-1(865mil,1740.551mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2640.757mil|Location2.Y=2652.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2640.757mil|Location2.Y=2652.007mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (723.661mil,1640.945mil)(806.339mil,1640.945mil) on Top Overlay And Pad C2-2(765mil,1665.551mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2747.993mil|Location2.Y=2759.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2747.993mil|Location2.Y=2759.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (723.661mil,1759.055mil)(806.339mil,1759.055mil) on Top Overlay And Pad C2-1(765mil,1734.449mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1356.816mil|Location2.X=1368.066mil|Location1.Y=2707.993mil|Location2.Y=2719.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1356.816mil|Location2.X=1368.066mil|Location1.Y=2707.993mil|Location2.Y=2719.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (348.661mil,1719.055mil)(431.339mil,1719.055mil) on Top Overlay And Pad C1-2(390mil,1694.449mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1356.816mil|Location2.X=1368.066mil|Location1.Y=2600.757mil|Location2.Y=2612.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1356.816mil|Location2.X=1368.066mil|Location1.Y=2600.757mil|Location2.Y=2612.007mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (348.661mil,1600.945mil)(431.339mil,1600.945mil) on Top Overlay And Pad C1-1(390mil,1625.551mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2892.993mil|Location2.Y=2904.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2892.993mil|Location2.Y=2904.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (723.661mil,1904.055mil)(806.339mil,1904.055mil) on Top Overlay And Pad C4-2(765mil,1879.449mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2785.757mil|Location2.Y=2797.007mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1731.816mil|Location2.X=1743.066mil|Location1.Y=2785.757mil|Location2.Y=2797.007mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.874mil &lt; 10mil) Between Track (723.661mil,1785.945mil)(806.339mil,1785.945mil) on Top Overlay And Pad C4-1(765mil,1810.551mil) on Top Layer [Top Overlay] to [Top Solder] clearance [4.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2758.47mil|Location2.Y=2769.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2758.47mil|Location2.Y=2769.72mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (595mil,1823.267mil)(595mil,1716.968mil) on Top Overlay And Pad U1-5(618.307mil,1770mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2732.879mil|Location2.Y=2744.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2732.879mil|Location2.Y=2744.129mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (595mil,1823.267mil)(595mil,1716.968mil) on Top Overlay And Pad U1-4(618.307mil,1744.409mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1546.599mil|Location2.X=1557.849mil|Location1.Y=2795.556mil|Location2.Y=2806.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1546.599mil|Location2.X=1557.849mil|Location1.Y=2795.556mil|Location2.Y=2806.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.552mil &lt; 10mil) Between Region (0 hole(s)) Top Overlay And Pad U1-1(531.693mil,1795.591mil) on Top Layer [Top Overlay] to [Top Solder] clearance [5.552mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2784.06mil|Location2.Y=2795.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2784.06mil|Location2.Y=2795.31mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (555mil,1716.968mil)(555mil,1823.267mil) on Top Overlay And Pad U1-1(531.693mil,1795.591mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2758.47mil|Location2.Y=2769.72mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2758.47mil|Location2.Y=2769.72mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (555mil,1716.968mil)(555mil,1823.267mil) on Top Overlay And Pad U1-2(531.693mil,1770mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2732.879mil|Location2.Y=2744.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1545.349mil|Location2.X=1556.599mil|Location1.Y=2732.879mil|Location2.Y=2744.129mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (555mil,1716.968mil)(555mil,1823.267mil) on Top Overlay And Pad U1-3(531.693mil,1744.409mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2784.06mil|Location2.Y=2795.31mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1593.401mil|Location2.X=1604.651mil|Location1.Y=2784.06mil|Location2.Y=2795.31mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.052mil &lt; 10mil) Between Track (595mil,1823.267mil)(595mil,1716.968mil) on Top Overlay And Pad U1-6(618.307mil,1795.591mil) on Top Layer [Top Overlay] to [Top Solder] clearance [3.052mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2123.667mil|Location2.X=2131.333mil|Location1.Y=2516.167mil|Location2.Y=2523.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2123.667mil|Location2.X=2131.333mil|Location1.Y=2516.167mil|Location2.Y=2523.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Text "Q4" (1215mil,1470mil) on Bottom Overlay And Pad R11-1(1215mil,1625mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=2061.776mil|Location2.Y=2073.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=2061.776mil|Location2.Y=2073.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,1058.818mil)(310mil,1543.818mil) on Bottom Overlay And Pad Q1-2(475mil,1106.771mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=2061.776mil|Location2.Y=2073.026mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=2061.776mil|Location2.Y=2073.026mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,1058.818mil)(640mil,1543.818mil) on Bottom Overlay And Pad Q1-2(475mil,1106.771mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2059.984mil|Location2.Y=2071.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2059.984mil|Location2.Y=2071.234mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (310mil,1058.818mil)(640mil,1058.818mil) on Bottom Overlay And Pad Q1-2(475mil,1106.771mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=2451.539mil|Location2.Y=2462.789mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=2451.539mil|Location2.Y=2462.789mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,1058.818mil)(310mil,1543.818mil) on Bottom Overlay And Pad Q1-2(475mil,1496.534mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=2451.539mil|Location2.Y=2462.789mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=2451.539mil|Location2.Y=2462.789mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,1058.818mil)(640mil,1543.818mil) on Bottom Overlay And Pad Q1-2(475mil,1496.534mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2531.736mil|Location2.Y=2542.986mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2531.736mil|Location2.Y=2542.986mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (310mil,1543.818mil)(640mil,1543.818mil) on Bottom Overlay And Pad Q1-2(475mil,1496.534mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1936.303mil|Location2.Y=1947.553mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1936.303mil|Location2.Y=1947.553mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,543.582mil)(310mil,1028.582mil) on Bottom Overlay And Pad Q2-2(475mil,981.298mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1936.303mil|Location2.Y=1947.553mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1936.303mil|Location2.Y=1947.553mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,543.582mil)(640mil,1028.582mil) on Bottom Overlay And Pad Q2-2(475mil,981.298mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2016.5mil|Location2.Y=2027.75mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=2016.5mil|Location2.Y=2027.75mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (310mil,1028.582mil)(640mil,1028.582mil) on Bottom Overlay And Pad Q2-2(475mil,981.298mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1546.54mil|Location2.Y=1557.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1546.54mil|Location2.Y=1557.79mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,543.582mil)(310mil,1028.582mil) on Bottom Overlay And Pad Q2-2(475mil,591.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1546.54mil|Location2.Y=1557.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1546.54mil|Location2.Y=1557.79mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,543.582mil)(640mil,1028.582mil) on Bottom Overlay And Pad Q2-2(475mil,591.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1544.748mil|Location2.Y=1555.998mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1544.748mil|Location2.Y=1555.998mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (310mil,543.582mil)(640mil,543.582mil) on Bottom Overlay And Pad Q2-2(475mil,591.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1031.777mil|Location2.Y=1043.027mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1031.777mil|Location2.Y=1043.027mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,28.819mil)(310mil,513.819mil) on Bottom Overlay And Pad Q3-2(475mil,76.772mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1031.777mil|Location2.Y=1043.027mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1031.777mil|Location2.Y=1043.027mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,28.819mil)(640mil,513.819mil) on Bottom Overlay And Pad Q3-2(475mil,76.772mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1029.985mil|Location2.Y=1041.235mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1029.985mil|Location2.Y=1041.235mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (310mil,28.819mil)(640mil,28.819mil) on Bottom Overlay And Pad Q3-2(475mil,76.772mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1421.54mil|Location2.Y=1432.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310.635mil|Location2.X=1321.885mil|Location1.Y=1421.54mil|Location2.Y=1432.79mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (310mil,28.819mil)(310mil,513.819mil) on Bottom Overlay And Pad Q3-2(475mil,466.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1421.54mil|Location2.Y=1432.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1628.115mil|Location2.X=1639.365mil|Location1.Y=1421.54mil|Location2.Y=1432.79mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (640mil,28.819mil)(640mil,513.819mil) on Bottom Overlay And Pad Q3-2(475mil,466.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1501.737mil|Location2.Y=1512.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1311.895mil|Location2.X=1323.145mil|Location1.Y=1501.737mil|Location2.Y=1512.987mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (310mil,513.819mil)(640mil,513.819mil) on Bottom Overlay And Pad Q3-2(475mil,466.535mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.832mil|Location2.X=1752.082mil|Location1.Y=2116.895mil|Location2.Y=2128.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.832mil|Location2.X=1752.082mil|Location1.Y=2116.895mil|Location2.Y=2128.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (740mil,1115mil)(740mil,1445mil) on Bottom Overlay And Pad Q4-2(787.284mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.289mil|Location2.X=1753.539mil|Location1.Y=2115.635mil|Location2.Y=2126.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.289mil|Location2.X=1753.539mil|Location1.Y=2115.635mil|Location2.Y=2126.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,1115mil)(1225mil,1115mil) on Bottom Overlay And Pad Q4-2(787.284mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.289mil|Location2.X=1753.539mil|Location1.Y=2433.115mil|Location2.Y=2444.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.289mil|Location2.X=1753.539mil|Location1.Y=2433.115mil|Location2.Y=2444.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,1445mil)(1225mil,1445mil) on Bottom Overlay And Pad Q4-2(787.284mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.584mil|Location2.X=2223.834mil|Location1.Y=2116.895mil|Location2.Y=2128.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.584mil|Location2.X=2223.834mil|Location1.Y=2116.895mil|Location2.Y=2128.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (1225mil,1115mil)(1225mil,1445mil) on Bottom Overlay And Pad Q4-2(1177.047mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=2115.635mil|Location2.Y=2126.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=2115.635mil|Location2.Y=2126.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,1115mil)(1225mil,1115mil) on Bottom Overlay And Pad Q4-2(1177.047mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=2433.115mil|Location2.Y=2444.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=2433.115mil|Location2.Y=2444.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,1445mil)(1225mil,1445mil) on Bottom Overlay And Pad Q4-2(1177.047mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2214.002mil|Location2.X=2225.252mil|Location1.Y=1601.895mil|Location2.Y=1613.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2214.002mil|Location2.X=2225.252mil|Location1.Y=1601.895mil|Location2.Y=1613.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (1226.418mil,600mil)(1226.418mil,930mil) on Bottom Overlay And Pad Q5-2(1178.465mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.47mil|Location2.X=2144.72mil|Location1.Y=1918.115mil|Location2.Y=1929.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.47mil|Location2.X=2144.72mil|Location1.Y=1918.115mil|Location2.Y=1929.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (741.418mil,930mil)(1226.418mil,930mil) on Bottom Overlay And Pad Q5-2(1178.465mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.47mil|Location2.X=2144.72mil|Location1.Y=1600.635mil|Location2.Y=1611.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2133.47mil|Location2.X=2144.72mil|Location1.Y=1600.635mil|Location2.Y=1611.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (741.418mil,600mil)(1226.418mil,600mil) on Bottom Overlay And Pad Q5-2(1178.465mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.25mil|Location2.X=1753.5mil|Location1.Y=1601.895mil|Location2.Y=1613.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.25mil|Location2.X=1753.5mil|Location1.Y=1601.895mil|Location2.Y=1613.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (741.418mil,600mil)(741.418mil,930mil) on Bottom Overlay And Pad Q5-2(788.702mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1743.706mil|Location2.X=1754.956mil|Location1.Y=1918.115mil|Location2.Y=1929.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1743.706mil|Location2.X=1754.956mil|Location1.Y=1918.115mil|Location2.Y=1929.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (741.418mil,930mil)(1226.418mil,930mil) on Bottom Overlay And Pad Q5-2(788.702mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1743.706mil|Location2.X=1754.956mil|Location1.Y=1600.635mil|Location2.Y=1611.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1743.706mil|Location2.X=1754.956mil|Location1.Y=1600.635mil|Location2.Y=1611.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (741.418mil,600mil)(1226.418mil,600mil) on Bottom Overlay And Pad Q5-2(788.702mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.832mil|Location2.X=1752.082mil|Location1.Y=1086.895mil|Location2.Y=1098.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1740.832mil|Location2.X=1752.082mil|Location1.Y=1086.895mil|Location2.Y=1098.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.913mil &lt; 10mil) Between Track (740mil,85mil)(740mil,415mil) on Bottom Overlay And Pad Q6-2(787.284mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.913mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.288mil|Location2.X=1753.538mil|Location1.Y=1085.635mil|Location2.Y=1096.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.288mil|Location2.X=1753.538mil|Location1.Y=1085.635mil|Location2.Y=1096.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,85mil)(1225mil,85mil) on Bottom Overlay And Pad Q6-2(787.284mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.288mil|Location2.X=1753.538mil|Location1.Y=1403.115mil|Location2.Y=1414.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.288mil|Location2.X=1753.538mil|Location1.Y=1403.115mil|Location2.Y=1414.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,415mil)(1225mil,415mil) on Bottom Overlay And Pad Q6-2(787.284mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.584mil|Location2.X=2223.834mil|Location1.Y=1086.895mil|Location2.Y=1098.145mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2212.584mil|Location2.X=2223.834mil|Location1.Y=1086.895mil|Location2.Y=1098.145mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (3.583mil &lt; 10mil) Between Track (1225mil,85mil)(1225mil,415mil) on Bottom Overlay And Pad Q6-2(1177.047mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [3.583mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=1085.635mil|Location2.Y=1096.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=1085.635mil|Location2.Y=1096.885mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,85mil)(1225mil,85mil) on Bottom Overlay And Pad Q6-2(1177.047mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=1403.115mil|Location2.Y=1414.365mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2132.052mil|Location2.X=2143.302mil|Location1.Y=1403.115mil|Location2.Y=1414.365mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.52mil &lt; 10mil) Between Track (740mil,415mil)(1225mil,415mil) on Bottom Overlay And Pad Q6-2(1177.047mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.52mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.698mil|Location2.X=1542.948mil|Location1.Y=2650.304mil|Location2.Y=2661.554mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.698mil|Location2.X=1542.948mil|Location1.Y=2650.304mil|Location2.Y=2661.554mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.142mil &lt; 10mil) Between Track (537.323mil,1648.858mil)(570.787mil,1648.858mil) on Bottom Overlay And Pad C6-1(542.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [8.142mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.698mil|Location2.X=1542.948mil|Location1.Y=2768.446mil|Location2.Y=2779.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.698mil|Location2.X=1542.948mil|Location1.Y=2768.446mil|Location2.Y=2779.696mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.142mil &lt; 10mil) Between Track (537.323mil,1781.142mil)(570.787mil,1781.142mil) on Bottom Overlay And Pad C6-1(542.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [8.142mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1533.489mil|Location2.X=1541.156mil|Location1.Y=2656.167mil|Location2.Y=2663.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1533.489mil|Location2.X=1541.156mil|Location1.Y=2656.167mil|Location2.Y=2663.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (537.323mil,1648.858mil)(537.323mil,1781.142mil) on Bottom Overlay And Pad C6-1(542.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1495.831mil|Location2.X=1507.081mil|Location1.Y=2694.372mil|Location2.Y=2705.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1495.831mil|Location2.X=1507.081mil|Location1.Y=2694.372mil|Location2.Y=2705.622mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (2.088mil &lt; 10mil) Between Text "C6" (495mil,1690mil) on Bottom Overlay And Pad C6-1(542.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [2.088mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.052mil|Location2.X=1708.302mil|Location1.Y=2768.249mil|Location2.Y=2779.499mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1697.052mil|Location2.X=1708.302mil|Location1.Y=2768.249mil|Location2.Y=2779.499mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.748mil &lt; 10mil) Between Track (702.284mil,1781.142mil)(702.677mil,1780.748mil) on Bottom Overlay And Pad C6-2(697.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [7.748mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1698.844mil|Location2.X=1706.511mil|Location1.Y=2656.167mil|Location2.Y=2663.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1698.844mil|Location2.X=1706.511mil|Location1.Y=2656.167mil|Location2.Y=2663.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (702.677mil,1649.646mil)(702.677mil,1780.748mil) on Bottom Overlay And Pad C6-2(697.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1663.588mil|Location2.X=1674.838mil|Location1.Y=2650.698mil|Location2.Y=2661.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1663.588mil|Location2.X=1674.838mil|Location1.Y=2650.698mil|Location2.Y=2661.948mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.354mil &lt; 10mil) Between Track (669.213mil,1649.646mil)(702.677mil,1649.646mil) on Bottom Overlay And Pad C6-2(697.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [7.354mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1663.588mil|Location2.X=1674.838mil|Location1.Y=2768.446mil|Location2.Y=2779.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1663.588mil|Location2.X=1674.838mil|Location1.Y=2768.446mil|Location2.Y=2779.696mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.142mil &lt; 10mil) Between Track (669.213mil,1781.142mil)(702.284mil,1781.142mil) on Bottom Overlay And Pad C6-2(697.5mil,1715mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [8.142mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=1121.167mil|Location2.Y=1128.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=1121.167mil|Location2.Y=1128.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (1735mil,10mil)(1735mil,2235mil) on Bottom Overlay And Pad BC8-1(1530mil,250mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=1636.167mil|Location2.Y=1643.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=1636.167mil|Location2.Y=1643.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (1735mil,10mil)(1735mil,2235mil) on Bottom Overlay And Pad BC6-1(1530mil,765mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1341.167mil|Location2.X=1348.833mil|Location1.Y=3226.167mil|Location2.Y=3233.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1341.167mil|Location2.X=1348.833mil|Location1.Y=3226.167mil|Location2.Y=3233.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (10mil,2235mil)(1735mil,2235mil) on Bottom Overlay And Pad BC1-1(470mil,2030mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2121.167mil|Location2.X=2128.833mil|Location1.Y=3226.167mil|Location2.Y=3233.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2121.167mil|Location2.X=2128.833mil|Location1.Y=3226.167mil|Location2.Y=3233.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (10mil,2235mil)(1735mil,2235mil) on Bottom Overlay And Pad BC2-1(1250mil,2030mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=2151.167mil|Location2.Y=2158.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2726.167mil|Location2.X=2733.833mil|Location1.Y=2151.167mil|Location2.Y=2158.833mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Track (1735mil,10mil)(1735mil,2235mil) on Bottom Overlay And Pad BC4-1(1530mil,1280mil) on Bottom Layer [Bottom Overlay] to [Bottom Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJSTPEGWKBMX1DUBVDARCOHYG5DWUKGXWSK4SHJFYJWYWMQ44FIL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306.167mil|Location2.X=1313.833mil|Location1.Y=1296.164mil|Location2.Y=1303.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1306.167mil|Location2.X=1313.833mil|Location1.Y=1296.164mil|Location2.Y=1303.83mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Text "J2" (305mil,290mil) on Bottom Overlay And Track (310mil,28.819mil)(310mil,513.819mil) on Bottom Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.398mil|Location2.X=2160.648mil|Location1.Y=1934.169mil|Location2.Y=1945.419mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.398mil|Location2.X=2160.648mil|Location1.Y=1934.169mil|Location2.Y=1945.419mil|Absolute=True">Silk To Silk Clearance Constraint: (9.588mil &lt; 10mil) Between Text "Q5" (1225mil,950mil) on Bottom Overlay And Track (741.418mil,930mil)(1226.418mil,930mil) on Bottom Overlay Silk Text to Silk Clearance [9.588mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.404mil|Location2.X=2135.654mil|Location1.Y=1419.169mil|Location2.Y=1430.419mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.404mil|Location2.X=2135.654mil|Location1.Y=1419.169mil|Location2.Y=1430.419mil|Absolute=True">Silk To Silk Clearance Constraint: (9.588mil &lt; 10mil) Between Text "Q6" (1220mil,435mil) on Bottom Overlay And Track (740mil,415mil)(1225mil,415mil) on Bottom Overlay Silk Text to Silk Clearance [9.588mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2722.081mil|Location2.X=2733.331mil|Location1.Y=1954.375mil|Location2.Y=1965.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Intern-Carl\Documents\GitHub\Electrical\Mosfet-Inverter\MIPCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2722.081mil|Location2.X=2733.331mil|Location1.Y=1954.375mil|Location2.Y=1965.625mil|Absolute=True">Silk To Silk Clearance Constraint: (4.588mil &lt; 10mil) Between Text "BC6" (1720mil,960mil) on Bottom Overlay And Track (1735mil,10mil)(1735mil,2235mil) on Bottom Overlay Silk Text to Silk Clearance [4.588mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

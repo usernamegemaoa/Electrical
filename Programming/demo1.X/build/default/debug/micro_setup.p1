@@ -1,11 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"58 micro_setup.h
+"62 micro_setup.h
 [v _setup_port `(v ~T0 @X0 0 ef ]
-"60
+"66
 [v _init_pin `(v ~T0 @X0 0 ef ]
-"62
+"68
 [v _init_hall `(v ~T0 @X0 0 ef ]
-"1328 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+"12 C:\Program Files (x86)\Microchip\xc8\v1.38\include\conio.h
+[v _init_uart `(v ~T0 @X0 0 ef ]
+"1328 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
 [v _TRISA `Vuc ~T0 @X0 0 e@133 ]
 "1389
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
@@ -17,6 +19,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISE `Vuc ~T0 @X0 0 e@137 ]
 "1876
 [v _ANSEL `Vuc ~T0 @X0 0 e@145 ]
+"2584
+[v _TXSTA `Vuc ~T0 @X0 0 e@152 ]
+"2664
+[v _SPBRG `Vuc ~T0 @X0 0 e@153 ]
+"978
+[s S37 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S37 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"988
+[s S38 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S38 . RCD8 . RC9 ]
+"993
+[s S39 :6 `uc 1 :1 `uc 1 ]
+[n S39 . . nRC8 ]
+"997
+[s S40 :6 `uc 1 :1 `uc 1 ]
+[n S40 . . RC8_9 ]
+"977
+[u S36 `S37 1 `S38 1 `S39 1 `S40 1 ]
+[n S36 . . . . . ]
+"1002
+[v _RCSTAbits `VS36 ~T0 @X0 0 e@24 ]
 "288
 [s S11 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S11 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
@@ -33,13 +56,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S12 . . ]
 "360
 [v _PORTDbits `VS12 ~T0 @X0 0 e@8 ]
-"8 hall_effect.h
+"9 hall_effect.h
 [v _get_hall_state `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f917.h: 49: extern volatile unsigned char INDF @ 0x000;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
 [; ;pic16f917.h: 51: asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
 [; ;pic16f917.h: 55: extern volatile unsigned char TMR0 @ 0x001;
@@ -2353,14 +2376,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x FCMEN=ON ]
 "13
 [p x DEBUG=ON ]
-[; ;micro_setup.h: 54: extern int init_state;
-[; ;micro_setup.h: 56: void setup_mcu(void);
-[; ;micro_setup.h: 58: void setup_port(void);
-[; ;micro_setup.h: 60: void init_pin(void);
-[; ;micro_setup.h: 62: void init_hall(void);
+[; ;micro_setup.h: 58: extern int init_state;
+[; ;micro_setup.h: 60: void setup_mcu(void);
+[; ;micro_setup.h: 62: void setup_port(void);
+[; ;micro_setup.h: 64: void init_uart(void);
+[; ;micro_setup.h: 66: void init_pin(void);
+[; ;micro_setup.h: 68: void init_hall(void);
 [; ;hall_effect.h: 6: void read_hall(int *hall_A, int *hall_B, int *hall_C);
-[; ;hall_effect.h: 8: int get_hall_state(void);
-[; ;hall_effect.h: 10: int initial_state(void);
+[; ;hall_effect.h: 9: int get_hall_state(void);
 [; ;hall_effect.h: 12: int get_direction(void);
 "7 micro_setup.c
 [v _init_state `i ~T0 @X0 1 e ]
@@ -2385,100 +2408,133 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;micro_setup.c: 13: init_hall();
 "13
 [e ( _init_hall ..  ]
-[; ;micro_setup.c: 14: }
+[; ;micro_setup.c: 14: init_uart();
 "14
+[e ( _init_uart ..  ]
+[; ;micro_setup.c: 15: }
+"15
 [e :UE 210 ]
 }
-"16
-[v _setup_port `(v ~T0 @X0 1 ef ]
 "17
+[v _setup_port `(v ~T0 @X0 1 ef ]
+"18
 {
-[; ;micro_setup.c: 16: void setup_port(void)
-[; ;micro_setup.c: 17: {
+[; ;micro_setup.c: 17: void setup_port(void)
+[; ;micro_setup.c: 18: {
 [e :U _setup_port ]
 [f ]
-[; ;micro_setup.c: 18: TRISA = 0b10001111;
-"18
-[e = _TRISA -> -> 143 `i `uc ]
-[; ;micro_setup.c: 19: TRISB = 0b00000000;
+[; ;micro_setup.c: 19: TRISA = 0b10001111;
 "19
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;micro_setup.c: 20: TRISC = 0b10000000;
-"20
-[e = _TRISC -> -> 128 `i `uc ]
-[; ;micro_setup.c: 21: TRISD = 0b00000000;
+[e = _TRISA -> -> 143 `i `uc ]
+[; ;micro_setup.c: 21: TRISB = 0b00000000;
 "21
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;micro_setup.c: 23: TRISC = 0b10000000;
+"23
+[e = _TRISC -> -> 128 `i `uc ]
+[; ;micro_setup.c: 25: TRISD = 0b00000000;
+"25
 [e = _TRISD -> -> 0 `i `uc ]
-[; ;micro_setup.c: 22: TRISE = 0b00000111;
-"22
+[; ;micro_setup.c: 27: TRISE = 0b00000111;
+"27
 [e = _TRISE -> -> 7 `i `uc ]
-[; ;micro_setup.c: 24: ANSEL = 0b00001111;
-"24
+[; ;micro_setup.c: 29: ANSEL = 0b00001111;
+"29
 [e = _ANSEL -> -> 15 `i `uc ]
-[; ;micro_setup.c: 28: }
-"28
+[; ;micro_setup.c: 32: }
+"32
 [e :UE 211 ]
 }
-"30
-[v _init_pin `(v ~T0 @X0 1 ef ]
-"31
-{
-[; ;micro_setup.c: 30: void init_pin(void)
-[; ;micro_setup.c: 31: {
-[e :U _init_pin ]
-[f ]
-[; ;micro_setup.c: 32: PORTCbits.RC0 = (0);
-"32
-[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 33: PORTCbits.RC1 = (0);
-"33
-[e = . . _PORTCbits 0 1 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 34: PORTCbits.RC2 = (0);
 "34
-[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 35: PORTCbits.RC3 = (0);
+[v _init_uart `(v ~T0 @X0 1 ef ]
 "35
-[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 36: PORTCbits.RC4 = (0);
+{
+[; ;micro_setup.c: 34: void init_uart(void)
+[; ;micro_setup.c: 35: {
+[e :U _init_uart ]
+[f ]
+[; ;micro_setup.c: 36: TXSTA = 0b00100000;
 "36
-[e = . . _PORTCbits 0 4 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 37: PORTCbits.RC5 = (0);
-"37
-[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 39: PORTDbits.RD0 = (0);
-"39
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 40: PORTDbits.RD1 = (0);
-"40
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 41: PORTDbits.RD2 = (0);
-"41
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 42: PORTDbits.RD3 = (0);
-"42
-[e = . . _PORTDbits 0 3 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 43: PORTDbits.RD4 = (0);
-"43
-[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 44: PORTDbits.RD5 = (0);
-"44
-[e = . . _PORTDbits 0 5 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 45: }
-"45
+[e = _TXSTA -> -> 32 `i `uc ]
+[; ;micro_setup.c: 48: SPBRG = 12;
+"48
+[e = _SPBRG -> -> 12 `i `uc ]
+[; ;micro_setup.c: 61: RCSTAbits.SPEN=1;
+"61
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;micro_setup.c: 62: RCSTAbits.RX9=0;
+"62
+[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 63: RCSTAbits.CREN=1;
+"63
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[; ;micro_setup.c: 64: RCSTAbits.ADDEN=0;
+"64
+[e = . . _RCSTAbits 0 3 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 71: }
+"71
 [e :UE 212 ]
 }
-"47
-[v _init_hall `(v ~T0 @X0 1 ef ]
-"48
+"73
+[v _init_pin `(v ~T0 @X0 1 ef ]
+"74
 {
-[; ;micro_setup.c: 47: void init_hall(void)
-[; ;micro_setup.c: 48: {
+[; ;micro_setup.c: 73: void init_pin(void)
+[; ;micro_setup.c: 74: {
+[e :U _init_pin ]
+[f ]
+[; ;micro_setup.c: 75: PORTCbits.RC0 = (0);
+"75
+[e = . . _PORTCbits 0 0 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 76: PORTCbits.RC1 = (0);
+"76
+[e = . . _PORTCbits 0 1 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 77: PORTCbits.RC2 = (0);
+"77
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 78: PORTCbits.RC3 = (0);
+"78
+[e = . . _PORTCbits 0 3 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 79: PORTCbits.RC4 = (0);
+"79
+[e = . . _PORTCbits 0 4 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 80: PORTCbits.RC5 = (0);
+"80
+[e = . . _PORTCbits 0 5 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 82: PORTDbits.RD0 = (0);
+"82
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 83: PORTDbits.RD1 = (0);
+"83
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 84: PORTDbits.RD2 = (0);
+"84
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 85: PORTDbits.RD3 = (0);
+"85
+[e = . . _PORTDbits 0 3 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 86: PORTDbits.RD4 = (0);
+"86
+[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 87: PORTDbits.RD5 = (0);
+"87
+[e = . . _PORTDbits 0 5 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 88: }
+"88
+[e :UE 213 ]
+}
+"90
+[v _init_hall `(v ~T0 @X0 1 ef ]
+"91
+{
+[; ;micro_setup.c: 90: void init_hall(void)
+[; ;micro_setup.c: 91: {
 [e :U _init_hall ]
 [f ]
-[; ;micro_setup.c: 49: init_state = get_hall_state();
-"49
+[; ;micro_setup.c: 92: init_state = get_hall_state();
+"92
 [e = _init_state ( _get_hall_state ..  ]
-[; ;micro_setup.c: 50: }
-"50
-[e :UE 213 ]
+[; ;micro_setup.c: 93: }
+"93
+[e :UE 214 ]
 }

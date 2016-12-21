@@ -9,6 +9,7 @@
       <itemPath>hall_effect.h</itemPath>
       <itemPath>analog.h</itemPath>
       <itemPath>uart.h</itemPath>
+      <itemPath>pwm.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -41,7 +42,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>1.37</languageToolchainVersion>
+        <languageToolchainVersion>1.38</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>

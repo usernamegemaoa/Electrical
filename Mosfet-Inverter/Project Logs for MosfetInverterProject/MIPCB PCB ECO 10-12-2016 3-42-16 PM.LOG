@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=BATTERY_GND Pin=R14-1
+Removed Member From Class: ClassName=MISchematic Member=R14
+Added Component: Designator=R11(WSHM28182L000FEB)
+Added Pin To Net: NetName=BATTERY_GND Pin=R11-1
+Added Member To Class: ClassName=MISchematic Member=Component R11 0.002
+Added Room: Name=MISchematic

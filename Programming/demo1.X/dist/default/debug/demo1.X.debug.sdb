@@ -3,43 +3,65 @@
 [d edition pro ]
 [d chip 16F917 ]
 [d frameptr 6 ]
-"38 C:\Users\Carl\MPLABXProjects\demo1.X\blink_led.c
+"9 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+[v _analog_init analog_init `(v  1 e 1 0 ]
+"53
+[v _get_analog get_analog `(ui  1 e 2 0 ]
+"38 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\blink_led.c
 [v _led_on led_on `(v  1 e 1 0 ]
 "65
 [v _led_off led_off `(v  1 e 1 0 ]
-"42 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\altoft.c
+"42 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\altoft.c
 [v ___altoft __altoft `(f  1 e 3 0 ]
-"32 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awtoft.c
+"32 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awtoft.c
 [v ___awtoft __awtoft `(f  1 e 3 0 ]
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+"62 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
-"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+"86 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
-"4 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftge.c
+"4 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
-"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+"4 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\strlen.c
+[v _strlen strlen `(ui  1 e 2 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+"6 C:\Program Files (x86)\Microchip\xc8\v1.38\sources\pic\eeprom.c
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"8 C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
+"8 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
 [v _read_hall read_hall `(v  1 e 1 0 ]
 "15
 [v _get_hall_state get_hall_state `(i  1 e 2 0 ]
 "49
 [v _get_direction get_direction `(i  1 e 2 0 ]
-"9 C:\Users\Carl\MPLABXProjects\demo1.X\main.c
+"13 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"9 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+"9 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
 [v _setup_mcu setup_mcu `(v  1 e 1 0 ]
-"16
+"17
 [v _setup_port setup_port `(v  1 e 1 0 ]
-"30
+"34
+[v _init_uart init_uart `(v  1 e 1 0 ]
+"73
 [v _init_pin init_pin `(v  1 e 1 0 ]
-"47
+"90
 [v _init_hall init_hall `(v  1 e 1 0 ]
-[s S129 . 1 `uc 1 RC0 1 0 :1:0 
+"12 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+[v _uart_write_char uart_write_char `(v  1 e 1 0 ]
+"27
+[v _uart_write_unsigned_int uart_write_unsigned_int `(v  1 e 1 0 ]
+"37
+[v _uart_int_to_string uart_int_to_string `(uc  1 e 1 0 ]
+"43
+[v _uart_write_string uart_write_string `(v  1 e 1 0 ]
+"85
+[v _uart_write_voltage uart_write_voltage `(v  1 e 1 0 ]
+"103
+[v _uart_read_char uart_read_char `(uc  1 e 1 0 ]
+[s S181 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -48,10 +70,10 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-"299 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h
-[u S138 . 1 `S129 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES138  1 e 1 @7 ]
-[s S45 . 1 `uc 1 RD0 1 0 :1:0 
+"299 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h
+[u S190 . 1 `S181 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES190  1 e 1 @7 ]
+[s S47 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -61,16 +83,67 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "360
-[u S54 . 1 `S45 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES54  1 e 1 @8 ]
-[s S66 . 1 `uc 1 RE0 1 0 :1:0 
+[u S56 . 1 `S47 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES56  1 e 1 @8 ]
+[s S68 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 `uc 1 RE3 1 0 :1:3 
 ]
 "417
-[u S71 . 1 `S66 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES71  1 e 1 @9 ]
+[u S73 . 1 `S68 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES73  1 e 1 @9 ]
+[s S137 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"1002
+[s S146 . 1 `uc 1 RCD8 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 RC9 1 0 :1:6 
+]
+[s S150 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nRC8 1 0 :1:6 
+]
+[s S153 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC8_9 1 0 :1:6 
+]
+[u S156 . 1 `S137 1 . 1 0 `S146 1 . 1 0 `S150 1 . 1 0 `S153 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES156  1 e 1 @24 ]
+"1066
+[v _TXREG TXREG `VEuc  1 e 1 @25 ]
+"1072
+[v _RCREG RCREG `VEuc  1 e 1 @26 ]
+"1153
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S276 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :3:2 
+`uc 1 VCFG 1 0 :2:5 
+`uc 1 ADFM 1 0 :1:7 
+]
+"1190
+[s S282 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 VCFG0 1 0 :1:5 
+`uc 1 VCFG1 1 0 :1:6 
+]
+[s S290 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[s S293 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+]
+[u S296 . 1 `S276 1 . 1 0 `S282 1 . 1 0 `S290 1 . 1 0 `S293 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES296  1 e 1 @31 ]
 "1328
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1389
@@ -83,45 +156,94 @@
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
 "1876
 [v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
-"7 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+"2584
+[v _TXSTA TXSTA `VEuc  1 e 1 @152 ]
+"2664
+[v _SPBRG SPBRG `VEuc  1 e 1 @153 ]
+"2798
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+"2804
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
+"6317
+[v _RCIF RCIF `VEb  1 e 0 @101 ]
+"7001
+[v _TRMT TRMT `VEb  1 e 0 @1217 ]
+"7 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
 [v _init_state init_state `i  1 e 2 0 ]
-"9 C:\Users\Carl\MPLABXProjects\demo1.X\main.c
+"13 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"15
-[v main@d d `i  1 a 2 14 ]
-"18
+"22
 } 0
-"9 C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
+"85 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+[v _uart_write_voltage uart_write_voltage `(v  1 e 1 0 ]
+{
+"88
+[v uart_write_voltage@voltage voltage `ui  1 a 2 4 ]
+"85
+[v uart_write_voltage@port port `i  1 p 2 2 ]
+"90
+} 0
+"27
+[v _uart_write_unsigned_int uart_write_unsigned_int `(v  1 e 1 0 ]
+{
+"33
+[v uart_write_unsigned_int@char2 char2 `uc  1 a 1 5 ]
+"30
+[v uart_write_unsigned_int@char1 char1 `uc  1 a 1 4 ]
+"27
+[v uart_write_unsigned_int@number number `ui  1 p 2 0 ]
+"35
+} 0
+"12
+[v _uart_write_char uart_write_char `(v  1 e 1 0 ]
+{
+[v uart_write_char@data data `uc  1 a 1 wreg ]
+[v uart_write_char@data data `uc  1 a 1 wreg ]
+[v uart_write_char@data data `uc  1 a 1 0 ]
+"17
+} 0
+"53 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+[v _get_analog get_analog `(ui  1 e 2 0 ]
+{
+"59
+[v get_analog@output output `ui  1 a 2 0 ]
+"53
+[v get_analog@port port `i  1 p 2 4 ]
+"61
+} 0
+"9
+[v _analog_init analog_init `(v  1 e 1 0 ]
+{
+[v analog_init@analog_port analog_port `i  1 p 2 0 ]
+"51
+} 0
+"9 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
 [v _setup_mcu setup_mcu `(v  1 e 1 0 ]
 {
-"14
+"15
 } 0
-"16
+"17
 [v _setup_port setup_port `(v  1 e 1 0 ]
 {
-"28
+"32
 } 0
-"30
+"34
+[v _init_uart init_uart `(v  1 e 1 0 ]
+{
+"71
+} 0
+"73
 [v _init_pin init_pin `(v  1 e 1 0 ]
 {
-"45
+"88
 } 0
-"47
+"90
 [v _init_hall init_hall `(v  1 e 1 0 ]
 {
-"50
+"93
 } 0
-"49 C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-[v _get_direction get_direction `(i  1 e 2 0 ]
-{
-"52
-[v get_direction@current_state current_state `i  1 a 2 12 ]
-"51
-[v get_direction@direction direction `i  1 a 2 10 ]
-"78
-} 0
-"15
+"15 C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
 [v _get_hall_state get_hall_state `(i  1 e 2 0 ]
 {
 "19

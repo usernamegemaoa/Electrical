@@ -12,20 +12,29 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/debug\demo1.X.debug.obj
-cinit CODE 0 7FC 7FC 4 2
-text1 CODE 0 6B6 6B6 E 2
-text2 CODE 0 6A9 6A9 D 2
-text3 CODE 0 6C4 6C4 F 2
-text4 CODE 0 69F 69F A 2
-text5 CODE 0 781 781 7B 2
-text6 CODE 0 70C 70C 75 2
-text7 CODE 0 6E4 6E4 28 2
-nvBANK0 BANK0 1 30 30 2 1
-maintext CODE 0 6D3 6D3 11 2
-cstackCOMMON COMMON 1 70 70 D 1
-cstackBANK0 BANK0 1 20 20 10 1
-$C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-end_init CODE 0 0 0 3 2
+cinit CODE 0 7F0 7F0 10 2
+text1 CODE 0 684 684 1F 2
+text2 CODE 0 666 666 1E 2
+text3 CODE 0 60F 60F A 2
+text4 CODE 0 714 714 2D 2
+text5 CODE 0 741 741 3A 2
+text6 CODE 0 653 653 13 2
+text7 CODE 0 626 626 D 2
+text8 CODE 0 619 619 D 2
+text9 CODE 0 633 633 F 2
+text10 CODE 0 605 605 A 2
+text11 CODE 0 77B 77B 75 2
+text12 CODE 0 6C3 6C3 28 2
+nvBANK0 BANK0 1 54 54 2 1
+maintext CODE 0 6A3 6A3 20 2
+cstackCOMMON COMMON 1 71 71 C 1
+cstackBANK0 BANK0 1 49 49 B 1
+inittext CODE 0 642 642 11 2
+idataBANK0 CODE 0 6EB 6EB 29 2
+dataBANK0 BANK0 1 20 20 29 1
+$C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+reset_vec CODE 0 0 0 1 2
+end_init CODE 0 1 1 3 2
 config CONFIG 0 2007 2007 1 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -33,32 +42,32 @@ config CONFIG 0 2007 2007 1 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 32-6F 1
+RAM 56-6F 1
 RAM A0-EF 1
-RAM 120-16F 1
+RAM 120-164 1
 RAM 190-1EF 1
-BANK0 32-6F 1
+BANK0 56-6F 1
 BANK1 A0-EF 1
-BANK2 120-16F 1
+BANK2 120-164 1
 BANK3 190-1EF 1
-CONST 3-69E 2
-CONST 800-1FFF 2
-ENTRY 3-69E 2
-ENTRY 800-1FFF 2
+CONST 4-604 2
+CONST 800-1EFF 2
+ENTRY 4-604 2
+ENTRY 800-1EFF 2
 IDLOC 2000-2003 2
 STACK 190-1EF 1
-CODE 3-69E 2
-CODE 800-1FFF 2
+CODE 4-604 2
+CODE 800-1EFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
 SFR3 180-18F 1
 COMMON 7D-7D 1
 EEDATA 2100-21FF 2
-STRCODE 3-69E 2
-STRCODE 800-1FFF 2
-STRING 3-69E 2
-STRING 800-1FFF 2
+STRCODE 4-604 2
+STRCODE 800-1EFF 2
+STRING 4-604 2
+STRING 800-1EFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -73,89 +82,143 @@ STRING 800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\demo1.X.debug.obj
-7FC cinit CODE >805:C:\Users\Carl\AppData\Local\Temp\s9t8.
-7FC cinit CODE >808:C:\Users\Carl\AppData\Local\Temp\s9t8.
-7FC cinit CODE >814:C:\Users\Carl\AppData\Local\Temp\s9t8.
-7FC cinit CODE >816:C:\Users\Carl\AppData\Local\Temp\s9t8.
-7FD cinit CODE >817:C:\Users\Carl\AppData\Local\Temp\s9t8.
-6E4 text7 CODE >8:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-6E5 text7 CODE >10:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-6F5 text7 CODE >11:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-700 text7 CODE >12:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-70B text7 CODE >13:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-70C text6 CODE >15:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-70C text6 CODE >21:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-71A text6 CODE >22:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-728 text6 CODE >24:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-72C text6 CODE >26:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-738 text6 CODE >28:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-73C text6 CODE >30:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-748 text6 CODE >32:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-74C text6 CODE >34:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-758 text6 CODE >36:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-75C text6 CODE >38:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-768 text6 CODE >40:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-76C text6 CODE >42:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-778 text6 CODE >44:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-77C text6 CODE >45:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-77C text6 CODE >46:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-781 text5 CODE >49:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-781 text5 CODE >52:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-78C text5 CODE >53:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7A3 text5 CODE >55:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7A9 text5 CODE >56:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7AA text5 CODE >57:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7AB text5 CODE >58:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7AC text5 CODE >59:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7B9 text5 CODE >60:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7BA text5 CODE >61:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7D3 text5 CODE >63:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7D9 text5 CODE >64:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7DA text5 CODE >65:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7DB text5 CODE >66:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7DC text5 CODE >67:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7E9 text5 CODE >68:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7EA text5 CODE >71:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7EE text5 CODE >72:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7EF text5 CODE >73:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7F0 text5 CODE >74:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7F1 text5 CODE >76:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-7F7 text5 CODE >77:C:\Users\Carl\MPLABXProjects\demo1.X\hall_effect.c
-69F text4 CODE >47:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-69F text4 CODE >49:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6A8 text4 CODE >50:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C4 text3 CODE >30:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C4 text3 CODE >32:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C7 text3 CODE >33:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C8 text3 CODE >34:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C9 text3 CODE >35:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CA text3 CODE >36:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CB text3 CODE >37:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CC text3 CODE >39:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CD text3 CODE >40:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CE text3 CODE >41:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6CF text3 CODE >42:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6D0 text3 CODE >43:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6D1 text3 CODE >44:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6D2 text3 CODE >45:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6A9 text2 CODE >16:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6A9 text2 CODE >18:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6AD text2 CODE >19:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6AE text2 CODE >20:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B0 text2 CODE >21:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B1 text2 CODE >22:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B3 text2 CODE >24:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B5 text2 CODE >28:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B6 text1 CODE >9:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6B6 text1 CODE >11:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6BB text1 CODE >12:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C0 text1 CODE >13:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6C3 text1 CODE >14:C:\Users\Carl\MPLABXProjects\demo1.X\micro_setup.c
-6D3 maintext CODE >9:C:\Users\Carl\MPLABXProjects\demo1.X\main.c
-6D3 maintext CODE >11:C:\Users\Carl\MPLABXProjects\demo1.X\main.c
-6D8 maintext CODE >13:C:\Users\Carl\MPLABXProjects\demo1.X\main.c
-6D8 maintext CODE >15:C:\Users\Carl\MPLABXProjects\demo1.X\main.c
-6E3 maintext CODE >13:C:\Users\Carl\MPLABXProjects\demo1.X\main.c
+7F0 cinit CODE >1412:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F0 cinit CODE >1415:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F0 cinit CODE >1462:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F1 cinit CODE >1463:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F2 cinit CODE >1464:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F3 cinit CODE >1465:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F4 cinit CODE >1466:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F5 cinit CODE >1467:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F6 cinit CODE >1468:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F7 cinit CODE >1469:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F8 cinit CODE >1470:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7F9 cinit CODE >1471:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7FC cinit CODE >1477:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7FC cinit CODE >1479:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+7FD cinit CODE >1480:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+6C3 text12 CODE >8:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+6C4 text12 CODE >10:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+6D4 text12 CODE >11:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+6DF text12 CODE >12:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+6EA text12 CODE >13:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+77B text11 CODE >15:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+77B text11 CODE >21:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+789 text11 CODE >22:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+797 text11 CODE >24:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+79B text11 CODE >26:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7A7 text11 CODE >28:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7AB text11 CODE >30:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7B7 text11 CODE >32:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7BB text11 CODE >34:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7C7 text11 CODE >36:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7CB text11 CODE >38:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7D7 text11 CODE >40:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7DB text11 CODE >42:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7E7 text11 CODE >44:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7EB text11 CODE >45:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+7EB text11 CODE >46:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\hall_effect.c
+605 text10 CODE >90:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+605 text10 CODE >92:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+60E text10 CODE >93:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+633 text9 CODE >73:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+633 text9 CODE >75:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+636 text9 CODE >76:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+637 text9 CODE >77:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+638 text9 CODE >78:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+639 text9 CODE >79:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63A text9 CODE >80:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63B text9 CODE >82:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63C text9 CODE >83:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63D text9 CODE >84:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63E text9 CODE >85:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+63F text9 CODE >86:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+640 text9 CODE >87:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+641 text9 CODE >88:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+619 text8 CODE >34:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+619 text8 CODE >36:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+61D text8 CODE >48:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+61F text8 CODE >61:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+622 text8 CODE >62:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+623 text8 CODE >63:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+624 text8 CODE >64:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+625 text8 CODE >71:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+626 text7 CODE >17:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+626 text7 CODE >19:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+62A text7 CODE >21:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+62B text7 CODE >23:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+62D text7 CODE >25:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+62E text7 CODE >27:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+630 text7 CODE >29:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+632 text7 CODE >32:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+653 text6 CODE >9:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+653 text6 CODE >11:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+658 text6 CODE >12:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+65D text6 CODE >13:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+662 text6 CODE >14:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+665 text6 CODE >15:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\micro_setup.c
+741 text5 CODE >9:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+741 text5 CODE >20:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+744 text5 CODE >21:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+745 text5 CODE >22:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+746 text5 CODE >23:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+747 text5 CODE >26:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+749 text5 CODE >27:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+74A text5 CODE >29:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+74E text5 CODE >32:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+752 text5 CODE >35:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+756 text5 CODE >39:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+757 text5 CODE >23:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+76A text5 CODE >47:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+773 text5 CODE >48:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+777 text5 CODE >50:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+77A text5 CODE >51:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+714 text4 CODE >53:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+714 text4 CODE >55:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+71D text4 CODE >56:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+720 text4 CODE >57:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+722 text4 CODE >59:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+73C text4 CODE >60:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\analog.c
+60F text3 CODE >12:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+610 text3 CODE >14:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+614 text3 CODE >16:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+618 text3 CODE >17:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+666 text2 CODE >27:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+666 text2 CODE >29:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+66A text2 CODE >30:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+66E text2 CODE >31:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+672 text2 CODE >32:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+67B text2 CODE >33:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+67F text2 CODE >34:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+683 text2 CODE >35:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+684 text1 CODE >85:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+684 text1 CODE >87:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+68A text1 CODE >88:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+69B text1 CODE >89:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+6A2 text1 CODE >90:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\uart.c
+6A3 maintext CODE >13:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+6A3 maintext CODE >15:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+6A8 maintext CODE >16:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+6A8 maintext CODE >18:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+6B3 maintext CODE >19:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+6C2 maintext CODE >16:C:\Users\Intern-Carl\Documents\GitHub\Electrical\Programming\demo1.X\main.c
+642 inittext CODE >1436:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+642 inittext CODE >1437:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+643 inittext CODE >1438:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+644 inittext CODE >1439:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+645 inittext CODE >1440:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+646 inittext CODE >1447:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+646 inittext CODE >1448:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+649 inittext CODE >1449:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64A inittext CODE >1450:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64B inittext CODE >1451:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64C inittext CODE >1452:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64D inittext CODE >1453:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64E inittext CODE >1454:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+64F inittext CODE >1455:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+650 inittext CODE >1456:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+651 inittext CODE >1457:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
+652 inittext CODE >1458:C:\Users\INTERN~1\AppData\Local\Temp\s1o8.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -168,44 +231,52 @@ $dist/default/debug\demo1.X.debug.obj
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
+?_get_analog 75 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
 ___latbits 2 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__LdataBANK0 0 0 ABS 0 dataBANK0 -
 __Hspace_0 2008 0 ABS 0 - -
 __Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
+__HidataBANK0 0 0 ABS 0 idataBANK0 -
 __size_of_init_pin 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__size_of_uart_write_char 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-__size_of_get_direction 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ltemp0 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ltemp1 82 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ltemp2 86 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ltemp3 80 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-main@d 2E 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
 __Hstrings 0 0 ABS 0 strings -
-___sp 0 0 STACK 2 stack C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-_main DA6 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
+__size_of_uart_write_unsigned_int 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_RCIF 65 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_TRMT 4C1 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+___sp 0 0 STACK 2 stack C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+_main D46 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
 btemp 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ltemp 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-start 0 0 CODE 0 init C:\Users\Carl\AppData\Local\Temp\s9t8.obj
+start 2 0 CODE 0 init C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
 ttemp 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 wtemp 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __size_of_main 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_uart_write_voltage D08 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
+uart_write_unsigned_int@char1 75 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+uart_write_unsigned_int@char2 76 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+__LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
 ttemp0 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ttemp1 81 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ttemp2 84 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ttemp3 87 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 ttemp4 7F 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-__end_of_get_direction FF8 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
-intlevel0 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-intlevel1 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-intlevel2 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-intlevel3 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-intlevel4 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-intlevel5 0 0 CODE 0 functab C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-get_direction@direction 2A 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
-_init_pin D88 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
+uart_write_unsigned_int@number 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+intlevel0 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+intlevel1 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+intlevel2 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+intlevel3 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+intlevel4 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+intlevel5 0 0 CODE 0 functab C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+_init_pin C66 0 CODE 0 text9 dist/default/debug\demo1.X.debug.obj
 wtemp0 7E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 wtemp1 80 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 wtemp2 82 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
@@ -215,21 +286,28 @@ wtemp5 88 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 wtemp6 7F 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __Hfunctab 0 0 CODE 0 functab -
 __Hclrtext 0 0 ABS 0 clrtext -
-__end_of_setup_mcu D88 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
-__end_of_init_pin DA6 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
+__end_of_setup_mcu CCC 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
+__end_of_init_pin C84 0 CODE 0 text9 dist/default/debug\demo1.X.debug.obj
 __size_of_setup_mcu 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-_setup_mcu D6C 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
+_ADCON1 9F 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_ADRESH 1E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_ADRESL 9E 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+get_analog@port 75 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+analog_init@analog_port 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+_setup_mcu CA6 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
 __Lmaintext 0 0 ABS 0 maintext -
 __CFG_DEBUG$ON 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
-start_initialization FF8 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
-get_hall_state@hallA 22 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
-get_hall_state@hallB 24 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
-get_hall_state@hallC 26 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
-get_hall_state@state 20 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
-__pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+uart_write_voltage@voltage 4D 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+start_initialization FE0 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
+get_hall_state@hallA 4B 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+get_hall_state@hallB 4D 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+get_hall_state@hallC 4F 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+__end_of_analog_init EF6 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
+get_hall_state@state 49 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+__pcstackBANK0 49 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
 __size_of_get_hall_state 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-___int_sp 0 0 STACK 2 stack C:\Users\Carl\AppData\Local\Temp\s9t8.obj
+___int_sp 0 0 STACK 2 stack C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -240,20 +318,23 @@ __Hstack 0 0 STACK 2 stack -
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 4010 0 CONFIG 0 config -
+__size_of_uart_write_voltage 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 ABS 0 bank2 -
 __Lbank3 0 0 ABS 0 bank3 -
-__Lcinit FF8 0 CODE 0 cinit -
+__Lcinit FE0 0 CODE 0 cinit -
+uart_write_char@data 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
 __Lidloc 0 0 IDLOC 0 idloc -
 __Lstack 0 0 STACK 2 stack -
+__Linittext 0 0 ABS 0 inittext -
 _PORTCbits 7 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _PORTDbits 8 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _PORTEbits 9 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-_setup_port D52 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
+_setup_port C4C 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
-__Hinit 0 0 CODE 0 init -
+__Hinit 2 0 CODE 0 init -
 __Hsfr0 0 0 ABS 0 sfr0 -
 __Hsfr1 0 0 ABS 0 sfr1 -
 __Hsfr2 0 0 ABS 0 sfr2 -
@@ -261,89 +342,120 @@ __Hsfr3 0 0 ABS 0 sfr3 -
 __Htext 0 0 ABS 0 text -
 __Labs1 0 0 ABS 0 abs1 -
 __Lcode 0 0 ABS 0 code -
-__Linit 0 0 CODE 0 init -
+__Linit 2 0 CODE 0 init -
 __Lsfr0 0 0 ABS 0 sfr0 -
 __Lsfr1 0 0 ABS 0 sfr1 -
 __Lsfr2 0 0 ABS 0 sfr2 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __Ltext 0 0 ABS 0 text -
-__pnvBANK0 30 0 BANK0 1 nvBANK0 dist/default/debug\demo1.X.debug.obj
+__pnvBANK0 54 0 BANK0 1 nvBANK0 dist/default/debug\demo1.X.debug.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __S0 2008 0 ABS 0 - -
 __S1 7D 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
+_get_analog E28 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
+get_analog@output 49 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
-__Lintentry 0 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-?_get_direction 28 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+__Lintentry 2 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+_uart_write_unsigned_int CCC 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
+uart_write_voltage@port 4B 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+__pdataBANK0 20 0 BANK0 1 dataBANK0 dist/default/debug\demo1.X.debug.obj
+__end_of_uart_write_unsigned_int D08 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
 __CFG_FCMEN$ON 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-__end_of_setup_port D6C 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
-__end_of_init_hall D52 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
+_RCSTAbits 18 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__end_of_setup_port C66 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
+__size_of_analog_init 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__end_of_init_hall C1E 0 CODE 0 text10 dist/default/debug\demo1.X.debug.obj
+__end_of_init_uart C4C 0 CODE 0 text8 dist/default/debug\demo1.X.debug.obj
+__ptext10 C0A 0 CODE 0 text10 dist/default/debug\demo1.X.debug.obj
+__ptext11 EF6 0 CODE 0 text11 dist/default/debug\demo1.X.debug.obj
+__ptext12 D86 0 CODE 0 text12 dist/default/debug\demo1.X.debug.obj
 __size_of_init_hall 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-__pmaintext DA6 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
+__size_of_init_uart 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__pmaintext D46 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 400E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __CFG_IESO$ON 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-_init_hall D3E 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
-stackhi 0 0 ABS 0 - C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-stacklo 0 0 ABS 0 - C:\Users\Carl\AppData\Local\Temp\s9t8.obj
-get_direction@current_state 2C 0 BANK0 1 cstackBANK0 dist/default/debug\demo1.X.debug.obj
+__Hinittext 0 0 ABS 0 inittext -
+_init_hall C0A 0 CODE 0 text10 dist/default/debug\demo1.X.debug.obj
+_init_uart C32 0 CODE 0 text8 dist/default/debug\demo1.X.debug.obj
+__end_of_get_analog E82 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
+stackhi 0 0 ABS 0 - C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+stacklo 0 0 ABS 0 - C:\Users\INTERN~1\AppData\Local\Temp\s1o8.obj
+_ADCON0bits 1F 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
+init_fetch0 C84 0 CODE 0 inittext dist/default/debug\demo1.X.debug.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__Lend_init 0 0 CODE 0 end_init -
+__Lend_init 2 0 CODE 0 end_init -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+__end_of_uart_write_char C32 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
 end_of_initialization FF8 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
-__Hintentry 0 0 CODE 0 intentry -
+__Hintentry 2 0 CODE 0 intentry -
 __Lstrings 0 0 ABS 0 strings -
-__Hreset_vec 0 0 CODE 0 reset_vec -
-__ptext1 D6C 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
-__ptext2 D52 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
-__ptext3 D88 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
-__ptext4 D3E 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
-__ptext5 F02 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
-__ptext6 E18 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
-__ptext7 DC8 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
+__Hreset_vec 2 0 CODE 0 reset_vec -
+__ptext1 D08 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
+__ptext2 CCC 0 CODE 0 text2 dist/default/debug\demo1.X.debug.obj
+__ptext3 C1E 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
+__ptext4 E28 0 CODE 0 text4 dist/default/debug\demo1.X.debug.obj
+__ptext5 E82 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
+__ptext6 CA6 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
+__ptext7 C4C 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
+__ptext8 C32 0 CODE 0 text8 dist/default/debug\demo1.X.debug.obj
+__ptext9 C66 0 CODE 0 text9 dist/default/debug\demo1.X.debug.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_init_state 30 0 BANK0 1 nvBANK0 dist/default/debug\demo1.X.debug.obj
+_init_state 54 0 BANK0 1 nvBANK0 dist/default/debug\demo1.X.debug.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __CFG_FOSC$HS 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-_get_hall_state E18 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
+_get_hall_state EF6 0 CODE 0 text11 dist/default/debug\demo1.X.debug.obj
 __end_of__initialization FF8 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
-__end_of_read_hall E18 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
+__end_of_read_hall DD6 0 CODE 0 text12 dist/default/debug\demo1.X.debug.obj
+_uart_write_char C1E 0 CODE 0 text3 dist/default/debug\demo1.X.debug.obj
 __Lfunctab 0 0 CODE 0 functab -
-_get_direction F02 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
 __size_of_read_hall 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+__pidataBANK0 DD6 0 CODE 0 idataBANK0 dist/default/debug\demo1.X.debug.obj
 __Lclrtext 0 0 ABS 0 clrtext -
-__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
-__Hend_init 6 0 CODE 0 end_init -
-_read_hall DC8 0 CODE 0 text7 dist/default/debug\demo1.X.debug.obj
-__end_of_main DC8 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
+uart_write_hall_state@F2945 20 0 BANK0 1 dataBANK0 dist/default/debug\demo1.X.debug.obj
+__pcstackCOMMON 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+__Hend_init 8 0 CODE 0 end_init -
+init_ram0 C8C 0 CODE 0 inittext dist/default/debug\demo1.X.debug.obj
+_read_hall D86 0 CODE 0 text12 dist/default/debug\demo1.X.debug.obj
+__end_of_main D86 0 CODE 0 maintext dist/default/debug\demo1.X.debug.obj
 __size_of_setup_port 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _ANSEL 91 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_RCREG 1A 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_SPBRG 99 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _TRISA 85 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _TRISB 86 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _TRISC 87 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _TRISD 88 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 _TRISE 89 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_TXREG 19 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+_TXSTA 98 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-__end_of_get_hall_state F02 0 CODE 0 text6 dist/default/debug\demo1.X.debug.obj
-__initialization FF8 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
+_analog_init E82 0 CODE 0 text5 dist/default/debug\demo1.X.debug.obj
+__HdataBANK0 0 0 ABS 0 dataBANK0 -
+__end_of_get_hall_state FE0 0 CODE 0 text11 dist/default/debug\demo1.X.debug.obj
+__initialization FE0 0 CODE 0 cinit dist/default/debug\demo1.X.debug.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
-read_hall@hall_A 75 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
-read_hall@hall_B 70 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
-read_hall@hall_C 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
-?_get_hall_state 76 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+read_hall@hall_A 76 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+read_hall@hall_B 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+read_hall@hall_C 72 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+__size_of_get_analog 0 0 ABS 0 - dist/default/debug\demo1.X.debug.obj
+?_get_hall_state 77 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
+__end_of_uart_write_voltage D46 0 CODE 0 text1 dist/default/debug\demo1.X.debug.obj
+uart_write_direction@F2949 35 0 BANK0 1 dataBANK0 dist/default/debug\demo1.X.debug.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -369,16 +481,23 @@ read_hall@hall_C 71 0 COMMON 1 cstackCOMMON dist/default/debug\demo1.X.debug.obj
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cinit 0 7FC FF8 4 2
-text1 0 6B6 D6C E 2
-text2 0 6A9 D52 D 2
-text3 0 6C4 D88 F 2
-text4 0 69F D3E A 2
-text5 0 781 F02 7B 2
-text6 0 70C E18 75 2
-text7 0 6E4 DC8 28 2
-maintext 0 6D3 DA6 11 2
-cstackCOMMON 1 70 70 D 1
-cstackBANK0 1 20 20 12 1
-reset_vec 0 0 0 3 2
+cinit 0 7F0 FE0 10 2
+text1 0 684 D08 1F 2
+text2 0 666 CCC 1E 2
+text3 0 60F C1E A 2
+text4 0 714 E28 2D 2
+text5 0 741 E82 3A 2
+text6 0 653 CA6 13 2
+text7 0 626 C4C D 2
+text8 0 619 C32 D 2
+text9 0 633 C66 F 2
+text10 0 605 C0A A 2
+text11 0 77B EF6 75 2
+text12 0 6C3 D86 28 2
+maintext 0 6A3 D46 20 2
+cstackCOMMON 1 71 71 C 1
+inittext 0 642 C84 11 2
+reset_vec 0 0 0 4 2
+idataBANK0 0 6EB DD6 29 2
+dataBANK0 1 20 20 36 1
 config 0 2007 400E 1 2

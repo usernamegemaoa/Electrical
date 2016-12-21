@@ -1,17 +1,17 @@
 
 # 1 "main.c"
 
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\xc8debug.h"
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 49 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f917.h"
+# 49 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic16f917.h"
 extern volatile unsigned char INDF @ 0x000;
 
 asm("INDF equ 00h");
@@ -3098,21 +3098,21 @@ extern volatile __bit nW @ (((unsigned) &SSPSTAT)*8) + 2;
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
 
-# 27 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h"
+# 27 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic.h"
 #pragma intrinsic(__nop)
 extern void __nop(void);
 
 # 77
 extern unsigned int flash_read(unsigned short addr);
 
-# 114 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\eeprom_routines.h"
+# 114 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\eeprom_routines.h"
 extern void eeprom_write(unsigned char addr, unsigned char value);
 extern unsigned char eeprom_read(unsigned char addr);
 extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
 extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 
 
-# 151 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h"
+# 151 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic.h"
 #pragma intrinsic(_delay)
 extern __nonreentrant void _delay(unsigned long);
 
@@ -3121,10 +3121,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdarg.h"
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -3133,17 +3133,17 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
+# 43 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\errno.h"
+# 29 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\errno.h"
 extern int errno;
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\conio.h"
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
@@ -3157,7 +3157,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
+# 88 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -3184,7 +3184,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.38\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -3216,19 +3216,6 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 6 "blink_led.h"
-void led_blink(int led_temp);
-
-void led_blink_time(int led_temp, int time);
-
-void led_on(int led_temp);
-
-void led_off(int led_temp);
-
-void hall_LED(void);
-
-void hall_LED_state(void);
-
 
 # 4 "micro_setup.h"
 #pragma config FOSC = HS
@@ -3242,34 +3229,53 @@ void hall_LED_state(void);
 #pragma config FCMEN = ON
 #pragma config DEBUG = ON
 
-# 54
+# 58
 extern int init_state;
 
 void setup_mcu(void);
 
 void setup_port(void);
 
+void init_uart(void);
+
 void init_pin(void);
 
 void init_hall(void);
 
-# 6 "hall_effect.h"
-void read_hall(int *hall_A, int *hall_B, int *hall_C);
+# 6 "uart.h"
+void uart_write_char(char data);
 
-int get_hall_state(void);
+void uart_write_int(int number);
 
-int initial_state(void);
+void uart_write_unsigned_int(unsigned int number);
 
-int get_direction(void);
+char uart_tx_empty(void);
 
-# 9 "main.c"
+void uart_write_string(const char *text);
+
+char uart_int_to_string(int number);
+
+void uart_write_hall_state(void);
+
+void uart_write_direction(void);
+
+void uart_write_voltage(int port);
+
+char uart_data_ready(void);
+
+char uart_read_char(void);
+
+void uart_read_text(char *Output, unsigned int length);
+
+# 12 "main.c"
 void main(void)
 {
 setup_mcu();
 
 while(1)
 {
-int d = get_direction();
+uart_write_voltage(1);
+_delay((unsigned long)((500)*(8000000/4000.0)));
 }
 return;
 }

@@ -49,6 +49,10 @@
 
 #define _XTAL_FREQ 8000000       // 8 MHz External Crystal 
 
+#define BAUDRATE 9600            // 9600 Baud Rate Selected
+
+//#define BUAD_RATE_CALC ((F_CPU/16/BUAD) - 1) 
+
 #include <xc.h> // include processor files - each processor file is guarded. 
 
 extern int init_state;
@@ -57,9 +61,7 @@ void setup_mcu(void);
 
 void setup_port(void);
 
-void setup_uart(void);
-
-char init_uart(const long int baudrate);
+void init_uart(void);
 
 void init_pin(void);
 

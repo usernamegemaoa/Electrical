@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=BATTERY_GND Pin=BC2-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=C5-2
+Removed Pin From Net: NetName=BATTERY_GND Pin=C6-2
+Removed Pin From Net: NetName=BATTERY_GND Pin=J1-10
+Removed Pin From Net: NetName=BATTERY_GND Pin=R8-1
+Removed Pin From Net: NetName=BATTERY_GND Pin=R11-1
+Added Component: Designator=C7(2200uF_Rad_18x25mm)
+Added Component: Designator=C8(2200uF_Rad_18x25mm)
+Added Pin To Net: NetName=BATTERY_VCC Pin=C7-1
+Added Pin To Net: NetName=BATTERY_VCC Pin=C8-1
+Change Net Name : Old Net Name=BATTERY_GND New Net Name=OP_AMP_GND
+Added Pin To Net: NetName=BATTERY_GND Pin=BC2-1
+Added Pin To Net: NetName=BATTERY_GND Pin=C5-2
+Added Pin To Net: NetName=BATTERY_GND Pin=C6-2
+Added Pin To Net: NetName=BATTERY_GND Pin=C7-2
+Added Pin To Net: NetName=BATTERY_GND Pin=C8-2
+Added Pin To Net: NetName=BATTERY_GND Pin=J1-10
+Added Pin To Net: NetName=BATTERY_GND Pin=R8-1
+Added Pin To Net: NetName=BATTERY_GND Pin=R11-1
+Added Net: Name=BATTERY_GND
+Added Member To Class: ClassName=MISchematic Member=Component C7 Value
+Added Member To Class: ClassName=MISchematic Member=Component C8 Value

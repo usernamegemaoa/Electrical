@@ -19,27 +19,27 @@ int get_hall_state(void)
     int hallC;
     int state;
     read_hall(&hallA, &hallB, &hallC);
-    if(!hallA && !hallB && hallC) //Sequence #1 = State: 0,0,1
+    if(hallA && !hallB && hallC) //Sequence #1 = State: 1,0,1
     {
        state = 1;
     }
-    if(!hallA && !hallB && !hallC) //Sequence #2 = State: 0,0,0
+    if(hallA && !hallB && !hallC) //Sequence #2 = State: 1,0,0
     {
        state = 2;
     }
-    if(hallA && !hallB && !hallC) //Sequence #3 = State: 1,0,0
+    if(hallA && hallB && !hallC) //Sequence #3 = State: 1,1,0
     {
        state = 3;
     }
-    if(hallA && hallB && !hallC) //Sequence #4 = State: 1,1,0
+    if(!hallA && hallB && !hallC) //Sequence #4 = State: 0,1,0
     {
        state = 4;
     }
-    if(hallA && hallB && hallC) //Sequence #5 = State: 1,1,1
+    if(!hallA && hallB && hallC) //Sequence #5 = State: 0,1,1
     {
        state = 5;
     }
-    if(!hallA && hallB && hallC) //Sequence #6 = State: 0,1,1
+    if(!hallA && !hallB && hallC) //Sequence #6 = State: 0,0,1
     {
        state = 6;
     }
