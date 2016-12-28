@@ -1,0 +1,925 @@
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE AD7147___SCROLLWHEEL
+OBJECT MODULE PLACED IN AD7147 - Scrollwheel.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD7147 - Scrollwheel.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          // This file implements the scrollwheel functionality of the firmware.
+   2          // This is the format of the returned variable.
+   3          //
+   4          // ******************************************************************************************************
+   5          // Absolute positions: ScrollwheelStatus
+   6          // =====================================
+   7          //                                                                                              
+   8          //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+   9          //        |  |  |  |  |  |     |_____________|------> Positions from 0 to 127
+  10          //                |      |      |  |  |  |--------------------------> 2 fingers touching scrollwheel                                                                                            
+  11          //                |      |      |  |  |-----------------------------> Big finger across scrollwheel
+  12          //                |  |  |  |--------------------------------> Go DOWN command
+  13          //                |  |  |-----------------------------------> Go UP command
+  14          //                |      |--------------------------------------> Tapping bit.                                                                  
+  15          //        |-----------------------------------------> Activation                                                                        
+  16          //                                                                                                                                                                                              
+  17          // ******************************************************************************************************
+  18          
+  19          
+  20          #include <math.h>
+  21          #include "Include\General Definitions.h"
+  22          #include "Include\AD7147RegMap.h"
+  23          #include "Include\Scrollwheel Algorithm Definitions.h"
+  24          
+  25          //---------------------------------
+  26          //Function prototypes
+  27          //---------------------------------
+  28          
+  29          //External functions
+  30          //------------------
+  31          extern void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer
+             -, const WORD OffsetInBuffer);
+  32          extern void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, cons
+             -t BYTE OffsetInBuffer);
+  33          
+  34          
+  35          //Local functions
+  36          //---------------
+  37          WORD UpdateScrollwheel(void);
+  38          BYTE FindHighestAndLowestStagesUsed(const WORD InterruptStatusRegister, const WORD LowestStageOfTheSensor,
+             - const WORD HighestStageOfTheSensor, const BYTE NumberOfStagesUsed, const BigFingerLevel, BYTE *LowestSensorTouched, BYT
+             -E *HighestSensorTouched);
+  39          void InitialiseTouchWheel(void);
+  40          DWORD ApplyWeight(const WORD SensorVal, const BYTE Order);
+  41          
+  42          //---------------------------------
+  43          //Global variables
+  44          //---------------------------------
+  45          
+  46          //External global variables
+  47          //-------------------------
+  48          extern WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+  49          extern BYTE xdata InterruptCounterForThresholdIntMode;
+  50          extern BYTE xdata MovedSinceActivationForDirectionButtons;
+  51          
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 2   
+
+  52          //Local global variables
+  53          //----------------------
+  54          WORD xdata AmbientValues[NB_OF_SENSORS_FOR_TW];         
+  55          WORD xdata SensorValues[NB_OF_SENSORS_FOR_TW];
+  56          //Variables to find the lowest and the highest sensor touched
+  57          BYTE xdata LowestSensorBeingTouched, xdata HighestSensorBeingTouched;
+  58          //Variables for activation
+  59          BYTE xdata FirstTimeTouchWheelTouched;
+  60          BYTE xdata ScrollWheelTouchDownCounter;
+  61          bit TouchwheelProperlyTouched;
+  62          bit TouchwheelFlag;
+  63          //Variables for the tap
+  64          BYTE xdata ReturnTappingCounterOnTw;
+  65          BYTE xdata NoTouchCounterOnTw;
+  66          bit EnableTapDisplayOnTw;
+  67          bit TappingFlag;
+  68          //Variables to find out which sensor has the highest value.
+  69          BYTE xdata SensorWithHighestValue, xdata PreviousSensorWithHighestValue;
+  70          BYTE xdata SensorBeforeTheHighest, xdata SensorAfterTheHighest;
+  71          BYTE xdata SecondSensorBeforeTheHighest, xdata SecondSensorAfterTheHighest;
+  72          //Variables for absolute positions
+  73          WORD xdata PositionRatio;
+  74          BYTE xdata PositionOffset;
+  75          WORD xdata MeanValue, xdata PreviousMeanValue;
+  76          int xdata MeanValueWithoutOffset, xdata PreviousMeanValueWithoutOffset;
+  77          WORD xdata PositionOnTw;
+  78          WORD xdata PreviousAbsPosOnTw, xdata AbsPosOnTw;
+  79          WORD xdata AvgPositionOnTw;
+  80          //Variables for relative positions
+  81          WORD xdata DisplayItemsResolution;
+  82          int xdata TwelveOclockDisplacement;
+  83          int xdata RelativeDisplacement, xdata RelativeDisplacementDebug;
+  84          BYTE xdata TwelveOclockPosition;
+  85          BYTE xdata TwelveOclockDispRelatedToFirstTouch;
+  86          BYTE xdata TwelveOclockPoint;
+  87          BYTE xdata DispRelatedToFirstTouch;
+  88          BYTE xdata PositionOnFirstTouchForActivation;
+  89          BYTE xdata TwelveOclockPointFound;
+  90          BYTE xdata PositionOnFirstTouch;
+  91          bit DisplacementDetectedSinceActivation;
+  92          bit UpdateListBoxDownOnce, UpdateListBoxUpOnce;
+  93          bit MovementDetected;
+  94          //Fast scroll
+  95          WORD xdata PositionOnFirstTouchFastScroll;
+  96          BYTE xdata NumberOfUpdates;
+  97          BYTE xdata FastScrollUpdateCounter;
+  98          BYTE xdata FastScrollDirection;
+  99          BYTE xdata MinimalNumberOfInterruptsAfterLiftingOff;
+ 100          bit FastScrollDetected;
+ 101          bit RecordSwCounterOnce;
+ 102          WORD xdata ScrollwheelStatus;
+ 103          
+ 104          
+ 105          
+ 106          WORD UpdateScrollwheel(void)
+ 107          {
+ 108   1              BYTE i;
+ 109   1              BYTE xdata TouchError;
+ 110   1              int xdata tempResult;
+ 111   1              WORD xdata AmbientValueAddress;
+ 112   1              DWORD xdata WeightedSensorValues[NB_OF_VALUES_IN_CALCULATIONS]; 
+ 113   1              DWORD xdata MeanValueNum;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 3   
+
+ 114   1              WORD xdata MeanValueDen;
+ 115   1              
+ 116   1              
+ 117   1              //= Find which stages have an interrupt set =
+ 118   1              //===========================================
+ 119   1              TouchError=FindHighestAndLowestStagesUsed(AD7147Registers[STAGE_HIGH_LIMIT_INT], LOWER_SENSOR_STAGE, HIGH
+             -ER_SENSOR_STAGE, 
+ 120   1                                                                                               NB_OF_SENSORS_FOR_TW, NUMBER_OF_SENSORS_ON_FOR_BIG_FINGER,
+ 121   1                                                                                               &LowestSensorBeingTouched, &HighestSensorBeingTouched);
+ 122   1              
+ 123   1              //Read from scrollwheel if activated
+ 124   1              //==================================    
+ 125   1              //if(((AD7147Registers[STAGE_HIGH_LIMIT_INT] & NUMBER_OF_STAGES_BEING_USED) != 0x0000))
+ 126   1              {
+ 127   2                      ReadFromAD7147(ADCRESULT_S0, NB_OF_SENSORS_FOR_TW, AD7147Registers, ADCRESULT_S0);
+ 128   2                      
+ 129   2                      AmbientValueAddress=STAGE0_AMBIENT;
+ 130   2                      for(i=0;i<NB_OF_SENSORS_FOR_TW;i++)
+ 131   2                      {
+ 132   3                              ReadFromAD7147(AmbientValueAddress, 1, AmbientValues, i);
+ 133   3                              AmbientValueAddress=AmbientValueAddress+NB_OF_REGS_PER_STAGE;
+ 134   3                              
+ 135   3                              if (AD7147Registers[ADCRESULT_S0+i] < AmbientValues[i])
+ 136   3                                      SensorValues[i] = 0;
+ 137   3                              else
+ 138   3                                      SensorValues[i] = AD7147Registers[ADCRESULT_S0+i] - AmbientValues[i];
+ 139   3                      }
+ 140   2              }
+ 141   1              
+ 142   1              //= Touchwheel activation =
+ 143   1              //=========================
+ 144   1              if(((AD7147Registers[STAGE_HIGH_LIMIT_INT] & NUMBER_OF_STAGES_BEING_USED) != 0x0000))
+ 145   1              {
+ 146   2                      TappingFlag=0;//Touching therefore clear the tapping flag.
+ 147   2                      RecordSwCounterOnce =0;
+ 148   2                      //Touchwheel touched for the first time
+ 149   2                      if (FirstTimeTouchWheelTouched==0)
+ 150   2                              FirstTimeTouchWheelTouched=1;
+ 151   2                      
+ 152   2                      //Check if the user left enough time between 2 taps.
+ 153   2                      if (NoTouchCounterOnTw > T_MAX_NO_TOUCHING)
+ 154   2                              ReturnTappingCounterOnTw = DISPLAY_AFTER_A_TAP; //Reset counter for displaying the tap
+ 155   2                      else
+ 156   2                              ReturnTappingCounterOnTw = 0;
+ 157   2                      
+ 158   2                      if (ScrollWheelTouchDownCounter<26)
+ 159   2                      {
+ 160   3                              if (ScrollWheelTouchDownCounter >=13)   //13 interrupts @ 40ms between each makes 0.5sec
+ 161   3                                      TouchwheelProperlyTouched=1;            //Set a flag once we are touching for longer than 0.5sec
+ 162   3                              
+ 163   3                              if (ScrollWheelTouchDownCounter >1)
+ 164   3                                      TouchwheelFlag=1;
+ 165   3                              
+ 166   3                              //Touching for more than 0.5sec, hence clear the NoTouchCounter
+ 167   3                              if (ScrollWheelTouchDownCounter > (T_MIN_TOUCHING+T_MAX_TOUCHING))
+ 168   3                                      NoTouchCounterOnTw = 0;
+ 169   3                              ScrollWheelTouchDownCounter++;
+ 170   3                      }
+ 171   2                      else
+ 172   2                      {
+ 173   3                              NoTouchCounterOnTw = 0;
+ 174   3                              ScrollWheelTouchDownCounter = 255;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 4   
+
+ 175   3                      }
+ 176   2              }
+ 177   1              else if((AD7147Registers[STAGE_HIGH_LIMIT_INT] & NUMBER_OF_STAGES_BEING_USED) == 0x0000)
+ 178   1              {       
+ 179   2                      TouchwheelFlag=0;
+ 180   2                      FirstTimeTouchWheelTouched=0;
+ 181   2                      TouchwheelProperlyTouched=0;
+ 182   2                      
+ 183   2                      //Relative positions
+ 184   2                      TwelveOclockPosition = NUMBER_OF_POSITIONS_WANTED;
+ 185   2                      TwelveOclockDispRelatedToFirstTouch = 0;
+ 186   2                      DisplacementDetectedSinceActivation = 0;
+ 187   2                      TwelveOclockPoint = 0;
+ 188   2                      DispRelatedToFirstTouch = 0;
+ 189   2                                      
+ 190   2                      //= Fast scroll =
+ 191   2                      //===============
+ 192   2                      if (RecordSwCounterOnce==1)
+ 193   2                      {
+ 194   3                              RecordSwCounterOnce =0;
+ 195   3                              if (ScrollWheelTouchDownCounter > T_MIN_TOUCHING && ScrollWheelTouchDownCounter < (T_MAX_TOUCHING+18))
+ 196   3                              {
+ 197   4                                      //NumberOfUpdates = abs(PositionOnFirstTouchFastScroll - YAxisPosition) / DisplayItemsResolutionOnY;
+ 198   4                                      NumberOfUpdates =0;
+ 199   4                                      RelativeDisplacementDebug = RelativeDisplacement;
+ 200   4                                      //Check if there will be enough interrupts after lifting off before to switch to threshold mode.
+ 201   4                                      MinimalNumberOfInterruptsAfterLiftingOff = NumberOfUpdates * LISTBOX_QUICK_UPDATE;
+ 202   4                                      if ((MinimalNumberOfInterruptsAfterLiftingOff) > NUMBER_OF_INTS_BEFORE_THRES_INT_MODE)
+ 203   4                                              InterruptCounterForThresholdIntMode = MinimalNumberOfInterruptsAfterLiftingOff + 10;
+ 204   4                                      
+ 205   4                                      if (NumberOfUpdates>0)
+ 206   4                                              FastScrollDetected=1;
+ 207   4                                      
+ 208   4                                      if (MovementDetected==0)
+ 209   4                                      {
+ 210   5                                              NumberOfUpdates=0;
+ 211   5                                              FastScrollDetected=0;
+ 212   5                                      }
+ 213   4                              }
+ 214   3                              else
+ 215   3                              {
+ 216   4                                      FastScrollDetected=0;
+ 217   4                                      NumberOfUpdates=0;
+ 218   4                              }
+ 219   3                      }
+ 220   2                      
+ 221   2                      //= Work out the tap =
+ 222   2                      //====================
+ 223   2                      if (NoTouchCounterOnTw < 26)
+ 224   2                              NoTouchCounterOnTw++;
+ 225   2      
+ 226   2                      if (ScrollWheelTouchDownCounter > T_MIN_TOUCHING && ScrollWheelTouchDownCounter < T_MAX_TOUCHING &&
+ 227   2                              NoTouchCounterOnTw > ScrollWheelTouchDownCounter)
+ 228   2                      {                               
+ 229   3                              //Set a bit for a certain number of interrupts so that the user applications sees it.
+ 230   3                              //This is done with a decounter that is reloaded when we are touching
+ 231   3                              if (ReturnTappingCounterOnTw > 0)//&& EnableTapDisplayOnTw == 1)
+ 232   3                              {
+ 233   4                                      ReturnTappingCounterOnTw--;
+ 234   4                                      TappingFlag = 1;        //Tap detected here
+ 235   4                              }
+ 236   3                              else
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 5   
+
+ 237   3                              {
+ 238   4                                      ScrollWheelTouchDownCounter = 0;
+ 239   4                                      TappingFlag = 0;
+ 240   4                              }
+ 241   3                      }
+ 242   2                      else
+ 243   2                      {
+ 244   3                              ScrollWheelTouchDownCounter = 0;
+ 245   3                              ReturnTappingCounterOnTw = 0;
+ 246   3                              TappingFlag = 0;//Cleared tapping bit after lift off 
+ 247   3                      }
+ 248   2                      
+ 249   2                      MovementDetected = 0;
+ 250   2                      RelativeDisplacement = 0;
+ 251   2              } 
+ 252   1              
+ 253   1              
+ 254   1              if (TouchwheelFlag==1)
+ 255   1              {
+ 256   2                      //= Peak detector that finds the sensor that has the highest response 
+ 257   2                      //===================================================================
+ 258   2                      PreviousSensorWithHighestValue = SensorWithHighestValue;
+ 259   2                      SensorWithHighestValue = 0;
+ 260   2                      for (i=0;i<NB_OF_SENSORS_FOR_TW;i++)
+ 261   2                      {
+ 262   3                              if (i<(NB_OF_SENSORS_FOR_TW-1))
+ 263   3                              {
+ 264   4                                      if((SensorValues[i]>SensorValues[i+1]) && (SensorValues[i]>SensorValues[SensorWithHighestValue]))
+ 265   4                                              SensorWithHighestValue=i;
+ 266   4                              }
+ 267   3                              else if (i==(NB_OF_SENSORS_FOR_TW-1))
+ 268   3                              {
+ 269   4                                      if((SensorValues[i]>SensorValues[0]) && (SensorValues[i]>SensorValues[SensorWithHighestValue]))
+ 270   4                                              SensorWithHighestValue=i;
+ 271   4                              }
+ 272   3                      }                       
+ 273   2                      
+ 274   2                      //Identify sensors on each side of the one with the highest response
+ 275   2                      switch (SensorWithHighestValue)
+ 276   2                      {
+ 277   3                              case 0:
+ 278   3                                      SecondSensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-2);
+ 279   3                                      SensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-1);
+ 280   3                                      SensorAfterTheHighest=1;
+ 281   3                                      SecondSensorAfterTheHighest=2;
+ 282   3                                      break;
+ 283   3                              case 1:
+ 284   3                                      SecondSensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-1);
+ 285   3                                      SensorBeforeTheHighest=0;
+ 286   3                                      SensorAfterTheHighest=2;
+ 287   3                                      SecondSensorAfterTheHighest=3;
+ 288   3                                      break;
+ 289   3                              case (NB_OF_SENSORS_FOR_TW-2):
+ 290   3                                      SecondSensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-4);
+ 291   3                                      SensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-3);
+ 292   3                                      SensorAfterTheHighest=(NB_OF_SENSORS_FOR_TW-1);
+ 293   3                                      SecondSensorAfterTheHighest=0;
+ 294   3                                      break;
+ 295   3                              case (NB_OF_SENSORS_FOR_TW-1):
+ 296   3                                      SecondSensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-3);
+ 297   3                                      SensorBeforeTheHighest=(NB_OF_SENSORS_FOR_TW-2);
+ 298   3                                      SensorAfterTheHighest=0;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 6   
+
+ 299   3                                      SecondSensorAfterTheHighest=1;
+ 300   3                                      break;
+ 301   3                              
+ 302   3                              default:
+ 303   3                                      SecondSensorBeforeTheHighest=SensorWithHighestValue-2;
+ 304   3                                      SensorBeforeTheHighest=SensorWithHighestValue-1;
+ 305   3                                      SensorAfterTheHighest=SensorWithHighestValue+1;
+ 306   3                                      SecondSensorAfterTheHighest=SensorWithHighestValue+2;
+ 307   3                                      break;
+ 308   3                      }
+ 309   2                      
+ 310   2                      //********************************************************************************************
+ 311   2                      //******************* CODE FOR THE ABSOLUTE DISPLACEMENT ON THE SCROLLWHEEL ******************
+ 312   2                      //********************************************************************************************
+ 313   2                      
+ 314   2                      if((TouchError & 0x01)!=0x01)
+ 315   2                      {
+ 316   3                                      //*********************************
+ 317   3                              //* Calculation of the mean value *
+ 318   3                              //*********************************
+ 319   3                              //Modify the weights around 12.00 o'clock
+ 320   3                              switch (SensorWithHighestValue)
+ 321   3                              {
+ 322   4                                      case 0: //Sensor 0 has the highest reponse
+ 323   4                                              WeightedSensorValues[0] = ApplyWeight(SensorValues[SecondSensorBeforeTheHighest], 1);
+ 324   4                                              WeightedSensorValues[1] = ApplyWeight(SensorValues[SensorBeforeTheHighest], 2);
+ 325   4                                              WeightedSensorValues[2] = ApplyWeight(SensorValues[SensorWithHighestValue], 3);
+ 326   4                                              WeightedSensorValues[3] = ApplyWeight(SensorValues[SensorAfterTheHighest], 4);
+ 327   4                                              WeightedSensorValues[4] = ApplyWeight(SensorValues[SecondSensorAfterTheHighest], 5);
+ 328   4                                              break;
+ 329   4                                              
+ 330   4                                      case 1: //Sensor 1 has the highest reponse
+ 331   4                                              WeightedSensorValues[0] = ApplyWeight(SensorValues[SecondSensorBeforeTheHighest], 2);
+ 332   4                                              WeightedSensorValues[1] = ApplyWeight(SensorValues[SensorBeforeTheHighest], 3);
+ 333   4                                              WeightedSensorValues[2] = ApplyWeight(SensorValues[SensorWithHighestValue], 4);
+ 334   4                                              WeightedSensorValues[3] = ApplyWeight(SensorValues[SensorAfterTheHighest], 5);
+ 335   4                                              WeightedSensorValues[4] = ApplyWeight(SensorValues[SecondSensorAfterTheHighest], 6);
+ 336   4                                              break;
+ 337   4                                              
+ 338   4                                      case (NB_OF_SENSORS_FOR_TW-2):  //Sensor 6 has the highest reponse
+ 339   4                                              WeightedSensorValues[0] = ApplyWeight(SensorValues[SecondSensorBeforeTheHighest], 7);
+ 340   4                                              WeightedSensorValues[1] = ApplyWeight(SensorValues[SensorBeforeTheHighest], 8);
+ 341   4                                              WeightedSensorValues[2] = ApplyWeight(SensorValues[SensorWithHighestValue], 9);
+ 342   4                                              WeightedSensorValues[3] = ApplyWeight(SensorValues[SensorAfterTheHighest], 10);
+ 343   4                                              WeightedSensorValues[4] = ApplyWeight(SensorValues[SecondSensorAfterTheHighest], 11);
+ 344   4                                              break;
+ 345   4                                              
+ 346   4                                      case (NB_OF_SENSORS_FOR_TW-1):  //Sensor 7 has the highest reponse
+ 347   4                                              WeightedSensorValues[0] = ApplyWeight(SensorValues[SecondSensorBeforeTheHighest], 8);
+ 348   4                                              WeightedSensorValues[1] = ApplyWeight(SensorValues[SensorBeforeTheHighest], 9);
+ 349   4                                              WeightedSensorValues[2] = ApplyWeight(SensorValues[SensorWithHighestValue], 10);
+ 350   4                                              WeightedSensorValues[3] = ApplyWeight(SensorValues[SensorAfterTheHighest], 11);
+ 351   4                                              WeightedSensorValues[4] = ApplyWeight(SensorValues[SecondSensorAfterTheHighest], 12);
+ 352   4                                              break;
+ 353   4                                              
+ 354   4                                      default:
+ 355   4                                              WeightedSensorValues[0] = ApplyWeight(SensorValues[SecondSensorBeforeTheHighest], (SecondSensorBefore
+             -TheHighest +3));
+ 356   4                                              WeightedSensorValues[1] = ApplyWeight(SensorValues[SensorBeforeTheHighest], (SensorBeforeTheHighest +
+             -3));
+ 357   4                                              WeightedSensorValues[2] = ApplyWeight(SensorValues[SensorWithHighestValue], (SensorWithHighestValue +
+             -3));
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 7   
+
+ 358   4                                              WeightedSensorValues[3] = ApplyWeight(SensorValues[SensorAfterTheHighest], (SensorAfterTheHighest +3)
+             -);
+ 359   4                                              WeightedSensorValues[4] = ApplyWeight(SensorValues[SecondSensorAfterTheHighest], (SecondSensorAfterTh
+             -eHighest +3));
+ 360   4                                              break; 
+ 361   4                              }//End switch (SensorWithHighestValue)
+ 362   3                              
+ 363   3                              //Keep a copy of the mean value from the previous interrupt.
+ 364   3                              PreviousMeanValue = MeanValue;
+ 365   3                              
+ 366   3                              //Calculate Mean value
+ 367   3                              MeanValueNum=0;
+ 368   3                              for(i=0; i<NB_OF_VALUES_IN_CALCULATIONS; i++)
+ 369   3                                      MeanValueNum = MeanValueNum + WeightedSensorValues[i];
+ 370   3      
+ 371   3                              MeanValueDen = SensorValues[SecondSensorBeforeTheHighest] + 
+ 372   3                                                         SensorValues[SensorBeforeTheHighest] + 
+ 373   3                                                         SensorValues[SensorWithHighestValue] + 
+ 374   3                                                         SensorValues[SensorAfterTheHighest] + 
+ 375   3                                                         SensorValues[SecondSensorAfterTheHighest];
+ 376   3                              MeanValueNum /= MeanValueDen;
+ 377   3                              MeanValue = MeanValueNum;
+ 378   3                              
+ 379   3                              
+ 380   3                              //= Calculate the offset =
+ 381   3                              //========================
+ 382   3                              if(TouchwheelProperlyTouched==1)
+ 383   3                              {
+ 384   4                                      if (PreviousSensorWithHighestValue == (NB_OF_SENSORS_FOR_TW-1) && SensorWithHighestValue==0)
+ 385   4                                              PositionOffset = MeanValue;
+ 386   4                                      else if (PreviousSensorWithHighestValue == 0 && SensorWithHighestValue == (NB_OF_SENSORS_FOR_TW-1))
+ 387   4                                              PositionOffset = PreviousMeanValue;
+ 388   4                                      //Clamp the offset if it goes to high
+ 389   4                                      if(PositionOffset > OFFSET_POSITION_CLAMP)
+ 390   4                                              PositionOffset = OFFSET_POSITION_CLAMP;
+ 391   4                              }
+ 392   3                              
+ 393   3                              //* Update mean value fifo =
+ 394   3                              //==========================
+ 395   3                              //Calculate the mean value without the offset
+ 396   3                              PreviousMeanValueWithoutOffset = MeanValueWithoutOffset;
+ 397   3                              MeanValueWithoutOffset = MeanValue - PositionOffset;
+ 398   3                              
+ 399   3                              if(MeanValueWithoutOffset < 0)
+ 400   3                                      MeanValueWithoutOffset = 0;
+ 401   3                              
+ 402   3                              //= Calculate ratio to scale down to NUMBER_OF_WANTED_POSITIONS =
+ 403   3                              //===============================================================
+ 404   3                              if(TouchwheelProperlyTouched==1)
+ 405   3                              {
+ 406   4                                      //Update the ratio
+ 407   4                                      //Here we multiply the numerator by 100 to avoid using "float" variables.
+ 408   4                                      if (PreviousSensorWithHighestValue == (NB_OF_SENSORS_FOR_TW-1) && SensorWithHighestValue==0)
+ 409   4                                              PositionRatio = (PreviousMeanValueWithoutOffset * 100) / NUMBER_OF_POSITIONS_WANTED;
+ 410   4                                      else if (PreviousSensorWithHighestValue==0 && SensorWithHighestValue == (NB_OF_SENSORS_FOR_TW-1))
+ 411   4                                              PositionRatio = (MeanValueWithoutOffset * 100) / NUMBER_OF_POSITIONS_WANTED;
+ 412   4                              }
+ 413   3                              PositionOnTw = (MeanValueWithoutOffset * 100) / PositionRatio;
+ 414   3                              if(PositionOnTw > NUMBER_OF_POSITIONS_WANTED)
+ 415   3                                      PositionOnTw = NUMBER_OF_POSITIONS_WANTED;
+ 416   3                              
+ 417   3                                                      
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 8   
+
+ 418   3                              //= Record position on first touch and keep track of positions =
+ 419   3                              //==============================================================
+ 420   3                              if(FirstTimeTouchWheelTouched==1)
+ 421   3                              {
+ 422   4                                      FirstTimeTouchWheelTouched=2;
+ 423   4                                      AvgPositionOnTw = PositionOnTw;
+ 424   4                                      PreviousAbsPosOnTw = PositionOnTw;
+ 425   4                                      AbsPosOnTw = PositionOnTw;
+ 426   4                                      PositionOnFirstTouch = PositionOnTw;
+ 427   4                                      PositionOnFirstTouchForActivation = PositionOnTw;
+ 428   4                                      PositionOnFirstTouchFastScroll = PositionOnTw;
+ 429   4                              }
+ 430   3                              else if(FirstTimeTouchWheelTouched==2)
+ 431   3                              {
+ 432   4                                      //Update position tracking
+ 433   4                                      PreviousAbsPosOnTw = AbsPosOnTw;
+ 434   4                                      AbsPosOnTw = PositionOnTw;
+ 435   4                                      
+ 436   4                                      if ((PreviousSensorWithHighestValue==(NB_OF_SENSORS_FOR_TW-1) && SensorWithHighestValue==0) ||
+ 437   4                                              (PreviousSensorWithHighestValue==0 && SensorWithHighestValue==(NB_OF_SENSORS_FOR_TW-1)))
+ 438   4                                              AvgPositionOnTw = PositionOnTw;
+ 439   4                                      else
+ 440   4                                      {
+ 441   5                                              AvgPositionOnTw = AvgPositionOnTw*30 + PositionOnTw*71;
+ 442   5                                              AvgPositionOnTw /= 100;
+ 443   5                                      }
+ 444   4                                      
+ 445   4                                      if(AvgPositionOnTw > (NUMBER_OF_POSITIONS_WANTED))
+ 446   4                                              AvgPositionOnTw = (NUMBER_OF_POSITIONS_WANTED);
+ 447   4                              }
+ 448   3                              
+ 449   3                              //= Find the 12 o'clock absolute position =
+ 450   3                              //=========================================
+ 451   3                              if (TouchwheelProperlyTouched==1)
+ 452   3                              {
+ 453   4                                      if (PreviousSensorWithHighestValue==(NB_OF_SENSORS_FOR_TW-1) && SensorWithHighestValue==0)
+ 454   4                                      {
+ 455   5                                              TwelveOclockPosition = PreviousAbsPosOnTw;
+ 456   5                                              TwelveOclockDispRelatedToFirstTouch = PreviousAbsPosOnTw;
+ 457   5                                      }
+ 458   4                                      else if (PreviousSensorWithHighestValue==0 && SensorWithHighestValue==(NB_OF_SENSORS_FOR_TW-1))
+ 459   4                                      {
+ 460   5                                              TwelveOclockPosition = AbsPosOnTw;
+ 461   5                                              TwelveOclockDispRelatedToFirstTouch = AbsPosOnTw;
+ 462   5                                      }
+ 463   4                              }
+ 464   3      
+ 465   3                              //= Calculate the displacement related to the first touch =
+ 466   3                              //=========================================================
+ 467   3                              if (DisplacementDetectedSinceActivation==0)
+ 468   3                              {
+ 469   4                                      if (PreviousAbsPosOnTw>96 && AbsPosOnTw<32)//Clockwise
+ 470   4                                              TwelveOclockPoint=1;
+ 471   4                                      else if (AbsPosOnTw>96 && PreviousAbsPosOnTw<32)//Anticlockwise
+ 472   4                                              TwelveOclockPoint=2;
+ 473   4                                      
+ 474   4                                      switch (TwelveOclockPoint)
+ 475   4                                      {
+ 476   5                                              case 0:
+ 477   5                                                      DispRelatedToFirstTouch=abs(AbsPosOnTw-PositionOnFirstTouchForActivation);
+ 478   5                                                      break;
+ 479   5                                              case 1:
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 9   
+
+ 480   5                                                      DispRelatedToFirstTouch=TwelveOclockDispRelatedToFirstTouch+AbsPosOnTw;
+ 481   5                                                      break;
+ 482   5                                              case 2:
+ 483   5                                                      DispRelatedToFirstTouch=TwelveOclockDispRelatedToFirstTouch+(NUMBER_OF_POSITIONS_WANTED-AbsPosOnTw);
+ 484   5                                                      break;
+ 485   5                                      }
+ 486   4                                      if (DispRelatedToFirstTouch > NUMBER_OF_POSITIONS_TO_ACTIVATE_LISTBOX)
+ 487   4                                      {
+ 488   5                                              DisplacementDetectedSinceActivation=1;
+ 489   5                                              MovedSinceActivationForDirectionButtons = 1;
+ 490   5                                      }
+ 491   4                              }
+ 492   3      
+ 493   3                              //******************** CODE FOR THE RELATIVE DISPLACEMENT FOR THE LISTBOX ********************
+ 494   3                              //********************************************************************************************
+ 495   3                              if(DisplacementDetectedSinceActivation==1)
+ 496   3                              {
+ 497   4                                      //Catch 12.00 point
+ 498   4                                      if (PreviousAbsPosOnTw>96 && AbsPosOnTw<32)
+ 499   4                                      {
+ 500   5                                              //Clockwise
+ 501   5                          TwelveOclockDisplacement = NUMBER_OF_POSITIONS_WANTED - PreviousAbsPosOnTw + AbsPosOnT
+             -w;
+ 502   5                          TwelveOclockPointFound = 1;
+ 503   5                                      }
+ 504   4                                      else if (AbsPosOnTw>96 && PreviousAbsPosOnTw<32)
+ 505   4                                      {
+ 506   5                                              //Anticlockwise
+ 507   5                          TwelveOclockDisplacement = -(NUMBER_OF_POSITIONS_WANTED - AbsPosOnTw + PreviousAbsPosO
+             -nTw);
+ 508   5                          TwelveOclockPointFound = 2;
+ 509   5                                      }
+ 510   4                                              
+ 511   4                                      //Once we've caught the 12.00 point, we make sure that the relative position is greater than 
+ 512   4                          //SCROLLING_RESOLUTION. If it is not, we keep looking at the absolute position until the 
+ 513   4                                      //relative displacement reaches SCROLLING_RESOLUTION Once it does, we clear all the flags.
+ 514   4                                      if (TwelveOclockPointFound==1)
+ 515   4                                      {
+ 516   5                                              //Clockwise
+ 517   5                              if (abs(TwelveOclockDisplacement<DisplayItemsResolution))
+ 518   5                                              {
+ 519   6                                                      //Calculate relative displacement at 12.00
+ 520   6                                  RelativeDisplacement = TwelveOclockDisplacement + AbsPosOnTw;
+ 521   6                                                      //Relative disp at 12.00 is smaller than the scrolling resolution
+ 522   6                                                      //therefore keep calculating the relative displacement until it reaches 
+ 523   6                                                      //the scrolling resolution
+ 524   6                                  if (abs(RelativeDisplacement)>=DisplayItemsResolution)
+ 525   6                                                      {
+ 526   7                                      TwelveOclockPointFound=0;
+ 527   7                                      TwelveOclockDisplacement=0;
+ 528   7                                  }
+ 529   6                              }
+ 530   5                                              else
+ 531   5                                              {
+ 532   6                                                      //Relative disp at 12.00 is greater than the scrolling resolution
+ 533   6                                                      //therefore clear all the flags
+ 534   6                                  TwelveOclockPointFound=0;
+ 535   6                                  RelativeDisplacement=TwelveOclockDisplacement;
+ 536   6                                  TwelveOclockDisplacement=0;
+ 537   6                              }
+ 538   5                          }
+ 539   4                          else if (TwelveOclockPointFound==2)
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 10  
+
+ 540   4                                      {
+ 541   5                                              //Antilockwise
+ 542   5                              if (abs(TwelveOclockDisplacement) < DisplayItemsResolution)
+ 543   5                                              {
+ 544   6                                                      //Calculate relative displacement at 12.00
+ 545   6                                                      RelativeDisplacement=TwelveOclockDisplacement-(NUMBER_OF_POSITIONS_WANTED - AbsPosOnTw);
+ 546   6                                  if (abs(RelativeDisplacement) >= DisplayItemsResolution)
+ 547   6                                                      {
+ 548   7                                      TwelveOclockPointFound=0;
+ 549   7                                      TwelveOclockDisplacement=0;
+ 550   7                                  }
+ 551   6                                              }
+ 552   5                              else
+ 553   5                                              {
+ 554   6                                                      //Relative disp at 12.00 is greater than the scrolling resolution
+ 555   6                                                      //therefore clear all the flags
+ 556   6                                  TwelveOclockPointFound=0;
+ 557   6                                  RelativeDisplacement=TwelveOclockDisplacement;
+ 558   6                                  TwelveOclockDisplacement=0;
+ 559   6                                              }
+ 560   5                                      }
+ 561   4                          else
+ 562   4                                      {
+ 563   5                                              //Relative displacement anywhere else on the disc.
+ 564   5                                              if (FirstTimeTouchWheelTouched==2)
+ 565   5                                              {
+ 566   6                                                      tempResult = AbsPosOnTw;
+ 567   6                                                      tempResult = tempResult - PositionOnFirstTouch;
+ 568   6                              RelativeDisplacement = tempResult;
+ 569   6                                              }
+ 570   5                                      }
+ 571   4                                      
+ 572   4                                      //Select different items in the listbox
+ 573   4                                      if (abs(RelativeDisplacement) >= DisplayItemsResolution)
+ 574   4                                      {
+ 575   5                                              PositionOnFirstTouch = AbsPosOnTw;
+ 576   5                                              if (RelativeDisplacement > 0)
+ 577   5                                              {
+ 578   6                                                      if(MovementDetected==1)
+ 579   6                                                      {
+ 580   7                                                              if (UpdateListBoxDownOnce==1)
+ 581   7                                                              {       //Go down
+ 582   8                                                                      UpdateListBoxDownOnce=0;
+ 583   8                                                                      UpdateListBoxUpOnce=1;
+ 584   8                                                                      ScrollwheelStatus &= 0xCFFF;
+ 585   8                                                                      ScrollwheelStatus |= 0x1000;
+ 586   8                                                              }
+ 587   7                                                      }
+ 588   6                                                      else
+ 589   6                                                      {       //Stay static
+ 590   7                                                              ScrollwheelStatus &= 0xCFFF;
+ 591   7                                                      }
+ 592   6                                              }
+ 593   5                                              else if (RelativeDisplacement < 0)
+ 594   5                                              {
+ 595   6                                                      if(MovementDetected==1)
+ 596   6                                                      {
+ 597   7                                                              if (UpdateListBoxUpOnce==1)
+ 598   7                                                              {       //Go up
+ 599   8                                                                      UpdateListBoxUpOnce=0;
+ 600   8                                                                      UpdateListBoxDownOnce=1;
+ 601   8                                                                      ScrollwheelStatus &= 0xCFFF;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 11  
+
+ 602   8                                                                      ScrollwheelStatus |= 0x2000;
+ 603   8                                                              }
+ 604   7                                                      }
+ 605   6                                                      else
+ 606   6                                                      {       //Stay static
+ 607   7                                                              ScrollwheelStatus &= 0xCFFF;
+ 608   7                                                      }
+ 609   6                                              }
+ 610   5                                              MovementDetected = 1;
+ 611   5                                      }
+ 612   4                                      else
+ 613   4                                      {       
+ 614   5                                              //Stay static
+ 615   5                                              UpdateListBoxDownOnce=1;
+ 616   5                                              UpdateListBoxUpOnce=1;
+ 617   5                                              ScrollwheelStatus &= 0xCFFF;
+ 618   5                                      }
+ 619   4                              }
+ 620   3                              else
+ 621   3                              {       
+ 622   4                                      //Stay static
+ 623   4                                      UpdateListBoxDownOnce=1;
+ 624   4                                      UpdateListBoxUpOnce=1;
+ 625   4                                      ScrollwheelStatus &= 0xCFFF;
+ 626   4                              }
+ 627   3                      }//End if((TouchError & 0x01)!=0x01)
+ 628   2                                      
+ 629   2                      
+ 630   2                      //= Clear the tap if we're scrolling =
+ 631   2                      //====================================
+ 632   2                      //We have a new position, if it is different from the previous one and we are still within the
+ 633   2                      //the tapping time, then we check the positions. If we are moving, then we clear the tapping bit.
+ 634   2                      if( ((TouchError& 0x1)!=0x1) && ScrollWheelTouchDownCounter<T_MAX_TOUCHING)
+ 635   2                      {
+ 636   3                              if(MovementDetected==1)
+ 637   3                              {
+ 638   4                                      ScrollWheelTouchDownCounter=T_MAX_TOUCHING+1;
+ 639   4                                      TappingFlag=0; //Clear tapping bit on slider
+ 640   4                                      EnableTapDisplayOnTw=0; //We're moving, so don't display the tap;
+ 641   4                                      //MultiTapDetected=0;
+ 642   4                              }
+ 643   3                              else
+ 644   3                                      EnableTapDisplayOnTw=1; //We haven't moved by far enough, so a tap is still valid
+ 645   3                      }
+ 646   2              } //End if(ScrollwheelFlag==1)
+ 647   1      
+ 648   1              if (FastScrollDetected==1 && TouchwheelFlag==0)
+ 649   1              {
+ 650   2                      if (NumberOfUpdates>0)
+ 651   2                      {
+ 652   3                              if (FastScrollUpdateCounter>0)
+ 653   3                              {
+ 654   4                                      FastScrollUpdateCounter--;
+ 655   4                                      ScrollwheelStatus &= 0xCFFF;
+ 656   4                              }
+ 657   3                              else
+ 658   3                              {
+ 659   4                                      NumberOfUpdates--;
+ 660   4                                      FastScrollUpdateCounter=2;
+ 661   4                                      if (FastScrollDirection==UP)
+ 662   4                                      {
+ 663   5                                              //Go up
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 12  
+
+ 664   5                                              ScrollwheelStatus &= 0xCFFF;
+ 665   5                                              ScrollwheelStatus |= 0x2000;
+ 666   5                                      }
+ 667   4                                      else if (FastScrollDirection==DOWN)
+ 668   4                                      {
+ 669   5                                              //Go down
+ 670   5                                              ScrollwheelStatus &= 0xCFFF;
+ 671   5                                              ScrollwheelStatus |= 0x1000;
+ 672   5                                      }
+ 673   4                              }
+ 674   3                      }
+ 675   2                      else
+ 676   2                      {
+ 677   3                              FastScrollDetected=0;
+ 678   3                              ScrollwheelStatus &= 0xCFFF;
+ 679   3                      }
+ 680   2              }
+ 681   1              //= Format position data =
+ 682   1              //========================
+ 683   1              ScrollwheelStatus &= 0x33FF;
+ 684   1              ScrollwheelStatus |= ((TouchError <<2)<<8);
+ 685   1              
+ 686   1              if (TouchwheelFlag==1)
+ 687   1              {
+ 688   2                      //Compute position registers
+ 689   2                      if ((TouchError & 0x1)!=0x1)
+ 690   2                      {
+ 691   3                              ScrollwheelStatus |= 0x8000;
+ 692   3                              ScrollwheelStatus &= 0xFF00;
+ 693   3                              ScrollwheelStatus |= AvgPositionOnTw;
+ 694   3                      }
+ 695   2              }
+ 696   1              else    //Not touching...
+ 697   1              {
+ 698   2                      //Clear finger valid bit and go up go down commands
+ 699   2                      ScrollwheelStatus &= 0x0FFF;
+ 700   2                      if(TappingFlag==1)
+ 701   2                              ScrollwheelStatus |= 0x4000;
+ 702   2              }
+ 703   1              return (ScrollwheelStatus);
+ 704   1      }
+ 705          
+ 706          
+ 707          
+ 708          //---------------------------------
+ 709          //FindHighestAndLowestStagesUsed()
+ 710          //---------------------------------
+ 711          //Function that finds which is the highest and which is the lowest sensor touched during a scroll.
+ 712          //If there is a big finger touching the sensor, then the BigFingerTouching flag is set. if there 
+ 713          //is more than one finger touching, then TwoFingerTouching flag is set. If any of these 2 flags
+ 714          //are set, the function returns an error otherwise 0 for normal operation.
+ 715          static BYTE FindHighestAndLowestStagesUsed(const WORD InterruptStatusRegister, const WORD LowestStageOfThe
+             -Sensor, const WORD HighestStageOfTheSensor, const BYTE NumberOfStagesUsed, const BigFingerLevel, BYTE *LowestSensorTouch
+             -ed, BYTE *HighestSensorTouched)
+ 716          {
+ 717   1              WORD xdata ShiftValue;
+ 718   1              BYTE xdata i, xdata InterruptBitCounter;
+ 719   1              bit LowestSensorTouchedFound, HighestSensorTouchedFound;
+ 720   1              bit TwoFingerTouching, BigFingerTouching;
+ 721   1              
+ 722   1              //Initialisation
+ 723   1              LowestSensorTouchedFound=0;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 13  
+
+ 724   1              HighestSensorTouchedFound=0;    
+ 725   1              *LowestSensorTouched=0xFF;
+ 726   1              *HighestSensorTouched=0xFF;
+ 727   1              InterruptBitCounter=0;
+ 728   1              TwoFingerTouching=0;
+ 729   1              BigFingerTouching=0;
+ 730   1              
+ 731   1              if(((InterruptStatusRegister & LowestStageOfTheSensor) == LowestStageOfTheSensor) && ((InterruptStatusReg
+             -ister & HighestStageOfTheSensor) == HighestStageOfTheSensor))
+ 732   1              {
+ 733   2                      //Touchwheel specific 
+ 734   2                      //===================
+ 735   2                      //Comment out the whole if statement above for a slider or any others.
+ 736   2                      
+ 737   2                      //Start from the highest stage and walk back down to the lowest stage. The value of the
+ 738   2                      //lowest sensor touched will be bigger than the value of the highest sensor touched.
+ 739   2                      ShiftValue=HighestStageOfTheSensor;
+ 740   2                      for(i=NumberOfStagesUsed;i!=0;i--)
+ 741   2                      {
+ 742   3                              if(((InterruptStatusRegister & ShiftValue) == 0) && LowestSensorTouchedFound==0)
+ 743   3                              {
+ 744   4                                      //Lowest sensor touched is found here
+ 745   4                                      *LowestSensorTouched=i;
+ 746   4                                      LowestSensorTouchedFound=1;                                                             
+ 747   4                              }
+ 748   3                              else if((InterruptStatusRegister & ShiftValue) == ShiftValue) 
+ 749   3                              {
+ 750   4                                      InterruptBitCounter++;
+ 751   4                                      if (LowestSensorTouchedFound==1 && HighestSensorTouchedFound==0)
+ 752   4                                      {
+ 753   5                                              //Highest sensor touched is found here
+ 754   5                                              *HighestSensorTouched=i-1;
+ 755   5                                              HighestSensorTouchedFound=1;
+ 756   5                                      }
+ 757   4                              }
+ 758   3                              //Code for detecting if there are 2 fingers on the entire sensor
+ 759   3                              if (LowestSensorTouchedFound==1 && HighestSensorTouchedFound==1 && ((InterruptStatusRegister & ShiftVal
+             -ue) == 0) && i<(*LowestSensorTouched))
+ 760   3                                      TwoFingerTouching=1;
+ 761   3                              
+ 762   3                              ShiftValue=ShiftValue>>1;
+ 763   3                      }
+ 764   2              }
+ 765   1              else
+ 766   1              {       
+ 767   2                      //Code common to all sensors
+ 768   2                      //==========================
+ 769   2                      ShiftValue=LowestStageOfTheSensor;
+ 770   2                      for(i=0;i<NumberOfStagesUsed;i++)
+ 771   2                      {
+ 772   3                              //Found the lowest sensor touched
+ 773   3                              if((InterruptStatusRegister & ShiftValue) == ShiftValue) 
+ 774   3                              {
+ 775   4                                      if(LowestSensorTouchedFound==0)
+ 776   4                                      {
+ 777   5                                              //Lowest sensor touched is found here
+ 778   5                                              *LowestSensorTouched=i;
+ 779   5                                              LowestSensorTouchedFound=1;
+ 780   5                                      }
+ 781   4                                      //If last sensor is set, then it is also the highest sensor touched
+ 782   4                                      if(i==(NumberOfStagesUsed-1) && LowestSensorTouchedFound==1 && HighestSensorTouchedFound==0)
+ 783   4                                      {                                       
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 14  
+
+ 784   5                                              *HighestSensorTouched=i;
+ 785   5                                              HighestSensorTouchedFound=1;
+ 786   5                                      }                               
+ 787   4                              }
+ 788   3                              //Found the highest sensor touched
+ 789   3                              else if(((InterruptStatusRegister & ShiftValue) == 0) && LowestSensorTouchedFound==1 && HighestSensorTo
+             -uchedFound==0)
+ 790   3                              {
+ 791   4                                      //Highest sensor touched is found here
+ 792   4                                      *HighestSensorTouched=i-1;
+ 793   4                                      HighestSensorTouchedFound=1;
+ 794   4                              }                       
+ 795   3                              ShiftValue=ShiftValue<<1;
+ 796   3                      }
+ 797   2                      
+ 798   2                      //Code for detecting if there are 2 fingers on the entire sensor and if there is a big 
+ 799   2                      //finger touching it. We count the number of interrupts set and if it is greater than 
+ 800   2                      //"BigFingerLevel", then we set the "BigFingerTouching" flag.
+ 801   2                      ShiftValue=LowestStageOfTheSensor;              
+ 802   2                      for(i=0;i<NumberOfStagesUsed;i++)
+ 803   2                      {
+ 804   3                              if((InterruptStatusRegister & ShiftValue)==ShiftValue)
+ 805   3                              {
+ 806   4                                      InterruptBitCounter++;
+ 807   4                                      if((i>(*HighestSensorTouched)) || (i<(*LowestSensorTouched)))
+ 808   4                                              TwoFingerTouching=1;
+ 809   4                              }
+ 810   3                              ShiftValue=ShiftValue<<1;
+ 811   3                      }
+ 812   2              }
+ 813   1              if(InterruptBitCounter>=BigFingerLevel)
+ 814   1                      BigFingerTouching=1;
+ 815   1              //Return error code
+ 816   1              return (((BYTE)TwoFingerTouching) | (((BYTE)BigFingerTouching)<<1));
+ 817   1      }
+ 818          
+ 819          
+ 820          //---------------------------------
+ 821          //InitialiseTouchWheel()
+ 822          //---------------------------------
+ 823          //Function that initialise the touchwheel. It is called on power up and when calibrating all the sensors
+ 824          void InitialiseTouchWheel(void)
+ 825          {
+ 826   1              WORD xdata AmbientValAddress;
+ 827   1              BYTE i;
+ 828   1      
+ 829   1              AmbientValAddress = STAGE0_AMBIENT;
+ 830   1              
+ 831   1              // Initialise the scaled down value of the distance between the current value - ambient value.
+ 832   1              for(i=0;i<NB_OF_SENSORS_FOR_TW;i++)
+ 833   1              {                               
+ 834   2                      //Read ambient values
+ 835   2                      ReadFromAD7147(AmbientValAddress, 1, AmbientValues, i);
+ 836   2                      SensorValues[i]=0;
+ 837   2                      //Update stage variables for the next loop
+ 838   2                      AmbientValAddress=AmbientValAddress+NB_OF_REGS_PER_STAGE;
+ 839   2              }
+ 840   1              
+ 841   1              NoTouchCounterOnTw = 0;
+ 842   1              DisplayItemsResolution=(NUMBER_OF_POSITIONS_WANTED+1)/DISPLAY_ITEMS_CONSTANT;
+ 843   1              ScrollwheelStatus = 0;
+ 844   1              PositionRatio = INITIAL_POSITION_RATIO;
+C51 COMPILER V8.01   AD7147___SCROLLWHEEL                                                  07/27/2009 14:27:52 PAGE 15  
+
+ 845   1              PositionOffset = INITIAL_OFFSET_POSITION;
+ 846   1      }
+ 847          
+ 848          
+ 849          DWORD ApplyWeight(const WORD SensorVal, const BYTE Order)
+ 850          {
+ 851   1              DWORD temp;
+ 852   1      
+ 853   1              temp = SensorVal;
+ 854   1              temp *= WEIGHT_FACTOR;
+ 855   1              temp *= Order;
+ 856   1              return (temp);
+ 857   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4026    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     86      37
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      22
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =     10       4
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

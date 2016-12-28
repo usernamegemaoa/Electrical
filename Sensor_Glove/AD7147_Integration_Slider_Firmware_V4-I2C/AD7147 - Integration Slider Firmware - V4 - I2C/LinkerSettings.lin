@@ -1,0 +1,9 @@
+RAMSIZE(256) 
+OVERLAY(
+WriteToAD7147 ! *,
+ReadFromAD7147 ! *,
+ReceiveByteI2CMaster ! *,
+WriteToAD7147ViaI2c ! *,
+ReadFromAD7147ViaI2c ! *
+)
+XDATA( 0X0000-0X07FF )

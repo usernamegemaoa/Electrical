@@ -1,0 +1,251 @@
+C51 COMPILER V8.01   AD7147___SLIDER_FIRMWARE_CONFIG___V4___I2                             07/23/2009 12:18:57 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE AD7147___SLIDER_FIRMWARE_CONFIG___V4___I2
+OBJECT MODULE PLACED IN AD7147 - Slider Firmware Config - V4 - I2C.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD7147 - Slider Firmware Config - V4 - I2C.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "Include\General Definitions.h"
+   2          #include "Include\AD7147RegMap.h"
+   3          #include "Include\AD7147 - Slider Definitions.h"
+   4          
+   5          
+   6          //---------------------------------
+   7          //Function prototypes
+   8          //---------------------------------
+   9          //External functions
+  10          extern void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer
+             -, const WORD OffsetInBuffer);
+  11          extern void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, cons
+             -t BYTE OffsetInBuffer);
+  12          
+  13          //Local functions
+  14          void ConfigAD7147(void);
+  15          
+  16          
+  17          //---------------------------------
+  18          //Global variables
+  19          //---------------------------------
+  20          
+  21          //External global variables 
+  22          //---------------------------------
+  23          extern WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+  24          
+  25          //----------------------
+  26          //Function declarations
+  27          //----------------------
+  28          void ConfigAD7147(void);
+  29          
+  30          //---------------------
+  31          //Function definitions
+  32          //---------------------
+  33          void ConfigAD7147(void)
+  34          {
+  35   1              WORD xdata StageBuffer[8];
+  36   1              
+  37   1              //======================
+  38   1              //= Stage 0 CIN5(+) S1 =
+  39   1              //======================
+  40   1              StageBuffer[0]=0xFBFF;  //Register 0x80
+  41   1              StageBuffer[1]=0x1FFF;  //Register 0x81
+  42   1              StageBuffer[2]=0x0000;  //Register 0x82
+  43   1              StageBuffer[3]=0x2626;  //Register 0x83
+  44   1              StageBuffer[4]=1600;    //Register 0x84
+  45   1              StageBuffer[5]=1600;    //Register 0x85
+  46   1              StageBuffer[6]=1600;    //Register 0x86
+  47   1              StageBuffer[7]=1600;    //Register 0x87
+  48   1              WriteToAD7147(STAGE0_CONNECTION, 8, StageBuffer, 0);
+  49   1      
+  50   1      
+  51   1              //======================
+  52   1              //= Stage 1 CIN6(+) S2 =
+  53   1              //======================
+C51 COMPILER V8.01   AD7147___SLIDER_FIRMWARE_CONFIG___V4___I2                             07/23/2009 12:18:57 PAGE 2   
+
+  54   1              StageBuffer[0]=0xEFFF;  //Register 0x88
+  55   1              StageBuffer[1]=0x1FFF;  //Register 0x89
+  56   1              StageBuffer[2]=0x0000;  //Register 0x8A
+  57   1              StageBuffer[3]=0x2626;  //Register 0x8B
+  58   1              StageBuffer[4]=1650;    //Register 0x8C
+  59   1              StageBuffer[5]=1650;    //Register 0x8D
+  60   1              StageBuffer[6]=1650;    //Register 0x8E
+  61   1              StageBuffer[7]=1650;    //Register 0x8F
+  62   1              WriteToAD7147(STAGE1_CONNECTION, 8, StageBuffer, 0);
+  63   1              
+  64   1      
+  65   1              //========================
+  66   1              //= Stage 2 - CIN7(+) S3 =
+  67   1              //========================
+  68   1              StageBuffer[0]=0xFFFF;  //Register 0x90
+  69   1              StageBuffer[1]=0x1FFE;  //Register 0x91
+  70   1              StageBuffer[2]=0x0000;  //Register 0x92
+  71   1              StageBuffer[3]=0x2626;  //Register 0x93
+  72   1              StageBuffer[4]=1650;    //Register 0x94
+  73   1              StageBuffer[5]=1650;    //Register 0x95
+  74   1              StageBuffer[6]=1650;    //Register 0x96
+  75   1              StageBuffer[7]=1650;    //Register 0x97
+  76   1              WriteToAD7147(STAGE2_CONNECTION, 8, StageBuffer, 0);
+  77   1              
+  78   1              //========================
+  79   1              //= Stage 3 - CIN8(+) S4 =
+  80   1              //========================
+  81   1              StageBuffer[0]=0xFFFF;  //Register 0x98
+  82   1              StageBuffer[1]=0x1FFB;  //Register 0x99
+  83   1              StageBuffer[2]=0x0000;  //Register 0x9A
+  84   1              StageBuffer[3]=0x2626;  //Register 0x9B
+  85   1              StageBuffer[4]=1650;    //Register 0x9C
+  86   1              StageBuffer[5]=1650;    //Register 0x9D
+  87   1              StageBuffer[6]=1650;    //Register 0x9E
+  88   1              StageBuffer[7]=1650;    //Register 0x9F
+  89   1              WriteToAD7147(STAGE3_CONNECTION, 8, StageBuffer, 0);
+  90   1      
+  91   1              //========================
+  92   1              //= Stage 4 - CIN9(+) S5 = 
+  93   1              //========================
+  94   1              StageBuffer[0]=0xFFFF;  //Register 0xA0
+  95   1              StageBuffer[1]=0x1FEF;  //Register 0xA1
+  96   1              StageBuffer[2]=0x0000;  //Register 0xA2
+  97   1              StageBuffer[3]=0x2626;  //Register 0xA3
+  98   1              StageBuffer[4]=1650;    //Register 0xA4
+  99   1              StageBuffer[5]=1650;    //Register 0xA5
+ 100   1              StageBuffer[6]=1650;    //Register 0xA6
+ 101   1              StageBuffer[7]=1650;    //Register 0xA7
+ 102   1              WriteToAD7147(STAGE4_CONNECTION, 8, StageBuffer, 0);
+ 103   1              
+ 104   1              
+ 105   1              //=========================
+ 106   1              //= Stage 5 -  CIN10(+) S6 =
+ 107   1              //=========================
+ 108   1              StageBuffer[0]=0xFFFF;  //Register 0xA8
+ 109   1              StageBuffer[1]=0x1FBF;  //Register 0xA9
+ 110   1              StageBuffer[2]=0x0000;  //Register 0xAA
+ 111   1              StageBuffer[3]=0x2626;  //Register 0xAB
+ 112   1              StageBuffer[4]=1650;    //Register 0xAC
+ 113   1              StageBuffer[5]=1650;    //Register 0xAD
+ 114   1              StageBuffer[6]=1650;    //Register 0xAE
+ 115   1              StageBuffer[7]=1650;    //Register 0xAF
+C51 COMPILER V8.01   AD7147___SLIDER_FIRMWARE_CONFIG___V4___I2                             07/23/2009 12:18:57 PAGE 3   
+
+ 116   1              WriteToAD7147(STAGE5_CONNECTION, 8, StageBuffer, 0);
+ 117   1              
+ 118   1              
+ 119   1              //=========================
+ 120   1              //= Stage 6 -  CIN11(+) S7 =
+ 121   1              //=========================
+ 122   1              StageBuffer[0]=0xFFFF;  //Register 0xB0
+ 123   1              StageBuffer[1]=0x1EFF;  //Register 0xB1
+ 124   1              StageBuffer[2]=0x0000;  //Register 0xB2
+ 125   1              StageBuffer[3]=0x2626;  //Register 0xB3
+ 126   1              StageBuffer[4]=1650;    //Register 0xB4
+ 127   1              StageBuffer[5]=1650;    //Register 0xB5
+ 128   1              StageBuffer[6]=1650;    //Register 0xB6
+ 129   1              StageBuffer[7]=1650;    //Register 0xB7
+ 130   1              WriteToAD7147(STAGE6_CONNECTION, 8, StageBuffer, 0);
+ 131   1              
+ 132   1              //=========================
+ 133   1              //= Stage 7 - CIN12(+) S8 =
+ 134   1              //=========================
+ 135   1              StageBuffer[0]=0xFFFF;  //Register 0xB8
+ 136   1              StageBuffer[1]=0x1BFF;  //Register 0xB9
+ 137   1              StageBuffer[2]=0x0000;  //Register 0xBA
+ 138   1              StageBuffer[3]=0x2626;  //Register 0xBB
+ 139   1              StageBuffer[4]=1600;    //Register 0xBC
+ 140   1              StageBuffer[5]=1600;    //Register 0xBD
+ 141   1              StageBuffer[6]=1600;    //Register 0xBE
+ 142   1              StageBuffer[7]=1600;    //Register 0xBF
+ 143   1              WriteToAD7147(STAGE7_CONNECTION, 8, StageBuffer, 0);
+ 144   1                      
+ 145   1              //====================
+ 146   1              //= Stage 8 - Unused =
+ 147   1              //====================
+ 148   1              StageBuffer[0]=0xFFFF;  //Register 0xC0
+ 149   1              StageBuffer[1]=0x3FFF;  //Register 0xC1
+ 150   1              StageBuffer[2]=0x0000;  //Register 0xC2
+ 151   1              StageBuffer[3]=0x2626;  //Register 0xC3
+ 152   1              StageBuffer[4]=5000;    //Register 0xC4
+ 153   1              StageBuffer[5]=5000;    //Register 0xC5
+ 154   1              StageBuffer[6]=5000;    //Register 0xC6
+ 155   1              StageBuffer[7]=5000;    //Register 0xC7
+ 156   1              WriteToAD7147(STAGE8_CONNECTION, 8, StageBuffer, 0);
+ 157   1              
+ 158   1              //===================
+ 159   1              // Stage 9 - Unused =
+ 160   1              //===================
+ 161   1              StageBuffer[0]=0xFFFF;  //Register 0xC8
+ 162   1              StageBuffer[1]=0x3FFF;  //Register 0xC9
+ 163   1              StageBuffer[2]=0x0000;  //Register 0xCA
+ 164   1              StageBuffer[3]=0x2626;  //Register 0xCB
+ 165   1              StageBuffer[4]=5000;    //Register 0xCC
+ 166   1              StageBuffer[5]=5000;    //Register 0xCD
+ 167   1              StageBuffer[6]=5000;    //Register 0xCE
+ 168   1              StageBuffer[7]=5000;    //Register 0xCF
+ 169   1              WriteToAD7147(STAGE9_CONNECTION, 8, StageBuffer, 0);
+ 170   1      
+ 171   1              //=====================
+ 172   1              //= Stage 10 - Unused =
+ 173   1              //=====================
+ 174   1              StageBuffer[0]=0xFFFF;  //Register 0xD0
+ 175   1              StageBuffer[1]=0x3FFF;  //Register 0xD1
+ 176   1              StageBuffer[2]=0x0000;  //Register 0xD2
+ 177   1              StageBuffer[3]=0x2626;  //Register 0xD3
+C51 COMPILER V8.01   AD7147___SLIDER_FIRMWARE_CONFIG___V4___I2                             07/23/2009 12:18:57 PAGE 4   
+
+ 178   1              StageBuffer[4]=5000;    //Register 0xD4
+ 179   1              StageBuffer[5]=5000;    //Register 0xD5
+ 180   1              StageBuffer[6]=5000;    //Register 0xD6
+ 181   1              StageBuffer[7]=5000;    //Register 0xD7
+ 182   1              WriteToAD7147(STAGE10_CONNECTION, 8, StageBuffer, 0);
+ 183   1              
+ 184   1              //=====================
+ 185   1              //= Stage 11 - Unused =
+ 186   1              //=====================
+ 187   1              StageBuffer[0]=0xFFFF;  //Register 0xD8
+ 188   1              StageBuffer[1]=0x3FFF;  //Register 0xD9
+ 189   1              StageBuffer[2]=0x0000;  //Register 0xDA
+ 190   1              StageBuffer[3]=0x2626;  //Register 0xDB
+ 191   1              StageBuffer[4]=5000;    //Register 0xDC
+ 192   1              StageBuffer[5]=5000;    //Register 0xDD
+ 193   1              StageBuffer[6]=5000;    //Register 0xDE
+ 194   1              StageBuffer[7]=5000;    //Register 0xDF
+ 195   1              WriteToAD7147(STAGE11_CONNECTION, 8, StageBuffer, 0);
+ 196   1              
+ 197   1              
+ 198   1              //--------------------------------------------------------------------------//
+ 199   1              //-------------------------Bank 1 Registers---------------------------------//
+ 200   1              //--------------------------------------------------------------------------//
+ 201   1              //Initialisation of the first register bank but not the AMBCOMPCTL_REG0
+ 202   1              AD7147Registers[PWR_CONTROL]=0x02B2;    //Register 0x00
+ 203   1              WriteToAD7147(PWR_CONTROL, 1, AD7147Registers, PWR_CONTROL);
+ 204   1              
+ 205   1              ReadFromAD7147(STAGE_LOW_LIMIT_INT, 3, AD7147Registers, STAGE_LOW_LIMIT_INT);
+ 206   1              AD7147Registers[AMB_COMP_CTRL0]=0x3233; //Register 0x02
+ 207   1              AD7147Registers[AMB_COMP_CTRL1]=0x0819; //Register 0x03
+ 208   1              AD7147Registers[AMB_COMP_CTRL2]=0x0832; //Register 0x04
+ 209   1              AD7147Registers[STAGE_LOW_INT_EN]=0x0000;//Register 0x05
+ 210   1              AD7147Registers[STAGE_HIGH_INT_EN]=0x0000;      //Register 0x06
+ 211   1              AD7147Registers[STAGE_COMPLETE_INT_EN]=0x0001;  //Register 0x07
+ 212   1              WriteToAD7147(AMB_COMP_CTRL0, 6, AD7147Registers, AMB_COMP_CTRL0);
+ 213   1              
+ 214   1              //Enable data path for all sequences
+ 215   1              AD7147Registers[STAGE_CAL_EN]=0x00FF;   //Register 0x01
+ 216   1              WriteToAD7147(STAGE_CAL_EN, 1, AD7147Registers, STAGE_CAL_EN);
+ 217   1      
+ 218   1              ReadFromAD7147(STAGE_LOW_LIMIT_INT, 3, AD7147Registers, STAGE_LOW_LIMIT_INT);
+ 219   1      }
+ 220                                                                          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1067    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----      16
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

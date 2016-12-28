@@ -1,0 +1,16 @@
+"START_AD.obj",
+"I2C.obj",
+"AD7147 - Slider.obj",
+"General Definitions.obj",
+"AD7147 - Slider Firmware Config - V4 - I2C.obj",
+"AD7147 - Integration Slider Firmware - V4 - I2C.obj" 
+TO "AD7147 - Integration Slider Firmware - V4 - I2C"
+RAMSIZE(256) 
+OVERLAY(
+WriteToAD7147 ! *,
+ReadFromAD7147 ! *,
+ReceiveByteI2CMaster ! *,
+WriteToAD7147ViaI2c ! *,
+ReadFromAD7147ViaI2c ! *
+)
+XDATA( 0X0000-0X07FF )

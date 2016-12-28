@@ -1,0 +1,16 @@
+"START_AD.obj",
+"General Definitions.obj",
+"SPI.obj",
+"AD7147 - Scrollwheel.obj",
+"AD7147 - Joypad.obj",
+"Scrollwheel Demo Firmware Config V1_0 - 27-07-2009.obj",
+"Scrollwheel Integration Firmware V1-27_07_09-SPI.obj" 
+TO "Scrollwheel Integration Firmware V1-27_07_09-SPI"
+RAMSIZE(256) 
+OVERLAY(
+WriteToAD7147 ! *,
+ReadFromAD7147 ! *,
+WriteToAD7147ViaSpi ! *,
+ReadFromAD7147ViaSpi ! *
+)
+XDATA( 0X0000-0X07FF )

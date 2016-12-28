@@ -1,0 +1,500 @@
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE I2C
+OBJECT MODULE PLACED IN I2C.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE I2C.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /********************************************************************************************************/
+   2          /* I2C inteface for ADUC841                                                                                                                                                             */
+   3          /* ------------------------                                                                                                                                                             */
+   4          /*                                                                                                                                                                                                              */
+   5          /* Description.                                                                                                                                                                                 */
+   6          /* This file has the function to handle the I2C protocol using the ADuC841. In this case, the ADuC841   */
+   7          /* is the master.                                                                                                                                                                               */
+   8          /*                                                                                                                                                                                                              */
+   9          /* Date: 16/05/2005                                                                                                                                                                             */
+  10          /* Author: ADI                                                                                                                                                                                  */
+  11          /********************************************************************************************************/
+  12          #include <ADUC841.h>
+  13          #include <intrins.h>
+  14          #include "Include\General Definitions.h"
+  15          
+  16          #define AD7147_ADD              0x2C
+  17          #define I2C_WR                  0
+  18          #define I2C_RD                  1
+  19          #define ACK                             0
+  20          #define NACK                    1
+  21          
+  22          
+  23          //---------------------------------
+  24          //Function prototypes
+  25          //---------------------------------
+  26          //High level functions
+  27          BYTE WriteToAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToWrite, WORD *DataB
+             -uffer, const WORD OffsetInBuffer);
+  28          BYTE ReadFromAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToRead, WORD *DataB
+             -uffer, const WORD OffsetInBuffer);
+  29          //Low level functions
+  30          void InitialiseI2CMaster(void);
+  31          void StartI2CMaster(void);
+  32          void StopI2CMaster(void);
+  33          BYTE SendByteI2CMaster(BYTE ByteToSend);
+  34          BYTE ReceiveByteI2CMaster(bit ackn);
+  35          
+  36          //---------------------------------
+  37          //Function definitions
+  38          //---------------------------------
+  39          
+  40          /********************************************************************************************************/
+  41          /****************** High level functions, need to be customised according to the device *****************/
+  42          /********************************************************************************************************/
+  43          
+  44          //---------------------------------
+  45          //WriteAD7147ViaI2C()
+  46          //---------------------------------
+  47          //Function that writes to the AD7147 via the I2C port. It sends first the device
+  48          //address including the write bit, then the register address and finally the
+  49          //data. The function returns "1" if successfull otherwise "0".
+  50          //--------------------------------------------------------------------------------
+  51          BYTE WriteToAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToWrite, WORD *DataB
+             -uffer, const WORD OffsetInBuffer)
+  52          {
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 2   
+
+  53   1              WORD DataToWrite;
+  54   1              BYTE LowByteAddress, HighByteAddress;
+  55   1              BYTE LowByteData, HighByteData;
+  56   1              BYTE r, AcknError;
+  57   1              BYTE DeviceAddress;
+  58   1      
+  59   1              AcknError=1; //No error on initialisation
+  60   1      
+  61   1              //Add the write bit to the device address
+  62   1              DeviceAddress = AD7147_ADD<<1 | I2C_WR;
+  63   1              //Split the address in two bytes 
+  64   1              HighByteAddress = (RegisterStartAddress & 0xFF00) >>8;
+  65   1              LowByteAddress = RegisterStartAddress & 0x00FF;
+  66   1      
+  67   1              //Start the I2C transfer
+  68   1              InitialiseI2CMaster();
+  69   1              StartI2CMaster();
+  70   1              //Send device address
+  71   1              if(!SendByteI2CMaster(DeviceAddress))
+  72   1              {
+  73   2                      //Send register address if the acknowledgement is there
+  74   2                      if (!SendByteI2CMaster(HighByteAddress))
+  75   2                      {
+  76   3                              if (!SendByteI2CMaster(LowByteAddress))
+  77   3                              {
+  78   4                                      //Perform block write
+  79   4                                      for (r=0;r<NumberOfRegistersToWrite;r++)
+  80   4                                      {
+  81   5                                              DataToWrite = DataBuffer[OffsetInBuffer+r];
+  82   5                                              LowByteData = DataToWrite & 0x00FF;
+  83   5                                              HighByteData = (DataToWrite & 0xFF00)>>8;
+  84   5                                              if(!SendByteI2CMaster(HighByteData))
+  85   5                                              {
+  86   6                                                      SendByteI2CMaster(LowByteData);
+  87   6                                              }
+  88   5                                              else //No acknowledgement was found therefore send the stop condition
+  89   5                                              {
+  90   6                                                      StopI2CMaster();
+  91   6                                                      AcknError=0;
+  92   6                                              }
+  93   5                                      }
+  94   4                                      //Stop transfer
+  95   4                                      StopI2CMaster();
+  96   4                              }
+  97   3                              else //No acknowledgement was found therefore send the stop condition
+  98   3                              {
+  99   4                                      StopI2CMaster();
+ 100   4                                      AcknError=0;
+ 101   4                              }
+ 102   3                      }
+ 103   2                      else //No acknowledgement was found therefore send the stop condition
+ 104   2                      {
+ 105   3                              StopI2CMaster();
+ 106   3                              AcknError=0;
+ 107   3                      }
+ 108   2              }
+ 109   1              else //No acknowledgement was found therefore send the stop condition
+ 110   1              {
+ 111   2                      StopI2CMaster();
+ 112   2                      AcknError=0;
+ 113   2              }
+ 114   1              return(AcknError);
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 3   
+
+ 115   1      }
+ 116          
+ 117          
+ 118          //---------------------------------
+ 119          //ReadFromAD7147ViaI2C()
+ 120          //---------------------------------
+ 121          //Function that reads from the AD7147 via the I2C port. It sends first the device
+ 122          //address including the write bit, then the register address and finally reads data
+ 123          //back. The function returns "1" if successfull otherwise "0". If an error occurs,
+ 124          //Then the stop condition is sent.
+ 125          //--------------------------------------------------------------------------------
+ 126          BYTE ReadFromAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToRead, WORD *DataB
+             -uffer, const WORD OffsetInBuffer)
+ 127          {
+ 128   1              WORD ReadData;
+ 129   1              BYTE LowByteAddress, HighByteAddress;
+ 130   1              BYTE LowByteData, HighByteData;
+ 131   1              BYTE r, AcknError;
+ 132   1              BYTE DeviceAddress;
+ 133   1      
+ 134   1              AcknError=1; //No error on initialisation
+ 135   1              
+ 136   1              //Add the write bit to the device address
+ 137   1              DeviceAddress=AD7147_ADD<<1 | I2C_WR;
+ 138   1              //Split the address in two bytes 
+ 139   1              HighByteAddress = (RegisterStartAddress & 0xFF00) >>8;
+ 140   1              LowByteAddress = RegisterStartAddress & 0x00FF;
+ 141   1      
+ 142   1              //Start the I2C transfer
+ 143   1              InitialiseI2CMaster();
+ 144   1              StartI2CMaster();
+ 145   1      
+ 146   1              //Send device address
+ 147   1              if(!SendByteI2CMaster(DeviceAddress))
+ 148   1              {
+ 149   2                      //Send register address
+ 150   2                      if(!SendByteI2CMaster(HighByteAddress))
+ 151   2                      {
+ 152   3                              if(!SendByteI2CMaster(LowByteAddress))
+ 153   3                              {
+ 154   4                                      //Send the repeated start
+ 155   4                                      StartI2CMaster();
+ 156   4                                      //Send device address again changing the Rd/Wr bit
+ 157   4                                      DeviceAddress = AD7147_ADD<<1 | I2C_RD;
+ 158   4                                      if(!SendByteI2CMaster(DeviceAddress))
+ 159   4                                      {
+ 160   5                                              //Perform block read, but first,we need to know if we must send an ACKN or a NACK
+ 161   5                                              if(NumberOfRegistersToRead==1)
+ 162   5                                              {
+ 163   6                                                      HighByteData=ReceiveByteI2CMaster(ACK);
+ 164   6                                                      LowByteData=ReceiveByteI2CMaster(NACK);
+ 165   6                                                      ReadData=((HighByteData & 0xFF)<<8) | LowByteData;
+ 166   6                                                      DataBuffer[OffsetInBuffer]=ReadData;
+ 167   6                                              }
+ 168   5                                              else
+ 169   5                                              {
+ 170   6                                                      for (r=0;r<(NumberOfRegistersToRead-1);r++)
+ 171   6                                                      {
+ 172   7                                                              HighByteData=ReceiveByteI2CMaster(ACK);
+ 173   7                                                              LowByteData=ReceiveByteI2CMaster(ACK);
+ 174   7                                                              ReadData=((HighByteData & 0xFF)<<8) | LowByteData;      //Recombine 16-bit data
+ 175   7                                                              DataBuffer[OffsetInBuffer+r]=ReadData;
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 4   
+
+ 176   7                                                      }
+ 177   6                                                      //Do the last read sending the NACK
+ 178   6                                                      HighByteData=ReceiveByteI2CMaster(ACK);
+ 179   6                                                      LowByteData=ReceiveByteI2CMaster(NACK);
+ 180   6                                                      ReadData=((HighByteData & 0xFF)<<8) | LowByteData;      //Recombine 16-bit data
+ 181   6                                                      DataBuffer[OffsetInBuffer+NumberOfRegistersToRead-1]=ReadData;
+ 182   6                                              }
+ 183   5                                              //Stop transfer
+ 184   5                                              StopI2CMaster();
+ 185   5                                      }
+ 186   4                                      else //No acknowledgement was found therefore send the stop condition
+ 187   4                                      {
+ 188   5                                              StopI2CMaster();
+ 189   5                                              AcknError=0;
+ 190   5                                      }
+ 191   4                              }
+ 192   3                              else //No acknowledgement was found therefore send the stop condition
+ 193   3                              {
+ 194   4                                      StopI2CMaster();
+ 195   4                                      AcknError=0;
+ 196   4                              }
+ 197   3                      }
+ 198   2                      else //No acknowledgement was found therefore send the stop condition
+ 199   2                      {
+ 200   3                              StopI2CMaster();
+ 201   3                              AcknError=0;
+ 202   3                      }
+ 203   2              }
+ 204   1              else //No acknowledgement was found therefore send the stop condition
+ 205   1              {
+ 206   2                      StopI2CMaster();
+ 207   2                      AcknError=0;
+ 208   2              }
+ 209   1              return(AcknError);
+ 210   1      }
+ 211          
+ 212          
+ 213          
+ 214          /********************************************************************************************************/
+ 215          /*** Low level functions, do not change anything below this line, however check the valid clock level ***/
+ 216          /********************************************************************************************************/
+ 217          
+ 218          //---------------------------------
+ 219          //InitialiseI2CMaster();
+ 220          //---------------------------------
+ 221          //Function that configures the I2C port of the ADuC841 in master mode.
+ 222          //--------------------------------------------------------------------------------
+ 223          void InitialiseI2CMaster(void)
+ 224          {
+ 225   1              ADD0=1;                         //Write a "1" to ADD0 so that it becomes an input.
+ 226   1              CLK=1;                          //Write a "1" to CLK so that it becomes an input.
+ 227   1      
+ 228   1              SPICON &= 0xDF;         //SPI interface is turned off by clearing the SPE bit.
+ 229   1              I2CCON = 0xA8;          //Master mode
+ 230   1      }
+ 231          
+ 232          //---------------------------------
+ 233          //InitialiseI2CMaster();
+ 234          //---------------------------------
+ 235          //Function that configures the I2C port of the ADuC841 in master mode.
+ 236          
+ 237          //---------------------------------
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 5   
+
+ 238          //StartI2CMaster();
+ 239          //---------------------------------
+ 240          //Function that implements the start condition of the I2C protocol. The start
+ 241          //condition consists in a falling edge on SDA when SCL is high.
+ 242          //--------------------------------------------------------------------------------
+ 243          void StartI2CMaster(void)
+ 244          {
+ 245   1              MDE = 1;        //SDA output enabled
+ 246   1      
+ 247   1              MCO = 0;        //SCL low
+ 248   1              MDO = 0;        //SDA low
+ 249   1      
+ 250   1              MDO = 1;        //SDA high
+ 251   1              MCO = 1;        //SCL high
+ 252   1              _nop_();
+ 253   1              _nop_();
+ 254   1              _nop_();
+ 255   1              _nop_();
+ 256   1              _nop_();
+ 257   1              MDO = 0;        //SDA goes low before the clock
+ 258   1              _nop_();
+ 259   1              _nop_();
+ 260   1              _nop_();
+ 261   1              _nop_();
+ 262   1              _nop_();
+ 263   1              _nop_();
+ 264   1              _nop_();
+ 265   1              _nop_();
+ 266   1              MCO = 0;        //SCL low
+ 267   1              _nop_();
+ 268   1      }
+ 269          
+ 270          
+ 271          
+ 272          //---------------------------------
+ 273          //StopI2CMaster();
+ 274          //---------------------------------
+ 275          //Function that implements the stop condition of the I2C protocol. The stop
+ 276          //condition consists in a rising edge on SDA when SCL is high.
+ 277          //--------------------------------------------------------------------------------
+ 278          void StopI2CMaster(void)
+ 279          {
+ 280   1              MDE = 1;        //SDA output enabled
+ 281   1              MDO = 0;        //SDA low
+ 282   1              _nop_();
+ 283   1              _nop_();
+ 284   1              _nop_();
+ 285   1              _nop_();
+ 286   1              _nop_();
+ 287   1              _nop_();
+ 288   1              _nop_();
+ 289   1              _nop_();
+ 290   1              _nop_();
+ 291   1              MCO = 1;        //SCL high
+ 292   1              _nop_();
+ 293   1              _nop_();
+ 294   1              _nop_();
+ 295   1              _nop_();
+ 296   1              _nop_();
+ 297   1              _nop_();
+ 298   1              _nop_();
+ 299   1              _nop_();
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 6   
+
+ 300   1              _nop_();
+ 301   1              MDO = 1;        //SDA goes from low to high when SCL is already high,
+ 302   1              _nop_();
+ 303   1              _nop_();
+ 304   1              _nop_();
+ 305   1              _nop_();
+ 306   1              _nop_();
+ 307   1              _nop_();
+ 308   1              _nop_();
+ 309   1              _nop_();
+ 310   1              _nop_();
+ 311   1      }
+ 312          
+ 313          
+ 314          //---------------------------------
+ 315          //SendByteI2CMaster();
+ 316          //---------------------------------
+ 317          //Function that sends a byte to the I2C port and then read the acknowledgement 
+ 318          //bit. If the acknowledgement is found, then the function returns "1" otherwise, 
+ 319          //it returns "0".
+ 320          //--------------------------------------------------------------------------------
+ 321          BYTE SendByteI2CMaster(BYTE ByteToSend)
+ 322          {
+ 323   1              BYTE i;
+ 324   1              BYTE noack;
+ 325   1      
+ 326   1              MDE = 1;        //Enable SDA output
+ 327   1              for (i=8; i>0; i--)
+ 328   1              {
+ 329   2                      MCO = 0;                        //Reset SCL
+ 330   2                      MDO = ByteToSend >> 7;  //Send data to SDA pin
+ 331   2                      _nop_();
+ 332   2                      MCO = 1;                        //Set SCL
+ 333   2                      _nop_();
+ 334   2                      _nop_();
+ 335   2                      _nop_();
+ 336   2                      _nop_();
+ 337   2                      _nop_();
+ 338   2                      _nop_();
+ 339   2                      _nop_();
+ 340   2                      _nop_();
+ 341   2                      _nop_();
+ 342   2                      _nop_();
+ 343   2                      _nop_();
+ 344   2                      _nop_();
+ 345   2                      _nop_();
+ 346   2                      MCO = 0;                        //Reset SCL
+ 347   2                      _nop_();
+ 348   2                      ByteToSend<<=1;         //Rotate data
+ 349   2              }
+ 350   1              MDE = 0;                                //SDA becomes an input for the ACKN
+ 351   1              MCO = 0;                                //Reset SCL
+ 352   1      
+ 353   1              _nop_();
+ 354   1              _nop_();
+ 355   1              _nop_();
+ 356   1              _nop_();
+ 357   1              _nop_();
+ 358   1              _nop_();
+ 359   1              _nop_();
+ 360   1              _nop_();
+ 361   1              _nop_();
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 7   
+
+ 362   1              _nop_();
+ 363   1      
+ 364   1              MCO = 1;                        //Set SCL
+ 365   1              noack = (BYTE)MDI;              //Check SDA for ACKN
+ 366   1              MDO=0;
+ 367   1              _nop_();
+ 368   1              _nop_();
+ 369   1              _nop_();
+ 370   1              _nop_();
+ 371   1              _nop_();
+ 372   1              _nop_();
+ 373   1              MCO = 0;
+ 374   1              MDE = 1;        //Enable SDA output
+ 375   1              return(noack);
+ 376   1      }
+ 377          
+ 378          
+ 379          
+ 380          //---------------------------------
+ 381          //ReceiveByteI2CMaster();
+ 382          //---------------------------------
+ 383          //Function that reads one byte from the I2C port. If we do continuous read, 
+ 384          //then the acknowledgement must be "0" excepted for the last read sequence which
+ 385          //it must be "1".
+ 386          //--------------------------------------------------------------------------------
+ 387          BYTE ReceiveByteI2CMaster(bit ackn)
+ 388          {
+ 389   1              unsigned char i;
+ 390   1              BYTE ReceivedByte;
+ 391   1      
+ 392   1              MDE = 0;        //Make SDA an input
+ 393   1              MCO = 0;        //Reset SCL
+ 394   1              for (i=8; i>0; i--)
+ 395   1              {
+ 396   2                      _nop_();
+ 397   2                      _nop_();
+ 398   2                      _nop_();
+ 399   2                      _nop_();
+ 400   2                      _nop_();
+ 401   2                      _nop_();
+ 402   2                      _nop_();
+ 403   2                      _nop_();
+ 404   2                      _nop_();
+ 405   2                      MCO = 1;                                //Set SCL
+ 406   2                      ReceivedByte <<= 1;             //Rotate data
+ 407   2                      ReceivedByte |= MDI;    //Read SDA -> data
+ 408   2                      _nop_();
+ 409   2                      _nop_();
+ 410   2                      _nop_();
+ 411   2                      _nop_();
+ 412   2                      _nop_();
+ 413   2                      _nop_();
+ 414   2                      MCO = 0;                                //Reset SCL
+ 415   2                      _nop_();
+ 416   2                      _nop_();
+ 417   2                      _nop_();
+ 418   2                      _nop_();
+ 419   2                      _nop_();
+ 420   2                      _nop_();
+ 421   2                      _nop_();
+ 422   2                      _nop_();
+ 423   2                      _nop_();
+C51 COMPILER V8.01   I2C                                                                   07/23/2009 12:18:57 PAGE 8   
+
+ 424   2                      _nop_();
+ 425   2              }
+ 426   1              MDE = 1;        //SDA is turned in an output to write the ACK on the data line
+ 427   1              MDO = ackn;     //SDA = ACK bit
+ 428   1              _nop_();                
+ 429   1              _nop_();
+ 430   1              _nop_();
+ 431   1              _nop_();
+ 432   1              _nop_();
+ 433   1              _nop_();
+ 434   1              _nop_();
+ 435   1              _nop_();
+ 436   1              _nop_();
+ 437   1              MCO = 1;        //Set SCL
+ 438   1              _nop_();                
+ 439   1              _nop_();
+ 440   1              _nop_();
+ 441   1              _nop_();
+ 442   1              _nop_();
+ 443   1              _nop_();
+ 444   1              _nop_();
+ 445   1              _nop_();
+ 446   1              _nop_();
+ 447   1              MCO = 0;        //Reset SCL
+ 448   1              _nop_();                
+ 449   1              _nop_();
+ 450   1              _nop_();
+ 451   1              _nop_();
+ 452   1              _nop_();
+ 453   1              _nop_();
+ 454   1              _nop_();
+ 455   1              _nop_();
+ 456   1              _nop_();
+ 457   1      //      MDE = 0;        //SDA is an input again
+ 458   1              return(ReceivedByte);
+ 459   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    651    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      31
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

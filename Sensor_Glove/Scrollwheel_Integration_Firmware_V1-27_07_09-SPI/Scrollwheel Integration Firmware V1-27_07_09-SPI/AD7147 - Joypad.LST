@@ -1,0 +1,405 @@
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE AD7147___JOYPAD
+OBJECT MODULE PLACED IN AD7147 - Joypad.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD7147 - Joypad.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          // This file implements the joypad functionality of the firmware.
+   2          // This is the format of the returned variable.
+   3          //
+   4          // ******************************************************************************************************
+   5          //
+   6          // Joypad status: ButtonStatus
+   7          // ===========================
+   8          //                                                                                              
+   9          //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+  10          //                                         | | | | | | | | | |------> DOWN button
+  11          //                                                 | | | | | | | | |--------> UP button
+  12          //                                                 | | | | | | |------------> LEFT button
+  13          //                                                 | | | | | |--------------> RIGHT button
+  14          //                                                 | | | | |----------------> CENTRE button
+  15          //                                                 | | | |------------------> Go DOWN command
+  16          //                                                 | | |--------------------> Go UP command
+  17          //                                                 | |----------------------> Go LEFT command
+  18          //                                                 |------------------------> Go RIGHT command
+  19          //                                                                                                                                                                                              
+  20          // ******************************************************************************************************
+  21          
+  22          #include "Include\General Definitions.h"
+  23          #include "Include\AD7147RegMap.h"
+  24          #include "Include\Scrollwheel Algorithm Definitions.h"
+  25          #include "Include\Joypad Definitions.h"
+  26          
+  27          
+  28          //---------------------------------
+  29          //Function prototypes
+  30          //---------------------------------
+  31          
+  32          //External functions
+  33          //------------------
+  34          
+  35          //Local functions
+  36          //---------------
+  37          WORD UpdateJoypad(void);
+  38          
+  39          
+  40          //---------------------------------
+  41          //Global variables
+  42          //---------------------------------
+  43          
+  44          //External global variables
+  45          //-------------------------
+  46          extern WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+  47          
+  48          //Local global variables
+  49          //----------------------
+  50          //Button Joypad Buttons
+  51          BYTE xdata TimeForNewPulse;
+  52          bit UpdateJoypadUpOnce, UpdateJoypadDownOnce, UpdateJoypadRightOnce,UpdateJoypadLeftOnce;
+  53          BYTE xdata UpJoypadUpdateCounter, xdata DownJoypadUpdateCounter,xdata RightJoypadUpdateCounter,xdata LeftJ
+             -oypadUpdateCounter;
+  54          BYTE xdata JoypadTouchDownStatus;
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 2   
+
+  55          //Variables for the direction buttons and Button/scrollwheel activation mechanic
+  56          BYTE xdata NoDisplacementCounter;
+  57          BYTE xdata MovedSinceActivationForDirectionButtons;
+  58          bit DirectionButtonFound; DirectionButtonDisplayed;
+  59          BYTE xdata DirectionButtonSet;
+  60          BYTE xdata NumberOfPositionsAllowed;
+  61          bit CenterButtonFlag, CenterButtonWasTouched;
+  62          WORD xdata ButtonStatus;
+  63          
+  64          
+  65          WORD UpdateJoypad(void)
+  66          {
+  67   1              /*********************************************************************************************/
+  68   1              /*                                                                                                                                                                                       */
+  69   1              /****************************** CODE FOR THE 4 DIRECTION BUTTONS *****************************/
+  70   1              /*                                                                                                                                                                                       */
+  71   1              /*********************************************************************************************/
+  72   1              
+  73   1              if ((AD7147Registers[STAGE_HIGH_LIMIT_INT] & POWER_UP_INTERRUPT) != 0x0000)
+  74   1              {
+  75   2                      //*************************************************/
+  76   2                      //* Decode the interrupts bits to set the buttons */
+  77   2                      //*************************************************/
+  78   2                      if((AD7147Registers[STAGE_HIGH_LIMIT_INT] & 0x00FF) != 0x0000)
+  79   2                              JoypadTouchDownStatus = 0x0001;
+  80   2                      else if((AD7147Registers[STAGE_HIGH_LIMIT_INT] & 0x1FF) == 0x0100)
+  81   2                              JoypadTouchDownStatus = 0x0000;
+  82   2              
+  83   2                      switch (AD7147Registers[STAGE_HIGH_LIMIT_INT] & 0xFF)   //Only look at the scrollwheel bits
+  84   2                      {
+  85   3                              //All possible combinations for top button
+  86   3                              case 0x0001:
+  87   3                                      DirectionButtonSet=1;
+  88   3                                      break;
+  89   3                              case 0x0080:
+  90   3                                      DirectionButtonSet=1;
+  91   3                                      break;
+  92   3                              case 0x0081:
+  93   3                                      DirectionButtonSet=1;
+  94   3                                      break;
+  95   3                              case 0x0083:
+  96   3                                      DirectionButtonSet=1;
+  97   3                                      break;
+  98   3                              case 0x00C1:
+  99   3                                      DirectionButtonSet=1;
+ 100   3                                      break;
+ 101   3                              case 0x00C3:
+ 102   3                                      DirectionButtonSet=1;
+ 103   3                                      break;
+ 104   3                              //All possible combinations for right button
+ 105   3                              case 0x0002:
+ 106   3                                      DirectionButtonSet=2;
+ 107   3                                      break;
+ 108   3                              case 0x0004:
+ 109   3                                      DirectionButtonSet=2;
+ 110   3                                      break;
+ 111   3                              case 0x0006:
+ 112   3                                      DirectionButtonSet=2;
+ 113   3                                      break;
+ 114   3                              case 0x0007:
+ 115   3                                      DirectionButtonSet=2;
+ 116   3                                      break;
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 3   
+
+ 117   3                              case 0x000D:
+ 118   3                                      DirectionButtonSet=2;
+ 119   3                                      break;
+ 120   3                              case 0x000E:
+ 121   3                                      DirectionButtonSet=2;
+ 122   3                                      break;
+ 123   3                              //All possible combinations for bottom button
+ 124   3                              case 0x0008:
+ 125   3                                      DirectionButtonSet=3;
+ 126   3                                      break;
+ 127   3                              case 0x0010:
+ 128   3                                      DirectionButtonSet=3;
+ 129   3                                      break;
+ 130   3                              case 0x0018:
+ 131   3                                      DirectionButtonSet=3;
+ 132   3                                      break;
+ 133   3                              case 0x001C:
+ 134   3                                      DirectionButtonSet=3;
+ 135   3                                      break;
+ 136   3                              case 0x0038:
+ 137   3                                      DirectionButtonSet=3;
+ 138   3                                      break;
+ 139   3                              case 0x003C:
+ 140   3                                      DirectionButtonSet=3;
+ 141   3                                      break;
+ 142   3                              //All possible combinations for left button
+ 143   3                              case 0x0020:
+ 144   3                                      DirectionButtonSet=4;
+ 145   3                                      break;
+ 146   3                              case 0x0040:
+ 147   3                                      DirectionButtonSet=4;
+ 148   3                                      break;
+ 149   3                              case 0x0060:
+ 150   3                                      DirectionButtonSet=4;
+ 151   3                                      break;
+ 152   3                              case 0x0070:
+ 153   3                                      DirectionButtonSet=4;
+ 154   3                                      break;
+ 155   3                              case 0x00E0:
+ 156   3                                      DirectionButtonSet=4;
+ 157   3                                      break;
+ 158   3                              case 0x00F0:
+ 159   3                                      DirectionButtonSet=4;
+ 160   3                                      break;
+ 161   3                              default:
+ 162   3                                      DirectionButtonSet=0;
+ 163   3                                      break;
+ 164   3                      }//End switch (AD7147Registers[STAGE_HIGH_LIMIT_INT])
+ 165   2      
+ 166   2                      
+ 167   2                      if (MovedSinceActivationForDirectionButtons==0 && CenterButtonWasTouched==0)
+ 168   2                      {
+ 169   3                              //If we have not moved since the activation of the scrollwheel then 
+ 170   3                              //we count for how many interrupts we remained steady.
+ 171   3                              if (NoDisplacementCounter<255)
+ 172   3                                      NoDisplacementCounter++;
+ 173   3                              if (NoDisplacementCounter>NB_OF_INT_IN_IDLE_POSITION && DirectionButtonFound==0)
+ 174   3                              {
+ 175   4                                      switch(DirectionButtonSet)
+ 176   4                                      {
+ 177   5                                              case 3:
+ 178   5                                                      ButtonStatus = TOP;
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 4   
+
+ 179   5                                                      DirectionButtonDisplayed=1;
+ 180   5                                                      DirectionButtonFound=1;
+ 181   5                                                      break;
+ 182   5                                              case 2:
+ 183   5                                                      ButtonStatus = RIGHT;
+ 184   5                                                      DirectionButtonDisplayed=1;
+ 185   5                                                      DirectionButtonFound=1;
+ 186   5                                                      break;
+ 187   5                                              case 1:
+ 188   5                                                      ButtonStatus = BOTTOM;
+ 189   5                                                      DirectionButtonDisplayed=1;
+ 190   5                                                      DirectionButtonFound=1;
+ 191   5                                                      break;
+ 192   5                                              case 4:
+ 193   5                                                      ButtonStatus = LEFT;
+ 194   5                                                      DirectionButtonDisplayed=1;
+ 195   5                                                      DirectionButtonFound=1;                                         
+ 196   5                                                      break;
+ 197   5                                      }//End switch(ButtonSet)
+ 198   4                              }
+ 199   3                              //This is where we clear the 4 direction buttons once in the ButtonStatus.
+ 200   3                              if (DirectionButtonFound==1 && DirectionButtonSet==0 && DirectionButtonDisplayed==1)
+ 201   3                              {
+ 202   4                                      DirectionButtonDisplayed=0;
+ 203   4                                      ButtonStatus &= 0xFFF0;
+ 204   4                              }
+ 205   3                      }//End if (MovedSinceActivationForDirectionButtons==0)
+ 206   2                      else
+ 207   2                      {
+ 208   3                              ButtonStatus &= 0xFFF0;
+ 209   3                              NoDisplacementCounter = 0x0000;
+ 210   3                      }//End else if (MovedSinceActivationForDirectionButtons==0)
+ 211   2      
+ 212   2                      // ButtonStatus is organised as followed:
+ 213   2                      // ========================================
+ 214   2                      // bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+ 215   2                      //                                                      | |     | | | | | | |
+ 216   2                      //                                                      | |     | | | | | | |   ========== JOYPAD BUTTONS ==========
+ 217   2                      //                              | |     | | | | | | |-----> Joypad UP
+ 218   2                      //                                                      | |     | | | | | |-------> Joypad DOWN
+ 219   2                      //                                              | |     | | | | |---------> Joypad LEFT
+ 220   2                      //                                                  | | | | | |-----------> Joypad RIGHT 
+ 221   2                      //                                                  | | | | |-------------> Joypad "OK" Centre Button
+ 222   2                      //                                                  | | | | 
+ 223   2                      //                                                  | | | |                     ========= DIRECTION COMMANDS ========
+ 224   2                      //                                                  | | | |--------------->     Go UP
+ 225   2                      //                                                  | | |----------------->     Go DOWN
+ 226   2                      //                                                  | |-------------------> Go LEFT
+ 227   2                      //                                                  |---------------------> Go RIGHT                    
+ 228   2      
+ 229   2                      /************************************************************************************/
+ 230   2                      /* Implement an auto-scrolling if we stay on the lower or upper arrow of the joypad */
+ 231   2                      /************************************************************************************/
+ 232   2                      if (NoDisplacementCounter>NB_OF_INT_IN_IDLE_POSITION && DirectionButtonFound==1)
+ 233   2                      {
+ 234   3                              if (DirectionButtonSet==0x01)     //Up Pulse
+ 235   3                              {
+ 236   4                                      if (UpdateJoypadUpOnce==1)
+ 237   4                                      {       //Go up
+ 238   5                                              UpdateJoypadUpOnce=0;
+ 239   5                                              ButtonStatus &= 0xFE1F;  //0xFFBF
+ 240   5                                              ButtonStatus |= 0x0040;                         
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 5   
+
+ 241   5                                      }
+ 242   4                                      else
+ 243   4                                      {
+ 244   5                                              ButtonStatus &= 0xFE1F;  //0xFFBF                               
+ 245   5                                              UpJoypadUpdateCounter++;
+ 246   5                                              if (UpJoypadUpdateCounter>=TimeForNewPulse)
+ 247   5                                              {
+ 248   6                                                      UpJoypadUpdateCounter=0;
+ 249   6                                                      UpdateJoypadUpOnce=1;
+ 250   6                                                      TimeForNewPulse=JOYPAD_QUICK_UPDATE;
+ 251   6                                              }
+ 252   5                                      }
+ 253   4                              }
+ 254   3                              else if (DirectionButtonSet==0x0003)    //Down Pulse
+ 255   3                              {
+ 256   4                                      if (UpdateJoypadDownOnce==1)
+ 257   4                                      {       //Go down
+ 258   5                                              UpdateJoypadDownOnce=0;
+ 259   5                                              ButtonStatus &= 0xFE1F; //0xFFDF;
+ 260   5                                              ButtonStatus |= 0x0020;
+ 261   5                                      }
+ 262   4                                      else
+ 263   4                                      {
+ 264   5                                              ButtonStatus &= 0xFE1F; //0xFFDF;
+ 265   5                                              DownJoypadUpdateCounter++;
+ 266   5                                              if (DownJoypadUpdateCounter>=TimeForNewPulse)
+ 267   5                                              {
+ 268   6                                                      DownJoypadUpdateCounter=0;
+ 269   6                                                      UpdateJoypadDownOnce=1;
+ 270   6                                                      TimeForNewPulse=JOYPAD_QUICK_UPDATE;
+ 271   6                                              }
+ 272   5                                      }
+ 273   4                              }
+ 274   3                              else if (DirectionButtonSet==0x0004)  //Left Pulse
+ 275   3                              {
+ 276   4                                      if (UpdateJoypadLeftOnce==1)
+ 277   4                                      {       //Go down
+ 278   5                                              UpdateJoypadLeftOnce=0;
+ 279   5                                              ButtonStatus &= 0xFE1F; //0xFF7F;
+ 280   5                                              ButtonStatus |= 0x0080;
+ 281   5                                      }
+ 282   4                                      else
+ 283   4                                      {
+ 284   5                                              ButtonStatus &= 0xFE1F; //0xFF7F;
+ 285   5                                              LeftJoypadUpdateCounter++;
+ 286   5                                              if (LeftJoypadUpdateCounter>=TimeForNewPulse)
+ 287   5                                              {
+ 288   6                                                      LeftJoypadUpdateCounter=0;
+ 289   6                                                      UpdateJoypadLeftOnce=1;
+ 290   6                                                      TimeForNewPulse=JOYPAD_QUICK_UPDATE;
+ 291   6                                              }
+ 292   5                                      }
+ 293   4                              }
+ 294   3                              else if (DirectionButtonSet==0x02)  //Right Pulse
+ 295   3                              {
+ 296   4                                      if (UpdateJoypadRightOnce==1)
+ 297   4                                      {       //Go down
+ 298   5                                              UpdateJoypadRightOnce=0;
+ 299   5                                              ButtonStatus &= 0xFE1F; //0xFEFF;
+ 300   5                                              ButtonStatus |= 0x0100;
+ 301   5                                      }
+ 302   4                                      else
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 6   
+
+ 303   4                                      {
+ 304   5                                              ButtonStatus &= 0xFE1F; //0xFEFF;
+ 305   5                                              RightJoypadUpdateCounter++;
+ 306   5                                              if (RightJoypadUpdateCounter>=TimeForNewPulse)
+ 307   5                                              {
+ 308   6                                                      RightJoypadUpdateCounter=0;
+ 309   6                                                      UpdateJoypadRightOnce=1;
+ 310   6                                                      TimeForNewPulse=JOYPAD_QUICK_UPDATE;
+ 311   6                                              }
+ 312   5                                      }
+ 313   4                              }
+ 314   3                      }
+ 315   2                      else
+ 316   2                      {
+ 317   3                              //Stay static
+ 318   3                              UpdateJoypadDownOnce=0;
+ 319   3                              UpdateJoypadUpOnce=0;
+ 320   3                              UpdateJoypadLeftOnce=0;
+ 321   3                              UpdateJoypadRightOnce=0;
+ 322   3                              TimeForNewPulse=0;
+ 323   3                              UpJoypadUpdateCounter=0;
+ 324   3                              DownJoypadUpdateCounter=0;
+ 325   3                              LeftJoypadUpdateCounter=0;
+ 326   3                              RightJoypadUpdateCounter=0;
+ 327   3                              ButtonStatus &= 0xFE1F;
+ 328   3                      }               
+ 329   2                      
+ 330   2                      //**************************/
+ 331   2                      //* Code for center button */
+ 332   2                      //**************************/
+ 333   2                      if (((AD7147Registers[STAGE_HIGH_LIMIT_INT] & 0x0100)==0x0100) && 
+ 334   2                              (MovedSinceActivationForDirectionButtons==0))
+ 335   2                      {
+ 336   3                              ButtonStatus = 0x0010;
+ 337   3                              //Only set centre button if we aren't touching any of the scrollwheel
+ 338   3                              if(JoypadTouchDownStatus == 0x0000)
+ 339   3                              {
+ 340   4                                      ButtonStatus |= 0x0010;
+ 341   4                                      //We are touching centre button so make sure we clear direction buttons
+ 342   4                                      ButtonStatus &=0xFFF0;
+ 343   4                              }
+ 344   3                              else
+ 345   3                                      ButtonStatus &=0xFFEF;
+ 346   3                              
+ 347   3                              CenterButtonFlag=1;
+ 348   3                              CenterButtonWasTouched=1;
+ 349   3                      }
+ 350   2                      else
+ 351   2                      {
+ 352   3                              ButtonStatus &= 0xFFEF;
+ 353   3                              CenterButtonFlag=0;
+ 354   3                      }
+ 355   2              }
+ 356   1              else    //Sensor is not touched
+ 357   1              {
+ 358   2                      //Variables for the direction buttons and Button/scrollwheel activation mechanic
+ 359   2                      NoDisplacementCounter=0;
+ 360   2                      DirectionButtonFound=0;
+ 361   2                      DirectionButtonDisplayed=0;
+ 362   2      
+ 363   2                      MovedSinceActivationForDirectionButtons=0;
+ 364   2                      CenterButtonWasTouched=0;
+C51 COMPILER V8.01   AD7147___JOYPAD                                                       07/27/2009 14:27:52 PAGE 7   
+
+ 365   2                      
+ 366   2                      ButtonStatus = 0;//&= 0xFFE0;
+ 367   2              }
+ 368   1              return (ButtonStatus);
+ 369   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    894    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     12    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      7    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

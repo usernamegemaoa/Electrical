@@ -1,0 +1,500 @@
+BL51 BANKED LINKER/LOCATER V6.02                                                        05/19/2008  15:46:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.02, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE START_AD.obj, SPI - Basic Configuration.obj TO SPI - Basic Configuration RAMSIZE (256) OVERLAY 
+>> (WRITETOAD7147 ! *, READFROMAD7147 ! *, WRITETOAD7147VIASPI ! *, READFROMAD7147VIASPI ! *) XDATA (0X0000-0X07FF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  START_AD.obj (?C_STARTUP)
+  SPI - Basic Configuration.obj (SPI___BASIC_CONFIGURATION)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ILDOPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ISTOPTR)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?OFFXADD)
+
+
+LINK MAP OF MODULE:  SPI - Basic Configuration (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000BH     UNIT         ?DT?_READFROMAD7147VIASPI?SPI___BASIC_CONFIGURATION
+            DATA    0013H     0009H     UNIT         ?DT?_WRITETOAD7147VIASPI?SPI___BASIC_CONFIGURATION
+            DATA    001CH     0008H     UNIT         ?DT?_READFROMAD7147?SPI___BASIC_CONFIGURATION
+            DATA    0024H     0007H     UNIT         ?DT?_WRITETOAD7147?SPI___BASIC_CONFIGURATION
+            IDATA   002BH     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0030H     UNIT         ?XD?SPI___BASIC_CONFIGURATION
+            XDATA   0030H     0010H     UNIT         _XDATA_GROUP_
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     0424H     UNIT         ?PR?CONFIGAD7147?SPI___BASIC_CONFIGURATION
+            CODE    042AH     0087H     UNIT         ?PR?_WRITETOAD7147VIASPI?SPI___BASIC_CONFIGURATION
+            CODE    04B1H     0086H     UNIT         ?PR?_READFROMAD7147VIASPI?SPI___BASIC_CONFIGURATION
+            CODE    0537H     0071H     UNIT         ?C?LIB_CODE
+            CODE    05A8H     003FH     UNIT         ?PR?AD7147_ISR?SPI___BASIC_CONFIGURATION
+            CODE    05E7H     002AH     UNIT         ?PR?SERVICEAD7147ISR?SPI___BASIC_CONFIGURATION
+            CODE    0611H     0014H     UNIT         ?PR?MAIN?SPI___BASIC_CONFIGURATION
+            CODE    0625H     000FH     UNIT         ?C_C51STARTUP
+            CODE    0634H     0009H     UNIT         ?PR?_WRITETOAD7147?SPI___BASIC_CONFIGURATION
+            CODE    063DH     0009H     UNIT         ?PR?_READFROMAD7147?SPI___BASIC_CONFIGURATION
+
+
+
+OVERLAY MAP OF MODULE:   SPI - Basic Configuration (?C_STARTUP)
+
+
+SEGMENT                                            XDATA_GROUP
+  +--> CALLED SEGMENT                            START    LENGTH
+----------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----
+  +--> ?PR?MAIN?SPI___BASIC_CONFIGURATION
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 2
+
+
+
+?PR?MAIN?SPI___BASIC_CONFIGURATION               -----    -----
+  +--> ?PR?CONFIGAD7147?SPI___BASIC_CONFIGUR...
+
+?PR?CONFIGAD7147?SPI___BASIC_CONFIGUR...         0030H    0010H
+  +--> ?PR?_WRITETOAD7147?SPI___BASIC_CONFIG...
+  +--> ?PR?_READFROMAD7147?SPI___BASIC_CONFI...
+
+?PR?_WRITETOAD7147?SPI___BASIC_CONFIG...         -----    -----
+  +--> ?PR?_WRITETOAD7147VIASPI?SPI___BASIC_...
+
+?PR?_READFROMAD7147?SPI___BASIC_CONFI...         -----    -----
+  +--> ?PR?_READFROMAD7147VIASPI?SPI___BASIC...
+
+*** NEW ROOT ***************************************************
+
+?PR?AD7147_ISR?SPI___BASIC_CONFIGURATION         -----    -----
+  +--> ?PR?SERVICEAD7147ISR?SPI___BASIC_CONF...
+
+?PR?SERVICEAD7147ISR?SPI___BASIC_CONF...         -----    -----
+  +--> ?PR?_READFROMAD7147?SPI___BASIC_CONFI...
+
+
+
+SYMBOL TABLE OF MODULE:  SPI - Basic Configuration (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0625H         SEGMENT       ?C_C51STARTUP
+  I:002BH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00AFH         SYMBOL        CFG8XX
+  N:0000H         SYMBOL        EXSP
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0628H         SYMBOL        IDATALOOP
+  D:00A0H         SYMBOL        P2
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0001H         SYMBOL        PPAGEENABLE
+  D:0081H         SYMBOL        SP
+  D:00B7H         SYMBOL        SPH
+  N:0200H         SYMBOL        STACKSIZE
+  C:0625H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  N:0000H         SYMBOL        XRAMEN
+  N:0600H         SYMBOL        XSTACKSTART
+  N:0000H         SYMBOL        _CFG8XX
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 3
+
+
+  C:0000H         LINE#         131
+  C:0625H         LINE#         144
+  C:0627H         LINE#         145
+  C:0628H         LINE#         146
+  C:0629H         LINE#         147
+  C:062BH         LINE#         166
+  C:062EH         LINE#         200
+  C:0631H         LINE#         205
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        SPI___BASIC_CONFIGURATION
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00B0H.2       PUBLIC        P3_2
+  B:00B0H.4       PUBLIC        P3_4
+  B:00B0H.5       PUBLIC        P3_5
+  X:0000H         PUBLIC        AD7147Registers
+  B:00B0H.6       PUBLIC        P3_6
+  B:00B0H.7       PUBLIC        P3_7
+  B:00D0H.7       PUBLIC        CY
+  C:0611H         PUBLIC        main
+  C:0637H         PUBLIC        _WriteToAD7147
+  C:0006H         PUBLIC        ConfigAD7147
+  C:04B1H         PUBLIC        _ReadFromAD7147ViaSpi
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  C:05E7H         SYMBOL        ServiceAD7147Isr
+  C:05A8H         SYMBOL        AD7147_Isr
+  D:00AFH         PUBLIC        CFG841
+  C:063DH         PUBLIC        _ReadFromAD7147
+  C:042AH         PUBLIC        _WriteToAD7147ViaSpi
+  -------         PROC          L?0030
+  -------         ENDPROC       L?0030
+  -------         PROC          _WRITETOAD7147
+  D:0006H         SYMBOL        RegisterAddress
+  D:0005H         SYMBOL        NumberOfRegisters
+  D:0001H         SYMBOL        DataBuffer
+  D:002AH         SYMBOL        OffsetInBuffer
+  C:0637H         LINE#         59
+  C:0637H         LINE#         60
+  C:0637H         LINE#         61
+  -------         ENDPROC       _WRITETOAD7147
+  -------         PROC          _READFROMAD7147
+  D:0006H         SYMBOL        RegisterStartAddress
+  D:0005H         SYMBOL        NumberOfRegisters
+  D:0001H         SYMBOL        DataBuffer
+  D:0022H         SYMBOL        OffsetInBuffer
+  C:063DH         LINE#         69
+  C:063DH         LINE#         70
+  C:063DH         LINE#         71
+  -------         ENDPROC       _READFROMAD7147
+  -------         PROC          _WRITETOAD7147VIASPI
+  D:0006H         SYMBOL        RegisterAddress
+  D:0005H         SYMBOL        NumberOfRegisters
+  D:0001H         SYMBOL        DataBuffer
+  D:0019H         SYMBOL        OffsetInBuffer
+  -------         DO            
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 4
+
+
+  D:0006H         SYMBOL        ControlValue
+  D:0006H         SYMBOL        ValueToWrite
+  D:001AH         SYMBOL        RegisterIndex
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:042AH         LINE#         29
+  C:042AH         LINE#         30
+  C:042AH         LINE#         37
+  C:0430H         LINE#         39
+  C:0432H         LINE#         41
+  C:0434H         LINE#         42
+  C:0434H         LINE#         43
+  C:0436H         LINE#         44
+  C:0437H         LINE#         45
+  C:0438H         LINE#         46
+  C:0439H         LINE#         47
+  C:043AH         LINE#         48
+  C:043BH         LINE#         49
+  C:043CH         LINE#         50
+  C:043DH         LINE#         51
+  C:043EH         LINE#         52
+  C:043FH         LINE#         53
+  C:0440H         LINE#         54
+  C:0441H         LINE#         55
+  C:0448H         LINE#         56
+  C:044AH         LINE#         57
+  C:044CH         LINE#         58
+  C:044DH         LINE#         59
+  C:044EH         LINE#         60
+  C:044FH         LINE#         61
+  C:0450H         LINE#         62
+  C:0451H         LINE#         63
+  C:0452H         LINE#         64
+  C:0453H         LINE#         65
+  C:0454H         LINE#         66
+  C:0455H         LINE#         67
+  C:0456H         LINE#         68
+  C:0457H         LINE#         69
+  C:045BH         LINE#         71
+  C:046CH         LINE#         72
+  C:046CH         LINE#         73
+  C:0486H         LINE#         74
+  C:0488H         LINE#         75
+  C:0488H         LINE#         76
+  C:048FH         LINE#         77
+  C:0491H         LINE#         78
+  C:0493H         LINE#         79
+  C:0494H         LINE#         80
+  C:0495H         LINE#         81
+  C:0496H         LINE#         82
+  C:0497H         LINE#         83
+  C:0499H         LINE#         84
+  C:049AH         LINE#         85
+  C:049BH         LINE#         86
+  C:049CH         LINE#         87
+  C:04A0H         LINE#         88
+  C:04AAH         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 5
+
+
+  C:04ACH         LINE#         90
+  C:04AEH         LINE#         91
+  C:04B0H         LINE#         92
+  -------         ENDPROC       _WRITETOAD7147VIASPI
+  -------         PROC          _READFROMAD7147VIASPI
+  D:0006H         SYMBOL        RegisterStartAddress
+  D:000AH         SYMBOL        NumberOfRegisters
+  D:0001H         SYMBOL        DataBuffer
+  D:000EH         SYMBOL        OffsetInBuffer
+  -------         DO            
+  D:0006H         SYMBOL        ControlValue
+  D:0005H         SYMBOL        i
+  D:0004H         SYMBOL        RegisterIndex
+  D:0010H         SYMBOL        InputPinValue
+  D:0011H         SYMBOL        InputValue
+  -------         ENDDO         
+  C:04B1H         LINE#         102
+  C:04B3H         LINE#         103
+  C:04B3H         LINE#         110
+  C:04B9H         LINE#         112
+  C:04BBH         LINE#         115
+  C:04BDH         LINE#         116
+  C:04BDH         LINE#         117
+  C:04BFH         LINE#         118
+  C:04C0H         LINE#         119
+  C:04C1H         LINE#         120
+  C:04C2H         LINE#         121
+  C:04C3H         LINE#         122
+  C:04C4H         LINE#         123
+  C:04C5H         LINE#         124
+  C:04C6H         LINE#         125
+  C:04C7H         LINE#         126
+  C:04C8H         LINE#         127
+  C:04C9H         LINE#         128
+  C:04CAH         LINE#         129
+  C:04D1H         LINE#         130
+  C:04D3H         LINE#         131
+  C:04D5H         LINE#         132
+  C:04D6H         LINE#         133
+  C:04D7H         LINE#         134
+  C:04D8H         LINE#         135
+  C:04D9H         LINE#         136
+  C:04DAH         LINE#         137
+  C:04DBH         LINE#         138
+  C:04DCH         LINE#         139
+  C:04DDH         LINE#         140
+  C:04DEH         LINE#         141
+  C:04DFH         LINE#         142
+  C:04E0H         LINE#         143
+  C:04E4H         LINE#         146
+  C:04ECH         LINE#         147
+  C:04ECH         LINE#         148
+  C:04EEH         LINE#         149
+  C:04EEH         LINE#         150
+  C:04F0H         LINE#         151
+  C:04F1H         LINE#         152
+  C:04F7H         LINE#         153
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 6
+
+
+  C:0502H         LINE#         154
+  C:0506H         LINE#         155
+  C:0508H         LINE#         156
+  C:0509H         LINE#         157
+  C:050AH         LINE#         158
+  C:050BH         LINE#         159
+  C:050CH         LINE#         160
+  C:050DH         LINE#         161
+  C:050EH         LINE#         162
+  C:050FH         LINE#         163
+  C:0510H         LINE#         164
+  C:0514H         LINE#         165
+  C:052FH         LINE#         166
+  C:0532H         LINE#         167
+  C:0534H         LINE#         168
+  C:0536H         LINE#         169
+  -------         ENDPROC       _READFROMAD7147VIASPI
+  -------         PROC          CONFIGAD7147
+  -------         DO            
+  X:0030H         SYMBOL        StageBuffer
+  -------         ENDDO         
+  C:0006H         LINE#         14
+  C:0006H         LINE#         15
+  C:0006H         LINE#         21
+  C:000EH         LINE#         22
+  C:0016H         LINE#         23
+  C:001BH         LINE#         24
+  C:0021H         LINE#         25
+  C:0029H         LINE#         26
+  C:0031H         LINE#         27
+  C:0039H         LINE#         28
+  C:0041H         LINE#         29
+  C:004FH         LINE#         34
+  C:0059H         LINE#         35
+  C:0061H         LINE#         36
+  C:0066H         LINE#         37
+  C:006CH         LINE#         38
+  C:0074H         LINE#         39
+  C:007CH         LINE#         40
+  C:0084H         LINE#         41
+  C:008CH         LINE#         42
+  C:009AH         LINE#         47
+  C:00A2H         LINE#         48
+  C:00AAH         LINE#         49
+  C:00AFH         LINE#         50
+  C:00B5H         LINE#         51
+  C:00BDH         LINE#         52
+  C:00C5H         LINE#         53
+  C:00CDH         LINE#         54
+  C:00D5H         LINE#         55
+  C:00E6H         LINE#         60
+  C:00EEH         LINE#         61
+  C:00F6H         LINE#         62
+  C:00FBH         LINE#         63
+  C:0101H         LINE#         64
+  C:0109H         LINE#         65
+  C:0111H         LINE#         66
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 7
+
+
+  C:0119H         LINE#         67
+  C:0121H         LINE#         68
+  C:0132H         LINE#         73
+  C:013AH         LINE#         74
+  C:0142H         LINE#         75
+  C:0147H         LINE#         76
+  C:014DH         LINE#         77
+  C:0155H         LINE#         78
+  C:015DH         LINE#         79
+  C:0165H         LINE#         80
+  C:016DH         LINE#         81
+  C:017EH         LINE#         86
+  C:0186H         LINE#         87
+  C:018EH         LINE#         88
+  C:0193H         LINE#         89
+  C:0199H         LINE#         90
+  C:01A1H         LINE#         91
+  C:01A9H         LINE#         92
+  C:01B1H         LINE#         93
+  C:01B9H         LINE#         94
+  C:01CAH         LINE#         99
+  C:01D2H         LINE#         100
+  C:01DAH         LINE#         101
+  C:01DFH         LINE#         102
+  C:01E5H         LINE#         103
+  C:01EDH         LINE#         104
+  C:01F5H         LINE#         105
+  C:01FDH         LINE#         106
+  C:0205H         LINE#         107
+  C:0216H         LINE#         112
+  C:021EH         LINE#         113
+  C:0226H         LINE#         114
+  C:022BH         LINE#         115
+  C:0231H         LINE#         116
+  C:0239H         LINE#         117
+  C:0241H         LINE#         118
+  C:0249H         LINE#         119
+  C:0251H         LINE#         120
+  C:0262H         LINE#         125
+  C:026AH         LINE#         126
+  C:0272H         LINE#         127
+  C:0277H         LINE#         128
+  C:027DH         LINE#         129
+  C:0285H         LINE#         130
+  C:028DH         LINE#         131
+  C:0295H         LINE#         132
+  C:029DH         LINE#         133
+  C:02AEH         LINE#         138
+  C:02B6H         LINE#         139
+  C:02BEH         LINE#         140
+  C:02C3H         LINE#         141
+  C:02C9H         LINE#         142
+  C:02D1H         LINE#         143
+  C:02D9H         LINE#         144
+  C:02E1H         LINE#         145
+  C:02E9H         LINE#         146
+  C:02FAH         LINE#         151
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 8
+
+
+  C:0302H         LINE#         152
+  C:030AH         LINE#         153
+  C:030FH         LINE#         154
+  C:0315H         LINE#         155
+  C:031DH         LINE#         156
+  C:0325H         LINE#         157
+  C:032DH         LINE#         158
+  C:0335H         LINE#         159
+  C:0346H         LINE#         164
+  C:034EH         LINE#         165
+  C:0356H         LINE#         166
+  C:035BH         LINE#         167
+  C:0361H         LINE#         168
+  C:0369H         LINE#         169
+  C:0371H         LINE#         170
+  C:0379H         LINE#         171
+  C:0381H         LINE#         172
+  C:0392H         LINE#         178
+  C:039BH         LINE#         179
+  C:03ABH         LINE#         182
+  C:03C0H         LINE#         183
+  C:03CAH         LINE#         184
+  C:03D2H         LINE#         185
+  C:03DAH         LINE#         186
+  C:03DFH         LINE#         187
+  C:03E3H         LINE#         188
+  C:03E8H         LINE#         189
+  C:03F9H         LINE#         192
+  C:0403H         LINE#         193
+  C:0415H         LINE#         196
+  -------         ENDPROC       CONFIGAD7147
+  -------         PROC          AD7147_ISR
+  C:05A8H         LINE#         41
+  C:05C5H         LINE#         43
+  C:05C7H         LINE#         44
+  C:05CAH         LINE#         45
+  C:05CCH         LINE#         47
+  -------         ENDPROC       AD7147_ISR
+  -------         PROC          MAIN
+  C:0611H         LINE#         50
+  C:0611H         LINE#         51
+  C:0611H         LINE#         61
+  C:0613H         LINE#         62
+  C:0615H         LINE#         63
+  C:0617H         LINE#         70
+  C:061AH         LINE#         75
+  C:061DH         LINE#         83
+  C:061FH         LINE#         84
+  C:0621H         LINE#         85
+  C:0623H         LINE#         87
+  -------         ENDPROC       MAIN
+  -------         PROC          SERVICEAD7147ISR
+  C:05E7H         LINE#         101
+  C:05E7H         LINE#         102
+  C:05E7H         LINE#         104
+  C:05FCH         LINE#         107
+  -------         ENDPROC       SERVICEAD7147ISR
+BL51 BANKED LINKER/LOCATER V6.02                                                      05/19/2008  15:46:17  PAGE 9
+
+
+  -------         ENDMOD        SPI___BASIC_CONFIGURATION
+
+  -------         MODULE        ?C?ILDOPTR
+  C:0537H         PUBLIC        ?C?ILDOPTR
+  -------         ENDMOD        ?C?ILDOPTR
+
+  -------         MODULE        ?C?ISTOPTR
+  C:056FH         PUBLIC        ?C?ISTOPTR
+  -------         ENDMOD        ?C?ISTOPTR
+
+  -------         MODULE        ?C?OFFXADD
+  C:059CH         PUBLIC        ?C?OFFXADD
+  -------         ENDMOD        ?C?OFFXADD
+
+Program Size: data=44.0 xdata=64 code=1606
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

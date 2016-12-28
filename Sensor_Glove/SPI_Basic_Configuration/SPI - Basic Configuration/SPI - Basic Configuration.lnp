@@ -1,0 +1,11 @@
+"START_AD.obj",
+"SPI - Basic Configuration.obj" 
+TO "SPI - Basic Configuration"
+RAMSIZE(256) 
+OVERLAY(
+WriteToAD7147 ! *,
+ReadFromAD7147 ! *,
+WriteToAD7147ViaSpi ! *,
+ReadFromAD7147ViaSpi ! *
+)
+XDATA( 0X0000-0X07FF )

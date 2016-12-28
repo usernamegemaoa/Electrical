@@ -1,0 +1,626 @@
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE AD7147___SLIDER
+OBJECT MODULE PLACED IN AD7147 - Slider.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE AD7147 - Slider.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <math.h>
+   2          #include "Include\General Definitions.h"
+   3          #include "Include\AD7147RegMap.h"
+   4          #include "Include\AD7147 - Slider Definitions.h"
+   5          
+   6          
+   7          //---------------------------------
+   8          //Function prototypes
+   9          //---------------------------------
+  10          //External functions
+  11          extern void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer
+             -, const WORD OffsetInBuffer);
+  12          extern void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, cons
+             -t BYTE OffsetInBuffer);
+  13          
+  14          //Local functions
+  15          void ConfigAD7147(void);
+  16          void InitialiseSlider(void);
+  17          static BYTE FindHighestAndLowestStagesUsed(const WORD InterruptStatusRegister, const WORD LowestStageOfThe
+             -Sensor, const BYTE NumberOfStagesUsed, const BigFingerLevel);
+  18          
+  19          //---------------------------------
+  20          //Global variables
+  21          //---------------------------------
+  22          
+  23          //External global variables 
+  24          //-------------------------
+  25          extern WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+  26          extern BYTE xdata InterruptCounterForThresIntMode;
+  27          
+  28          //Local Global variables
+  29          //----------------------
+  30          //SLIDER
+  31          WORD xdata SliderStatus;
+  32          WORD xdata AmbientValues[NB_OF_SENSORS_FOR_SLIDER];
+  33          WORD xdata SensorValues[NB_OF_SENSORS_FOR_SLIDER];
+  34          
+  35          //Variables for activation
+  36          BYTE xdata FirstTimeSliderTouched;
+  37          WORD xdata SliderTouchDownCounter;
+  38          bit SliderFlag;
+  39          
+  40          //Variables for tapping on the Slider
+  41          BYTE xdata ReturnTappingCounterOnSlider;
+  42          BYTE xdata NoTouchCounterOnSlider;
+  43          WORD xdata ListBoxUpdateCounterValue;
+  44          WORD xdata ListBoxUpdateCounter;
+  45          bit EnableTapDisplayOnSlider;
+  46          bit TappingFlag;
+  47          
+  48          BYTE xdata NumberOfUpdates;
+  49          BYTE xdata SensorWithHighestValue;
+  50          
+  51          //Position variables    
+  52          WORD xdata SliderPosition;
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 2   
+
+  53          WORD xdata AveragePosition;
+  54          
+  55          //Relative position variables
+  56          bit MovedSinceActivation;
+  57          bit PositionOnFirstTouchRecorded;
+  58          bit FastScrollDirection;
+  59          bit RecordSliderCounterOnce;
+  60          bit FastScrollDetected;
+  61          BYTE xdata MinimalNumberOfInterruptsAfterLiftingOff;
+  62          BYTE xdata PositionOnFirstTouch;
+  63          BYTE xdata FastScrollUpdateCounter;
+  64          WORD xdata DisplayItemsResolution;
+  65          WORD xdata PositionOnActivation;
+  66          
+  67          //----------------------
+  68          //Function declarations
+  69          //----------------------
+  70          WORD GetNewSliderUpdate(void);
+  71          
+  72          //---------------------
+  73          //Function definitions
+  74          //---------------------
+  75          WORD GetNewSliderUpdate(void)
+  76          {
+  77   1              BYTE i;
+  78   1              WORD xdata AmbientValueAddress;
+  79   1              BYTE xdata TouchError;  
+  80   1              WORD xdata TempAveragePosition;
+  81   1              DWORD xdata TempSliderPosition;
+  82   1              DWORD xdata A_parameter;
+  83   1              DWORD xdata B_parameter;
+  84   1              
+  85   1              
+  86   1              if((AD7147Registers[STAGE_HIGH_LIMIT_INT] & STAGES_USED_FOR_SLIDER) != 0x0000)
+  87   1              {       
+  88   2              
+  89   2                      //If any slider stages is activated then we read data from the AD7147
+  90   2                      ReadFromAD7147(ADCRESULT_S0, NB_OF_SENSORS_FOR_SLIDER, AD7147Registers, ADCRESULT_S0);          
+  91   2                      
+  92   2                      AmbientValueAddress=STAGE0_AMBIENT;
+  93   2                      for(i=0;i<NB_OF_SENSORS_FOR_SLIDER;i++)
+  94   2                      {
+  95   3                              ReadFromAD7147(AmbientValueAddress, 1, AmbientValues, i);
+  96   3                              AmbientValueAddress=AmbientValueAddress+NB_OF_REGS_PER_STAGE;
+  97   3                      }
+  98   2              }                       
+  99   1              //Calculate the sensor responses
+ 100   1              for(i=0;i<NB_OF_SENSORS_FOR_SLIDER;i++)
+ 101   1              {                       
+ 102   2                      if(AD7147Registers[ADCRESULT_S0+i]>AmbientValues[i]) 
+ 103   2                              SensorValues[i]=abs(AD7147Registers[ADCRESULT_S0+i]-AmbientValues[i]);
+ 104   2                      else
+ 105   2                              SensorValues[i]=0;
+ 106   2              }       
+ 107   1      
+ 108   1              //Check for touch errors        
+ 109   1              TouchError = FindHighestAndLowestStagesUsed(AD7147Registers[STAGE_HIGH_LIMIT_INT], LOWER_SENSOR_STAGE, 
+ 110   1                                                                                                  NB_OF_SENSORS_FOR_SLIDER, NUMBER_OF_SENSORS_ON_FOR_BIG_FINGER);
+ 111   1              
+ 112   1              //= Slider activation
+ 113   1              //===================
+ 114   1              if(((AD7147Registers[STAGE_HIGH_LIMIT_INT] & STAGES_USED_FOR_SLIDER) != 0x0000))
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 3   
+
+ 115   1              {
+ 116   2                      TappingFlag=0;//Touching therefore clear the tapping flag.
+ 117   2                      RecordSliderCounterOnce = 1;
+ 118   2                      SliderStatus &= 0xBFFF;
+ 119   2                      //On Touch
+ 120   2                      FastScrollDetected=0;                           
+ 121   2                      
+ 122   2                      //Check if the user left enough time between 2 taps.
+ 123   2                      if (NoTouchCounterOnSlider > T_MIN_NO_TOUCHING)
+ 124   2                              ReturnTappingCounterOnSlider=DISPLAY_AFTER_A_TAP; //Reset counter for displaying the tap
+ 125   2                      else
+ 126   2                              ReturnTappingCounterOnSlider=0;
+ 127   2                      
+ 128   2                      if (SliderTouchDownCounter<100)
+ 129   2                      {                       
+ 130   3                              //Touching for more than 0.5sec, hence clear the NoTouchCounter
+ 131   3                              if (SliderTouchDownCounter > (T_MIN_TOUCHING+T_MAX_TOUCHING))
+ 132   3                                      NoTouchCounterOnSlider=0;
+ 133   3                              
+ 134   3                              SliderTouchDownCounter++;
+ 135   3                      }
+ 136   2                      else
+ 137   2                      {
+ 138   3                              NoTouchCounterOnSlider=0;
+ 139   3                              SliderTouchDownCounter=MAX_TOUCHDOWN_COUNTER_TIME;
+ 140   3                      }
+ 141   2                      
+ 142   2                      if (SliderTouchDownCounter>(T_MIN_TOUCHING))
+ 143   2                              SliderFlag=1;
+ 144   2                      
+ 145   2              }
+ 146   1              else if((AD7147Registers[STAGE_HIGH_LIMIT_INT] & STAGES_USED_FOR_SLIDER) == 0x0000)
+ 147   1              {       
+ 148   2                      //Listbox Variables
+ 149   2                      ListBoxUpdateCounterValue=LISTBOX_SLOW_UPDATE;
+ 150   2                      ListBoxUpdateCounter=0;
+ 151   2                      PositionOnFirstTouchRecorded=0;
+ 152   2                      
+ 153   2                      //Slider Activation Variables
+ 154   2                      SliderFlag=0;
+ 155   2                      FirstTimeSliderTouched=0;               
+ 156   2                      SliderStatus &= 0x7FFF;
+ 157   2                      
+ 158   2                      //Keep scrolling through list box if we were moving fast on the slider
+ 159   2                      if (RecordSliderCounterOnce==1)
+ 160   2                      {
+ 161   3                              RecordSliderCounterOnce=0;
+ 162   3                              //Fast scroll detection on Y axis
+ 163   3                              //===============================
+ 164   3                              if (SliderTouchDownCounter > T_MIN_TOUCHING && SliderTouchDownCounter < T_MAX_TOUCHING)
+ 165   3                              {
+ 166   4                                      NumberOfUpdates = abs(PositionOnActivation - SliderPosition) / DisplayItemsResolution;
+ 167   4      
+ 168   4                                      if (abs(PositionOnActivation - SliderPosition) > (NUMBER_OF_POSITIONS>>4))
+ 169   4                                              NumberOfUpdates = NumberOfUpdates + 5;
+ 170   4      
+ 171   4                                      if (NumberOfUpdates>1 && NumberOfUpdates<9)
+ 172   4                                              NumberOfUpdates = MIN_NUMBER_OF_UPDATES;
+ 173   4                                      else if (NumberOfUpdates==1)
+ 174   4                                              NumberOfUpdates = 0;
+ 175   4                                      
+ 176   4                                      if (SliderPosition > PositionOnActivation)
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 4   
+
+ 177   4                                              FastScrollDirection = DOWN;
+ 178   4                                      else if (SliderPosition < PositionOnActivation)
+ 179   4                                              FastScrollDirection = UP;
+ 180   4                                      FastScrollUpdateCounter=LISTBOX_QUICK_UPDATE;
+ 181   4                                      
+ 182   4                                      //Check if there will be enough interrupts after lifting off before to switch to threshold mode.
+ 183   4                                      MinimalNumberOfInterruptsAfterLiftingOff = NumberOfUpdates * LISTBOX_QUICK_UPDATE;
+ 184   4                                      if ((MinimalNumberOfInterruptsAfterLiftingOff) > NUMBER_OF_INTS_BEFORE_THRES_INT_MODE)
+ 185   4                                              InterruptCounterForThresIntMode = MinimalNumberOfInterruptsAfterLiftingOff + 10;
+ 186   4                                                                      
+ 187   4                                      FastScrollDetected=1;
+ 188   4                                      
+ 189   4                                      if (MovedSinceActivation==0)
+ 190   4                                      {
+ 191   5                                              NumberOfUpdates=0;
+ 192   5                                              FastScrollDetected=0;
+ 193   5                                      }
+ 194   4                              }
+ 195   3                              else
+ 196   3                              {
+ 197   4                                      FastScrollDetected=0;
+ 198   4                                      NumberOfUpdates=0;
+ 199   4                              }
+ 200   3                      }
+ 201   2                      
+ 202   2                      MovedSinceActivation=0;
+ 203   2      
+ 204   2                      //= Work out the tap
+ 205   2                      //==================
+ 206   2                      if (NoTouchCounterOnSlider<MAX_NO_TOUCH_COUNTER)
+ 207   2                              NoTouchCounterOnSlider++;
+ 208   2                      
+ 209   2                      if (SliderTouchDownCounter>T_MIN_TOUCHING && SliderTouchDownCounter<T_MAX_TOUCHING &&
+ 210   2                              NoTouchCounterOnSlider > SliderTouchDownCounter)
+ 211   2                      {                               
+ 212   3                              //Set a bit for a certain number of interrupts so that the user applications sees it.
+ 213   3                              //This is done with a decounter that is reloaded when we are touching
+ 214   3                              if (ReturnTappingCounterOnSlider>0 && EnableTapDisplayOnSlider==1)
+ 215   3                              {
+ 216   4                                      ReturnTappingCounterOnSlider--;
+ 217   4                                      TappingFlag=1;  //Tap detected here
+ 218   4                              }
+ 219   3                              else
+ 220   3                              {
+ 221   4                                      SliderTouchDownCounter=0;
+ 222   4                                      TappingFlag=0;
+ 223   4                              }
+ 224   3                      }
+ 225   2                      else
+ 226   2                      {
+ 227   3                              if (SliderTouchDownCounter>T_MAX_TOUCHING)
+ 228   3                                      SliderTouchDownCounter=0;
+ 229   3                              
+ 230   3                              ReturnTappingCounterOnSlider=0;
+ 231   3                              TappingFlag=0;//Cleared tapping bit after lift off 
+ 232   3                      }
+ 233   2              }       
+ 234   1                      
+ 235   1              if(SliderFlag==1)
+ 236   1              {
+ 237   2                      //===========================================================
+ 238   2                      //============== ABSOLUTE POSITION CALCULATION ==============
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 5   
+
+ 239   2                      //===========================================================
+ 240   2                      if((TouchError & 0x01)!=0x01)
+ 241   2                      {
+ 242   3                              //===========================================================
+ 243   3                              //Find peak among the response of the measurements on Slider
+ 244   3                              //===========================================================
+ 245   3                              SensorWithHighestValue=0;
+ 246   3                              for (i=0;i<NB_OF_SENSORS_FOR_SLIDER;i++)
+ 247   3                              {
+ 248   4                                      if (i<(NB_OF_SENSORS_FOR_SLIDER-1))
+ 249   4                                      {
+ 250   5                                              if ((SensorValues[i] > SensorValues[i+1]) && 
+ 251   5                                                      (SensorValues[i] > SensorValues[SensorWithHighestValue]))
+ 252   5                                                      SensorWithHighestValue=i;
+ 253   5                                      }
+ 254   4                                      else if (i==(NB_OF_SENSORS_FOR_SLIDER-1))
+ 255   4                                      {
+ 256   5                                              if ((SensorValues[i] > SensorValues[i-1]) && 
+ 257   5                                                      (SensorValues[i] > SensorValues[SensorWithHighestValue]))
+ 258   5                                                      SensorWithHighestValue=i;
+ 259   5                                      }
+ 260   4                              }
+ 261   3      
+ 262   3                              //==================================================================
+ 263   3                              //============== SLIDER ABSOLUTE POSITION CALCULATION ==============
+ 264   3                              //==================================================================
+ 265   3                              switch (SensorWithHighestValue)
+ 266   3                              {
+ 267   4                                      case 0:
+ 268   4                                              //Calculate "A" parameter
+ 269   4                                              A_parameter = SensorValues[1];
+ 270   4                                              //Calculate "B" parameter
+ 271   4                                              B_parameter = SensorValues[0] + SensorValues[1];                                        
+ 272   4                                                                                      
+ 273   4                                              TempSliderPosition = (PIXEL_RESOLUTION * A_parameter);
+ 274   4                                              TempSliderPosition = TempSliderPosition / B_parameter;
+ 275   4                                              
+ 276   4                                              if(TempSliderPosition>=DISPLACEMENT_OFFSET)
+ 277   4                                                      SliderPosition=(WORD)(TempSliderPosition-DISPLACEMENT_OFFSET);
+ 278   4                                              else
+ 279   4                                                      SliderPosition=(WORD)TempSliderPosition;                                                
+ 280   4                                              break;
+ 281   4      
+ 282   4                                      case (NB_OF_SENSORS_FOR_SLIDER-1):
+ 283   4                                              //Calculate "A" parameter
+ 284   4                                              A_parameter = SensorValues[NB_OF_SENSORS_FOR_SLIDER-1] * (NB_OF_SENSORS_FOR_SLIDER-1);
+ 285   4                                              A_parameter = A_parameter + SensorValues[NB_OF_SENSORS_FOR_SLIDER-2] * (NB_OF_SENSORS_FOR_SLIDER-2);
+ 286   4                                              //Calculate "B" parameter
+ 287   4                                              B_parameter = SensorValues[NB_OF_SENSORS_FOR_SLIDER-1] + SensorValues[NB_OF_SENSORS_FOR_SLIDER-2];// 
+             -+ SensorValues[NB_OF_SENSORS_FOR_SLIDER-3];
+ 288   4                                                                                      
+ 289   4                                              TempSliderPosition = (PIXEL_RESOLUTION * A_parameter);
+ 290   4                                              TempSliderPosition = TempSliderPosition / B_parameter;                                  
+ 291   4                                              
+ 292   4                                              if(TempSliderPosition>=DISPLACEMENT_OFFSET)
+ 293   4                                                      SliderPosition=(WORD)(TempSliderPosition-DISPLACEMENT_OFFSET);
+ 294   4                                              else
+ 295   4                                                      SliderPosition=(WORD)TempSliderPosition;
+ 296   4                                              break;
+ 297   4                                      default:
+ 298   4                                              //Calculate "A" parameter
+ 299   4                                              A_parameter = SensorValues[SensorWithHighestValue-1] * (SensorWithHighestValue-1);
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 6   
+
+ 300   4                                              A_parameter = A_parameter + SensorValues[SensorWithHighestValue] * (SensorWithHighestValue);
+ 301   4                                              A_parameter = A_parameter + SensorValues[SensorWithHighestValue+1] * (SensorWithHighestValue+1);
+ 302   4                                              
+ 303   4                                              //Calculate "B" parameter
+ 304   4                                              B_parameter = SensorValues[SensorWithHighestValue-1] + SensorValues[SensorWithHighestValue] + SensorV
+             -alues[SensorWithHighestValue+1];
+ 305   4                                              
+ 306   4                                              TempSliderPosition = (PIXEL_RESOLUTION * A_parameter);
+ 307   4                                              TempSliderPosition = TempSliderPosition / B_parameter;
+ 308   4                                              
+ 309   4                                              if(TempSliderPosition>=DISPLACEMENT_OFFSET)
+ 310   4                                                      SliderPosition=(WORD)(TempSliderPosition-DISPLACEMENT_OFFSET);
+ 311   4                                              else
+ 312   4                                                      SliderPosition=(WORD)TempSliderPosition;
+ 313   4                                              break;
+ 314   4                              }
+ 315   3                              
+ 316   3                              if(FirstTimeSliderTouched==0)
+ 317   3                              {
+ 318   4                                      FirstTimeSliderTouched=1;
+ 319   4                                      if ((SliderPosition > (NUMBER_OF_POSITIONS-5)) || (SliderPosition < 5))
+ 320   4                                              ListBoxUpdateCounterValue=LISTBOX_SLOW_UPDATE;
+ 321   4                                      else
+ 322   4                                              ListBoxUpdateCounterValue = LISTBOX_QUICK_UPDATE;
+ 323   4                              }
+ 324   3                              
+ 325   3                              //= Initialise some of the position variables on activation
+ 326   3                              //=========================================================
+ 327   3                              if (PositionOnFirstTouchRecorded==0)
+ 328   3                              {
+ 329   4                                      PositionOnFirstTouchRecorded=1;
+ 330   4                                      PositionOnFirstTouch = SliderPosition;
+ 331   4                                      PositionOnActivation = SliderPosition;
+ 332   4                                      AveragePosition = SliderPosition;
+ 333   4                              }
+ 334   3                              else if (PositionOnFirstTouchRecorded==1)
+ 335   3                              {
+ 336   4                                      //= Filter out slider response
+ 337   4                                      //============================
+ 338   4                                      TempAveragePosition = AveragePosition * 6 + SliderPosition * 4.0;
+ 339   4                                      AveragePosition = TempAveragePosition / 10;
+ 340   4                                      
+ 341   4                                      if (AveragePosition > NUMBER_OF_POSITIONS)
+ 342   4                                              AveragePosition = NUMBER_OF_POSITIONS;
+ 343   4                                      
+ 344   4                                      //= Code for relative positions for the slider
+ 345   4                                      //============================================
+ 346   4                                      //Move through items in the listbox as long as no buttons are being set
+ 347   4                                      if (SliderPosition < 5)
+ 348   4                                      {       //Auto scroll up
+ 349   5                                              ListBoxUpdateCounter++;
+ 350   5                                              if (ListBoxUpdateCounter == ListBoxUpdateCounterValue)
+ 351   5                                              {
+ 352   6                                                      ListBoxUpdateCounter=0;
+ 353   6                                                      ListBoxUpdateCounterValue=LISTBOX_QUICK_UPDATE;
+ 354   6                                                      //Go up
+ 355   6                                                      SliderStatus &= 0xCFFF;
+ 356   6                                                      SliderStatus |= 0x2000;
+ 357   6                                              }
+ 358   5                                              else
+ 359   5                                              {
+ 360   6                                                      SliderStatus &= 0xCFFF;
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 7   
+
+ 361   6                                              }
+ 362   5                                      }                               
+ 363   4                                      else if(SliderPosition > (NUMBER_OF_POSITIONS-5) )
+ 364   4                                      {       //Auto scroll down
+ 365   5                                              ListBoxUpdateCounter++;
+ 366   5                                              if (ListBoxUpdateCounter == ListBoxUpdateCounterValue)
+ 367   5                                              {
+ 368   6                                                      ListBoxUpdateCounter=0;
+ 369   6                                                      ListBoxUpdateCounterValue=LISTBOX_QUICK_UPDATE;
+ 370   6                                                      //Go down
+ 371   6                                                      SliderStatus &= 0xCFFF;
+ 372   6                                                      SliderStatus |= 0x1000;
+ 373   6                                              }
+ 374   5                                              else
+ 375   5                                              {
+ 376   6                                                      SliderStatus &= 0xCFFF;
+ 377   6                                              }
+ 378   5                                      }
+ 379   4                                      else
+ 380   4                                      {
+ 381   5                                              if (abs(SliderPosition - PositionOnFirstTouch) > DisplayItemsResolution)
+ 382   5                                              {
+ 383   6                                                      //Create list box commands for the Y axis
+ 384   6                                                      if (SliderPosition > PositionOnFirstTouch)
+ 385   6                                                      {       //Go down
+ 386   7                                                              SliderStatus &= 0xCFFF;
+ 387   7                                                              SliderStatus |= 0x1000;
+ 388   7                                                      }
+ 389   6                                                      else if (SliderPosition < PositionOnFirstTouch)
+ 390   6                                                      {       //Go up
+ 391   7                                                              SliderStatus &= 0xCFFF;
+ 392   7                                                              SliderStatus |= 0x2000;
+ 393   7                                                      }
+ 394   6                                                      PositionOnFirstTouch = SliderPosition;
+ 395   6                                                      MovedSinceActivation=1;
+ 396   6                                              }
+ 397   5                                              else
+ 398   5                                              {
+ 399   6                                                      SliderStatus &= 0xCFFF;
+ 400   6                                              }
+ 401   5                                      }
+ 402   4                              }//End else if (PositionOnFirstTouchRecorded==1)
+ 403   3                      }//End if ((TouchError & 0x01)!=0x01)
+ 404   2              }
+ 405   1      
+ 406   1              //= Clear tap if we're scrolling
+ 407   1              //==============================
+ 408   1              //We have a new position, if it is different from the previous one and we are still within the
+ 409   1              //the tapping time, then we check the positions. If we are moving, then we clear the tapping bit.
+ 410   1              if( ((TouchError& 0x1)!=0x1) && SliderTouchDownCounter<T_MAX_TOUCHING)
+ 411   1              {
+ 412   2                      if(MovedSinceActivation==1)
+ 413   2                      {
+ 414   3                              TappingFlag=0; //Clear tapping bit on slider
+ 415   3                              EnableTapDisplayOnSlider=0;     //We're moving, so don't display the tap;
+ 416   3                      }
+ 417   2                      else
+ 418   2                              EnableTapDisplayOnSlider=1;     //We haven't moved by far enough, so a tap is still valid
+ 419   2              }
+ 420   1              
+ 421   1              //= Format the position data
+ 422   1              //==========================
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 8   
+
+ 423   1              SliderStatus &= 0xF3FF;
+ 424   1              SliderStatus |= ((TouchError <<2)<<8);
+ 425   1              
+ 426   1              if (SliderFlag==1)
+ 427   1              {
+ 428   2                      SliderStatus |= 0x8000;
+ 429   2                      //Compute position registers
+ 430   2                      if(((TouchError & 0x01)!=0x01))
+ 431   2                      {
+ 432   3                              SliderStatus &= 0xBC00;
+ 433   3                              SliderStatus |= AveragePosition;
+ 434   3                      }
+ 435   2              }
+ 436   1              else    //Not touching...
+ 437   1              {
+ 438   2                      //Clear finger valid bit and go up go down commands
+ 439   2                      SliderStatus &= 0x0FFF;
+ 440   2                      //Return Tap
+ 441   2                      if(TappingFlag==1)
+ 442   2                              SliderStatus |= 0x4000;
+ 443   2      
+ 444   2                      if (FastScrollDetected==1)
+ 445   2                      {
+ 446   3                              if (NumberOfUpdates>0)
+ 447   3                              {
+ 448   4                                      if (FastScrollUpdateCounter>0)
+ 449   4                                      {
+ 450   5                                              SliderStatus &= 0xCFFF;
+ 451   5                                              FastScrollUpdateCounter--;
+ 452   5                                      }
+ 453   4                                      else
+ 454   4                                      {
+ 455   5                                              NumberOfUpdates--;
+ 456   5                                              FastScrollUpdateCounter=3;
+ 457   5                                              if (FastScrollDirection==UP)
+ 458   5                                              {
+ 459   6                                                      //Go up
+ 460   6                                                      SliderStatus &= 0xCFFF;
+ 461   6                                                      SliderStatus |= 0x2000;
+ 462   6                                              }
+ 463   5                                              else if (FastScrollDirection==DOWN)
+ 464   5                                              {
+ 465   6                                                      //Go down
+ 466   6                                                      SliderStatus &= 0xCFFF;
+ 467   6                                                      SliderStatus |= 0x1000;
+ 468   6                                              }
+ 469   5                                      }
+ 470   4                              }
+ 471   3                              else
+ 472   3                              {
+ 473   4                                      FastScrollDetected=0;
+ 474   4                                      SliderStatus &= 0xCFFF;
+ 475   4                              }
+ 476   3                      }
+ 477   2              }
+ 478   1              return(SliderStatus);
+ 479   1      }
+ 480          
+ 481          
+ 482          //---------------------------------
+ 483          //FindHighestAndLowestStagesUsed()
+ 484          //---------------------------------
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 9   
+
+ 485          //Function that checks if there are 2 fingers touching the slider or if there is one big finger
+ 486          static BYTE FindHighestAndLowestStagesUsed(const WORD InterruptStatusRegister, const WORD LowestStageOfThe
+             -Sensor, const BYTE NumberOfStagesUsed, const BigFingerLevel)
+ 487          {
+ 488   1              WORD xdata ShiftValue;
+ 489   1              BYTE xdata i, xdata InterruptBitCounter;
+ 490   1              BYTE xdata LowestSensorTouched=0xFF;
+ 491   1              BYTE xdata HighestSensorTouched=0xFF;
+ 492   1              bit LowestSensorTouchedFound, HighestSensorTouchedFound;
+ 493   1              bit TwoFingerTouching, BigFingerTouching;
+ 494   1              
+ 495   1              //Initialisation
+ 496   1              LowestSensorTouchedFound=0;
+ 497   1              HighestSensorTouchedFound=0;    
+ 498   1              
+ 499   1              InterruptBitCounter=0;
+ 500   1              TwoFingerTouching=0;
+ 501   1              BigFingerTouching=0;
+ 502   1              
+ 503   1              //For all sensors in use
+ 504   1              //======================
+ 505   1              ShiftValue=LowestStageOfTheSensor;
+ 506   1              for(i=0;i<NumberOfStagesUsed;i++)
+ 507   1              {
+ 508   2                      //Found the lowest sensor touched
+ 509   2                      if((InterruptStatusRegister & ShiftValue) == ShiftValue) 
+ 510   2                      {
+ 511   3                              if(LowestSensorTouchedFound==0)
+ 512   3                              {
+ 513   4                                      //Lowest sensor touched is found here
+ 514   4                                      LowestSensorTouched=i;
+ 515   4                                      LowestSensorTouchedFound=1;
+ 516   4                              }
+ 517   3                              //If last sensor is set, then it is also the highest sensor touched
+ 518   3                              if(i==(NumberOfStagesUsed-1) && LowestSensorTouchedFound==1 && HighestSensorTouchedFound==0)
+ 519   3                              {                                       
+ 520   4                                      HighestSensorTouched=i;
+ 521   4                                      HighestSensorTouchedFound=1;
+ 522   4                              }                               
+ 523   3                      }
+ 524   2                      //Found the highest sensor touched
+ 525   2                      else if(((InterruptStatusRegister & ShiftValue) == 0) && LowestSensorTouchedFound==1 && HighestSensorTou
+             -chedFound==0)
+ 526   2                      {
+ 527   3                              //Highest sensor touched is found here
+ 528   3                              HighestSensorTouched=i-1;
+ 529   3                              HighestSensorTouchedFound=1;
+ 530   3                      }                       
+ 531   2                      ShiftValue=ShiftValue<<1;
+ 532   2              }
+ 533   1              
+ 534   1              //Code for detecting if there are 2 fingers on the entire sensor and if there is a big 
+ 535   1              //finger touching it. We count the number of interrupts set and if it is greater than 
+ 536   1              //"BigFingerLevel", then we set the "BigFingerTouching" flag.
+ 537   1              ShiftValue=LowestStageOfTheSensor;              
+ 538   1              for(i=0;i<NumberOfStagesUsed;i++)
+ 539   1              {
+ 540   2                      if((InterruptStatusRegister & ShiftValue)==ShiftValue)
+ 541   2                      {
+ 542   3                              InterruptBitCounter++;
+ 543   3                              if((i>HighestSensorTouched) || (i<LowestSensorTouched))
+ 544   3                                      TwoFingerTouching=1;
+C51 COMPILER V8.01   AD7147___SLIDER                                                       07/23/2009 12:18:57 PAGE 10  
+
+ 545   3                      }
+ 546   2                      ShiftValue=ShiftValue<<1;
+ 547   2              }
+ 548   1      
+ 549   1              if(InterruptBitCounter>=BigFingerLevel)
+ 550   1                      BigFingerTouching=1;
+ 551   1              //Return error code
+ 552   1              return (((BYTE)TwoFingerTouching) | (((BYTE)BigFingerTouching)<<1));
+ 553   1      }
+ 554          
+ 555          //---------------------------------
+ 556          //InitialiseSlider()
+ 557          //---------------------------------
+ 558          //Function that initialises the slider algorithm.
+ 559          void InitialiseSlider(void)
+ 560          {
+ 561   1              BYTE i;
+ 562   1              WORD xdata AmbientValueAddress;
+ 563   1                      
+ 564   1              AmbientValueAddress = STAGE0_AMBIENT;
+ 565   1              for (i=0; i<NB_OF_SENSORS_FOR_SLIDER; i++)
+ 566   1              {       
+ 567   2                      //Initialise ambient values
+ 568   2                      ReadFromAD7147(AmbientValueAddress, 1, AmbientValues, i);
+ 569   2                      AmbientValueAddress=AmbientValueAddress+NB_OF_REGS_PER_STAGE;
+ 570   2                      SensorValues[i] = 0;
+ 571   2              }
+ 572   1      
+ 573   1              SliderStatus = 0x0000;
+ 574   1              ListBoxUpdateCounterValue = LISTBOX_SLOW_UPDATE;
+ 575   1              DisplayItemsResolution = NUMBER_OF_POSITIONS / DISPLAY_ITEMS_CONSTANT;  
+ 576   1              EnableTapDisplayOnSlider=1;
+ 577   1              NumberOfUpdates = 0;
+ 578   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2901    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     56      25
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      8       4
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

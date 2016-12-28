@@ -1,0 +1,313 @@
+C51 COMPILER V8.01   SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07                             07/27/2009 14:27:52 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07
+OBJECT MODULE PLACED IN Scrollwheel Integration Firmware V1-27_07_09-SPI.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Scrollwheel Integration Firmware V1-27_07_09-SPI.c BROWSE DEBUG OBJECTEXTEN
+                    -D
+
+line level    source
+
+   1          // ********************************************************************************
+   2          // Scrollwheel firmware
+   3          // --------------------
+   4          //
+   5          // Description: This firmware implements a scrollwheel offering 128 absolute positions
+   6          //                              This firmware also offers joypad functionality using the North, South, 
+   7          //                              East, West and Centre sensors.
+   8          //                              The scrollwheel functionnality is in the function UpdateScrollwheel() 
+   9          //                              and the joypad functionnality is in the function UpdateJoypad().
+  10          // Date: 01/11/2005
+  11          // Author: ADI
+  12          // ********************************************************************************
+  13          
+  14          // ******************************************************************************************************
+  15          // Absolute positions: g_ScrollwheelStatus
+  16          // =======================================
+  17          //                                                                                              
+  18          //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+  19          //        |  |  |  |  |  |     |_____________|------> Positions from 0 to 127
+  20          //                |      |      |  |  |  |--------------------------> 2 fingers touching scrollwheel                                                                                            
+  21          //                |      |      |  |  |-----------------------------> Big finger across scrollwheel
+  22          //                |  |  |  |--------------------------------> Go DOWN command
+  23          //                |  |  |-----------------------------------> Go UP command
+  24          //                |      |--------------------------------------> Tapping bit.                                                                  
+  25          //        |-----------------------------------------> Activation                                                                        
+  26          //                                                                                                                                                                                              
+  27          // ******************************************************************************************************
+  28          //
+  29          // Joypad status: g_ButtonStatus
+  30          // =============================
+  31          //                                                                                              
+  32          //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+  33          //                                         | | | | | | | | | |------> DOWN button
+  34          //                                                 | | | | | | | | |--------> UP button
+  35          //                                                 | | | | | | |------------> LEFT button
+  36          //                                                 | | | | | |--------------> RIGHT button
+  37          //                                                 | | | | |----------------> CENTRE button
+  38          //                                                 | | | |------------------> Go DOWN command
+  39          //                                                 | | |--------------------> Go UP command
+  40          //                                                 | |----------------------> Go LEFT command
+  41          //                                                 |------------------------> Go RIGHT command
+  42          //                                                                                                                                                                                              
+  43          // ******************************************************************************************************
+  44          
+  45          
+  46          
+  47          #include <ADUC841.H>
+  48          #include <stdio.h>
+  49          #include <stdlib.h>
+  50          #include "Include\AD7147regMap.h"
+  51          #include "Include\General Definitions.h"
+  52          #include "Include\Scrollwheel Algorithm Definitions.h"
+  53          
+  54          
+C51 COMPILER V8.01   SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07                             07/27/2009 14:27:52 PAGE 2   
+
+  55          //---------------------------------
+  56          //General definitions
+  57          //---------------------------------
+  58          #define SIL_ID                                                                  0x1470
+  59          #define NB_OF_INT                                                               3
+  60          
+  61          
+  62          //---------------------------------
+  63          //Function prototypes
+  64          //---------------------------------
+  65          
+  66          //External functions
+  67          //------------------
+  68          extern void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer
+             -, const WORD OffsetInBuffer);
+  69          extern void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, cons
+             -t BYTE OffsetInBuffer);
+  70          extern void ConfigAD7147(void);
+  71          extern void Wait(WORD value);
+  72          extern void InitialiseTouchWheel(void);
+  73          extern WORD UpdateScrollwheel(void);
+  74          extern WORD UpdateJoypad(void);
+  75          
+  76          //Local functions
+  77          //---------------
+  78          static int ServiceAD7147Isr(void);
+  79          static void ForceCalibration(void);
+  80          
+  81          //---------------------------------
+  82          //Global variables
+  83          //---------------------------------
+  84          
+  85          //External global variables
+  86          //-------------------------
+  87          extern WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+  88          
+  89          //Local global variables
+  90          //----------------------
+  91          WORD xdata g_ScrollwheelStatus;
+  92          WORD xdata g_ButtonStatus;
+  93          BYTE xdata InterruptCounterForInitialisation;
+  94          BYTE xdata InterruptCounterForThresholdIntMode;
+  95          
+  96          
+  97          //---------------------------------
+  98          //void AD7147_Isr() interrupt 0
+  99          //---------------------------------
+ 100          //Interrupt service routine that is executed when the INT0 pin goes low.
+ 101          /********************************************************************************************/
+ 102          /*//////////////////////////////////////////////////////////////////////////////////////////*/
+ 103          // This function declaration is specific to the ADuC841 and needs to be changed for another //
+ 104          // host processor. The interrupt vector number may be different                                                         //
+ 105          /*//////////////////////////////////////////////////////////////////////////////////////////*/
+ 106          /********************************************************************************************/
+ 107          static void AD7147_Isr() interrupt 0
+ 108          {
+ 109   1              EX0=0;
+ 110   1              ServiceAD7147Isr();
+ 111   1              EX0=1;
+ 112   1              return;
+ 113   1      }
+ 114          
+C51 COMPILER V8.01   SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07                             07/27/2009 14:27:52 PAGE 3   
+
+ 115          
+ 116          void main (void)
+ 117          {
+ 118   1              /********************************************************************************************/
+ 119   1              /*//////////////////////////////////////////////////////////////////////////////////////////*/
+ 120   1              // Specific to the ADuC841, this section configures the ADuC841 pins as input or as output. //
+ 121   1              // This needs to be changed for another host processor                                                                          //
+ 122   1              /*//////////////////////////////////////////////////////////////////////////////////////////*/
+ 123   1              /********************************************************************************************/
+ 124   1              //SPI interface to AD7147
+ 125   1              DOUT=1;                         //Set the DOUT pin
+ 126   1              DIN=1;                          //Write a "1" to P0.1 so that it becomes an input.
+ 127   1              CLK=1;                          //Set the CLK pin
+ 128   1              CS=1;                           //Set the CS pin
+ 129   1              ADUC841_INT0=1;         //Makes sure that the INT0 pin on the ADuC841 is be an input.
+ 130   1              
+ 131   1              //-----------------
+ 132   1              //Configure Device
+ 133   1              //-----------------
+ 134   1              ConfigAD7147();
+ 135   1              ForceCalibration();
+ 136   1              
+ 137   1              //Initialise some variables
+ 138   1              //-------------------------
+ 139   1              InterruptCounterForInitialisation = 0;
+ 140   1              
+ 141   1              /*******************************************************************************************/
+ 142   1              /*/////////////////////////////////////////////////////////////////////////////////////////*/
+ 143   1              // Enable interrupt after software initialisation. This section cannot be placed anywhere  //
+ 144   1              // else. These instructions must be changed for another host processor.                                    //
+ 145   1              /*/////////////////////////////////////////////////////////////////////////////////////////*/
+ 146   1              /*******************************************************************************************/
+ 147   1              IT0=0x1;                        //The INT0 interrupt is negative edged triggered
+ 148   1              EX0=1;                          //Enable external interrupt "0" (AD7147 interrupt)
+ 149   1              EA=1;                           //Enable all interrupts 
+ 150   1              while(1)
+ 151   1              {       
+ 152   2                      //This is where status variables can be accessed and this is their format.
+ 153   2                      // **************************************************************************************
+ 154   2                      // Absolute positions: g_ScrollwheelStatus
+ 155   2                      // =======================================
+ 156   2                      //                                                                                              
+ 157   2                      //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+ 158   2                      //        |  |  |  |  |  |     |_____________|------> Positions from 0 to 127
+ 159   2                      //                |      |      |  |  |  |--------------------------> 2 fingers touching scrollwheel                                                                                            
+ 160   2                      //                |      |      |  |  |-----------------------------> Big finger across scrollwheel
+ 161   2                      //                |  |  |  |--------------------------------> Go DOWN command
+ 162   2                      //                |  |  |-----------------------------------> Go UP command
+ 163   2                      //                |      |--------------------------------------> Tapping bit.                                                                  
+ 164   2                      //        |-----------------------------------------> Activation                                                                        
+ 165   2                      //                                                                                                                                                                                              
+ 166   2                      // **************************************************************************************
+ 167   2                      //
+ 168   2                      // Joypad status: g_ButtonStatus
+ 169   2                      // =============================
+ 170   2                      //                                                                                              
+ 171   2                      //      bit: 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+ 172   2                      //                                         | | | | | | | | | |------> DOWN button
+ 173   2                      //                                                 | | | | | | | | |--------> UP button
+ 174   2                      //                                                 | | | | | | |------------> LEFT button
+ 175   2                      //                                                 | | | | | |--------------> RIGHT button
+ 176   2                      //                                                 | | | | |----------------> CENTRE button
+C51 COMPILER V8.01   SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07                             07/27/2009 14:27:52 PAGE 4   
+
+ 177   2                      //                                                 | | | |------------------> Go DOWN command
+ 178   2                      //                                                 | | |--------------------> Go UP command
+ 179   2                      //                                                 | |----------------------> Go LEFT command
+ 180   2                      //                                                 |------------------------> Go RIGHT command
+ 181   2                      //                                                                                                                                                                                              
+ 182   2                      // **************************************************************************************
+ 183   2              }
+ 184   1      }
+ 185          
+ 186          
+ 187          
+ 188          //---------------------------------
+ 189          //Function  definitions 
+ 190          //---------------------------------
+ 191          
+ 192          //ServiceAD7147Isr();
+ 193          //-----------------------------------------------------------------
+ 194          // Function called by the AD7147 ISR. Anything that must be 
+ 195          // executed during the ISR needs to be done here
+ 196          //-----------------------------------------------------------------
+ 197          static int ServiceAD7147Isr(void)
+ 198          {       
+ 199   1              //Read thresholds registers
+ 200   1              ReadFromAD7147(STAGE_LOW_LIMIT_INT, 3, AD7147Registers, STAGE_LOW_LIMIT_INT);
+ 201   1              
+ 202   1              if(InterruptCounterForInitialisation<(NB_OF_INT+2))
+ 203   1              {               
+ 204   2                      if (InterruptCounterForInitialisation==(NB_OF_INT-1))
+ 205   2                      {
+ 206   3                              //================================
+ 207   3                              //= Put initialisation code here =
+ 208   3                              //================================                      
+ 209   3                              InitialiseTouchWheel();
+ 210   3                      }
+ 211   2                      InterruptCounterForInitialisation++;
+ 212   2              }
+ 213   1              
+ 214   1              if(InterruptCounterForInitialisation>=NB_OF_INT)
+ 215   1              {
+ 216   2                      //========================================================
+ 217   2                      //= Recalibrate touchpad if there is a touch on power up =
+ 218   2                      //========================================================
+ 219   2                      if( ((AD7147Registers[STAGE_HIGH_LIMIT_INT] & POWER_UP_INTERRUPT) == 0x0000) &&
+ 220   2                              ((AD7147Registers[STAGE_LOW_LIMIT_INT] & POWER_UP_INTERRUPT) != 0x0000))
+ 221   2                      {
+ 222   3                              ForceCalibration();
+ 223   3                              //Initialise again touchpad
+ 224   3                              InterruptCounterForInitialisation=0;
+ 225   3                      }
+ 226   2                      else
+ 227   2                      {
+ 228   3                              g_ButtonStatus = UpdateJoypad();
+ 229   3                              g_ScrollwheelStatus = UpdateScrollwheel();
+ 230   3                              //g_ButtonStatus and g_ScrollwheelStatus are updated from this line onwards
+ 231   3                      }
+ 232   2                      
+ 233   2                      //=======================
+ 234   2                      // Change interrupt mode
+ 235   2                      //=======================
+ 236   2                      //Configure AD7147 in EOC interrupt driven mode
+ 237   2                      if (((AD7147Registers[STAGE_HIGH_LIMIT_INT] & POWER_UP_INTERRUPT)!=0x0000) || ((AD7147Registers[STAGE_LO
+             -W_LIMIT_INT] & POWER_UP_INTERRUPT)!=0x0000))
+C51 COMPILER V8.01   SCROLLWHEEL_INTEGRATION_FIRMWARE_V1_27_07                             07/27/2009 14:27:52 PAGE 5   
+
+ 238   2                      {
+ 239   3                              if (AD7147Registers[STAGE_COMPLETE_INT_EN]==0x0000)
+ 240   3                              {
+ 241   4                                      AD7147Registers[STAGE_LOW_INT_EN] &= 0xF000;
+ 242   4                                      AD7147Registers[STAGE_HIGH_INT_EN] &= 0xF000;
+ 243   4                                      AD7147Registers[STAGE_COMPLETE_INT_EN]=0x0001;
+ 244   4                                      WriteToAD7147(STAGE_LOW_INT_EN, 3, AD7147Registers, STAGE_LOW_INT_EN);
+ 245   4                              }
+ 246   3                              InterruptCounterForThresholdIntMode=NUMBER_OF_INTS_BEFORE_THRES_INT_MODE;
+ 247   3                      }
+ 248   2                      else
+ 249   2                      {
+ 250   3                              //Configure AD7147 in threshold interrupt driven mode
+ 251   3                              if (InterruptCounterForThresholdIntMode>0)
+ 252   3                                      InterruptCounterForThresholdIntMode--;
+ 253   3                              if (AD7147Registers[STAGE_LOW_INT_EN]==0x0000 && InterruptCounterForThresholdIntMode==0)
+ 254   3                              {
+ 255   4                                      AD7147Registers[STAGE_LOW_INT_EN] |= POWER_UP_INTERRUPT;
+ 256   4                                      AD7147Registers[STAGE_HIGH_INT_EN] |= POWER_UP_INTERRUPT;
+ 257   4                                      AD7147Registers[STAGE_COMPLETE_INT_EN]=0x0000;
+ 258   4                                      WriteToAD7147(STAGE_LOW_INT_EN, 3, AD7147Registers, STAGE_LOW_INT_EN);
+ 259   4                              }
+ 260   3                      }
+ 261   2              }//End if(InterruptCounterForInitialisation>=NB_OF_INT)
+ 262   1      }
+ 263          
+ 264          
+ 265          //ForceCalibration();
+ 266          //-----------------------------------------------------------------
+ 267          // Function called by ServiceAD7147Isr when there is a touch on 
+ 268          // power up or when there is a problem with the calibration.
+ 269          //-----------------------------------------------------------------
+ 270          static void ForceCalibration(void)
+ 271          {
+ 272   1              ReadFromAD7147(AMB_COMP_CTRL0, 1, AD7147Registers, AMB_COMP_CTRL0);
+ 273   1              AD7147Registers[AMB_COMP_CTRL0] |= 0x4000;//Set "forced cal" bit
+ 274   1              WriteToAD7147(AMB_COMP_CTRL0, 1, AD7147Registers, AMB_COMP_CTRL0);
+ 275   1              //Read back
+ 276   1              ReadFromAD7147(AMB_COMP_CTRL0, 1, AD7147Registers, AMB_COMP_CTRL0);
+ 277   1      }
+ 278          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    427    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      6    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

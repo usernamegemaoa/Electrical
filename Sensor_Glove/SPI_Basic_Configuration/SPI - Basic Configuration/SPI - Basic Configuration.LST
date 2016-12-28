@@ -1,0 +1,148 @@
+C51 COMPILER V8.05a   SPI___BASIC_CONFIGURATION                                            05/19/2008 15:46:17 PAGE 1   
+
+
+C51 COMPILER V8.05a, COMPILATION OF MODULE SPI___BASIC_CONFIGURATION
+OBJECT MODULE PLACED IN SPI - Basic Configuration.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE SPI - Basic Configuration.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          //#pragma OPTIMIZE (9)
+   2          /****************************************************************************/
+   3          /*                                                                                                                                                      */
+   4          /* AD7147 Standard Buttons Software                                                                                     */
+   5          /* --------------------------                                                                                           */
+   6          /******************************************************************************/
+   7          // Description: In this example, we connected all the CIN inputs to VBias.
+   8          //                      We enabled the End of Stage Conversion Interrupt and read back 
+   9          //                              the 12 ADC result registers and the End of Conversion Interrupt
+  10          //                              Status register.
+  11          
+  12          // Author: Analog Devices BV
+  13          // Date: 19/05/2008
+  14          /******************************************************************************/
+  15          
+  16          
+  17          #include <ADUC841.H>
+  18          #include <intrins.h>
+  19          #include "AD7147regMap.h"
+  20          #include "General Definitions.h"
+  21          #include "SPI.h"
+  22          #include "SPI - Basic Configuration Config.h"
+  23          
+  24          //---------------------------------
+  25          //Function prototypes
+  26          //---------------------------------
+  27          static int ServiceAD7147Isr(void);
+  28          
+  29          
+  30          //---------------------------------
+  31          //void AD7147_Isr() interrupt 0
+  32          //---------------------------------
+  33          //Interrupt service routine that is executed when the INT0 pin goes low.
+  34          //--------------------------------------------------------------------------------
+  35          /********************************************************************************************/
+  36          /*//////////////////////////////////////////////////////////////////////////////////////////*/
+  37          // This function declaration is specific to the ADuC841 and needs to be changed for another //
+  38          // host processor. The interrupt vector number may be different                                                         //
+  39          /*//////////////////////////////////////////////////////////////////////////////////////////*/
+  40          /********************************************************************************************/
+  41          static void AD7147_Isr() interrupt 0
+  42          {
+  43   1              EX0=0;
+  44   1              ServiceAD7147Isr();
+  45   1              EX0=1;
+  46   1              return;
+  47   1      }
+  48          
+  49          
+  50          void main (void)
+  51          {
+  52   1              //---------------------------
+  53   1              //Device initialisation
+  54   1              //---------------------------
+  55   1              /********************************************************************************************/
+C51 COMPILER V8.05a   SPI___BASIC_CONFIGURATION                                            05/19/2008 15:46:17 PAGE 2   
+
+  56   1              /*//////////////////////////////////////////////////////////////////////////////////////////*/
+  57   1              // Specific to the ADuC841, this section configures the ADuC841 pins as input or as output. //
+  58   1              // This needs to be changed for another host processor                                                                          //
+  59   1              /*//////////////////////////////////////////////////////////////////////////////////////////*/
+  60   1              /********************************************************************************************/
+  61   1              DOUT=1;                 //Set the DOUT pin
+  62   1              CLK=1;                  //Set the CLK pin
+  63   1              ADUC841_INT0=1; //Makes sure that the INT0 pin on the ADuC841 is be an input.
+  64   1              
+  65   1              /********************************************************************************/
+  66   1              /*//////////////////////////////////////////////////////////////////////////////*/
+  67   1              // Specific to the ADuC841, this line can be removed for another host processor //
+  68   1              /*//////////////////////////////////////////////////////////////////////////////*/
+  69   1              /********************************************************************************/      
+  70   1              CFG841 |= 1;    //Enable the extended internal RAM              
+  71   1              
+  72   1              //-----------------
+  73   1              //Configure Device
+  74   1              //-----------------
+  75   1              ConfigAD7147(); 
+  76   1              
+  77   1              /*******************************************************************************************/
+  78   1              /*/////////////////////////////////////////////////////////////////////////////////////////*/
+  79   1              // Enable interrupt after software initialisation. This section cannot be placed anywhere  //
+  80   1              // else. These instructions must be changed for another host processor.                                    //
+  81   1              /*/////////////////////////////////////////////////////////////////////////////////////////*/
+  82   1              /*******************************************************************************************/
+  83   1              IT0=0x1;                        //INT0 interrupt is negative edged triggered
+  84   1              EX0=1;                          //Enable external interrupt "0" - AD7147 interrupt
+  85   1              EA=1;                           //Enable all interrupts
+  86   1              
+  87   1              while(1);
+  88   1      }
+  89          
+  90          
+  91                  
+  92          //---------------------------------
+  93          //Function  definitions 
+  94          //---------------------------------
+  95          
+  96          //ServiceAD7147Isr();
+  97          //-----------------------------------------------------------------
+  98          // Function called by the AD7147 ISR. Anything that must be 
+  99          // executed during the ISR needs to be done here
+ 100          //-----------------------------------------------------------------
+ 101          static int ServiceAD7147Isr(void)
+ 102          {
+ 103   1              //Read stage complete registers
+ 104   1              ReadFromAD7147(STAGE_COMPLETE_LIMIT_INT, 1, AD7147Registers, STAGE_COMPLETE_LIMIT_INT);
+ 105   1              
+ 106   1              //Read 12 ADC Values
+ 107   1              ReadFromAD7147(ADCRESULT_S0, 12, AD7147Registers, ADCRESULT_S0);
+ 108   1              //This is how we access the ADC Values
+ 109   1              //AD7147Registers[ADCRESULT_S0] corresponds to ADC Value of Stage 0
+ 110   1              //AD7147Registers[ADCRESULT_S1] corresponds to ADC Value of Stage 1
+ 111   1              //AD7147Registers[ADCRESULT_S2] corresponds to ADC Value of Stage 2
+ 112   1              //AD7147Registers[ADCRESULT_S3] corresponds to ADC Value of Stage 3
+ 113   1              //AD7147Registers[ADCRESULT_S4] corresponds to ADC Value of Stage 4
+ 114   1              //AD7147Registers[ADCRESULT_S5] corresponds to ADC Value of Stage 5
+ 115   1              //AD7147Registers[ADCRESULT_S6] corresponds to ADC Value of Stage 6
+ 116   1              //AD7147Registers[ADCRESULT_S7] corresponds to ADC Value of Stage 7
+ 117   1              //AD7147Registers[ADCRESULT_S8] corresponds to ADC Value of Stage 8
+C51 COMPILER V8.05a   SPI___BASIC_CONFIGURATION                                            05/19/2008 15:46:17 PAGE 3   
+
+ 118   1              //AD7147Registers[ADCRESULT_S9] corresponds to ADC Value of Stage 9
+ 119   1              //AD7147Registers[ADCRESULT_S10] corresponds to ADC Value of Stage 10
+ 120   1              //AD7147Registers[ADCRESULT_S11] corresponds to ADC Value of Stage 11
+ 121   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1472    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     48      16
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      35
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

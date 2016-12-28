@@ -1,0 +1,84 @@
+C51 COMPILER V8.01   GENERAL_DEFINITIONS                                                   07/23/2009 12:18:57 PAGE 1   
+
+
+C51 COMPILER V8.01, COMPILATION OF MODULE GENERAL_DEFINITIONS
+OBJECT MODULE PLACED IN General Definitions.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE General Definitions.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "Include\General Definitions.h"
+   2          #include "Include\AD7147RegMap.h"
+   3          
+   4          
+   5          //---------------------------------
+   6          //Global variables
+   7          //---------------------------------
+   8          WORD xdata AD7147Registers[NUMBER_OF_AD7147_REGISTERS];
+   9                                                                          //[0...23 inc]=1st set of registers [0...23 inc]
+  10                                                                          //Element[23] = 0x17 = ID register @ 0x17
+  11                                                                          
+  12          //---------------------------------
+  13          //Function prototypes
+  14          //---------------------------------
+  15          
+  16          //Local functions
+  17          //---------------------
+  18          void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, const
+             - WORD OffsetInBuffer);
+  19          void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, const BYTE 
+             -OffsetInBuffer);
+  20          
+  21          
+  22          //External functions
+  23          //---------------------
+  24          extern BYTE ReadFromAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToRead, WORD
+             - *DataBuffer, const WORD OffsetInBuffer);
+  25          extern BYTE WriteToAD7147ViaI2C(const WORD RegisterStartAddress, const BYTE NumberOfRegistersToWrite, WORD
+             - *DataBuffer, const WORD OffsetInBuffer);
+  26          
+  27          
+  28          
+  29          //---------------------------------
+  30          //Function definitions
+  31          //---------------------------------
+  32          
+  33          
+  34          //---------------------------------
+  35          //WriteToAD7147();
+  36          //---------------------------------
+  37          //This function writes to the AD7147 either via I2C.
+  38          //--------------------------------------------------------------------------------
+  39          void WriteToAD7147(const WORD RegisterAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, const BYTE 
+             -OffsetInBuffer)
+  40          {
+  41   1              WriteToAD7147ViaI2C(RegisterAddress, NumberOfRegisters, DataBuffer, OffsetInBuffer);
+  42   1      }
+  43          
+  44          
+  45          //---------------------------------
+  46          //ReadFromAD7147();
+  47          //---------------------------------
+  48          //This function reads from the AD7147 via I2C.
+  49          //--------------------------------------------------------------------------------
+  50          void ReadFromAD7147(const WORD RegisterStartAddress, const BYTE NumberOfRegisters, WORD *DataBuffer, const
+C51 COMPILER V8.01   GENERAL_DEFINITIONS                                                   07/23/2009 12:18:57 PAGE 2   
+
+             - WORD OffsetInBuffer)
+  51          {
+  52   1              ReadFromAD7147ViaI2C(RegisterStartAddress, NumberOfRegisters, DataBuffer, OffsetInBuffer);
+  53   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     19    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     46    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
