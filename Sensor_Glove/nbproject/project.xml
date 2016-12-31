@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Sensor_Glove</name>
-            <creation-uuid>e6a9e5ad-a553-42ea-9465-d1c7cdf115a7</creation-uuid>
+            <name>sg</name>
+            <creation-uuid>550212e5-6064-404f-b165-a85907cb30a9</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>

@@ -1,6 +1,5 @@
-#include <xc.h>
-
 #include "spi.h"
+#include "micro_setup.h"
 
 void setup_spi(void) 
 {
@@ -26,8 +25,8 @@ void setup_spi(void)
 
 void write_spi(unsigned int message)
 {
-    unsigned int high = message & 0xFF;
-    unsigned int low = (message >> 8);
+    unsigned int low = message & 0xFF;
+    unsigned int high = (message >> 8);
     
     SSP1BUF = high;  // Command byte (write to pot 0)
     while(!SSP1STATbits.BF); // wait to complete 
@@ -37,11 +36,12 @@ void write_spi(unsigned int message)
     while(!SSP1STATbits.BF); // wait to complete 
     unsigned int p2 = SSP1BUF;
 }
+
 void write_spi_solo(unsigned int message)
 {
     PORTEbits.RE0 = 0;   //set CS to low (transmit data)
-    unsigned int high = message & 0xFF;
-    unsigned int low = (message >> 8);
+    unsigned int low = message & 0xFF;
+    unsigned int high = (message >> 8);
     
     SSP1BUF = high;  // Command byte (write to pot 0)
     while(!SSP1STATbits.BF); // wait to complete 

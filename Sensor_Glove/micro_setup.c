@@ -1,8 +1,5 @@
-#include <xc.h>                 // PIC16F917 Configuration Bit Settings
 #include <stdio.h>
-
 #include "micro_setup.h"
-
 
 void setup_mcu(void)
 {
