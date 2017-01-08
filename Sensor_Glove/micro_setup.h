@@ -166,28 +166,18 @@ extern unsigned int AD7147Registers[23] = 0;
 #define STAGE11_MIN_AVG             0x28C
 #define STAGE11_LWR_THRES           0x28D
 
-#define VL1 PORTAbits.RA0        // Defined Pin RA0 to variable VL1 
-#define VL2 PORTAbits.RA1        // Defined Pin RA1 to variable VL2 
-#define VL3 PORTAbits.RA2        // Defined Pin RA2 to variable VL3 
-#define V_SHUNT PORTAbits.RA3    // Defined Pin RA4 to variable V_SHUNT 
+#define LED0 PORTDbits.RD0        // Defined Pin RD0 to variable LED0
+#define LED1 PORTDbits.RD1        // Defined Pin RD1 to variable LED1
+#define LED2 PORTDbits.RD2        // Defined Pin RD2 to variable LED2
+#define LED3 PORTDbits.RD3        // Defined Pin RD3 to variable LED3
+#define LED4 PORTDbits.RD4        // Defined Pin RD4 to variable LED4
+#define LED5 PORTDbits.RD5        // Defined Pin RD5 to variable LED5
+#define LED6 PORTDbits.RD6        // Defined Pin RD6 to variable LED6
+#define LED7 PORTDbits.RD7        // Defined Pin RD7 to variable LED7
 
-#define SENSEC PORTEbits.RE0     // Defined Pin RE0 to variable SENSEC 
-#define SENSEB PORTEbits.RE1     // Defined Pin RE1 to variable SENSEB 
-#define SENSEA PORTEbits.RE2     // Defined Pin RE2 to variable SENSEA 
+#define CS_AD7147 PORTCbits.RC2         // Defined Pin RE0 to variable CS_AD7147
 
-#define H3 PORTCbits.RC0        // Defined Pin RC0 to variable H3 
-#define L3 PORTCbits.RC1        // Defined Pin RC1 to variable L3 
-#define H2 PORTCbits.RC2        // Defined Pin RC2 to variable H2 
-#define L2 PORTCbits.RC3        // Defined Pin RC3 to variable L2 
-#define H1 PORTCbits.RC4        // Defined Pin RC4 to variable H1 
-#define L1 PORTCbits.RC5        // Defined Pin RC5 to variable L1
-
-#define DH3 PORTDbits.RD0        // Defined Pin RD0 to variable DH3 
-#define DL3 PORTDbits.RD1        // Defined Pin RD1 to variable DL3 
-#define DH2 PORTDbits.RD2        // Defined Pin RD2 to variable DH2 
-#define DL2 PORTDbits.RD3        // Defined Pin RD3 to variable DL2 
-#define DH1 PORTDbits.RD4        // Defined Pin RD4 to variable DH1 
-#define DL1 PORTDbits.RD5        // Defined Pin RD5 to variable DL1
+#define NELEMS(x)  (sizeof(x) / sizeof((x)[0])) 
 
 #define LED_ON (1)               // DIGITAL: Assigning variable LED_ON to the value: 1
 #define LED_OFF (0)              // DIGITAL: Assigning variable LED_OFF to the value: 0
@@ -204,8 +194,6 @@ extern unsigned int AD7147Registers[23] = 0;
 #define _XTAL_FREQ 10000000       // 10 MHz External Crystal 
 //#define BUAD_RATE_CALC ((F_CPU/16/BUAD) - 1) 
 
-extern int init_state;
-
 void setup_mcu(void);
 
 void setup_port(void);
@@ -213,8 +201,6 @@ void setup_port(void);
 void init_uart(void);
 
 void init_pin(void);
-
-void init_hall(void);
 
 void delay_ms(int n);
 

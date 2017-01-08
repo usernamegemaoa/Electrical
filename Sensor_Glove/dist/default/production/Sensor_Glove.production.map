@@ -3,10 +3,10 @@ Microchip MPLAB XC8 Compiler V1.38 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.38\dat\en_msgs.txt -cs \
-  -h+dist/default/debug\Sensor_Glove.debug.sym \
-  --cmf=dist/default/debug\Sensor_Glove.debug.cmf -z -Q18F87J10 \
-  -oC:\Users\Carl\AppData\Local\Temp\s85k.2 \
-  -Mdist/default/debug/Sensor_Glove.debug.map -E1 -ver=XC8 \
+  -h+dist/default/production\Sensor_Glove.production.sym \
+  --cmf=dist/default/production\Sensor_Glove.production.cmf -z -Q18F87J10 \
+  -oC:\Users\Carl\AppData\Local\Temp\s7ao.2 \
+  -Mdist/default/production/Sensor_Glove.production.map -E1 -ver=XC8 \
   -ASTACK=08Eh-0f5fh -pstack=STACK -ACODE=00h-01FFF7h -ACONST=00h-01FFF7h \
   -ASMALLCONST=01000h-010FFhx495,01FF00h-01FFF7h \
   -AMEDIUMCONST=01000h-0FFFFh,011000h-01FFF7h -ACOMRAM=01h-05Fh \
@@ -17,7 +17,7 @@ Linker command line:
   -ABANK7=0700h-07FFh -ABANK8=0800h-08FFh -ABANK9=0900h-09FFh \
   -ABANK10=0A00h-0AFFh -ABANK11=0B00h-0BFFh -ABANK12=0C00h-0CFFh \
   -ABANK13=0D00h-0DFFh -ABANK14=0E00h-0EFFh -ABANK15=0F00h-0F5Fh \
-  -ASFR=0F60h-0FFCh -preset_vec=00h,intcode,intcodelo,powerup,init,end_init \
+  -ASFR=0F60h-0FFFh -preset_vec=00h,intcode,intcodelo,powerup,init,end_init \
   -pramtop=01000h -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST \
   -pconst=CONST -AFARRAM=00h-00h -ACONFIG=01FFF8h-01FFFDh -pconfig=CONFIG \
   -pjflash_buffer=01F800h \
@@ -25,8 +25,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Carl\AppData\Local\Temp\s85k.obj \
-  dist/default/debug\Sensor_Glove.debug.obj 
+  C:\Users\Carl\AppData\Local\Temp\s7ao.obj \
+  dist/default/production\Sensor_Glove.production.obj 
 
 Object code version is 3.11
 
@@ -38,19 +38,18 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Carl\AppData\Local\Temp\s85k.obj
-                end_init                              2        2        4        0       0
-                reset_vec                             0        0        2        0       0
+C:\Users\Carl\AppData\Local\Temp\s7ao.obj
+                end_init                              0        0        4        0       0
                 config                            1FFF8    1FFF8        6    1FFF8       0
-dist/default/debug\Sensor_Glove.debug.obj
+dist/default/production\Sensor_Glove.production.obj
                 text10                            1F9CC    1F9CC       84     FCE6       0
                 text9                             1F87E    1F87E       40     FC3F       0
                 text8                             1FA50    1FA50       D4     FD28       0
                 text7                             1F95E    1F95E       6E     FCAF       0
                 text6                             1FB24    1FB24      4D4     FD92       0
                 text5                             1F806    1F806       12     FC03       0
-                text4                             1F7F8    1F7F8        E     FBFC       0
-                text3                             1F7EE    1F7EE        A     FBF7       0
+                text4                             1F7F2    1F7F2        A     FBF9       0
+                text3                             1F7FC    1F7FC        A     FBFE       0
                 text2                             1F830    1F830       1C     FC18       0
                 text1                             1F90C    1F90C       52     FC86       0
                 text0                             1F8BE    1F8BE       4E     FC5F       0
@@ -64,16 +63,15 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   STACK          
 
         CLASS   CODE           
-                end_init                              2        2        4         0
-                reset_vec                             0        0        2         0
+                end_init                              0        0        4         0
                 text10                            1F9CC    1F9CC       84         0
                 text9                             1F87E    1F87E       40         0
                 text8                             1FA50    1FA50       D4         0
                 text7                             1F95E    1F95E       6E         0
                 text6                             1FB24    1FB24      4D4         0
                 text5                             1F806    1F806       12         0
-                text4                             1F7F8    1F7F8        E         0
-                text3                             1F7EE    1F7EE        A         0
+                text4                             1F7F2    1F7F2        A         0
+                text3                             1F7FC    1F7FC        A         0
                 text2                             1F830    1F830       1C         0
                 text1                             1F90C    1F90C       52         0
                 text0                             1F8BE    1F8BE       4E         0
@@ -142,11 +140,11 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
-                reset_vec                      000000  000006  000006         0       0  CODE    
+                reset_vec                      000000  000004  000004         0       0  CODE    
                 cstackCOMRAM                   000001  000052  000053         1       1  COMRAM  
                 bssBANK0                       000060  00002E  00008E        60       1  BANK0   
-                text3                          01F7EE  00000A  01F7F8      FBF7       0  CODE    
-                text4                          01F7F8  00000E  01F806      FBFC       0  CODE    
+                text4                          01F7F2  00000A  01F7FC      FBF9       0  CODE    
+                text3                          01F7FC  00000A  01F806      FBFE       0  CODE    
                 text5                          01F806  000012  01F818      FC03       0  CODE    
                 idataCOMRAM                    01F818  000018  01F830     1F818       0  CODE    
                 text2                          01F830  00001C  01F84C      FC18       0  CODE    
@@ -182,14 +180,14 @@ UNUSED ADDRESS RANGES
         BANK9            00900-009FF             100
         BIGRAM           00053-0005F               D
                          0008E-00F5F             ED2
-        CODE             00006-1F7ED           1F7E8
+        CODE             00004-1F7F1           1F7EE
         COMRAM           00053-0005F               D
-        CONST            00006-1F7ED           1F7E8
+        CONST            00004-1F7F1           1F7EE
         MEDIUMCONST      01000-0FFFF            F000
-                         11000-1F7ED            E7EE
+                         11000-1F7F1            E7F2
         RAM              0008E-00F5F             100
-        SFR              00F60-00FFC              9D
-        SMALLCONST       01000-1F7ED             100
+        SFR              00F60-00FFF              A0
+        SMALLCONST       01000-1F7F1             100
         STACK            0008E-00F5F             ED2
 
                                   Symbol Table
@@ -251,7 +249,7 @@ __Hconst                             const         00000
 __HcstackCOMRAM                      cstackCOMRAM  00000
 __Hdata                              data          00000
 __HdataCOMRAM                        dataCOMRAM    00000
-__Hend_init                          end_init      00006
+__Hend_init                          end_init      00004
 __Hfarbss                            farbss        00000
 __Hfardata                           fardata       00000
 __Hibigdata                          ibigdata      00000
@@ -259,10 +257,10 @@ __Hidata                             idata         00000
 __HidataCOMRAM                       idataCOMRAM   00000
 __Hidloc                             idloc         00000
 __Hifardata                          ifardata      00000
-__Hinit                              init          00002
-__Hintcode                           intcode       00002
+__Hinit                              init          00000
+__Hintcode                           intcode       00000
 __Hintcode_body                      intcode_body  00000
-__Hintcodelo                         intcodelo     00002
+__Hintcodelo                         intcodelo     00000
 __Hintentry                          intentry      00000
 __Hintret                            intret        00000
 __Hintsave_regs                      intsave_regs  00000
@@ -273,13 +271,13 @@ __HnvFARRAM                          nvFARRAM      00000
 __Hnvbit                             nvbit         00000
 __Hnvrram                            nvrram        00000
 __Hparam                             rparam        00000
-__Hpowerup                           powerup       00002
+__Hpowerup                           powerup       00000
 __Hram                               ram           00000
 __Hramtop                            ramtop        01000
 __Hrbit                              rbit          00000
 __Hrbss                              rbss          00000
 __Hrdata                             rdata         00000
-__Hreset_vec                         reset_vec     00002
+__Hreset_vec                         reset_vec     00000
 __Hrparam                            rparam        00000
 __Hsfr                               sfr           00000
 __Hsmallconst                        smallconst    00000
@@ -332,7 +330,7 @@ __Lconst                             const         00000
 __LcstackCOMRAM                      cstackCOMRAM  00000
 __Ldata                              data          00000
 __LdataCOMRAM                        dataCOMRAM    00000
-__Lend_init                          end_init      00002
+__Lend_init                          end_init      00000
 __Lfarbss                            farbss        00000
 __Lfardata                           fardata       00000
 __Libigdata                          ibigdata      00000
@@ -340,10 +338,10 @@ __Lidata                             idata         00000
 __LidataCOMRAM                       idataCOMRAM   00000
 __Lidloc                             idloc         00000
 __Lifardata                          ifardata      00000
-__Linit                              init          00002
-__Lintcode                           intcode       00002
+__Linit                              init          00000
+__Lintcode                           intcode       00000
 __Lintcode_body                      intcode_body  00000
-__Lintcodelo                         intcodelo     00002
+__Lintcodelo                         intcodelo     00000
 __Lintentry                          intentry      00000
 __Lintret                            intret        00000
 __Lintsave_regs                      intsave_regs  00000
@@ -354,7 +352,7 @@ __LnvFARRAM                          nvFARRAM      00000
 __Lnvbit                             nvbit         00000
 __Lnvrram                            nvrram        00000
 __Lparam                             rparam        00000
-__Lpowerup                           powerup       00002
+__Lpowerup                           powerup       00000
 __Lram                               ram           00000
 __Lramtop                            ramtop        01000
 __Lrbit                              rbit          00000
@@ -405,8 +403,8 @@ __end_of_delay_ms                    text9         1F8BE
 __end_of_init_pin                    text5         1F818
 __end_of_main                        text0         1F90C
 __end_of_setup_AD7147                text6         1FFF8
-__end_of_setup_mcu                   text3         1F7F8
-__end_of_setup_port                  text4         1F806
+__end_of_setup_mcu                   text3         1F806
+__end_of_setup_port                  text4         1F7FC
 __end_of_setup_spi                   text2         1F84C
 __end_of_write_AD7147                text7         1F9CC
 __end_of_write_spi                   text1         1F95E
@@ -422,8 +420,8 @@ __ptext0                             text0         1F8BE
 __ptext1                             text1         1F90C
 __ptext10                            text10        1F9CC
 __ptext2                             text2         1F830
-__ptext3                             text3         1F7EE
-__ptext4                             text4         1F7F8
+__ptext3                             text3         1F7FC
+__ptext4                             text4         1F7F2
 __ptext5                             text5         1F806
 __ptext6                             text6         1FB24
 __ptext7                             text7         1F95E
@@ -446,8 +444,8 @@ _delay_ms                            text9         1F87E
 _init_pin                            text5         1F806
 _main                                text0         1F8BE
 _setup_AD7147                        text6         1FB24
-_setup_mcu                           text3         1F7EE
-_setup_port                          text4         1F7F8
+_setup_mcu                           text3         1F7FC
+_setup_port                          text4         1F7F2
 _setup_spi                           text2         1F830
 _write_AD7147                        text7         1F95E
 _write_spi                           text1         1F90C
@@ -464,7 +462,7 @@ main@device                          cstackCOMRAM  00037
 setup_AD7147@StageBuffer             cstackCOMRAM  00027
 stackhi                              (abs)         00F5F
 stacklo                              (abs)         0008E
-start                                init          00002
+start                                init          00000
 start_initialization                 cinit         1F84C
 write_AD7147@ControlValue            cstackCOMRAM  00023
 write_AD7147@DataBuffer              cstackCOMRAM  0001F
@@ -660,7 +658,7 @@ Total ram usage:        0 bytes
 
  *************** function _init_pin *****************
  Defined at:
-		line 57 in file "micro_setup.c"
+		line 56 in file "micro_setup.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -795,7 +793,7 @@ Total ram usage:       26 bytes
 
  *************** function _delay_ms *****************
  Defined at:
-		line 69 in file "micro_setup.c"
+		line 68 in file "micro_setup.c"
  Parameters:    Size  Location     Type
   n               2    8[COMRAM] int 
  Auto vars:     Size  Location     Type
@@ -866,11 +864,11 @@ C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awdiv.c estimated size
 
 micro_setup.c
 		_init_pin      		CODE           	1F806	0000	19
-		_setup_mcu     		CODE           	1F7EE	0000	11
-		_setup_port    		CODE           	1F7F8	0000	15
+		_setup_mcu     		CODE           	1F7FC	0000	11
+		_setup_port    		CODE           	1F7F2	0000	11
 		_delay_ms      		CODE           	1F87E	0000	65
 
-micro_setup.c estimated size: 110
+micro_setup.c estimated size: 106
 
 spi.c
 		_write_spi_register		CODE           	1FA50	0000	213

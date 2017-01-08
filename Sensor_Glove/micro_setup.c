@@ -5,20 +5,14 @@ void setup_mcu(void)
 {
     setup_port();
     init_pin();
-    init_hall();
-    init_uart();
+    //init_uart();
 }
 
 void setup_port(void)
 {
-    TRISA = 0b10001111;         // Port A: Output: 4-6 Input: 0-3, 7
-    
-    TRISB = 0b00000000;         // Port B: Output: 
-    
-    TRISC = 0b10000000;         // Port C: Output: 0-6 Input: 7
-    // RC7=RX-Input, RC6=TX-Output, RC0-RC5=LED Output 
     TRISD = 0b00000000;         // Port D: Output: 0-7
-     
+    TRISC = 0b00010000;
+    TRISE = 0b00000000;         // Port E: Output: 0-7
 }                   
 
 void init_uart(void)
@@ -62,19 +56,14 @@ void init_uart(void)
 
 void init_pin(void)
 {
-    H3 = DUTY_OFF;      // MOSFET High, Phase 3      
-    L3 = DUTY_OFF;      // MOSFET Low, Phase 3          
-    H2 = DUTY_OFF;      // MOSFET High, Phase 2         
-    L2 = DUTY_OFF;      // MOSFET Low, Phase 2         
-    H1 = DUTY_OFF;      // MOSFET High, Phase 1          
-    L1 = DUTY_OFF;      // MOSFET Low, Phase 1           
-
-    DH3 = LED_OFF;      // LED DH3 = MOSFET High, Phase 3   
-    DL3 = LED_OFF;      // LED DL3 = MOSFET Low, Phase 3   
-    DH2 = LED_OFF;      // LED DH2 = MOSFET High, Phase 2     
-    DL2 = LED_OFF;      // LED DL2 = MOSFET Low, Phase 2    
-    DH1 = LED_OFF;      // LED DH1 = MOSFET High, Phase 1   
-    DL1 = LED_OFF;      // LED DL1 = MOSFET Low, Phase 1   
+    LED7 = 1;
+    LED6 = 0;   
+    LED5 = 0;  
+    LED4 = 0;  
+    LED3 = 0;  
+    LED2 = 0;  
+    LED1 = 0;  
+    LED0 = 0;    
 } 
 
 void delay_ms(int n)

@@ -1,12 +1,12 @@
 ### HEXMate logfile and output summary ###
 ### Memory Usage ###
  Unused memory ranges:
-  6h - 1F7EDh
+  4h - 1F7F1h
   1FFFEh - 1FFFFh
   
- dist/default/debug\Sensor_Glove.debug.hex ranges:
-  0h - 5h
-  1F7EEh - 1FFFDh
+ dist/default/production\Sensor_Glove.production.hex ranges:
+  0h - 3h
+  1F7F2h - 1FFFDh
   
 ### Hex Memory Map ###
  Legend:
@@ -19,9 +19,9 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/debug\Sensor_Glove.debug.hex
-00000000: 111111----------------------------------------------------------
-0001F7C0: ----------------------------------------------111111111111111111
+  1 = dist/default/production\Sensor_Glove.production.hex
+00000000: 1111------------------------------------------------------------
+0001F7C0: --------------------------------------------------11111111111111
 0001F800: 1111111111111111111111111111111111111111111111111111111111111111
 0001F840: 1111111111111111111111111111111111111111111111111111111111111111
 0001F880: 1111111111111111111111111111111111111111111111111111111111111111

@@ -1,0 +1,2621 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.38 build -256452561 
+                                                                                               Sun Jan 08 00:38:08 2017
+
+Microchip Technology Omniscient Code Generator v1.38 (Free mode) build 201607010351
+     1                           	processor	18F87J10
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	idataCOMRAM,global,class=CODE,delta=1
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	dataCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+    10                           	psect	text0,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    21                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    22                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    23  0000                     
+    24                           	psect	idataCOMRAM
+    25  01F818                     __pidataCOMRAM:
+    26                           	opt stack 0
+    27                           
+    28                           ;initializer for _ADC_RESULT
+    29  01F818  000B               	dw	11
+    30  01F81A  000C               	dw	12
+    31  01F81C  000D               	dw	13
+    32  01F81E  000E               	dw	14
+    33  01F820  000F               	dw	15
+    34  01F822  0010               	dw	16
+    35  01F824  0011               	dw	17
+    36  01F826  0012               	dw	18
+    37  01F828  0013               	dw	19
+    38  01F82A  0014               	dw	20
+    39  01F82C  0015               	dw	21
+    40  01F82E  0016               	dw	22
+    41  0000                     _PIE1bits	set	3997
+    42  0000                     _PORTCbits	set	3970
+    43  0000                     _PORTDbits	set	3971
+    44  0000                     _PORTEbits	set	3972
+    45  0000                     _RCSTAbits	set	4011
+    46  0000                     _SPBRG	set	4015
+    47  0000                     _SSP1BUF	set	4041
+    48  0000                     _SSP1CON1bits	set	4038
+    49  0000                     _SSP1STATbits	set	4039
+    50  0000                     _TRISC	set	3988
+    51  0000                     _TRISD	set	3989
+    52  0000                     _TRISE	set	3990
+    53  0000                     _TRISF	set	3991
+    54  0000                     _TXSTA	set	4012
+    55                           
+    56                           ; #config settings
+    57  0000                     
+    58                           	psect	cinit
+    59  01F84C                     __pcinit:
+    60                           	opt stack 0
+    61  01F84C                     start_initialization:
+    62                           	opt stack 0
+    63  01F84C                     __initialization:
+    64                           	opt stack 0
+    65                           
+    66                           ; Initialize objects allocated to COMRAM (24 bytes)
+    67                           ; load TBLPTR registers with __pidataCOMRAM
+    68  01F84C  0E18               	movlw	low __pidataCOMRAM
+    69  01F84E  6EF6               	movwf	tblptrl,c
+    70  01F850  0EF8               	movlw	high __pidataCOMRAM
+    71  01F852  6EF7               	movwf	tblptrh,c
+    72  01F854  0E01               	movlw	low (__pidataCOMRAM shr (0+16))
+    73  01F856  6EF8               	movwf	tblptru,c
+    74  01F858  EE00  F03B         	lfsr	0,__pdataCOMRAM
+    75  01F85C  EE10 F018          	lfsr	1,24
+    76  01F860                     copy_data0:
+    77  01F860  0009               	tblrd		*+
+    78  01F862  CFF5 FFEE          	movff	tablat,postinc0
+    79  01F866  50E5               	movf	postdec1,w,c
+    80  01F868  50E1               	movf	fsr1l,w,c
+    81  01F86A  E1FA               	bnz	copy_data0
+    82                           
+    83                           ; Clear objects allocated to BANK0 (46 bytes)
+    84  01F86C  EE00  F060         	lfsr	0,__pbssBANK0
+    85  01F870  0E2E               	movlw	46
+    86  01F872                     clear_0:
+    87  01F872  6AEE               	clrf	postinc0,c
+    88  01F874  06E8               	decf	wreg,f,c
+    89  01F876  E1FD               	bnz	clear_0
+    90  01F878                     end_of_initialization:
+    91                           	opt stack 0
+    92  01F878                     __end_of__initialization:
+    93                           	opt stack 0
+    94  01F878  0100               	movlb	0
+    95  01F87A  EF5F  F0FC         	goto	_main	;jump to C main() function
+    96                           tblptru	equ	0xFF8
+    97                           tblptrh	equ	0xFF7
+    98                           tblptrl	equ	0xFF6
+    99                           tablat	equ	0xFF5
+   100                           postinc0	equ	0xFEE
+   101                           wreg	equ	0xFE8
+   102                           postdec1	equ	0xFE5
+   103                           fsr1l	equ	0xFE1
+   104                           
+   105                           	psect	dataCOMRAM
+   106  00003B                     __pdataCOMRAM:
+   107                           	opt stack 0
+   108  00003B                     _ADC_RESULT:
+   109                           	opt stack 0
+   110  00003B                     	ds	24
+   111                           tblptru	equ	0xFF8
+   112                           tblptrh	equ	0xFF7
+   113                           tblptrl	equ	0xFF6
+   114                           tablat	equ	0xFF5
+   115                           postinc0	equ	0xFEE
+   116                           wreg	equ	0xFE8
+   117                           postdec1	equ	0xFE5
+   118                           fsr1l	equ	0xFE1
+   119                           
+   120                           	psect	bssBANK0
+   121  000060                     __pbssBANK0:
+   122                           	opt stack 0
+   123  000060                     _AD7147Registers:
+   124                           	opt stack 0
+   125  000060                     	ds	46
+   126                           tblptru	equ	0xFF8
+   127                           tblptrh	equ	0xFF7
+   128                           tblptrl	equ	0xFF6
+   129                           tablat	equ	0xFF5
+   130                           postinc0	equ	0xFEE
+   131                           wreg	equ	0xFE8
+   132                           postdec1	equ	0xFE5
+   133                           fsr1l	equ	0xFE1
+   134                           
+   135                           	psect	cstackCOMRAM
+   136  000001                     __pcstackCOMRAM:
+   137                           	opt stack 0
+   138  000001                     ?___awdiv:
+   139                           	opt stack 0
+   140  000001                     write_spi@address:
+   141                           	opt stack 0
+   142  000001                     write_spi_register@address:
+   143                           	opt stack 0
+   144  000001                     ___awdiv@dividend:
+   145                           	opt stack 0
+   146                           
+   147                           ; 2 bytes @ 0x0
+   148  000001                     	ds	2
+   149  000003                     write_spi@data:
+   150                           	opt stack 0
+   151  000003                     write_spi_register@NumberOfRegisters:
+   152                           	opt stack 0
+   153  000003                     ___awdiv@divisor:
+   154                           	opt stack 0
+   155                           
+   156                           ; 2 bytes @ 0x2
+   157  000003                     	ds	2
+   158  000005                     ___awdiv@counter:
+   159                           	opt stack 0
+   160  000005                     write_spi@p1:
+   161                           	opt stack 0
+   162  000005                     write_spi_register@data:
+   163                           	opt stack 0
+   164                           
+   165                           ; 2 bytes @ 0x4
+   166  000005                     	ds	1
+   167  000006                     ___awdiv@sign:
+   168                           	opt stack 0
+   169                           
+   170                           ; 1 bytes @ 0x5
+   171  000006                     	ds	1
+   172  000007                     ??_write_spi_register:
+   173  000007                     write_spi@p2:
+   174                           	opt stack 0
+   175  000007                     ___awdiv@quotient:
+   176                           	opt stack 0
+   177                           
+   178                           ; 2 bytes @ 0x6
+   179  000007                     	ds	2
+   180  000009                     delay_ms@n:
+   181                           	opt stack 0
+   182  000009                     write_spi@p3:
+   183                           	opt stack 0
+   184  000009                     write_spi_register@p1:
+   185                           	opt stack 0
+   186                           
+   187                           ; 2 bytes @ 0x8
+   188  000009                     	ds	2
+   189  00000B                     ??_delay_ms:
+   190  00000B                     write_spi@p4:
+   191                           	opt stack 0
+   192  00000B                     write_spi_register@p2:
+   193                           	opt stack 0
+   194                           
+   195                           ; 2 bytes @ 0xA
+   196  00000B                     	ds	1
+   197  00000C                     delay_ms@j:
+   198                           	opt stack 0
+   199                           
+   200                           ; 2 bytes @ 0xB
+   201  00000C                     	ds	1
+   202  00000D                     write_spi@address_low:
+   203                           	opt stack 0
+   204  00000D                     write_spi_register@p3:
+   205                           	opt stack 0
+   206                           
+   207                           ; 2 bytes @ 0xC
+   208  00000D                     	ds	2
+   209  00000F                     write_spi@address_high:
+   210                           	opt stack 0
+   211  00000F                     write_spi_register@p4:
+   212                           	opt stack 0
+   213                           
+   214                           ; 2 bytes @ 0xE
+   215  00000F                     	ds	2
+   216  000011                     write_spi@data_low:
+   217                           	opt stack 0
+   218  000011                     write_spi_register@address_low:
+   219                           	opt stack 0
+   220                           
+   221                           ; 2 bytes @ 0x10
+   222  000011                     	ds	2
+   223  000013                     write_spi@data_high:
+   224                           	opt stack 0
+   225  000013                     write_spi_register@address_high:
+   226                           	opt stack 0
+   227                           
+   228                           ; 2 bytes @ 0x12
+   229  000013                     	ds	2
+   230  000015                     write_spi_register@data_low:
+   231                           	opt stack 0
+   232                           
+   233                           ; 2 bytes @ 0x14
+   234  000015                     	ds	2
+   235  000017                     write_spi_register@data_high:
+   236                           	opt stack 0
+   237                           
+   238                           ; 2 bytes @ 0x16
+   239  000017                     	ds	2
+   240  000019                     write_spi_register@i:
+   241                           	opt stack 0
+   242                           
+   243                           ; 2 bytes @ 0x18
+   244  000019                     	ds	2
+   245  00001B                     write_AD7147@RegisterAddress:
+   246                           	opt stack 0
+   247                           
+   248                           ; 2 bytes @ 0x1A
+   249  00001B                     	ds	2
+   250  00001D                     write_AD7147@NumberOfRegisters:
+   251                           	opt stack 0
+   252                           
+   253                           ; 2 bytes @ 0x1C
+   254  00001D                     	ds	2
+   255  00001F                     write_AD7147@DataBuffer:
+   256                           	opt stack 0
+   257                           
+   258                           ; 2 bytes @ 0x1E
+   259  00001F                     	ds	2
+   260  000021                     ??_write_AD7147:
+   261                           
+   262                           ; 1 bytes @ 0x20
+   263  000021                     	ds	2
+   264  000023                     write_AD7147@ControlValue:
+   265                           	opt stack 0
+   266  000023                     write_AD7147@enable_word:
+   267                           	opt stack 0
+   268                           
+   269                           ; 2 bytes @ 0x22
+   270  000023                     	ds	2
+   271  000025                     write_AD7147@i:
+   272                           	opt stack 0
+   273                           
+   274                           ; 2 bytes @ 0x24
+   275  000025                     	ds	2
+   276  000027                     setup_AD7147@StageBuffer:
+   277                           	opt stack 0
+   278                           
+   279                           ; 16 bytes @ 0x26
+   280  000027                     	ds	16
+   281  000037                     main@device:
+   282                           	opt stack 0
+   283                           
+   284                           ; 2 bytes @ 0x36
+   285  000037                     	ds	2
+   286  000039                     main@blanks:
+   287                           	opt stack 0
+   288                           
+   289                           ; 2 bytes @ 0x38
+   290  000039                     	ds	2
+   291                           tblptru	equ	0xFF8
+   292                           tblptrh	equ	0xFF7
+   293                           tblptrl	equ	0xFF6
+   294                           tablat	equ	0xFF5
+   295                           postinc0	equ	0xFEE
+   296                           wreg	equ	0xFE8
+   297                           postdec1	equ	0xFE5
+   298                           fsr1l	equ	0xFE1
+   299                           
+   300 ;;
+   301 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   302 ;;
+   303 ;; *************** function _main *****************
+   304 ;; Defined at:
+   305 ;;		line 5 in file "main.c"
+   306 ;; Parameters:    Size  Location     Type
+   307 ;;		None
+   308 ;; Auto vars:     Size  Location     Type
+   309 ;;  blanks          2   56[COMRAM] unsigned int 
+   310 ;;  device          2   54[COMRAM] unsigned int 
+   311 ;; Return value:  Size  Location     Type
+   312 ;;                  1    wreg      void 
+   313 ;; Registers used:
+   314 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   315 ;; Tracked objects:
+   316 ;;		On entry : 0/0
+   317 ;;		On exit  : 0/0
+   318 ;;		Unchanged: 0/0
+   319 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   320 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   321 ;;      Locals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   322 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   323 ;;      Totals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   324 ;;Total ram usage:        4 bytes
+   325 ;; Hardware stack levels required when called:    3
+   326 ;; This function calls:
+   327 ;;		_delay_ms
+   328 ;;		_setup_AD7147
+   329 ;;		_setup_mcu
+   330 ;;		_setup_spi
+   331 ;;		_write_spi
+   332 ;; This function is called by:
+   333 ;;		Startup code after reset
+   334 ;; This function uses a non-reentrant model
+   335 ;;
+   336                           
+   337                           	psect	text0
+   338  01F8BE                     __ptext0:
+   339                           	opt stack 0
+   340  01F8BE                     _main:
+   341                           	opt stack 28
+   342                           
+   343                           ;main.c: 7: delay_ms(500);
+   344                           
+   345                           ;incstack = 0
+   346  01F8BE  0E01               	movlw	1
+   347  01F8C0  6E0A               	movwf	delay_ms@n+1,c
+   348  01F8C2  0EF4               	movlw	244
+   349  01F8C4  6E09               	movwf	delay_ms@n,c
+   350  01F8C6  EC3F  F0FC         	call	_delay_ms	;wreg free
+   351                           
+   352                           ;main.c: 8: setup_mcu();
+   353  01F8CA  ECFE  F0FB         	call	_setup_mcu	;wreg free
+   354                           
+   355                           ;main.c: 9: setup_spi();
+   356  01F8CE  EC18  F0FC         	call	_setup_spi	;wreg free
+   357                           
+   358                           ;main.c: 10: setup_AD7147();
+   359  01F8D2  EC92  F0FD         	call	_setup_AD7147	;wreg free
+   360                           
+   361                           ;main.c: 12: unsigned int device = 0x017;
+   362  01F8D6  0E00               	movlw	0
+   363  01F8D8  6E38               	movwf	main@device+1,c
+   364  01F8DA  0E17               	movlw	23
+   365  01F8DC  6E37               	movwf	main@device,c
+   366                           
+   367                           ;main.c: 13: unsigned int blanks = 0x000;
+   368  01F8DE  0E00               	movlw	0
+   369  01F8E0  6E3A               	movwf	main@blanks+1,c
+   370  01F8E2  0E00               	movlw	0
+   371  01F8E4  6E39               	movwf	main@blanks,c
+   372  01F8E6                     l1444:
+   373                           
+   374                           ;main.c: 15: {
+   375                           ;main.c: 16: delay_ms(100);
+   376  01F8E6  0E00               	movlw	0
+   377  01F8E8  6E0A               	movwf	delay_ms@n+1,c
+   378  01F8EA  0E64               	movlw	100
+   379  01F8EC  6E09               	movwf	delay_ms@n,c
+   380  01F8EE  EC3F  F0FC         	call	_delay_ms	;wreg free
+   381                           
+   382                           ;main.c: 17: PORTCbits.RC2 = 0;
+   383  01F8F2  9482               	bcf	3970,2,c	;volatile
+   384                           
+   385                           ;main.c: 18: write_spi(device, blanks);
+   386  01F8F4  C037  F001         	movff	main@device,write_spi@address
+   387  01F8F8  C038  F002         	movff	main@device+1,write_spi@address+1
+   388  01F8FC  C039  F003         	movff	main@blanks,write_spi@data
+   389  01F900  C03A  F004         	movff	main@blanks+1,write_spi@data+1
+   390  01F904  EC86  F0FC         	call	_write_spi	;wreg free
+   391                           
+   392                           ;main.c: 19: PORTCbits.RC2 = 1;
+   393  01F908  8482               	bsf	3970,2,c	;volatile
+   394  01F90A  D7ED               	goto	l1444
+   395  01F90C                     __end_of_main:
+   396                           	opt stack 0
+   397                           tblptru	equ	0xFF8
+   398                           tblptrh	equ	0xFF7
+   399                           tblptrl	equ	0xFF6
+   400                           tablat	equ	0xFF5
+   401                           postinc0	equ	0xFEE
+   402                           wreg	equ	0xFE8
+   403                           postdec1	equ	0xFE5
+   404                           fsr1l	equ	0xFE1
+   405                           
+   406 ;; *************** function _write_spi *****************
+   407 ;; Defined at:
+   408 ;;		line 26 in file "spi.c"
+   409 ;; Parameters:    Size  Location     Type
+   410 ;;  address         2    0[COMRAM] unsigned int 
+   411 ;;  data            2    2[COMRAM] unsigned int 
+   412 ;; Auto vars:     Size  Location     Type
+   413 ;;  data_high       2   18[COMRAM] unsigned int 
+   414 ;;  data_low        2   16[COMRAM] unsigned int 
+   415 ;;  address_high    2   14[COMRAM] unsigned int 
+   416 ;;  address_low     2   12[COMRAM] unsigned int 
+   417 ;;  p4              2   10[COMRAM] unsigned int 
+   418 ;;  p3              2    8[COMRAM] unsigned int 
+   419 ;;  p2              2    6[COMRAM] unsigned int 
+   420 ;;  p1              2    4[COMRAM] unsigned int 
+   421 ;; Return value:  Size  Location     Type
+   422 ;;                  1    wreg      void 
+   423 ;; Registers used:
+   424 ;;		wreg, status,2
+   425 ;; Tracked objects:
+   426 ;;		On entry : 0/0
+   427 ;;		On exit  : 0/0
+   428 ;;		Unchanged: 0/0
+   429 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   430 ;;      Params:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   431 ;;      Locals:        16       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   432 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   433 ;;      Totals:        20       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   434 ;;Total ram usage:       20 bytes
+   435 ;; Hardware stack levels used:    1
+   436 ;; This function calls:
+   437 ;;		Nothing
+   438 ;; This function is called by:
+   439 ;;		_main
+   440 ;; This function uses a non-reentrant model
+   441 ;;
+   442                           
+   443                           	psect	text1
+   444  01F90C                     __ptext1:
+   445                           	opt stack 0
+   446  01F90C                     _write_spi:
+   447                           	opt stack 30
+   448                           
+   449                           ;spi.c: 28: unsigned int address_low = address & 0xFF;
+   450                           
+   451                           ;incstack = 0
+   452  01F90C  5001               	movf	write_spi@address,w,c
+   453  01F90E  6E0D               	movwf	write_spi@address_low,c
+   454  01F910  6A0E               	clrf	write_spi@address_low+1,c
+   455                           
+   456                           ;spi.c: 29: unsigned int address_high = (address >> 8);
+   457  01F912  5002               	movf	write_spi@address+1,w,c
+   458  01F914  6E0F               	movwf	write_spi@address_high,c
+   459  01F916  6A10               	clrf	write_spi@address_high+1,c
+   460                           
+   461                           ;spi.c: 30: unsigned int data_low = data & 0xFF;
+   462  01F918  5003               	movf	write_spi@data,w,c
+   463  01F91A  6E11               	movwf	write_spi@data_low,c
+   464  01F91C  6A12               	clrf	write_spi@data_low+1,c
+   465                           
+   466                           ;spi.c: 31: unsigned int data_high = (data >> 8);
+   467  01F91E  5004               	movf	write_spi@data+1,w,c
+   468  01F920  6E13               	movwf	write_spi@data_high,c
+   469  01F922  6A14               	clrf	write_spi@data_high+1,c
+   470                           
+   471                           ;spi.c: 33: SSP1BUF = address_high;
+   472  01F924  C00F  FFC9         	movff	write_spi@address_high,4041	;volatile
+   473  01F928                     l103:
+   474  01F928  A0C7               	btfss	4039,0,c	;volatile
+   475  01F92A  D7FE               	goto	l103
+   476                           
+   477                           ;spi.c: 35: unsigned int p1 = SSP1BUF;
+   478  01F92C  CFC9 F005          	movff	4041,write_spi@p1	;volatile
+   479  01F930  6A06               	clrf	write_spi@p1+1,c
+   480                           
+   481                           ;spi.c: 37: SSP1BUF = address_low;
+   482  01F932  C00D  FFC9         	movff	write_spi@address_low,4041	;volatile
+   483  01F936                     l106:
+   484  01F936  A0C7               	btfss	4039,0,c	;volatile
+   485  01F938  D7FE               	goto	l106
+   486                           
+   487                           ;spi.c: 39: unsigned int p2 = SSP1BUF;
+   488  01F93A  CFC9 F007          	movff	4041,write_spi@p2	;volatile
+   489  01F93E  6A08               	clrf	write_spi@p2+1,c
+   490                           
+   491                           ;spi.c: 41: SSP1BUF = data_high;
+   492  01F940  C013  FFC9         	movff	write_spi@data_high,4041	;volatile
+   493  01F944                     l109:
+   494  01F944  A0C7               	btfss	4039,0,c	;volatile
+   495  01F946  D7FE               	goto	l109
+   496                           
+   497                           ;spi.c: 43: unsigned int p3 = SSP1BUF;
+   498  01F948  CFC9 F009          	movff	4041,write_spi@p3	;volatile
+   499  01F94C  6A0A               	clrf	write_spi@p3+1,c
+   500                           
+   501                           ;spi.c: 45: SSP1BUF = data_low;
+   502  01F94E  C011  FFC9         	movff	write_spi@data_low,4041	;volatile
+   503  01F952                     l112:
+   504  01F952  A0C7               	btfss	4039,0,c	;volatile
+   505  01F954  D7FE               	goto	l112
+   506                           
+   507                           ;spi.c: 47: unsigned int p4 = SSP1BUF;
+   508  01F956  CFC9 F00B          	movff	4041,write_spi@p4	;volatile
+   509  01F95A  6A0C               	clrf	write_spi@p4+1,c
+   510  01F95C  0012               	return		;funcret
+   511  01F95E                     __end_of_write_spi:
+   512                           	opt stack 0
+   513                           tblptru	equ	0xFF8
+   514                           tblptrh	equ	0xFF7
+   515                           tblptrl	equ	0xFF6
+   516                           tablat	equ	0xFF5
+   517                           postinc0	equ	0xFEE
+   518                           wreg	equ	0xFE8
+   519                           postdec1	equ	0xFE5
+   520                           fsr1l	equ	0xFE1
+   521                           
+   522 ;; *************** function _setup_spi *****************
+   523 ;; Defined at:
+   524 ;;		line 4 in file "spi.c"
+   525 ;; Parameters:    Size  Location     Type
+   526 ;;		None
+   527 ;; Auto vars:     Size  Location     Type
+   528 ;;		None
+   529 ;; Return value:  Size  Location     Type
+   530 ;;                  1    wreg      void 
+   531 ;; Registers used:
+   532 ;;		status,2, status,0
+   533 ;; Tracked objects:
+   534 ;;		On entry : 0/0
+   535 ;;		On exit  : 0/0
+   536 ;;		Unchanged: 0/0
+   537 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   538 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   539 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   540 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   541 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   542 ;;Total ram usage:        0 bytes
+   543 ;; Hardware stack levels used:    1
+   544 ;; This function calls:
+   545 ;;		Nothing
+   546 ;; This function is called by:
+   547 ;;		_main
+   548 ;; This function uses a non-reentrant model
+   549 ;;
+   550                           
+   551                           	psect	text2
+   552  01F830                     __ptext2:
+   553                           	opt stack 0
+   554  01F830                     _setup_spi:
+   555                           	opt stack 30
+   556                           
+   557                           ;spi.c: 6: SSP1STATbits.SMP = 0;
+   558                           
+   559                           ;incstack = 0
+   560  01F830  9EC7               	bcf	4039,7,c	;volatile
+   561                           
+   562                           ;spi.c: 7: SSP1STATbits.CKE = 0;
+   563  01F832  9CC7               	bcf	4039,6,c	;volatile
+   564                           
+   565                           ;spi.c: 9: SSP1CON1bits.WCOL = 0;
+   566  01F834  9EC6               	bcf	4038,7,c	;volatile
+   567                           
+   568                           ;spi.c: 10: SSP1CON1bits.CKP = 0;
+   569  01F836  98C6               	bcf	4038,4,c	;volatile
+   570                           
+   571                           ;spi.c: 12: SSP1CON1bits.SSPM3 = 0;
+   572  01F838  96C6               	bcf	4038,3,c	;volatile
+   573                           
+   574                           ;spi.c: 13: SSP1CON1bits.SSPM2 = 0;
+   575  01F83A  94C6               	bcf	4038,2,c	;volatile
+   576                           
+   577                           ;spi.c: 14: SSP1CON1bits.SSPM1 = 1;
+   578  01F83C  82C6               	bsf	4038,1,c	;volatile
+   579                           
+   580                           ;spi.c: 15: SSP1CON1bits.SSPM0 = 0;
+   581  01F83E  90C6               	bcf	4038,0,c	;volatile
+   582                           
+   583                           ;spi.c: 17: PIE1bits.SSP1IE = 0;
+   584  01F840  969D               	bcf	3997,3,c	;volatile
+   585                           
+   586                           ;spi.c: 18: SSP1CON1bits.SSPEN = 1;
+   587  01F842  8AC6               	bsf	4038,5,c	;volatile
+   588                           
+   589                           ;spi.c: 20: TRISC &= 0xDF;
+   590  01F844  9A94               	bcf	3988,5,c	;volatile
+   591                           
+   592                           ;spi.c: 21: TRISC &= 0xF7;
+   593  01F846  9694               	bcf	3988,3,c	;volatile
+   594                           
+   595                           ;spi.c: 23: TRISF &= 0x7F;
+   596  01F848  9E97               	bcf	3991,7,c	;volatile
+   597  01F84A  0012               	return		;funcret
+   598  01F84C                     __end_of_setup_spi:
+   599                           	opt stack 0
+   600                           tblptru	equ	0xFF8
+   601                           tblptrh	equ	0xFF7
+   602                           tblptrl	equ	0xFF6
+   603                           tablat	equ	0xFF5
+   604                           postinc0	equ	0xFEE
+   605                           wreg	equ	0xFE8
+   606                           postdec1	equ	0xFE5
+   607                           fsr1l	equ	0xFE1
+   608                           
+   609 ;; *************** function _setup_mcu *****************
+   610 ;; Defined at:
+   611 ;;		line 4 in file "micro_setup.c"
+   612 ;; Parameters:    Size  Location     Type
+   613 ;;		None
+   614 ;; Auto vars:     Size  Location     Type
+   615 ;;		None
+   616 ;; Return value:  Size  Location     Type
+   617 ;;                  1    wreg      void 
+   618 ;; Registers used:
+   619 ;;		wreg, status,2, cstack
+   620 ;; Tracked objects:
+   621 ;;		On entry : 0/0
+   622 ;;		On exit  : 0/0
+   623 ;;		Unchanged: 0/0
+   624 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   625 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   626 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   627 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   628 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   629 ;;Total ram usage:        0 bytes
+   630 ;; Hardware stack levels used:    1
+   631 ;; Hardware stack levels required when called:    1
+   632 ;; This function calls:
+   633 ;;		_init_pin
+   634 ;;		_setup_port
+   635 ;; This function is called by:
+   636 ;;		_main
+   637 ;; This function uses a non-reentrant model
+   638 ;;
+   639                           
+   640                           	psect	text3
+   641  01F7FC                     __ptext3:
+   642                           	opt stack 0
+   643  01F7FC                     _setup_mcu:
+   644                           	opt stack 29
+   645                           
+   646                           ;micro_setup.c: 6: setup_port();
+   647                           
+   648                           ;incstack = 0
+   649  01F7FC  ECF9  F0FB         	call	_setup_port	;wreg free
+   650                           
+   651                           ;micro_setup.c: 7: init_pin();
+   652  01F800  EC03  F0FC         	call	_init_pin	;wreg free
+   653  01F804  0012               	return		;funcret
+   654  01F806                     __end_of_setup_mcu:
+   655                           	opt stack 0
+   656                           tblptru	equ	0xFF8
+   657                           tblptrh	equ	0xFF7
+   658                           tblptrl	equ	0xFF6
+   659                           tablat	equ	0xFF5
+   660                           postinc0	equ	0xFEE
+   661                           wreg	equ	0xFE8
+   662                           postdec1	equ	0xFE5
+   663                           fsr1l	equ	0xFE1
+   664                           
+   665 ;; *************** function _setup_port *****************
+   666 ;; Defined at:
+   667 ;;		line 11 in file "micro_setup.c"
+   668 ;; Parameters:    Size  Location     Type
+   669 ;;		None
+   670 ;; Auto vars:     Size  Location     Type
+   671 ;;		None
+   672 ;; Return value:  Size  Location     Type
+   673 ;;                  1    wreg      void 
+   674 ;; Registers used:
+   675 ;;		wreg, status,2
+   676 ;; Tracked objects:
+   677 ;;		On entry : 0/0
+   678 ;;		On exit  : 0/0
+   679 ;;		Unchanged: 0/0
+   680 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   681 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   682 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   683 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   684 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   685 ;;Total ram usage:        0 bytes
+   686 ;; Hardware stack levels used:    1
+   687 ;; This function calls:
+   688 ;;		Nothing
+   689 ;; This function is called by:
+   690 ;;		_setup_mcu
+   691 ;; This function uses a non-reentrant model
+   692 ;;
+   693                           
+   694                           	psect	text4
+   695  01F7F2                     __ptext4:
+   696                           	opt stack 0
+   697  01F7F2                     _setup_port:
+   698                           	opt stack 29
+   699                           
+   700                           ;micro_setup.c: 13: TRISD = 0b00000000;
+   701                           
+   702                           ;incstack = 0
+   703  01F7F2  0E00               	movlw	0
+   704  01F7F4  6E95               	movwf	3989,c	;volatile
+   705                           
+   706                           ;micro_setup.c: 14: TRISE = 0b00000000;
+   707  01F7F6  0E00               	movlw	0
+   708  01F7F8  6E96               	movwf	3990,c	;volatile
+   709  01F7FA  0012               	return		;funcret
+   710  01F7FC                     __end_of_setup_port:
+   711                           	opt stack 0
+   712                           tblptru	equ	0xFF8
+   713                           tblptrh	equ	0xFF7
+   714                           tblptrl	equ	0xFF6
+   715                           tablat	equ	0xFF5
+   716                           postinc0	equ	0xFEE
+   717                           wreg	equ	0xFE8
+   718                           postdec1	equ	0xFE5
+   719                           fsr1l	equ	0xFE1
+   720                           
+   721 ;; *************** function _init_pin *****************
+   722 ;; Defined at:
+   723 ;;		line 56 in file "micro_setup.c"
+   724 ;; Parameters:    Size  Location     Type
+   725 ;;		None
+   726 ;; Auto vars:     Size  Location     Type
+   727 ;;		None
+   728 ;; Return value:  Size  Location     Type
+   729 ;;                  1    wreg      void 
+   730 ;; Registers used:
+   731 ;;		None
+   732 ;; Tracked objects:
+   733 ;;		On entry : 0/0
+   734 ;;		On exit  : 0/0
+   735 ;;		Unchanged: 0/0
+   736 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   737 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   738 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   739 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   740 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   741 ;;Total ram usage:        0 bytes
+   742 ;; Hardware stack levels used:    1
+   743 ;; This function calls:
+   744 ;;		Nothing
+   745 ;; This function is called by:
+   746 ;;		_setup_mcu
+   747 ;; This function uses a non-reentrant model
+   748 ;;
+   749                           
+   750                           	psect	text5
+   751  01F806                     __ptext5:
+   752                           	opt stack 0
+   753  01F806                     _init_pin:
+   754                           	opt stack 29
+   755                           
+   756                           ;micro_setup.c: 58: PORTDbits.RD7 = 1;
+   757                           
+   758                           ;incstack = 0
+   759  01F806  8E83               	bsf	3971,7,c	;volatile
+   760                           
+   761                           ;micro_setup.c: 59: PORTDbits.RD6 = 0;
+   762  01F808  9C83               	bcf	3971,6,c	;volatile
+   763                           
+   764                           ;micro_setup.c: 60: PORTDbits.RD5 = 0;
+   765  01F80A  9A83               	bcf	3971,5,c	;volatile
+   766                           
+   767                           ;micro_setup.c: 61: PORTDbits.RD4 = 0;
+   768  01F80C  9883               	bcf	3971,4,c	;volatile
+   769                           
+   770                           ;micro_setup.c: 62: PORTDbits.RD3 = 0;
+   771  01F80E  9683               	bcf	3971,3,c	;volatile
+   772                           
+   773                           ;micro_setup.c: 63: PORTDbits.RD2 = 0;
+   774  01F810  9483               	bcf	3971,2,c	;volatile
+   775                           
+   776                           ;micro_setup.c: 64: PORTDbits.RD1 = 0;
+   777  01F812  9283               	bcf	3971,1,c	;volatile
+   778                           
+   779                           ;micro_setup.c: 65: PORTDbits.RD0 = 0;
+   780  01F814  9083               	bcf	3971,0,c	;volatile
+   781  01F816  0012               	return		;funcret
+   782  01F818                     __end_of_init_pin:
+   783                           	opt stack 0
+   784                           tblptru	equ	0xFF8
+   785                           tblptrh	equ	0xFF7
+   786                           tblptrl	equ	0xFF6
+   787                           tablat	equ	0xFF5
+   788                           postinc0	equ	0xFEE
+   789                           wreg	equ	0xFE8
+   790                           postdec1	equ	0xFE5
+   791                           fsr1l	equ	0xFE1
+   792                           
+   793 ;; *************** function _setup_AD7147 *****************
+   794 ;; Defined at:
+   795 ;;		line 5 in file "AD7147.c"
+   796 ;; Parameters:    Size  Location     Type
+   797 ;;		None
+   798 ;; Auto vars:     Size  Location     Type
+   799 ;;  StageBuffer    16   38[COMRAM] unsigned int [8]
+   800 ;; Return value:  Size  Location     Type
+   801 ;;                  1    wreg      void 
+   802 ;; Registers used:
+   803 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   804 ;; Tracked objects:
+   805 ;;		On entry : 0/0
+   806 ;;		On exit  : 0/0
+   807 ;;		Unchanged: 0/0
+   808 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   809 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   810 ;;      Locals:        16       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   811 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   812 ;;      Totals:        16       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   813 ;;Total ram usage:       16 bytes
+   814 ;; Hardware stack levels used:    1
+   815 ;; Hardware stack levels required when called:    2
+   816 ;; This function calls:
+   817 ;;		_write_AD7147
+   818 ;; This function is called by:
+   819 ;;		_main
+   820 ;; This function uses a non-reentrant model
+   821 ;;
+   822                           
+   823                           	psect	text6
+   824  01FB24                     __ptext6:
+   825                           	opt stack 0
+   826  01FB24                     _setup_AD7147:
+   827                           	opt stack 28
+   828                           
+   829                           ;AD7147.c: 7: unsigned int StageBuffer[8];
+   830                           ;AD7147.c: 23: StageBuffer[0] = 0x3FFE;
+   831                           
+   832                           ;incstack = 0
+   833  01FB24  0E3F               	movlw	63
+   834  01FB26  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+   835  01FB28  0EFE               	movlw	254
+   836  01FB2A  6E27               	movwf	setup_AD7147@StageBuffer,c
+   837                           
+   838                           ;AD7147.c: 24: StageBuffer[1] = 0x1FFF;
+   839  01FB2C  0E1F               	movlw	31
+   840  01FB2E  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+   841  01FB30  6829               	setf	setup_AD7147@StageBuffer+2,c
+   842                           
+   843                           ;AD7147.c: 25: StageBuffer[2] = 0x0100;
+   844  01FB32  0E01               	movlw	1
+   845  01FB34  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+   846  01FB36  0E00               	movlw	0
+   847  01FB38  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+   848                           
+   849                           ;AD7147.c: 26: StageBuffer[3] = 0x2121;
+   850  01FB3A  0E21               	movlw	33
+   851  01FB3C  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+   852  01FB3E  0E21               	movlw	33
+   853  01FB40  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+   854                           
+   855                           ;AD7147.c: 27: StageBuffer[4] = 4000;
+   856  01FB42  0E0F               	movlw	15
+   857  01FB44  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+   858  01FB46  0EA0               	movlw	160
+   859  01FB48  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+   860                           
+   861                           ;AD7147.c: 28: StageBuffer[5] = 4000;
+   862  01FB4A  0E0F               	movlw	15
+   863  01FB4C  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+   864  01FB4E  0EA0               	movlw	160
+   865  01FB50  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+   866                           
+   867                           ;AD7147.c: 29: StageBuffer[6] = 4250;
+   868  01FB52  0E10               	movlw	16
+   869  01FB54  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+   870  01FB56  0E9A               	movlw	154
+   871  01FB58  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+   872                           
+   873                           ;AD7147.c: 30: StageBuffer[7] = 4250;
+   874  01FB5A  0E10               	movlw	16
+   875  01FB5C  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+   876  01FB5E  0E9A               	movlw	154
+   877  01FB60  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+   878                           
+   879                           ;AD7147.c: 31: write_AD7147(0x80, 8, StageBuffer);
+   880  01FB62  0E00               	movlw	0
+   881  01FB64  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+   882  01FB66  0E80               	movlw	128
+   883  01FB68  6E1B               	movwf	write_AD7147@RegisterAddress,c
+   884  01FB6A  0E00               	movlw	0
+   885  01FB6C  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+   886  01FB6E  0E08               	movlw	8
+   887  01FB70  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+   888  01FB72  0E27               	movlw	low setup_AD7147@StageBuffer
+   889  01FB74  6E1F               	movwf	write_AD7147@DataBuffer,c
+   890  01FB76  0E00               	movlw	high setup_AD7147@StageBuffer
+   891  01FB78  6E20               	movwf	write_AD7147@DataBuffer+1,c
+   892  01FB7A  ECAF  F0FC         	call	_write_AD7147	;wreg free
+   893                           
+   894                           ;AD7147.c: 36: StageBuffer[0]=0x3FFB;
+   895  01FB7E  0E3F               	movlw	63
+   896  01FB80  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+   897  01FB82  0EFB               	movlw	251
+   898  01FB84  6E27               	movwf	setup_AD7147@StageBuffer,c
+   899                           
+   900                           ;AD7147.c: 37: StageBuffer[1]=0x1FFF;
+   901  01FB86  0E1F               	movlw	31
+   902  01FB88  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+   903  01FB8A  6829               	setf	setup_AD7147@StageBuffer+2,c
+   904                           
+   905                           ;AD7147.c: 38: StageBuffer[2]=0x0100;
+   906  01FB8C  0E01               	movlw	1
+   907  01FB8E  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+   908  01FB90  0E00               	movlw	0
+   909  01FB92  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+   910                           
+   911                           ;AD7147.c: 39: StageBuffer[3]=0x2121;
+   912  01FB94  0E21               	movlw	33
+   913  01FB96  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+   914  01FB98  0E21               	movlw	33
+   915  01FB9A  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+   916                           
+   917                           ;AD7147.c: 40: StageBuffer[4]=4000;
+   918  01FB9C  0E0F               	movlw	15
+   919  01FB9E  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+   920  01FBA0  0EA0               	movlw	160
+   921  01FBA2  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+   922                           
+   923                           ;AD7147.c: 41: StageBuffer[5]=4000;
+   924  01FBA4  0E0F               	movlw	15
+   925  01FBA6  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+   926  01FBA8  0EA0               	movlw	160
+   927  01FBAA  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+   928                           
+   929                           ;AD7147.c: 42: StageBuffer[6]=4250;
+   930  01FBAC  0E10               	movlw	16
+   931  01FBAE  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+   932  01FBB0  0E9A               	movlw	154
+   933  01FBB2  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+   934                           
+   935                           ;AD7147.c: 43: StageBuffer[7]=4250;
+   936  01FBB4  0E10               	movlw	16
+   937  01FBB6  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+   938  01FBB8  0E9A               	movlw	154
+   939  01FBBA  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+   940                           
+   941                           ;AD7147.c: 44: write_AD7147(0x88, 8, StageBuffer);
+   942  01FBBC  0E00               	movlw	0
+   943  01FBBE  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+   944  01FBC0  0E88               	movlw	136
+   945  01FBC2  6E1B               	movwf	write_AD7147@RegisterAddress,c
+   946  01FBC4  0E00               	movlw	0
+   947  01FBC6  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+   948  01FBC8  0E08               	movlw	8
+   949  01FBCA  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+   950  01FBCC  0E27               	movlw	low setup_AD7147@StageBuffer
+   951  01FBCE  6E1F               	movwf	write_AD7147@DataBuffer,c
+   952  01FBD0  0E00               	movlw	high setup_AD7147@StageBuffer
+   953  01FBD2  6E20               	movwf	write_AD7147@DataBuffer+1,c
+   954  01FBD4  ECAF  F0FC         	call	_write_AD7147	;wreg free
+   955                           
+   956                           ;AD7147.c: 49: StageBuffer[0]=0x3FEF;
+   957  01FBD8  0E3F               	movlw	63
+   958  01FBDA  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+   959  01FBDC  0EEF               	movlw	239
+   960  01FBDE  6E27               	movwf	setup_AD7147@StageBuffer,c
+   961                           
+   962                           ;AD7147.c: 50: StageBuffer[1]=0x1FFF;
+   963  01FBE0  0E1F               	movlw	31
+   964  01FBE2  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+   965  01FBE4  6829               	setf	setup_AD7147@StageBuffer+2,c
+   966                           
+   967                           ;AD7147.c: 51: StageBuffer[2]=0x0100;
+   968  01FBE6  0E01               	movlw	1
+   969  01FBE8  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+   970  01FBEA  0E00               	movlw	0
+   971  01FBEC  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+   972                           
+   973                           ;AD7147.c: 52: StageBuffer[3]=0x2121;
+   974  01FBEE  0E21               	movlw	33
+   975  01FBF0  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+   976  01FBF2  0E21               	movlw	33
+   977  01FBF4  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+   978                           
+   979                           ;AD7147.c: 53: StageBuffer[4]=4000;
+   980  01FBF6  0E0F               	movlw	15
+   981  01FBF8  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+   982  01FBFA  0EA0               	movlw	160
+   983  01FBFC  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+   984                           
+   985                           ;AD7147.c: 54: StageBuffer[5]=4000;
+   986  01FBFE  0E0F               	movlw	15
+   987  01FC00  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+   988  01FC02  0EA0               	movlw	160
+   989  01FC04  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+   990                           
+   991                           ;AD7147.c: 55: StageBuffer[6]=4250;
+   992  01FC06  0E10               	movlw	16
+   993  01FC08  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+   994  01FC0A  0E9A               	movlw	154
+   995  01FC0C  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+   996                           
+   997                           ;AD7147.c: 56: StageBuffer[7]=4250;
+   998  01FC0E  0E10               	movlw	16
+   999  01FC10  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1000  01FC12  0E9A               	movlw	154
+  1001  01FC14  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1002                           
+  1003                           ;AD7147.c: 57: write_AD7147(0x90, 8, StageBuffer);
+  1004  01FC16  0E00               	movlw	0
+  1005  01FC18  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1006  01FC1A  0E90               	movlw	144
+  1007  01FC1C  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1008  01FC1E  0E00               	movlw	0
+  1009  01FC20  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1010  01FC22  0E08               	movlw	8
+  1011  01FC24  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1012  01FC26  0E27               	movlw	low setup_AD7147@StageBuffer
+  1013  01FC28  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1014  01FC2A  0E00               	movlw	high setup_AD7147@StageBuffer
+  1015  01FC2C  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1016  01FC2E  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1017                           
+  1018                           ;AD7147.c: 62: StageBuffer[0]=0x3FBF;
+  1019  01FC32  0E3F               	movlw	63
+  1020  01FC34  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1021  01FC36  0EBF               	movlw	191
+  1022  01FC38  6E27               	movwf	setup_AD7147@StageBuffer,c
+  1023                           
+  1024                           ;AD7147.c: 63: StageBuffer[1]=0x1FFF;
+  1025  01FC3A  0E1F               	movlw	31
+  1026  01FC3C  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1027  01FC3E  6829               	setf	setup_AD7147@StageBuffer+2,c
+  1028                           
+  1029                           ;AD7147.c: 64: StageBuffer[2]=0x0100;
+  1030  01FC40  0E01               	movlw	1
+  1031  01FC42  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1032  01FC44  0E00               	movlw	0
+  1033  01FC46  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1034                           
+  1035                           ;AD7147.c: 65: StageBuffer[3]=0x2121;
+  1036  01FC48  0E21               	movlw	33
+  1037  01FC4A  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1038  01FC4C  0E21               	movlw	33
+  1039  01FC4E  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1040                           
+  1041                           ;AD7147.c: 66: StageBuffer[4]=4000;
+  1042  01FC50  0E0F               	movlw	15
+  1043  01FC52  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1044  01FC54  0EA0               	movlw	160
+  1045  01FC56  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1046                           
+  1047                           ;AD7147.c: 67: StageBuffer[5]=4000;
+  1048  01FC58  0E0F               	movlw	15
+  1049  01FC5A  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1050  01FC5C  0EA0               	movlw	160
+  1051  01FC5E  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1052                           
+  1053                           ;AD7147.c: 68: StageBuffer[6]=4250;
+  1054  01FC60  0E10               	movlw	16
+  1055  01FC62  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1056  01FC64  0E9A               	movlw	154
+  1057  01FC66  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1058                           
+  1059                           ;AD7147.c: 69: StageBuffer[7]=4250;
+  1060  01FC68  0E10               	movlw	16
+  1061  01FC6A  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1062  01FC6C  0E9A               	movlw	154
+  1063  01FC6E  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1064                           
+  1065                           ;AD7147.c: 70: write_AD7147(0x98, 8, StageBuffer);
+  1066  01FC70  0E00               	movlw	0
+  1067  01FC72  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1068  01FC74  0E98               	movlw	152
+  1069  01FC76  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1070  01FC78  0E00               	movlw	0
+  1071  01FC7A  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1072  01FC7C  0E08               	movlw	8
+  1073  01FC7E  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1074  01FC80  0E27               	movlw	low setup_AD7147@StageBuffer
+  1075  01FC82  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1076  01FC84  0E00               	movlw	high setup_AD7147@StageBuffer
+  1077  01FC86  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1078  01FC88  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1079                           
+  1080                           ;AD7147.c: 75: StageBuffer[0]=0x3EFF;
+  1081  01FC8C  0E3E               	movlw	62
+  1082  01FC8E  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1083  01FC90  6827               	setf	setup_AD7147@StageBuffer,c
+  1084                           
+  1085                           ;AD7147.c: 76: StageBuffer[1]=0x1FFF;
+  1086  01FC92  0E1F               	movlw	31
+  1087  01FC94  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1088  01FC96  6829               	setf	setup_AD7147@StageBuffer+2,c
+  1089                           
+  1090                           ;AD7147.c: 77: StageBuffer[2]=0x0100;
+  1091  01FC98  0E01               	movlw	1
+  1092  01FC9A  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1093  01FC9C  0E00               	movlw	0
+  1094  01FC9E  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1095                           
+  1096                           ;AD7147.c: 78: StageBuffer[3]=0x2121;
+  1097  01FCA0  0E21               	movlw	33
+  1098  01FCA2  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1099  01FCA4  0E21               	movlw	33
+  1100  01FCA6  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1101                           
+  1102                           ;AD7147.c: 79: StageBuffer[4]=4000;
+  1103  01FCA8  0E0F               	movlw	15
+  1104  01FCAA  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1105  01FCAC  0EA0               	movlw	160
+  1106  01FCAE  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1107                           
+  1108                           ;AD7147.c: 80: StageBuffer[5]=4000;
+  1109  01FCB0  0E0F               	movlw	15
+  1110  01FCB2  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1111  01FCB4  0EA0               	movlw	160
+  1112  01FCB6  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1113                           
+  1114                           ;AD7147.c: 81: StageBuffer[6]=4250;
+  1115  01FCB8  0E10               	movlw	16
+  1116  01FCBA  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1117  01FCBC  0E9A               	movlw	154
+  1118  01FCBE  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1119                           
+  1120                           ;AD7147.c: 82: StageBuffer[7]=4250;
+  1121  01FCC0  0E10               	movlw	16
+  1122  01FCC2  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1123  01FCC4  0E9A               	movlw	154
+  1124  01FCC6  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1125                           
+  1126                           ;AD7147.c: 83: write_AD7147(0xA0, 8, StageBuffer);
+  1127  01FCC8  0E00               	movlw	0
+  1128  01FCCA  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1129  01FCCC  0EA0               	movlw	160
+  1130  01FCCE  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1131  01FCD0  0E00               	movlw	0
+  1132  01FCD2  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1133  01FCD4  0E08               	movlw	8
+  1134  01FCD6  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1135  01FCD8  0E27               	movlw	low setup_AD7147@StageBuffer
+  1136  01FCDA  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1137  01FCDC  0E00               	movlw	high setup_AD7147@StageBuffer
+  1138  01FCDE  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1139  01FCE0  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1140                           
+  1141                           ;AD7147.c: 88: StageBuffer[0]=0x3BFF;
+  1142  01FCE4  0E3B               	movlw	59
+  1143  01FCE6  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1144  01FCE8  6827               	setf	setup_AD7147@StageBuffer,c
+  1145                           
+  1146                           ;AD7147.c: 89: StageBuffer[1]=0x1FFF;
+  1147  01FCEA  0E1F               	movlw	31
+  1148  01FCEC  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1149  01FCEE  6829               	setf	setup_AD7147@StageBuffer+2,c
+  1150                           
+  1151                           ;AD7147.c: 90: StageBuffer[2]=0x0100;
+  1152  01FCF0  0E01               	movlw	1
+  1153  01FCF2  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1154  01FCF4  0E00               	movlw	0
+  1155  01FCF6  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1156                           
+  1157                           ;AD7147.c: 91: StageBuffer[3]=0x2121;
+  1158  01FCF8  0E21               	movlw	33
+  1159  01FCFA  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1160  01FCFC  0E21               	movlw	33
+  1161  01FCFE  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1162                           
+  1163                           ;AD7147.c: 92: StageBuffer[4]=4000;
+  1164  01FD00  0E0F               	movlw	15
+  1165  01FD02  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1166  01FD04  0EA0               	movlw	160
+  1167  01FD06  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1168                           
+  1169                           ;AD7147.c: 93: StageBuffer[5]=4000;
+  1170  01FD08  0E0F               	movlw	15
+  1171  01FD0A  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1172  01FD0C  0EA0               	movlw	160
+  1173  01FD0E  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1174                           
+  1175                           ;AD7147.c: 94: StageBuffer[6]=4250;
+  1176  01FD10  0E10               	movlw	16
+  1177  01FD12  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1178  01FD14  0E9A               	movlw	154
+  1179  01FD16  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1180                           
+  1181                           ;AD7147.c: 95: StageBuffer[7]=4250;
+  1182  01FD18  0E10               	movlw	16
+  1183  01FD1A  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1184  01FD1C  0E9A               	movlw	154
+  1185  01FD1E  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1186                           
+  1187                           ;AD7147.c: 96: write_AD7147(0xA8, 8, StageBuffer);
+  1188  01FD20  0E00               	movlw	0
+  1189  01FD22  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1190  01FD24  0EA8               	movlw	168
+  1191  01FD26  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1192  01FD28  0E00               	movlw	0
+  1193  01FD2A  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1194  01FD2C  0E08               	movlw	8
+  1195  01FD2E  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1196  01FD30  0E27               	movlw	low setup_AD7147@StageBuffer
+  1197  01FD32  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1198  01FD34  0E00               	movlw	high setup_AD7147@StageBuffer
+  1199  01FD36  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1200  01FD38  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1201                           
+  1202                           ;AD7147.c: 101: StageBuffer[0]=0x2FFF;
+  1203  01FD3C  0E2F               	movlw	47
+  1204  01FD3E  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1205  01FD40  6827               	setf	setup_AD7147@StageBuffer,c
+  1206                           
+  1207                           ;AD7147.c: 102: StageBuffer[1]=0x1FFF;
+  1208  01FD42  0E1F               	movlw	31
+  1209  01FD44  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1210  01FD46  6829               	setf	setup_AD7147@StageBuffer+2,c
+  1211                           
+  1212                           ;AD7147.c: 103: StageBuffer[2]=0x0100;
+  1213  01FD48  0E01               	movlw	1
+  1214  01FD4A  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1215  01FD4C  0E00               	movlw	0
+  1216  01FD4E  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1217                           
+  1218                           ;AD7147.c: 104: StageBuffer[3]=0x2121;
+  1219  01FD50  0E21               	movlw	33
+  1220  01FD52  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1221  01FD54  0E21               	movlw	33
+  1222  01FD56  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1223                           
+  1224                           ;AD7147.c: 105: StageBuffer[4]=4000;
+  1225  01FD58  0E0F               	movlw	15
+  1226  01FD5A  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1227  01FD5C  0EA0               	movlw	160
+  1228  01FD5E  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1229                           
+  1230                           ;AD7147.c: 106: StageBuffer[5]=4000;
+  1231  01FD60  0E0F               	movlw	15
+  1232  01FD62  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1233  01FD64  0EA0               	movlw	160
+  1234  01FD66  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1235                           
+  1236                           ;AD7147.c: 107: StageBuffer[6]=4250;
+  1237  01FD68  0E10               	movlw	16
+  1238  01FD6A  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1239  01FD6C  0E9A               	movlw	154
+  1240  01FD6E  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1241                           
+  1242                           ;AD7147.c: 108: StageBuffer[7]=4250;
+  1243  01FD70  0E10               	movlw	16
+  1244  01FD72  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1245  01FD74  0E9A               	movlw	154
+  1246  01FD76  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1247                           
+  1248                           ;AD7147.c: 109: write_AD7147(0xB0, 8, StageBuffer);
+  1249  01FD78  0E00               	movlw	0
+  1250  01FD7A  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1251  01FD7C  0EB0               	movlw	176
+  1252  01FD7E  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1253  01FD80  0E00               	movlw	0
+  1254  01FD82  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1255  01FD84  0E08               	movlw	8
+  1256  01FD86  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1257  01FD88  0E27               	movlw	low setup_AD7147@StageBuffer
+  1258  01FD8A  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1259  01FD8C  0E00               	movlw	high setup_AD7147@StageBuffer
+  1260  01FD8E  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1261  01FD90  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1262                           
+  1263                           ;AD7147.c: 114: StageBuffer[0]=0x3FFF;
+  1264  01FD94  0E3F               	movlw	63
+  1265  01FD96  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1266  01FD98  6827               	setf	setup_AD7147@StageBuffer,c
+  1267                           
+  1268                           ;AD7147.c: 115: StageBuffer[1]=0x1FFE;
+  1269  01FD9A  0E1F               	movlw	31
+  1270  01FD9C  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1271  01FD9E  0EFE               	movlw	254
+  1272  01FDA0  6E29               	movwf	setup_AD7147@StageBuffer+2,c
+  1273                           
+  1274                           ;AD7147.c: 116: StageBuffer[2]=0x0100;
+  1275  01FDA2  0E01               	movlw	1
+  1276  01FDA4  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1277  01FDA6  0E00               	movlw	0
+  1278  01FDA8  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1279                           
+  1280                           ;AD7147.c: 117: StageBuffer[3]=0x2121;
+  1281  01FDAA  0E21               	movlw	33
+  1282  01FDAC  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1283  01FDAE  0E21               	movlw	33
+  1284  01FDB0  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1285                           
+  1286                           ;AD7147.c: 118: StageBuffer[4]=4000;
+  1287  01FDB2  0E0F               	movlw	15
+  1288  01FDB4  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1289  01FDB6  0EA0               	movlw	160
+  1290  01FDB8  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1291                           
+  1292                           ;AD7147.c: 119: StageBuffer[5]=4000;
+  1293  01FDBA  0E0F               	movlw	15
+  1294  01FDBC  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1295  01FDBE  0EA0               	movlw	160
+  1296  01FDC0  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1297                           
+  1298                           ;AD7147.c: 120: StageBuffer[6]=4250;
+  1299  01FDC2  0E10               	movlw	16
+  1300  01FDC4  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1301  01FDC6  0E9A               	movlw	154
+  1302  01FDC8  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1303                           
+  1304                           ;AD7147.c: 121: StageBuffer[7]=4250;
+  1305  01FDCA  0E10               	movlw	16
+  1306  01FDCC  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1307  01FDCE  0E9A               	movlw	154
+  1308  01FDD0  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1309                           
+  1310                           ;AD7147.c: 122: write_AD7147(0xB8, 8, StageBuffer);
+  1311  01FDD2  0E00               	movlw	0
+  1312  01FDD4  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1313  01FDD6  0EB8               	movlw	184
+  1314  01FDD8  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1315  01FDDA  0E00               	movlw	0
+  1316  01FDDC  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1317  01FDDE  0E08               	movlw	8
+  1318  01FDE0  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1319  01FDE2  0E27               	movlw	low setup_AD7147@StageBuffer
+  1320  01FDE4  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1321  01FDE6  0E00               	movlw	high setup_AD7147@StageBuffer
+  1322  01FDE8  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1323  01FDEA  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1324                           
+  1325                           ;AD7147.c: 127: StageBuffer[0]=0x3FFF;
+  1326  01FDEE  0E3F               	movlw	63
+  1327  01FDF0  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1328  01FDF2  6827               	setf	setup_AD7147@StageBuffer,c
+  1329                           
+  1330                           ;AD7147.c: 128: StageBuffer[1]=0x1FFB;
+  1331  01FDF4  0E1F               	movlw	31
+  1332  01FDF6  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1333  01FDF8  0EFB               	movlw	251
+  1334  01FDFA  6E29               	movwf	setup_AD7147@StageBuffer+2,c
+  1335                           
+  1336                           ;AD7147.c: 129: StageBuffer[2]=0x0100;
+  1337  01FDFC  0E01               	movlw	1
+  1338  01FDFE  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1339  01FE00  0E00               	movlw	0
+  1340  01FE02  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1341                           
+  1342                           ;AD7147.c: 130: StageBuffer[3]=0x2121;
+  1343  01FE04  0E21               	movlw	33
+  1344  01FE06  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1345  01FE08  0E21               	movlw	33
+  1346  01FE0A  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1347                           
+  1348                           ;AD7147.c: 131: StageBuffer[4]=4000;
+  1349  01FE0C  0E0F               	movlw	15
+  1350  01FE0E  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1351  01FE10  0EA0               	movlw	160
+  1352  01FE12  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1353                           
+  1354                           ;AD7147.c: 132: StageBuffer[5]=4000;
+  1355  01FE14  0E0F               	movlw	15
+  1356  01FE16  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1357  01FE18  0EA0               	movlw	160
+  1358  01FE1A  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1359                           
+  1360                           ;AD7147.c: 133: StageBuffer[6]=4250;
+  1361  01FE1C  0E10               	movlw	16
+  1362  01FE1E  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1363  01FE20  0E9A               	movlw	154
+  1364  01FE22  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1365                           
+  1366                           ;AD7147.c: 134: StageBuffer[7]=4250;
+  1367  01FE24  0E10               	movlw	16
+  1368  01FE26  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1369  01FE28  0E9A               	movlw	154
+  1370  01FE2A  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1371                           
+  1372                           ;AD7147.c: 135: write_AD7147(0xC0, 8, StageBuffer);
+  1373  01FE2C  0E00               	movlw	0
+  1374  01FE2E  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1375  01FE30  0EC0               	movlw	192
+  1376  01FE32  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1377  01FE34  0E00               	movlw	0
+  1378  01FE36  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1379  01FE38  0E08               	movlw	8
+  1380  01FE3A  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1381  01FE3C  0E27               	movlw	low setup_AD7147@StageBuffer
+  1382  01FE3E  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1383  01FE40  0E00               	movlw	high setup_AD7147@StageBuffer
+  1384  01FE42  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1385  01FE44  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1386                           
+  1387                           ;AD7147.c: 140: StageBuffer[0]=0x3FFF;
+  1388  01FE48  0E3F               	movlw	63
+  1389  01FE4A  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1390  01FE4C  6827               	setf	setup_AD7147@StageBuffer,c
+  1391                           
+  1392                           ;AD7147.c: 141: StageBuffer[1]=0x1FEF;
+  1393  01FE4E  0E1F               	movlw	31
+  1394  01FE50  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1395  01FE52  0EEF               	movlw	239
+  1396  01FE54  6E29               	movwf	setup_AD7147@StageBuffer+2,c
+  1397                           
+  1398                           ;AD7147.c: 142: StageBuffer[2]=0x0100;
+  1399  01FE56  0E01               	movlw	1
+  1400  01FE58  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1401  01FE5A  0E00               	movlw	0
+  1402  01FE5C  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1403                           
+  1404                           ;AD7147.c: 143: StageBuffer[3]=0x2121;
+  1405  01FE5E  0E21               	movlw	33
+  1406  01FE60  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1407  01FE62  0E21               	movlw	33
+  1408  01FE64  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1409                           
+  1410                           ;AD7147.c: 144: StageBuffer[4]=4000;
+  1411  01FE66  0E0F               	movlw	15
+  1412  01FE68  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1413  01FE6A  0EA0               	movlw	160
+  1414  01FE6C  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1415                           
+  1416                           ;AD7147.c: 145: StageBuffer[5]=4000;
+  1417  01FE6E  0E0F               	movlw	15
+  1418  01FE70  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1419  01FE72  0EA0               	movlw	160
+  1420  01FE74  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1421                           
+  1422                           ;AD7147.c: 146: StageBuffer[6]=4250;
+  1423  01FE76  0E10               	movlw	16
+  1424  01FE78  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1425  01FE7A  0E9A               	movlw	154
+  1426  01FE7C  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1427                           
+  1428                           ;AD7147.c: 147: StageBuffer[7]=4250;
+  1429  01FE7E  0E10               	movlw	16
+  1430  01FE80  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1431  01FE82  0E9A               	movlw	154
+  1432  01FE84  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1433                           
+  1434                           ;AD7147.c: 148: write_AD7147(0xC8, 8, StageBuffer);
+  1435  01FE86  0E00               	movlw	0
+  1436  01FE88  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1437  01FE8A  0EC8               	movlw	200
+  1438  01FE8C  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1439  01FE8E  0E00               	movlw	0
+  1440  01FE90  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1441  01FE92  0E08               	movlw	8
+  1442  01FE94  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1443  01FE96  0E27               	movlw	low setup_AD7147@StageBuffer
+  1444  01FE98  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1445  01FE9A  0E00               	movlw	high setup_AD7147@StageBuffer
+  1446  01FE9C  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1447  01FE9E  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1448                           
+  1449                           ;AD7147.c: 153: StageBuffer[0]=0x3FFF;
+  1450  01FEA2  0E3F               	movlw	63
+  1451  01FEA4  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1452  01FEA6  6827               	setf	setup_AD7147@StageBuffer,c
+  1453                           
+  1454                           ;AD7147.c: 154: StageBuffer[1]=0x1FBF;
+  1455  01FEA8  0E1F               	movlw	31
+  1456  01FEAA  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1457  01FEAC  0EBF               	movlw	191
+  1458  01FEAE  6E29               	movwf	setup_AD7147@StageBuffer+2,c
+  1459                           
+  1460                           ;AD7147.c: 155: StageBuffer[2]=0x0100;
+  1461  01FEB0  0E01               	movlw	1
+  1462  01FEB2  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1463  01FEB4  0E00               	movlw	0
+  1464  01FEB6  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1465                           
+  1466                           ;AD7147.c: 156: StageBuffer[3]=0x2121;
+  1467  01FEB8  0E21               	movlw	33
+  1468  01FEBA  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1469  01FEBC  0E21               	movlw	33
+  1470  01FEBE  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1471                           
+  1472                           ;AD7147.c: 157: StageBuffer[4]=4000;
+  1473  01FEC0  0E0F               	movlw	15
+  1474  01FEC2  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1475  01FEC4  0EA0               	movlw	160
+  1476  01FEC6  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1477                           
+  1478                           ;AD7147.c: 158: StageBuffer[5]=4000;
+  1479  01FEC8  0E0F               	movlw	15
+  1480  01FECA  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1481  01FECC  0EA0               	movlw	160
+  1482  01FECE  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1483                           
+  1484                           ;AD7147.c: 159: StageBuffer[6]=4250;
+  1485  01FED0  0E10               	movlw	16
+  1486  01FED2  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1487  01FED4  0E9A               	movlw	154
+  1488  01FED6  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1489                           
+  1490                           ;AD7147.c: 160: StageBuffer[7]=4250;
+  1491  01FED8  0E10               	movlw	16
+  1492  01FEDA  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1493  01FEDC  0E9A               	movlw	154
+  1494  01FEDE  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1495                           
+  1496                           ;AD7147.c: 161: write_AD7147(0xD0, 8, StageBuffer);
+  1497  01FEE0  0E00               	movlw	0
+  1498  01FEE2  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1499  01FEE4  0ED0               	movlw	208
+  1500  01FEE6  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1501  01FEE8  0E00               	movlw	0
+  1502  01FEEA  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1503  01FEEC  0E08               	movlw	8
+  1504  01FEEE  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1505  01FEF0  0E27               	movlw	low setup_AD7147@StageBuffer
+  1506  01FEF2  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1507  01FEF4  0E00               	movlw	high setup_AD7147@StageBuffer
+  1508  01FEF6  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1509  01FEF8  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1510                           
+  1511                           ;AD7147.c: 166: StageBuffer[0]=0x3FFF;
+  1512  01FEFC  0E3F               	movlw	63
+  1513  01FEFE  6E28               	movwf	setup_AD7147@StageBuffer+1,c
+  1514  01FF00  6827               	setf	setup_AD7147@StageBuffer,c
+  1515                           
+  1516                           ;AD7147.c: 167: StageBuffer[1]=0x1EFF;
+  1517  01FF02  0E1E               	movlw	30
+  1518  01FF04  6E2A               	movwf	setup_AD7147@StageBuffer+3,c
+  1519  01FF06  6829               	setf	setup_AD7147@StageBuffer+2,c
+  1520                           
+  1521                           ;AD7147.c: 168: StageBuffer[2]=0x0100;
+  1522  01FF08  0E01               	movlw	1
+  1523  01FF0A  6E2C               	movwf	setup_AD7147@StageBuffer+5,c
+  1524  01FF0C  0E00               	movlw	0
+  1525  01FF0E  6E2B               	movwf	setup_AD7147@StageBuffer+4,c
+  1526                           
+  1527                           ;AD7147.c: 169: StageBuffer[3]=0x2121;
+  1528  01FF10  0E21               	movlw	33
+  1529  01FF12  6E2E               	movwf	setup_AD7147@StageBuffer+7,c
+  1530  01FF14  0E21               	movlw	33
+  1531  01FF16  6E2D               	movwf	setup_AD7147@StageBuffer+6,c
+  1532                           
+  1533                           ;AD7147.c: 170: StageBuffer[4]=4000;
+  1534  01FF18  0E0F               	movlw	15
+  1535  01FF1A  6E30               	movwf	setup_AD7147@StageBuffer+9,c
+  1536  01FF1C  0EA0               	movlw	160
+  1537  01FF1E  6E2F               	movwf	setup_AD7147@StageBuffer+8,c
+  1538                           
+  1539                           ;AD7147.c: 171: StageBuffer[5]=4000;
+  1540  01FF20  0E0F               	movlw	15
+  1541  01FF22  6E32               	movwf	setup_AD7147@StageBuffer+11,c
+  1542  01FF24  0EA0               	movlw	160
+  1543  01FF26  6E31               	movwf	setup_AD7147@StageBuffer+10,c
+  1544                           
+  1545                           ;AD7147.c: 172: StageBuffer[6]=4250;
+  1546  01FF28  0E10               	movlw	16
+  1547  01FF2A  6E34               	movwf	setup_AD7147@StageBuffer+13,c
+  1548  01FF2C  0E9A               	movlw	154
+  1549  01FF2E  6E33               	movwf	setup_AD7147@StageBuffer+12,c
+  1550                           
+  1551                           ;AD7147.c: 173: StageBuffer[7]=4250;
+  1552  01FF30  0E10               	movlw	16
+  1553  01FF32  6E36               	movwf	setup_AD7147@StageBuffer+15,c
+  1554  01FF34  0E9A               	movlw	154
+  1555  01FF36  6E35               	movwf	setup_AD7147@StageBuffer+14,c
+  1556                           
+  1557                           ;AD7147.c: 174: write_AD7147(0xD8, 8, StageBuffer);
+  1558  01FF38  0E00               	movlw	0
+  1559  01FF3A  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1560  01FF3C  0ED8               	movlw	216
+  1561  01FF3E  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1562  01FF40  0E00               	movlw	0
+  1563  01FF42  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1564  01FF44  0E08               	movlw	8
+  1565  01FF46  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1566  01FF48  0E27               	movlw	low setup_AD7147@StageBuffer
+  1567  01FF4A  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1568  01FF4C  0E00               	movlw	high setup_AD7147@StageBuffer
+  1569  01FF4E  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1570  01FF50  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1571                           
+  1572                           ;AD7147.c: 181: AD7147Registers[0x000] = 0x02B2;
+  1573  01FF54  0E02               	movlw	2
+  1574  01FF56  0100               	movlb	0	; () banked
+  1575  01FF58  6F61               	movwf	(_AD7147Registers+1)& (0+255),b
+  1576  01FF5A  0EB2               	movlw	178
+  1577  01FF5C  6F60               	movwf	_AD7147Registers& (0+255),b
+  1578                           
+  1579                           ; BSR set to: 0
+  1580                           ;AD7147.c: 182: write_AD7147(0x000, 1, AD7147Registers[0x000]);
+  1581  01FF5E  0E00               	movlw	0
+  1582  01FF60  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1583  01FF62  0E00               	movlw	0
+  1584  01FF64  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1585  01FF66  0E00               	movlw	0
+  1586  01FF68  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1587  01FF6A  0E01               	movlw	1
+  1588  01FF6C  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1589  01FF6E  C060  F01F         	movff	_AD7147Registers,write_AD7147@DataBuffer
+  1590  01FF72  C061  F020         	movff	_AD7147Registers+1,write_AD7147@DataBuffer+1
+  1591  01FF76  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1592                           
+  1593                           ;AD7147.c: 187: AD7147Registers[0x002] = 0x3230;
+  1594  01FF7A  0E32               	movlw	50
+  1595  01FF7C  0100               	movlb	0	; () banked
+  1596  01FF7E  6F65               	movwf	(_AD7147Registers+5)& (0+255),b
+  1597  01FF80  0E30               	movlw	48
+  1598  01FF82  6F64               	movwf	(_AD7147Registers+4)& (0+255),b
+  1599                           
+  1600                           ; BSR set to: 0
+  1601                           ;AD7147.c: 188: AD7147Registers[0x003] = 0x0419;
+  1602  01FF84  0E04               	movlw	4
+  1603  01FF86  0100               	movlb	0	; () banked
+  1604  01FF88  6F67               	movwf	(_AD7147Registers+7)& (0+255),b
+  1605  01FF8A  0E19               	movlw	25
+  1606  01FF8C  6F66               	movwf	(_AD7147Registers+6)& (0+255),b
+  1607                           
+  1608                           ; BSR set to: 0
+  1609                           ;AD7147.c: 189: AD7147Registers[0x004] = 0x0832;
+  1610  01FF8E  0E08               	movlw	8
+  1611  01FF90  0100               	movlb	0	; () banked
+  1612  01FF92  6F69               	movwf	(_AD7147Registers+9)& (0+255),b
+  1613  01FF94  0E32               	movlw	50
+  1614  01FF96  6F68               	movwf	(_AD7147Registers+8)& (0+255),b
+  1615                           
+  1616                           ; BSR set to: 0
+  1617                           ;AD7147.c: 191: AD7147Registers[0x005] = 0x0000;
+  1618  01FF98  0E00               	movlw	0
+  1619  01FF9A  0100               	movlb	0	; () banked
+  1620  01FF9C  6F6B               	movwf	(_AD7147Registers+11)& (0+255),b
+  1621  01FF9E  0E00               	movlw	0
+  1622  01FFA0  6F6A               	movwf	(_AD7147Registers+10)& (0+255),b
+  1623                           
+  1624                           ; BSR set to: 0
+  1625                           ;AD7147.c: 192: AD7147Registers[0x006] = 0x0000;
+  1626  01FFA2  0E00               	movlw	0
+  1627  01FFA4  0100               	movlb	0	; () banked
+  1628  01FFA6  6F6D               	movwf	(_AD7147Registers+13)& (0+255),b
+  1629  01FFA8  0E00               	movlw	0
+  1630  01FFAA  6F6C               	movwf	(_AD7147Registers+12)& (0+255),b
+  1631                           
+  1632                           ; BSR set to: 0
+  1633                           ;AD7147.c: 193: AD7147Registers[0x007] = 0x0001;
+  1634  01FFAC  0E00               	movlw	0
+  1635  01FFAE  0100               	movlb	0	; () banked
+  1636  01FFB0  6F6F               	movwf	(_AD7147Registers+15)& (0+255),b
+  1637  01FFB2  0E01               	movlw	1
+  1638  01FFB4  6F6E               	movwf	(_AD7147Registers+14)& (0+255),b
+  1639                           
+  1640                           ; BSR set to: 0
+  1641                           ;AD7147.c: 194: write_AD7147(0x002, 6, AD7147Registers);
+  1642  01FFB6  0E00               	movlw	0
+  1643  01FFB8  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1644  01FFBA  0E02               	movlw	2
+  1645  01FFBC  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1646  01FFBE  0E00               	movlw	0
+  1647  01FFC0  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1648  01FFC2  0E06               	movlw	6
+  1649  01FFC4  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1650  01FFC6  0E60               	movlw	low _AD7147Registers
+  1651  01FFC8  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1652  01FFCA  0E00               	movlw	high _AD7147Registers
+  1653  01FFCC  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1654  01FFCE  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1655                           
+  1656                           ;AD7147.c: 197: AD7147Registers[0x001] = 0x0FFF;
+  1657  01FFD2  0E0F               	movlw	15
+  1658  01FFD4  0100               	movlb	0	; () banked
+  1659  01FFD6  6F63               	movwf	(_AD7147Registers+3)& (0+255),b
+  1660  01FFD8  6962               	setf	(_AD7147Registers+2)& (0+255),b
+  1661                           
+  1662                           ; BSR set to: 0
+  1663                           ;AD7147.c: 198: write_AD7147(0x001, 1, AD7147Registers);
+  1664  01FFDA  0E00               	movlw	0
+  1665  01FFDC  6E1C               	movwf	write_AD7147@RegisterAddress+1,c
+  1666  01FFDE  0E01               	movlw	1
+  1667  01FFE0  6E1B               	movwf	write_AD7147@RegisterAddress,c
+  1668  01FFE2  0E00               	movlw	0
+  1669  01FFE4  6E1E               	movwf	write_AD7147@NumberOfRegisters+1,c
+  1670  01FFE6  0E01               	movlw	1
+  1671  01FFE8  6E1D               	movwf	write_AD7147@NumberOfRegisters,c
+  1672  01FFEA  0E60               	movlw	low _AD7147Registers
+  1673  01FFEC  6E1F               	movwf	write_AD7147@DataBuffer,c
+  1674  01FFEE  0E00               	movlw	high _AD7147Registers
+  1675  01FFF0  6E20               	movwf	write_AD7147@DataBuffer+1,c
+  1676  01FFF2  ECAF  F0FC         	call	_write_AD7147	;wreg free
+  1677  01FFF6  0012               	return		;funcret
+  1678  01FFF8                     __end_of_setup_AD7147:
+  1679                           	opt stack 0
+  1680                           tblptru	equ	0xFF8
+  1681                           tblptrh	equ	0xFF7
+  1682                           tblptrl	equ	0xFF6
+  1683                           tablat	equ	0xFF5
+  1684                           postinc0	equ	0xFEE
+  1685                           wreg	equ	0xFE8
+  1686                           postdec1	equ	0xFE5
+  1687                           fsr1l	equ	0xFE1
+  1688                           
+  1689 ;; *************** function _write_AD7147 *****************
+  1690 ;; Defined at:
+  1691 ;;		line 205 in file "AD7147.c"
+  1692 ;; Parameters:    Size  Location     Type
+  1693 ;;  RegisterAddr    2   26[COMRAM] const unsigned int 
+  1694 ;;  NumberOfRegi    2   28[COMRAM] unsigned int 
+  1695 ;;  DataBuffer      2   30[COMRAM] PTR unsigned int 
+  1696 ;;		 -> RAM(3935), AD7147Registers(46), setup_AD7147@StageBuffer(16), 
+  1697 ;; Auto vars:     Size  Location     Type
+  1698 ;;  i               2   36[COMRAM] int 
+  1699 ;;  enable_word     2   34[COMRAM] unsigned int 
+  1700 ;;  ControlValue    0   34[COMRAM] unsigned int [0]
+  1701 ;; Return value:  Size  Location     Type
+  1702 ;;                  1    wreg      void 
+  1703 ;; Registers used:
+  1704 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1705 ;; Tracked objects:
+  1706 ;;		On entry : 0/0
+  1707 ;;		On exit  : 0/0
+  1708 ;;		Unchanged: 0/0
+  1709 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1710 ;;      Params:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1711 ;;      Locals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1712 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1713 ;;      Totals:        12       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1714 ;;Total ram usage:       12 bytes
+  1715 ;; Hardware stack levels used:    1
+  1716 ;; Hardware stack levels required when called:    1
+  1717 ;; This function calls:
+  1718 ;;		_write_spi_register
+  1719 ;; This function is called by:
+  1720 ;;		_setup_AD7147
+  1721 ;; This function uses a non-reentrant model
+  1722 ;;
+  1723                           
+  1724                           	psect	text7
+  1725  01F95E                     __ptext7:
+  1726                           	opt stack 0
+  1727  01F95E                     _write_AD7147:
+  1728                           	opt stack 28
+  1729                           
+  1730                           ;AD7147.c: 207: unsigned int ControlValue[];
+  1731                           ;AD7147.c: 208: unsigned int enable_word = 0xE000;
+  1732                           
+  1733                           ;incstack = 0
+  1734  01F95E  0EE0               	movlw	224
+  1735  01F960  6E24               	movwf	write_AD7147@enable_word+1,c
+  1736  01F962  0E00               	movlw	0
+  1737  01F964  6E23               	movwf	write_AD7147@enable_word,c
+  1738                           
+  1739                           ;AD7147.c: 211: for (int i=0; i<NumberOfRegisters; i++)
+  1740  01F966  0E00               	movlw	0
+  1741  01F968  6E26               	movwf	write_AD7147@i+1,c
+  1742  01F96A  0E00               	movlw	0
+  1743  01F96C  6E25               	movwf	write_AD7147@i,c
+  1744  01F96E  D019               	goto	l1234
+  1745  01F970                     l1230:
+  1746                           
+  1747                           ;AD7147.c: 212: {
+  1748                           ;AD7147.c: 213: ControlValue[i] = enable_word + (RegisterAddress+i);
+  1749  01F970  501B               	movf	write_AD7147@RegisterAddress,w,c
+  1750  01F972  2425               	addwf	write_AD7147@i,w,c
+  1751  01F974  6E21               	movwf	??_write_AD7147& (0+255),c
+  1752  01F976  501C               	movf	write_AD7147@RegisterAddress+1,w,c
+  1753  01F978  2026               	addwfc	write_AD7147@i+1,w,c
+  1754  01F97A  6E22               	movwf	(??_write_AD7147+1)& (0+255),c
+  1755  01F97C  5023               	movf	write_AD7147@enable_word,w,c
+  1756  01F97E  2621               	addwf	??_write_AD7147,f,c
+  1757  01F980  5024               	movf	write_AD7147@enable_word+1,w,c
+  1758  01F982  2222               	addwfc	??_write_AD7147+1,f,c
+  1759  01F984  90D8               	bcf	status,0,c
+  1760  01F986  3425               	rlcf	write_AD7147@i,w,c
+  1761  01F988  6ED9               	movwf	fsr2l,c
+  1762  01F98A  3426               	rlcf	write_AD7147@i+1,w,c
+  1763  01F98C  6EDA               	movwf	fsr2h,c
+  1764  01F98E  0E23               	movlw	low write_AD7147@ControlValue
+  1765  01F990  26D9               	addwf	fsr2l,f,c
+  1766  01F992  0E00               	movlw	high write_AD7147@ControlValue
+  1767  01F994  22DA               	addwfc	fsr2h,f,c
+  1768  01F996  C021  FFDE         	movff	??_write_AD7147,postinc2
+  1769  01F99A  C022  FFDD         	movff	??_write_AD7147+1,postdec2
+  1770  01F99E  4A25               	infsnz	write_AD7147@i,f,c
+  1771  01F9A0  2A26               	incf	write_AD7147@i+1,f,c
+  1772  01F9A2                     l1234:
+  1773  01F9A2  501D               	movf	write_AD7147@NumberOfRegisters,w,c
+  1774  01F9A4  5C25               	subwf	write_AD7147@i,w,c
+  1775  01F9A6  501E               	movf	write_AD7147@NumberOfRegisters+1,w,c
+  1776  01F9A8  5826               	subwfb	write_AD7147@i+1,w,c
+  1777  01F9AA  A0D8               	btfss	status,0,c
+  1778  01F9AC  D7E1               	goto	l1230
+  1779                           
+  1780                           ;AD7147.c: 214: }
+  1781                           ;AD7147.c: 217: write_spi_register(ControlValue, NumberOfRegisters, DataBuffer);
+  1782  01F9AE  0E23               	movlw	low write_AD7147@ControlValue
+  1783  01F9B0  6E01               	movwf	write_spi_register@address,c
+  1784  01F9B2  0E00               	movlw	high write_AD7147@ControlValue
+  1785  01F9B4  6E02               	movwf	write_spi_register@address+1,c
+  1786  01F9B6  C01D  F003         	movff	write_AD7147@NumberOfRegisters,write_spi_register@NumberOfRegisters
+  1787  01F9BA  C01E  F004         	movff	write_AD7147@NumberOfRegisters+1,write_spi_register@NumberOfRegisters+1
+  1788  01F9BE  C01F  F005         	movff	write_AD7147@DataBuffer,write_spi_register@data
+  1789  01F9C2  C020  F006         	movff	write_AD7147@DataBuffer+1,write_spi_register@data+1
+  1790  01F9C6  EC28  F0FD         	call	_write_spi_register	;wreg free
+  1791  01F9CA  0012               	return		;funcret
+  1792  01F9CC                     __end_of_write_AD7147:
+  1793                           	opt stack 0
+  1794                           tblptru	equ	0xFF8
+  1795                           tblptrh	equ	0xFF7
+  1796                           tblptrl	equ	0xFF6
+  1797                           tablat	equ	0xFF5
+  1798                           postinc0	equ	0xFEE
+  1799                           wreg	equ	0xFE8
+  1800                           postdec1	equ	0xFE5
+  1801                           fsr1l	equ	0xFE1
+  1802                           postinc2	equ	0xFDE
+  1803                           postdec2	equ	0xFDD
+  1804                           fsr2h	equ	0xFDA
+  1805                           fsr2l	equ	0xFD9
+  1806                           status	equ	0xFD8
+  1807                           
+  1808 ;; *************** function _write_spi_register *****************
+  1809 ;; Defined at:
+  1810 ;;		line 255 in file "spi.c"
+  1811 ;; Parameters:    Size  Location     Type
+  1812 ;;  address         2    0[COMRAM] PTR unsigned int 
+  1813 ;;		 -> write_AD7147@ControlValue(0), 
+  1814 ;;  NumberOfRegi    2    2[COMRAM] unsigned int 
+  1815 ;;  data            2    4[COMRAM] PTR unsigned int 
+  1816 ;;		 -> RAM(3935), AD7147Registers(46), setup_AD7147@StageBuffer(16), 
+  1817 ;; Auto vars:     Size  Location     Type
+  1818 ;;  i               2   24[COMRAM] int 
+  1819 ;;  data_high       2   22[COMRAM] unsigned int 
+  1820 ;;  data_low        2   20[COMRAM] unsigned int 
+  1821 ;;  address_high    2   18[COMRAM] unsigned int 
+  1822 ;;  address_low     2   16[COMRAM] unsigned int 
+  1823 ;;  p4              2   14[COMRAM] unsigned int 
+  1824 ;;  p3              2   12[COMRAM] unsigned int 
+  1825 ;;  p2              2   10[COMRAM] unsigned int 
+  1826 ;;  p1              2    8[COMRAM] unsigned int 
+  1827 ;; Return value:  Size  Location     Type
+  1828 ;;                  1    wreg      void 
+  1829 ;; Registers used:
+  1830 ;;		wreg, fsr2l, fsr2h, status,2, status,0
+  1831 ;; Tracked objects:
+  1832 ;;		On entry : 0/0
+  1833 ;;		On exit  : 0/0
+  1834 ;;		Unchanged: 0/0
+  1835 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  1836 ;;      Params:         6       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1837 ;;      Locals:        18       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1838 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1839 ;;      Totals:        26       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  1840 ;;Total ram usage:       26 bytes
+  1841 ;; Hardware stack levels used:    1
+  1842 ;; This function calls:
+  1843 ;;		Nothing
+  1844 ;; This function is called by:
+  1845 ;;		_write_AD7147
+  1846 ;; This function uses a non-reentrant model
+  1847 ;;
+  1848                           
+  1849                           	psect	text8
+  1850  01FA50                     __ptext8:
+  1851                           	opt stack 0
+  1852  01FA50                     _write_spi_register:
+  1853                           	opt stack 28
+  1854                           
+  1855                           ;spi.c: 257: unsigned int address_low;
+  1856                           ;spi.c: 258: unsigned int address_high;
+  1857                           ;spi.c: 259: unsigned int data_low;
+  1858                           ;spi.c: 260: unsigned int data_high;
+  1859                           ;spi.c: 261: unsigned int p1, p2, p3, p4;
+  1860                           ;spi.c: 263: for(int i=0; i<NumberOfRegisters; i++)
+  1861                           
+  1862                           ;incstack = 0
+  1863  01FA50  0E00               	movlw	0
+  1864  01FA52  6E1A               	movwf	write_spi_register@i+1,c
+  1865  01FA54  0E00               	movlw	0
+  1866  01FA56  6E19               	movwf	write_spi_register@i,c
+  1867  01FA58  D05E               	goto	l1226
+  1868  01FA5A                     l1220:
+  1869                           
+  1870                           ;spi.c: 264: {
+  1871                           ;spi.c: 265: address_low = address[i] & 0xFF;
+  1872  01FA5A  90D8               	bcf	status,0,c
+  1873  01FA5C  3419               	rlcf	write_spi_register@i,w,c
+  1874  01FA5E  6ED9               	movwf	fsr2l,c
+  1875  01FA60  341A               	rlcf	write_spi_register@i+1,w,c
+  1876  01FA62  6EDA               	movwf	fsr2h,c
+  1877  01FA64  5001               	movf	write_spi_register@address,w,c
+  1878  01FA66  26D9               	addwf	fsr2l,f,c
+  1879  01FA68  5002               	movf	write_spi_register@address+1,w,c
+  1880  01FA6A  22DA               	addwfc	fsr2h,f,c
+  1881  01FA6C  CFDE F007          	movff	postinc2,??_write_spi_register
+  1882  01FA70  CFDD F008          	movff	postdec2,??_write_spi_register+1
+  1883  01FA74  5007               	movf	??_write_spi_register,w,c
+  1884  01FA76  6E11               	movwf	write_spi_register@address_low,c
+  1885  01FA78  6A12               	clrf	write_spi_register@address_low+1,c
+  1886                           
+  1887                           ;spi.c: 266: address_high = (address[i] >> 8);
+  1888  01FA7A  90D8               	bcf	status,0,c
+  1889  01FA7C  3419               	rlcf	write_spi_register@i,w,c
+  1890  01FA7E  6ED9               	movwf	fsr2l,c
+  1891  01FA80  341A               	rlcf	write_spi_register@i+1,w,c
+  1892  01FA82  6EDA               	movwf	fsr2h,c
+  1893  01FA84  5001               	movf	write_spi_register@address,w,c
+  1894  01FA86  26D9               	addwf	fsr2l,f,c
+  1895  01FA88  5002               	movf	write_spi_register@address+1,w,c
+  1896  01FA8A  22DA               	addwfc	fsr2h,f,c
+  1897  01FA8C  CFDE F007          	movff	postinc2,??_write_spi_register
+  1898  01FA90  CFDD F008          	movff	postdec2,??_write_spi_register+1
+  1899  01FA94  5008               	movf	??_write_spi_register+1,w,c
+  1900  01FA96  6E13               	movwf	write_spi_register@address_high,c
+  1901  01FA98  6A14               	clrf	write_spi_register@address_high+1,c
+  1902                           
+  1903                           ;spi.c: 267: data_low = data[i] & 0xFF;
+  1904  01FA9A  90D8               	bcf	status,0,c
+  1905  01FA9C  3419               	rlcf	write_spi_register@i,w,c
+  1906  01FA9E  6ED9               	movwf	fsr2l,c
+  1907  01FAA0  341A               	rlcf	write_spi_register@i+1,w,c
+  1908  01FAA2  6EDA               	movwf	fsr2h,c
+  1909  01FAA4  5005               	movf	write_spi_register@data,w,c
+  1910  01FAA6  26D9               	addwf	fsr2l,f,c
+  1911  01FAA8  5006               	movf	write_spi_register@data+1,w,c
+  1912  01FAAA  22DA               	addwfc	fsr2h,f,c
+  1913  01FAAC  CFDE F007          	movff	postinc2,??_write_spi_register
+  1914  01FAB0  CFDD F008          	movff	postdec2,??_write_spi_register+1
+  1915  01FAB4  5007               	movf	??_write_spi_register,w,c
+  1916  01FAB6  6E15               	movwf	write_spi_register@data_low,c
+  1917  01FAB8  6A16               	clrf	write_spi_register@data_low+1,c
+  1918                           
+  1919                           ;spi.c: 268: data_high = (data[i] >> 8);
+  1920  01FABA  90D8               	bcf	status,0,c
+  1921  01FABC  3419               	rlcf	write_spi_register@i,w,c
+  1922  01FABE  6ED9               	movwf	fsr2l,c
+  1923  01FAC0  341A               	rlcf	write_spi_register@i+1,w,c
+  1924  01FAC2  6EDA               	movwf	fsr2h,c
+  1925  01FAC4  5005               	movf	write_spi_register@data,w,c
+  1926  01FAC6  26D9               	addwf	fsr2l,f,c
+  1927  01FAC8  5006               	movf	write_spi_register@data+1,w,c
+  1928  01FACA  22DA               	addwfc	fsr2h,f,c
+  1929  01FACC  CFDE F007          	movff	postinc2,??_write_spi_register
+  1930  01FAD0  CFDD F008          	movff	postdec2,??_write_spi_register+1
+  1931  01FAD4  5008               	movf	??_write_spi_register+1,w,c
+  1932  01FAD6  6E17               	movwf	write_spi_register@data_high,c
+  1933  01FAD8  6A18               	clrf	write_spi_register@data_high+1,c
+  1934                           
+  1935                           ;spi.c: 270: SSP1BUF = address_high;
+  1936  01FADA  C013  FFC9         	movff	write_spi_register@address_high,4041	;volatile
+  1937  01FADE                     l219:
+  1938  01FADE  A0C7               	btfss	4039,0,c	;volatile
+  1939  01FAE0  D7FE               	goto	l219
+  1940                           
+  1941                           ;spi.c: 272: p1 = SSP1BUF;
+  1942  01FAE2  CFC9 F009          	movff	4041,write_spi_register@p1	;volatile
+  1943  01FAE6  6A0A               	clrf	write_spi_register@p1+1,c
+  1944                           
+  1945                           ;spi.c: 274: SSP1BUF = address_low;
+  1946  01FAE8  C011  FFC9         	movff	write_spi_register@address_low,4041	;volatile
+  1947  01FAEC                     l222:
+  1948  01FAEC  A0C7               	btfss	4039,0,c	;volatile
+  1949  01FAEE  D7FE               	goto	l222
+  1950                           
+  1951                           ;spi.c: 276: p2 = SSP1BUF;
+  1952  01FAF0  CFC9 F00B          	movff	4041,write_spi_register@p2	;volatile
+  1953  01FAF4  6A0C               	clrf	write_spi_register@p2+1,c
+  1954                           
+  1955                           ;spi.c: 278: SSP1BUF = data_high;
+  1956  01FAF6  C017  FFC9         	movff	write_spi_register@data_high,4041	;volatile
+  1957  01FAFA                     l225:
+  1958  01FAFA  A0C7               	btfss	4039,0,c	;volatile
+  1959  01FAFC  D7FE               	goto	l225
+  1960                           
+  1961                           ;spi.c: 280: p3 = SSP1BUF;
+  1962  01FAFE  CFC9 F00D          	movff	4041,write_spi_register@p3	;volatile
+  1963  01FB02  6A0E               	clrf	write_spi_register@p3+1,c
+  1964                           
+  1965                           ;spi.c: 282: SSP1BUF = data_low;
+  1966  01FB04  C015  FFC9         	movff	write_spi_register@data_low,4041	;volatile
+  1967  01FB08                     l228:
+  1968  01FB08  A0C7               	btfss	4039,0,c	;volatile
+  1969  01FB0A  D7FE               	goto	l228
+  1970                           
+  1971                           ;spi.c: 284: p4 = SSP1BUF;
+  1972  01FB0C  CFC9 F00F          	movff	4041,write_spi_register@p4	;volatile
+  1973  01FB10  6A10               	clrf	write_spi_register@p4+1,c
+  1974  01FB12  4A19               	infsnz	write_spi_register@i,f,c
+  1975  01FB14  2A1A               	incf	write_spi_register@i+1,f,c
+  1976  01FB16                     l1226:
+  1977  01FB16  5003               	movf	write_spi_register@NumberOfRegisters,w,c
+  1978  01FB18  5C19               	subwf	write_spi_register@i,w,c
+  1979  01FB1A  5004               	movf	write_spi_register@NumberOfRegisters+1,w,c
+  1980  01FB1C  581A               	subwfb	write_spi_register@i+1,w,c
+  1981  01FB1E  B0D8               	btfsc	status,0,c
+  1982  01FB20  0012               	return	
+  1983  01FB22  D79B               	goto	l1220
+  1984  01FB24                     __end_of_write_spi_register:
+  1985                           	opt stack 0
+  1986                           tblptru	equ	0xFF8
+  1987                           tblptrh	equ	0xFF7
+  1988                           tblptrl	equ	0xFF6
+  1989                           tablat	equ	0xFF5
+  1990                           postinc0	equ	0xFEE
+  1991                           wreg	equ	0xFE8
+  1992                           postdec1	equ	0xFE5
+  1993                           fsr1l	equ	0xFE1
+  1994                           postinc2	equ	0xFDE
+  1995                           postdec2	equ	0xFDD
+  1996                           fsr2h	equ	0xFDA
+  1997                           fsr2l	equ	0xFD9
+  1998                           status	equ	0xFD8
+  1999                           
+  2000 ;; *************** function _delay_ms *****************
+  2001 ;; Defined at:
+  2002 ;;		line 68 in file "micro_setup.c"
+  2003 ;; Parameters:    Size  Location     Type
+  2004 ;;  n               2    8[COMRAM] int 
+  2005 ;; Auto vars:     Size  Location     Type
+  2006 ;;  j               2   11[COMRAM] int 
+  2007 ;; Return value:  Size  Location     Type
+  2008 ;;                  1    wreg      void 
+  2009 ;; Registers used:
+  2010 ;;		wreg, status,2, status,0, cstack
+  2011 ;; Tracked objects:
+  2012 ;;		On entry : 0/0
+  2013 ;;		On exit  : 0/0
+  2014 ;;		Unchanged: 0/0
+  2015 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2016 ;;      Params:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2017 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2018 ;;      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2019 ;;      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2020 ;;Total ram usage:        5 bytes
+  2021 ;; Hardware stack levels used:    1
+  2022 ;; Hardware stack levels required when called:    1
+  2023 ;; This function calls:
+  2024 ;;		___awdiv
+  2025 ;; This function is called by:
+  2026 ;;		_main
+  2027 ;; This function uses a non-reentrant model
+  2028 ;;
+  2029                           
+  2030                           	psect	text9
+  2031  01F87E                     __ptext9:
+  2032                           	opt stack 0
+  2033  01F87E                     _delay_ms:
+  2034                           	opt stack 29
+  2035                           
+  2036                           ;micro_setup.c: 70: int j = n/10;
+  2037                           
+  2038                           ;incstack = 0
+  2039  01F87E  C009  F001         	movff	delay_ms@n,___awdiv@dividend
+  2040  01F882  C00A  F002         	movff	delay_ms@n+1,___awdiv@dividend+1
+  2041  01F886  0E00               	movlw	0
+  2042  01F888  6E04               	movwf	___awdiv@divisor+1,c
+  2043  01F88A  0E0A               	movlw	10
+  2044  01F88C  6E03               	movwf	___awdiv@divisor,c
+  2045  01F88E  ECE6  F0FC         	call	___awdiv	;wreg free
+  2046  01F892  C001  F00C         	movff	?___awdiv,delay_ms@j
+  2047  01F896  C002  F00D         	movff	?___awdiv+1,delay_ms@j+1
+  2048                           
+  2049                           ;micro_setup.c: 71: while(j--)
+  2050  01F89A  D008               	goto	l1426
+  2051  01F89C                     l1424:
+  2052                           
+  2053                           ;micro_setup.c: 72: {
+  2054                           ;micro_setup.c: 73: _delay((unsigned long)((10)*(10000000/4000.0)));
+  2055  01F89C  0E21               	movlw	33
+  2056  01F89E  6E0B               	movwf	??_delay_ms& (0+255),c
+  2057  01F8A0  0E76               	movlw	118
+  2058  01F8A2                     u737:
+  2059  01F8A2  2EE8               	decfsz	wreg,f,c
+  2060  01F8A4  D7FE               	goto	u737
+  2061  01F8A6  2E0B               	decfsz	??_delay_ms& (0+255),f,c
+  2062  01F8A8  D7FC               	goto	u737
+  2063  01F8AA  D000               	nop2	
+  2064  01F8AC                     l1426:
+  2065  01F8AC  060C               	decf	delay_ms@j,f,c
+  2066  01F8AE  A0D8               	btfss	status,0,c
+  2067  01F8B0  060D               	decf	delay_ms@j+1,f,c
+  2068  01F8B2  280C               	incf	delay_ms@j,w,c
+  2069  01F8B4  E1F3               	bnz	l1424
+  2070  01F8B6  280D               	incf	delay_ms@j+1,w,c
+  2071  01F8B8  B4D8               	btfsc	status,2,c
+  2072  01F8BA  0012               	return	
+  2073  01F8BC  D7EF               	goto	l1424
+  2074  01F8BE                     __end_of_delay_ms:
+  2075                           	opt stack 0
+  2076                           tblptru	equ	0xFF8
+  2077                           tblptrh	equ	0xFF7
+  2078                           tblptrl	equ	0xFF6
+  2079                           tablat	equ	0xFF5
+  2080                           postinc0	equ	0xFEE
+  2081                           wreg	equ	0xFE8
+  2082                           postdec1	equ	0xFE5
+  2083                           fsr1l	equ	0xFE1
+  2084                           postinc2	equ	0xFDE
+  2085                           postdec2	equ	0xFDD
+  2086                           fsr2h	equ	0xFDA
+  2087                           fsr2l	equ	0xFD9
+  2088                           status	equ	0xFD8
+  2089                           
+  2090 ;; *************** function ___awdiv *****************
+  2091 ;; Defined at:
+  2092 ;;		line 8 in file "C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awdiv.c"
+  2093 ;; Parameters:    Size  Location     Type
+  2094 ;;  dividend        2    0[COMRAM] int 
+  2095 ;;  divisor         2    2[COMRAM] int 
+  2096 ;; Auto vars:     Size  Location     Type
+  2097 ;;  quotient        2    6[COMRAM] int 
+  2098 ;;  sign            1    5[COMRAM] unsigned char 
+  2099 ;;  counter         1    4[COMRAM] unsigned char 
+  2100 ;; Return value:  Size  Location     Type
+  2101 ;;                  2    0[COMRAM] int 
+  2102 ;; Registers used:
+  2103 ;;		wreg, status,2, status,0
+  2104 ;; Tracked objects:
+  2105 ;;		On entry : 0/0
+  2106 ;;		On exit  : 0/0
+  2107 ;;		Unchanged: 0/0
+  2108 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+  2109 ;;      Params:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2110 ;;      Locals:         4       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2111 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2112 ;;      Totals:         8       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+  2113 ;;Total ram usage:        8 bytes
+  2114 ;; Hardware stack levels used:    1
+  2115 ;; This function calls:
+  2116 ;;		Nothing
+  2117 ;; This function is called by:
+  2118 ;;		_delay_ms
+  2119 ;; This function uses a non-reentrant model
+  2120 ;;
+  2121                           
+  2122                           	psect	text10
+  2123  01F9CC                     __ptext10:
+  2124                           	opt stack 0
+  2125  01F9CC                     ___awdiv:
+  2126                           	opt stack 29
+  2127                           
+  2128                           ;incstack = 0
+  2129  01F9CC  0E00               	movlw	0
+  2130  01F9CE  6E06               	movwf	___awdiv@sign,c
+  2131  01F9D0  AE04               	btfss	___awdiv@divisor+1,7,c
+  2132  01F9D2  D006               	goto	l1246
+  2133  01F9D4  6C03               	negf	___awdiv@divisor,c
+  2134  01F9D6  1E04               	comf	___awdiv@divisor+1,f,c
+  2135  01F9D8  B0D8               	btfsc	status,0,c
+  2136  01F9DA  2A04               	incf	___awdiv@divisor+1,f,c
+  2137  01F9DC  0E01               	movlw	1
+  2138  01F9DE  6E06               	movwf	___awdiv@sign,c
+  2139  01F9E0                     l1246:
+  2140  01F9E0  AE02               	btfss	___awdiv@dividend+1,7,c
+  2141  01F9E2  D006               	goto	l1252
+  2142  01F9E4  6C01               	negf	___awdiv@dividend,c
+  2143  01F9E6  1E02               	comf	___awdiv@dividend+1,f,c
+  2144  01F9E8  B0D8               	btfsc	status,0,c
+  2145  01F9EA  2A02               	incf	___awdiv@dividend+1,f,c
+  2146  01F9EC  0E01               	movlw	1
+  2147  01F9EE  1A06               	xorwf	___awdiv@sign,f,c
+  2148  01F9F0                     l1252:
+  2149  01F9F0  0E00               	movlw	0
+  2150  01F9F2  6E08               	movwf	___awdiv@quotient+1,c
+  2151  01F9F4  0E00               	movlw	0
+  2152  01F9F6  6E07               	movwf	___awdiv@quotient,c
+  2153  01F9F8  5003               	movf	___awdiv@divisor,w,c
+  2154  01F9FA  1004               	iorwf	___awdiv@divisor+1,w,c
+  2155  01F9FC  B4D8               	btfsc	status,2,c
+  2156  01F9FE  D01C               	goto	l1274
+  2157  01FA00  0E01               	movlw	1
+  2158  01FA02  6E05               	movwf	___awdiv@counter,c
+  2159  01FA04  D004               	goto	l1260
+  2160  01FA06                     l1258:
+  2161  01FA06  90D8               	bcf	status,0,c
+  2162  01FA08  3603               	rlcf	___awdiv@divisor,f,c
+  2163  01FA0A  3604               	rlcf	___awdiv@divisor+1,f,c
+  2164  01FA0C  2A05               	incf	___awdiv@counter,f,c
+  2165  01FA0E                     l1260:
+  2166  01FA0E  AE04               	btfss	___awdiv@divisor+1,7,c
+  2167  01FA10  D7FA               	goto	l1258
+  2168  01FA12                     l1262:
+  2169  01FA12  90D8               	bcf	status,0,c
+  2170  01FA14  3607               	rlcf	___awdiv@quotient,f,c
+  2171  01FA16  3608               	rlcf	___awdiv@quotient+1,f,c
+  2172  01FA18  5003               	movf	___awdiv@divisor,w,c
+  2173  01FA1A  5C01               	subwf	___awdiv@dividend,w,c
+  2174  01FA1C  5004               	movf	___awdiv@divisor+1,w,c
+  2175  01FA1E  5802               	subwfb	___awdiv@dividend+1,w,c
+  2176  01FA20  A0D8               	btfss	status,0,c
+  2177  01FA22  D005               	goto	l1270
+  2178  01FA24  5003               	movf	___awdiv@divisor,w,c
+  2179  01FA26  5E01               	subwf	___awdiv@dividend,f,c
+  2180  01FA28  5004               	movf	___awdiv@divisor+1,w,c
+  2181  01FA2A  5A02               	subwfb	___awdiv@dividend+1,f,c
+  2182  01FA2C  8007               	bsf	___awdiv@quotient,0,c
+  2183  01FA2E                     l1270:
+  2184  01FA2E  90D8               	bcf	status,0,c
+  2185  01FA30  3204               	rrcf	___awdiv@divisor+1,f,c
+  2186  01FA32  3203               	rrcf	___awdiv@divisor,f,c
+  2187  01FA34  2E05               	decfsz	___awdiv@counter,f,c
+  2188  01FA36  D7ED               	goto	l1262
+  2189  01FA38                     l1274:
+  2190  01FA38  5006               	movf	___awdiv@sign,w,c
+  2191  01FA3A  B4D8               	btfsc	status,2,c
+  2192  01FA3C  D004               	goto	l1278
+  2193  01FA3E  6C07               	negf	___awdiv@quotient,c
+  2194  01FA40  1E08               	comf	___awdiv@quotient+1,f,c
+  2195  01FA42  B0D8               	btfsc	status,0,c
+  2196  01FA44  2A08               	incf	___awdiv@quotient+1,f,c
+  2197  01FA46                     l1278:
+  2198  01FA46  C007  F001         	movff	___awdiv@quotient,?___awdiv
+  2199  01FA4A  C008  F002         	movff	___awdiv@quotient+1,?___awdiv+1
+  2200  01FA4E  0012               	return	
+  2201  01FA50                     __end_of___awdiv:
+  2202                           	opt stack 0
+  2203  0000                     tblptru	equ	0xFF8
+  2204                           tblptrh	equ	0xFF7
+  2205                           tblptrl	equ	0xFF6
+  2206                           tablat	equ	0xFF5
+  2207                           postinc0	equ	0xFEE
+  2208                           wreg	equ	0xFE8
+  2209                           postdec1	equ	0xFE5
+  2210                           fsr1l	equ	0xFE1
+  2211                           postinc2	equ	0xFDE
+  2212                           postdec2	equ	0xFDD
+  2213                           fsr2h	equ	0xFDA
+  2214                           fsr2l	equ	0xFD9
+  2215                           status	equ	0xFD8
+  2216                           tblptru	equ	0xFF8
+  2217                           tblptrh	equ	0xFF7
+  2218                           tblptrl	equ	0xFF6
+  2219                           tablat	equ	0xFF5
+  2220                           postinc0	equ	0xFEE
+  2221                           wreg	equ	0xFE8
+  2222                           postdec1	equ	0xFE5
+  2223                           fsr1l	equ	0xFE1
+  2224                           postinc2	equ	0xFDE
+  2225                           postdec2	equ	0xFDD
+  2226                           fsr2h	equ	0xFDA
+  2227                           fsr2l	equ	0xFD9
+  2228                           status	equ	0xFD8
+  2229                           
+  2230                           	psect	rparam
+  2231  0000                     tblptru	equ	0xFF8
+  2232                           tblptrh	equ	0xFF7
+  2233                           tblptrl	equ	0xFF6
+  2234                           tablat	equ	0xFF5
+  2235                           postinc0	equ	0xFEE
+  2236                           wreg	equ	0xFE8
+  2237                           postdec1	equ	0xFE5
+  2238                           fsr1l	equ	0xFE1
+  2239                           postinc2	equ	0xFDE
+  2240                           postdec2	equ	0xFDD
+  2241                           fsr2h	equ	0xFDA
+  2242                           fsr2l	equ	0xFD9
+  2243                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        24
+    BSS         46
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     58      82
+    BANK0           160      0      46
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+    BANK8           256      0       0
+    BANK9           256      0       0
+    BANK10          256      0       0
+    BANK11          256      0       0
+    BANK12          256      0       0
+    BANK13          256      0       0
+    BANK14          256      0       0
+    BANK15           96      0       0
+
+Pointer List with Targets:
+
+    write_spi_register@data	PTR unsigned int  size(2) Largest target is 3935
+		 -> RAM(DATA[3935]), AD7147Registers(BANK0[46]), setup_AD7147@StageBuffer(COMRAM[16]), 
+
+    write_spi_register@address	PTR unsigned int  size(2) Largest target is 0
+		 -> write_AD7147@ControlValue(COMRAM[0]), 
+
+    write_AD7147@DataBuffer	PTR unsigned int  size(2) Largest target is 3935
+		 -> RAM(DATA[3935]), AD7147Registers(BANK0[46]), setup_AD7147@StageBuffer(COMRAM[16]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_setup_AD7147
+    _setup_AD7147->_write_AD7147
+    _write_AD7147->_write_spi_register
+    _delay_ms->___awdiv
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _main in BANK13
+
+    None.
+
+Critical Paths under _main in BANK14
+
+    None.
+
+Critical Paths under _main in BANK15
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 4     4      0    6870
+                                             54 COMRAM     4     4      0
+                           _delay_ms
+                       _setup_AD7147
+                          _setup_mcu
+                          _setup_spi
+                          _write_spi
+ ---------------------------------------------------------------------------------
+ (1) _write_spi                                           20    16      4     312
+                                              0 COMRAM    20    16      4
+ ---------------------------------------------------------------------------------
+ (1) _setup_spi                                            0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _setup_mcu                                            0     0      0       0
+                           _init_pin
+                         _setup_port
+ ---------------------------------------------------------------------------------
+ (2) _setup_port                                           0     0      0       0
+ ---------------------------------------------------------------------------------
+ (2) _init_pin                                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _setup_AD7147                                        16    16      0    5911
+                                             38 COMRAM    16    16      0
+                       _write_AD7147
+ ---------------------------------------------------------------------------------
+ (2) _write_AD7147                                        12     6      6    3617
+                                             26 COMRAM    12     6      6
+                 _write_spi_register
+ ---------------------------------------------------------------------------------
+ (3) _write_spi_register                                  26    20      6     510
+                                              0 COMRAM    26    20      6
+ ---------------------------------------------------------------------------------
+ (1) _delay_ms                                             5     3      2     601
+                                              8 COMRAM     5     3      2
+                            ___awdiv
+ ---------------------------------------------------------------------------------
+ (2) ___awdiv                                              8     4      4     428
+                                              0 COMRAM     8     4      4
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _delay_ms
+     ___awdiv
+   _setup_AD7147
+     _write_AD7147
+       _write_spi_register
+   _setup_mcu
+     _init_pin
+     _setup_port
+   _setup_spi
+   _write_spi
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             F5F      0       0      37        0.0%
+BITBANK14          100      0       0      33        0.0%
+BANK14             100      0       0      34        0.0%
+BITBANK13          100      0       0      30        0.0%
+BANK13             100      0       0      31        0.0%
+BITBANK12          100      0       0      28        0.0%
+BANK12             100      0       0      29        0.0%
+BITBANK11          100      0       0      26        0.0%
+BANK11             100      0       0      27        0.0%
+BITBANK10          100      0       0      24        0.0%
+BANK10             100      0       0      25        0.0%
+BITBANK9           100      0       0      22        0.0%
+BANK9              100      0       0      23        0.0%
+BITBANK8           100      0       0      20        0.0%
+BANK8              100      0       0      21        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0      2E       5       28.8%
+BITBANK15           60      0       0      35        0.0%
+BANK15              60      0       0      36        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F     3A      52       1       86.3%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      80      32        0.0%
+DATA                 0      0      80       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.38 build -256452561 
+Symbol Table                                                                                   Sun Jan 08 00:38:08 2017
+
+                       ___awdiv@sign 0006                 ??_write_spi_register 0007  
+                       __CFG_CP0$OFF 000000                                  l103 F928  
+                                l112 F952                                  l106 F936  
+                                l109 F944                                  l222 FAEC  
+                                l225 FAFA                                  l219 FADE  
+                                l228 FB08                                  u737 F8A2  
+                                wreg 000FE8                         __CFG_FOSC$HS 000000  
+        write_AD7147@RegisterAddress 001B                                 l1220 FA5A  
+                               l1230 F970                                 l1226 FB16  
+                               l1234 F9A2                                 l1260 FA0E  
+                               l1252 F9F0                                 l1270 FA2E  
+                               l1262 FA12                                 l1246 F9E0  
+                               l1424 F89C                                 l1258 FA06  
+                               l1274 FA38                                 l1426 F8AC  
+                               l1444 F8E6                                 l1278 FA46  
+                      __CFG_DEBUG$ON 000000                        __CFG_FCMEN$ON 000000  
+                               _main F8BE                                 fsr2h 000FDA  
+                               fsr1l 000FE1                                 fsr2l 000FD9  
+                               start 0000                        __CFG_IESO$OFF 000000  
+                      __CFG_FOSC2$ON 000000                         ___param_bank 000010  
+                      write_spi@data 0003                                ?_main 0001  
+                    __end_of___awdiv FA50                      ___awdiv@divisor 0003  
+                    ___awdiv@counter 0005                                _SPBRG 000FAF  
+                              _TRISC 000F94                                _TRISD 000F95  
+                              _TRISE 000F96                                _TRISF 000F97  
+                              _TXSTA 000FAC                __size_of_write_AD7147 006E  
+                              tablat 000FF5                                status 000FD8  
+                  write_spi@data_low 0011                      __initialization F84C  
+                       __end_of_main F90C                         _write_AD7147 F95E  
+                             ??_main 0037                  write_spi_register@i 0019  
+                      __activetblptr 000000                     ___awdiv@dividend 0001  
+                     __CFG_WDTEN$OFF 000000                     __end_of_delay_ms F8BE  
+                     __CFG_XINST$OFF 000000                            ??___awdiv 0005  
+                     __CFG_STVREN$ON 000000                     __end_of_init_pin F818  
+                             clear_0 F872                     ___awdiv@quotient 0007  
+                       __pdataCOMRAM 003B               write_spi_register@data 0005  
+                             tblptrh 000FF7                               tblptrl 000FF6  
+                             tblptru 000FF8                   write_spi@data_high 0013  
+                         __accesstop 0060              __end_of__initialization F878  
+                      ___rparam_used 000001                       __pcstackCOMRAM 0001  
+               write_spi_register@p1 0009                 write_spi_register@p2 000B  
+               write_spi_register@p3 000D                 write_spi_register@p4 000F  
+                         __pbssBANK0 0060          __size_of_write_spi_register 00D4  
+                 __size_of_setup_mcu 000A                   __size_of_setup_spi 001C  
+                          ?_delay_ms 0009                              _SSP1BUF 000FC9  
+                          ?_init_pin 0001                   __size_of_write_spi 0052  
+                            __Hparam 0000                              __Lparam 0000  
+                            ___awdiv F9CC                              __pcinit F84C  
+                            __ramtop 1000                              __ptext0 F8BE  
+                            __ptext1 F90C                              __ptext2 F830  
+                            __ptext3 F7FC                              __ptext4 F7F2  
+                            __ptext5 F806                              __ptext6 FB24  
+                            __ptext7 F95E                              __ptext8 FA50  
+                            __ptext9 F87E            write_spi_register@address 0001  
+                         ??_delay_ms 000B                 end_of_initialization F878  
+                      ?_setup_AD7147 0001                           ??_init_pin 0001  
+         write_spi_register@data_low 0015                    __end_of_setup_mcu F806  
+                  __end_of_setup_spi F84C                            _RCSTAbits 000FAB  
+                            postdec1 000FE5                              postdec2 000FDD  
+                            postinc0 000FEE                              postinc2 000FDE  
+                          _PORTCbits 000F82                            _PORTDbits 000F83  
+                          _PORTEbits 000F84                           _setup_port F7F2  
+                  __end_of_write_spi F95E          write_spi_register@data_high 0017  
+                     ??_setup_AD7147 0027                           main@blanks 0039  
+                         main@device 0037                        __pidataCOMRAM F818  
+                   write_spi@address 0001                  start_initialization F84C  
+     write_spi_register@address_high 0013              setup_AD7147@StageBuffer 0027  
+                        ?_setup_port 0001               write_AD7147@DataBuffer 001F  
+                  __size_of_delay_ms 0040                    __size_of_init_pin 0012  
+                           ?___awdiv 0001           __end_of_write_spi_register FB24  
+               __end_of_setup_AD7147 FFF8                        ?_write_AD7147 001B  
+                          delay_ms@j 000C                            delay_ms@n 0009  
+      write_AD7147@NumberOfRegisters 001D                             _PIE1bits 000F9D  
+                __size_of_setup_port 000A                            _setup_mcu F7FC  
+                          _setup_spi F830                       ??_write_AD7147 0021  
+                        write_spi@p1 0005                          write_spi@p2 0007  
+                        write_spi@p3 0009                          write_spi@p4 000B  
+                         _ADC_RESULT 003B                            _write_spi F90C  
+                          copy_data0 F860                      _AD7147Registers 0060  
+                           __Hrparam 0000                             __Lrparam 0000  
+                   __size_of___awdiv 0084                           ?_setup_mcu 0001  
+                         ?_setup_spi 0001                             _delay_ms F87E  
+                           __ptext10 F9CC                         _SSP1CON1bits 000FC6  
+                         ?_write_spi 0001                        __size_of_main 004E  
+                           _init_pin F806  write_spi_register@NumberOfRegisters 0003  
+              __size_of_setup_AD7147 04D4             write_AD7147@ControlValue 0023  
+                      write_AD7147@i 0025                         _SSP1STATbits 000FC7  
+                       ??_setup_port 0001              write_AD7147@enable_word 0023  
+              write_spi@address_high 000F                 __end_of_write_AD7147 F9CC  
+                       _setup_AD7147 FB24                   __end_of_setup_port F7FC  
+                        ??_setup_mcu 0001                          ??_setup_spi 0001  
+               write_spi@address_low 000D                   _write_spi_register FA50  
+                        ??_write_spi 0005                  ?_write_spi_register 0001  
+      write_spi_register@address_low 0011  

@@ -21,15 +21,15 @@ void setup_AD7147(void)
     //= Stage 0 - CIN0 (+) S0
     //===========================
     StageBuffer[0] = 0x3FFE;	//Register 0x80
-    //StageBuffer[1] = 0x1FFF;	//Register 0x81
-    //StageBuffer[2] = 0x0100;	//Register 0x82
-    //StageBuffer[3] = 0x2121;	//Register 0x83
-    //StageBuffer[4] = 4000;      //Register 0x84	
-    //StageBuffer[5] = 4000;   	//Register 0x85
-    //StageBuffer[6] = 4250;      //Register 0x86	
-    //StageBuffer[7] = 4250;      //Register 0x87
-    write_AD7147(STAGE0_CONNECTION, 1, StageBuffer);
-/*
+    StageBuffer[1] = 0x1FFF;	//Register 0x81
+    StageBuffer[2] = 0x0100;	//Register 0x82
+    StageBuffer[3] = 0x2121;	//Register 0x83
+    StageBuffer[4] = 4000;      //Register 0x84	
+    StageBuffer[5] = 4000;   	//Register 0x85
+    StageBuffer[6] = 4250;      //Register 0x86	
+    StageBuffer[7] = 4250;      //Register 0x87
+    write_AD7147(STAGE0_CONNECTION, 8, StageBuffer);
+    
     //===========================
     //= Stage 1 - CIN1 (+) S1
     //===========================
@@ -199,27 +199,22 @@ void setup_AD7147(void)
 
 	//Read High and Low Limit Status registers to clear INT pin
 	//read_AD7147(STAGE_LOW_LIMIT_INT, 3, AD7147Registers); //Registers 0x08 & 0x09 & 0x0A
-    */
 }
 
 
 void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[])
 {
-	unsigned int ControlValue;
-    unsigned int DataValue;
+	unsigned int ControlValue[];
     unsigned int enable_word = 0xE000;
 
 	//Write out the Message in two individual 16 bit unsigned int messages
 	for (int i=0; i<NumberOfRegisters; i++)
 	{
-        //Sends 16-bit Signal containing Enable Word and Register Address
-        ControlValue = enable_word + (RegisterAddress+i);
-        DataValue = DataBuffer[i];
-        
-        write_spi(ControlValue);
-        //Sends 16-bit Signal Containing Data Value
-        write_spi(DataValue);
+        ControlValue[i] = enable_word + (RegisterAddress+i);
 	}
+     
+    //write_spi_setup(RegisterAddress, DataBuffer);
+    write_spi_register(ControlValue, NumberOfRegisters, DataBuffer);
 }
 /*
 void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int *DataBuffer[])

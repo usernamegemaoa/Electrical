@@ -3,7 +3,11 @@
  
 void setup_spi(void);
 
-void write_spi(unsigned int message);
+void write_spi(unsigned int, unsigned int);
+
+void write_spi_setup(unsigned int, unsigned int[]);
+
+void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
 
 void write_spi_solo(unsigned int message);
 

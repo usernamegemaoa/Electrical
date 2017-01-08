@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/debug\Sensor_Glove.debug.hex">
+  <executable name="dist/default/production\Sensor_Glove.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>131064</length>
-      <used>2064</used>
-      <free>129000</free>
+      <used>2054</used>
+      <free>129010</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
