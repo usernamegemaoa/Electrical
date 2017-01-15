@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.38\dat\en_msgs.txt -cs \
   -h+dist/default/production\Sensor_Glove.production.sym \
   --cmf=dist/default/production\Sensor_Glove.production.cmf -z -Q18F87J10 \
-  -oC:\Users\Carl\AppData\Local\Temp\s7ao.2 \
+  -oC:\Users\Intern\AppData\Local\Temp\s3g0.2 \
   -Mdist/default/production/Sensor_Glove.production.map -E1 -ver=XC8 \
   -ASTACK=08Eh-0f5fh -pstack=STACK -ACODE=00h-01FFF7h -ACONST=00h-01FFF7h \
   -ASMALLCONST=01000h-010FFhx495,01FF00h-01FFF7h \
@@ -25,7 +25,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\Carl\AppData\Local\Temp\s7ao.obj \
+  C:\Users\Intern\AppData\Local\Temp\s3g0.obj \
   dist/default/production\Sensor_Glove.production.obj 
 
 Object code version is 3.11
@@ -38,7 +38,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Carl\AppData\Local\Temp\s7ao.obj
+C:\Users\Intern\AppData\Local\Temp\s3g0.obj
                 end_init                              0        0        4        0       0
                 config                            1FFF8    1FFF8        6    1FFF8       0
 dist/default/production\Sensor_Glove.production.obj
@@ -48,8 +48,8 @@ dist/default/production\Sensor_Glove.production.obj
                 text7                             1F95E    1F95E       6E     FCAF       0
                 text6                             1FB24    1FB24      4D4     FD92       0
                 text5                             1F806    1F806       12     FC03       0
-                text4                             1F7F2    1F7F2        A     FBF9       0
-                text3                             1F7FC    1F7FC        A     FBFE       0
+                text4                             1F7F8    1F7F8        E     FBFC       0
+                text3                             1F7EE    1F7EE        A     FBF7       0
                 text2                             1F830    1F830       1C     FC18       0
                 text1                             1F90C    1F90C       52     FC86       0
                 text0                             1F8BE    1F8BE       4E     FC5F       0
@@ -70,8 +70,8 @@ TOTAL           Name                               Link     Load   Length     Sp
                 text7                             1F95E    1F95E       6E         0
                 text6                             1FB24    1FB24      4D4         0
                 text5                             1F806    1F806       12         0
-                text4                             1F7F2    1F7F2        A         0
-                text3                             1F7FC    1F7FC        A         0
+                text4                             1F7F8    1F7F8        E         0
+                text3                             1F7EE    1F7EE        A         0
                 text2                             1F830    1F830       1C         0
                 text1                             1F90C    1F90C       52         0
                 text0                             1F8BE    1F8BE       4E         0
@@ -143,8 +143,8 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 reset_vec                      000000  000004  000004         0       0  CODE    
                 cstackCOMRAM                   000001  000052  000053         1       1  COMRAM  
                 bssBANK0                       000060  00002E  00008E        60       1  BANK0   
-                text4                          01F7F2  00000A  01F7FC      FBF9       0  CODE    
-                text3                          01F7FC  00000A  01F806      FBFE       0  CODE    
+                text3                          01F7EE  00000A  01F7F8      FBF7       0  CODE    
+                text4                          01F7F8  00000E  01F806      FBFC       0  CODE    
                 text5                          01F806  000012  01F818      FC03       0  CODE    
                 idataCOMRAM                    01F818  000018  01F830     1F818       0  CODE    
                 text2                          01F830  00001C  01F84C      FC18       0  CODE    
@@ -180,14 +180,14 @@ UNUSED ADDRESS RANGES
         BANK9            00900-009FF             100
         BIGRAM           00053-0005F               D
                          0008E-00F5F             ED2
-        CODE             00004-1F7F1           1F7EE
+        CODE             00004-1F7ED           1F7EA
         COMRAM           00053-0005F               D
-        CONST            00004-1F7F1           1F7EE
+        CONST            00004-1F7ED           1F7EA
         MEDIUMCONST      01000-0FFFF            F000
-                         11000-1F7F1            E7F2
+                         11000-1F7ED            E7EE
         RAM              0008E-00F5F             100
         SFR              00F60-00FFF              A0
-        SMALLCONST       01000-1F7F1             100
+        SMALLCONST       01000-1F7ED             100
         STACK            0008E-00F5F             ED2
 
                                   Symbol Table
@@ -403,8 +403,8 @@ __end_of_delay_ms                    text9         1F8BE
 __end_of_init_pin                    text5         1F818
 __end_of_main                        text0         1F90C
 __end_of_setup_AD7147                text6         1FFF8
-__end_of_setup_mcu                   text3         1F806
-__end_of_setup_port                  text4         1F7FC
+__end_of_setup_mcu                   text3         1F7F8
+__end_of_setup_port                  text4         1F806
 __end_of_setup_spi                   text2         1F84C
 __end_of_write_AD7147                text7         1F9CC
 __end_of_write_spi                   text1         1F95E
@@ -420,8 +420,8 @@ __ptext0                             text0         1F8BE
 __ptext1                             text1         1F90C
 __ptext10                            text10        1F9CC
 __ptext2                             text2         1F830
-__ptext3                             text3         1F7FC
-__ptext4                             text4         1F7F2
+__ptext3                             text3         1F7EE
+__ptext4                             text4         1F7F8
 __ptext5                             text5         1F806
 __ptext6                             text6         1FB24
 __ptext7                             text7         1F95E
@@ -444,8 +444,8 @@ _delay_ms                            text9         1F87E
 _init_pin                            text5         1F806
 _main                                text0         1F8BE
 _setup_AD7147                        text6         1FB24
-_setup_mcu                           text3         1F7FC
-_setup_port                          text4         1F7F2
+_setup_mcu                           text3         1F7EE
+_setup_port                          text4         1F7F8
 _setup_spi                           text2         1F830
 _write_AD7147                        text7         1F95E
 _write_spi                           text1         1F90C
@@ -658,7 +658,7 @@ Total ram usage:        0 bytes
 
  *************** function _init_pin *****************
  Defined at:
-		line 56 in file "micro_setup.c"
+		line 57 in file "micro_setup.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -793,7 +793,7 @@ Total ram usage:       26 bytes
 
  *************** function _delay_ms *****************
  Defined at:
-		line 68 in file "micro_setup.c"
+		line 69 in file "micro_setup.c"
  Parameters:    Size  Location     Type
   n               2    8[COMRAM] int 
  Auto vars:     Size  Location     Type
@@ -864,11 +864,11 @@ C:\Program Files (x86)\Microchip\xc8\v1.38\sources\common\awdiv.c estimated size
 
 micro_setup.c
 		_init_pin      		CODE           	1F806	0000	19
-		_setup_mcu     		CODE           	1F7FC	0000	11
-		_setup_port    		CODE           	1F7F2	0000	11
+		_setup_mcu     		CODE           	1F7EE	0000	11
+		_setup_port    		CODE           	1F7F8	0000	15
 		_delay_ms      		CODE           	1F87E	0000	65
 
-micro_setup.c estimated size: 106
+micro_setup.c estimated size: 110
 
 spi.c
 		_write_spi_register		CODE           	1FA50	0000	213

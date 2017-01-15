@@ -6,8 +6,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _setup_mcu `(v ~T0 @X0 0 ef ]
 "4 spi.h
 [v _setup_spi `(v ~T0 @X0 0 ef ]
-"10 main.c
-[v _setup_AD7147 `(i ~T0 @X0 0 ef ]
 "3052 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic18f87j10.h
 [s S188 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S188 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
@@ -5447,46 +5445,67 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 9: setup_spi();
 "9
 [e ( _setup_spi ..  ]
-[; ;main.c: 10: setup_AD7147();
-"10
-[e ( _setup_AD7147 ..  ]
 "12
 [v _device `ui ~T0 @X0 1 a ]
-[; ;main.c: 12: unsigned int device = 0xE417;
+[; ;main.c: 12: unsigned int device = 0b1110010000010111;
 [e = _device -> 58391 `ui ]
-"13
-[v _blanks `ui ~T0 @X0 1 a ]
-[; ;main.c: 13: unsigned int blanks = 0x000;
-[e = _blanks -> -> 0 `i `ui ]
-[; ;main.c: 14: while(1)
 "14
-[e :U 711 ]
-[; ;main.c: 15: {
+[v _device1 `ui ~T0 @X0 1 a ]
+[; ;main.c: 14: unsigned int device1 = 0b1101000000100111;
+[e = _device1 -> 53287 `ui ]
 "15
-{
-[; ;main.c: 16: delay_ms(100);
+[v _dd `ui ~T0 @X0 1 a ]
+[; ;main.c: 15: unsigned int dd = 0b1110010000001011;
+[e = _dd -> 58379 `ui ]
 "16
-[e ( _delay_ms (1 -> 100 `i ]
-[; ;main.c: 17: PORTCbits.RC2 = 0;
+[v _power_s `ui ~T0 @X0 1 a ]
+[; ;main.c: 16: unsigned int power_s = 0x02B0;
+[e = _power_s -> -> 688 `i `ui ]
 "17
-[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 18: write_spi(device, blanks);
+[v _power_low `ui ~T0 @X0 1 a ]
+[; ;main.c: 17: unsigned int power_low = 0x02B2;
+[e = _power_low -> -> 690 `i `ui ]
 "18
-[e ( _write_spi (2 , _device _blanks ]
-[; ;main.c: 19: PORTCbits.RC2 = 1;
+[v _power_r `ui ~T0 @X0 1 a ]
+[; ;main.c: 18: unsigned int power_r = 0xE000;
+[e = _power_r -> 57344 `ui ]
 "19
-[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[v _power_rr `ui ~T0 @X0 1 a ]
+[; ;main.c: 19: unsigned int power_rr = 0xE400;
+[e = _power_rr -> 58368 `ui ]
 "20
+[v _blanks `ui ~T0 @X0 1 a ]
+[; ;main.c: 20: unsigned int blanks = 0x000;
+[e = _blanks -> -> 0 `i `ui ]
+[; ;main.c: 21: while(1)
+"21
+[e :U 711 ]
+[; ;main.c: 22: {
+"22
+{
+[; ;main.c: 23: delay_ms(100);
+"23
+[e ( _delay_ms (1 -> 100 `i ]
+[; ;main.c: 24: PORTCbits.RC2 = 0;
+"24
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 25: write_spi(device, blanks);
+"25
+[e ( _write_spi (2 , _device _blanks ]
+[; ;main.c: 27: PORTCbits.RC2 = 1;
+"27
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+"28
 }
 [e :U 710 ]
-"14
+"21
 [e $U 711  ]
 [e :U 712 ]
-[; ;main.c: 20: }
-[; ;main.c: 21: return;
-"21
+[; ;main.c: 28: }
+[; ;main.c: 29: return;
+"29
 [e $UE 709  ]
-[; ;main.c: 22: }
-"22
+[; ;main.c: 30: }
+"30
 [e :UE 709 ]
 }

@@ -6886,7 +6886,7 @@ setup_mcu();
 setup_spi();
 setup_AD7147();
 
-unsigned int device = 0x017;
+unsigned int device = 0xE417;
 unsigned int blanks = 0x000;
 while(1)
 {

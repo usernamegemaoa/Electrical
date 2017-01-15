@@ -5452,8 +5452,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setup_AD7147 ..  ]
 "12
 [v _device `ui ~T0 @X0 1 a ]
-[; ;main.c: 12: unsigned int device = 0x017;
-[e = _device -> -> 23 `i `ui ]
+[; ;main.c: 12: unsigned int device = 0xE417;
+[e = _device -> 58391 `ui ]
 "13
 [v _blanks `ui ~T0 @X0 1 a ]
 [; ;main.c: 13: unsigned int blanks = 0x000;

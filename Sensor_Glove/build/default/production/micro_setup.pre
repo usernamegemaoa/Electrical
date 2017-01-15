@@ -6935,6 +6935,7 @@ init_pin();
 void setup_port(void)
 {
 TRISD = 0b00000000;
+TRISC = 0b00010000;
 TRISE = 0b00000000;
 }
 
@@ -6942,16 +6943,16 @@ void init_uart(void)
 {
 TXSTA = 0b00100000;
 
-# 31
+# 32
 SPBRG = 12;
 
-# 44
+# 45
 RCSTAbits.SPEN=1;
 RCSTAbits.RX9=0;
 RCSTAbits.CREN=1;
 RCSTAbits.ADDEN=0;
 
-# 54
+# 55
 }
 
 void init_pin(void)
