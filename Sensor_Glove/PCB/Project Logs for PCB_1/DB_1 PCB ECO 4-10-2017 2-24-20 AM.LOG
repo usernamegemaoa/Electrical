@@ -1,0 +1,25 @@
+Change Component Comment : Designator=R5 Old Comment=Resistance New Comment=1k
+Change Component Comment : Designator=R6 Old Comment=Resistance New Comment=1k
+Change Component Comment : Designator=R3 Old Comment=Resistance New Comment=86.6
+Change Component Comment : Designator=R4 Old Comment=Resistance New Comment=86.6
+Added Component: Designator=C11(CAP-0805(2012)-R)
+Added Component: Designator=C12(CAP-0805(2012)-R)
+Added Component: Designator=U7(STM-LGA-16_N)
+Added Pin To Net: NetName=GND Pin=C11-1
+Added Pin To Net: NetName=3.3V Pin=C11-2
+Added Pin To Net: NetName=GND Pin=C12-1
+Added Pin To Net: NetName=3.3V Pin=C12-2
+Added Pin To Net: NetName=3.3V Pin=U7-1
+Added Pin To Net: NetName=SCLK Pin=U7-4
+Added Pin To Net: NetName=GND Pin=U7-5
+Added Pin To Net: NetName=MOSI Pin=U7-6
+Added Pin To Net: NetName=MISO Pin=U7-7
+Added Pin To Net: NetName=GND Pin=U7-10
+Added Pin To Net: NetName=GND Pin=U7-12
+Added Pin To Net: NetName=3.3V Pin=U7-14
+Added Pin To Net: NetName=CS3 Pin=U4-10
+Added Pin To Net: NetName=CS3 Pin=U7-8
+Added Net: Name=CS3
+Added Member To Class: ClassName=Sheet Member=Component C11 0.1µF
+Added Member To Class: ClassName=Sheet Member=Component C12 10000pF
+Added Member To Class: ClassName=Sheet Member=Component U7 LIS3DHTR
