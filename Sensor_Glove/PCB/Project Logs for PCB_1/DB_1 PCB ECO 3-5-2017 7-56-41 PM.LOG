@@ -1,0 +1,103 @@
+Added Component: Designator=J2(WM7606CT-ND)
+Added Component: Designator=J3(WM7606CT-ND)
+Added Component: Designator=J4(WM7606CT-ND)
+Added Component: Designator=J5(WM7606CT-ND)
+Added Component: Designator=J6(WM7606CT-ND)
+Added Component: Designator=J7(WM7606CT-ND)
+Added Component: Designator=J8(WM7606CT-ND)
+Added Component: Designator=J9(WM7606CT-ND)
+Added Component: Designator=J10(WM7606CT-ND)
+Added Component: Designator=J11(WM7606CT-ND)
+Added Component: Designator=J12(WM7606CT-ND)
+Added Component: Designator=J13(WM7606CT-ND)
+Added Component: Designator=J14(WM7606CT-ND)
+Added Component: Designator=J15(WM7606CT-ND)
+Added Component: Designator=J16(WM7606CT-ND)
+Added Component: Designator=J17(WM7606CT-ND)
+Added Component: Designator=J18(WM7606CT-ND)
+Added Component: Designator=J19(WM7606CT-ND)
+Added Component: Designator=J20(WM7606CT-ND)
+Added Component: Designator=J21(WM7606CT-ND)
+Added Component: Designator=J22(WM7606CT-ND)
+Added Component: Designator=J23(WM7606CT-ND)
+Added Component: Designator=J24(WM7606CT-ND)
+Added Component: Designator=J25(WM7606CT-ND)
+Added Component: Designator=J26(WM7606CT-ND)
+Added Component: Designator=J27(WM7606CT-ND)
+Added Pin To Net: NetName=S1 Pin=J2-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J2-2
+Added Pin To Net: NetName=S2 Pin=J3-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J3-2
+Added Pin To Net: NetName=S3 Pin=J4-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J4-2
+Added Pin To Net: NetName=S4 Pin=J5-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J5-2
+Added Pin To Net: NetName=S5 Pin=J6-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J6-2
+Added Pin To Net: NetName=S6 Pin=J7-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J7-2
+Added Pin To Net: NetName=S7 Pin=J8-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J8-2
+Added Pin To Net: NetName=S8 Pin=J9-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J9-2
+Added Pin To Net: NetName=S9 Pin=J10-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J10-2
+Added Pin To Net: NetName=S10 Pin=J11-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J11-2
+Added Pin To Net: NetName=S11 Pin=J12-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J12-2
+Added Pin To Net: NetName=S13 Pin=J13-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J13-2
+Added Pin To Net: NetName=S12 Pin=J14-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J14-2
+Added Pin To Net: NetName=S14 Pin=J15-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J15-2
+Added Pin To Net: NetName=S15 Pin=J16-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J16-2
+Added Pin To Net: NetName=S16 Pin=J17-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J17-2
+Added Pin To Net: NetName=S17 Pin=J18-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J18-2
+Added Pin To Net: NetName=S18 Pin=J19-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J19-2
+Added Pin To Net: NetName=S19 Pin=J20-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J20-2
+Added Pin To Net: NetName=S20 Pin=J21-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J21-2
+Added Pin To Net: NetName=S21 Pin=J22-1
+Added Pin To Net: NetName=S22 Pin=J23-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J23-2
+Added Pin To Net: NetName=S23 Pin=J24-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J24-2
+Added Pin To Net: NetName=S24 Pin=J25-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J25-2
+Added Pin To Net: NetName=S25 Pin=J26-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J26-2
+Added Pin To Net: NetName=S26 Pin=J27-1
+Added Pin To Net: NetName=AC_SHIELD Pin=J27-2
+Added Member To Class: ClassName=Sheet Member=Component J2 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J3 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J4 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J5 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J6 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J7 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J8 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J9 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J10 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J11 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J12 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J13 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J14 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J15 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J16 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J17 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J18 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J19 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J20 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J21 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J22 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J23 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J24 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J25 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J26 Header 2 pin
+Added Member To Class: ClassName=Sheet Member=Component J27 Header 2 pin

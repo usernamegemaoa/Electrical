@@ -6845,12 +6845,13 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config DEBUG = ON
 
 # 65
-extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 
+extern unsigned int CDC_RESULT[12] = 0;
 extern unsigned int AD7147Registers[23] = 0;
 
-# 197
+# 196
 void setup_mcu(void);
 
 void setup_port(void);
@@ -6864,21 +6865,45 @@ void delay_ms(int n);
 # 4 "spi.h"
 void setup_spi(void);
 
-void write_spi(unsigned int, unsigned int);
+void w32_spi(unsigned int, unsigned int);
 
-void write_spi_setup(unsigned int, unsigned int[]);
+void w16_spi(unsigned int);
 
-void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
+unsigned int r16_spi(void);
 
-void write_spi_solo(unsigned int message);
+unsigned int w16_r16_spi(unsigned int);
 
-unsigned int read_spi(void);
-
-unsigned int read_spi_solo(void);
-
+# 6 "uart.h"
 unsigned int cdc_signal(char, int);
 
-# 5 "main.c"
+void uart_write_char(char);
+
+void uart_write_int(int);
+
+void uart_write_unsigned_int(unsigned int);
+
+char uart_tx_empty(void);
+
+void uart_write_string(const char *text);
+
+char uart_int_to_string(int number);
+
+char uart_data_ready(void);
+
+char uart_read_char(void);
+
+void uart_read_text(char *Output, unsigned int length);
+
+# 6 "AD7147.h"
+void setup_AD7147(void);
+void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[]);
+void read_AD7147(const unsigned int, unsigned int, unsigned int);
+static int ServiceAD7147Isr(void);
+unsigned int read_sensor(int);
+unsigned int get_ID(void);
+void read_sensors(void);
+
+# 6 "main.c"
 void main(void)
 {
 delay_ms(500);
@@ -6886,14 +6911,23 @@ setup_mcu();
 setup_spi();
 setup_AD7147();
 
-unsigned int device = 0xE417;
-unsigned int blanks = 0x000;
+char ind = 's';
+char indicator;
 while(1)
 {
-delay_ms(100);
-PORTCbits.RC2 = 0;
-write_spi(device, blanks);
-PORTCbits.RC2 = 1;
+uart_write_char(ind);
+indicator = uart_read_char();
+if (indicator == 'i')
+{
+unsigned int device_ID = get_ID();
+uart_write_unsigned_int(device_ID);
+}
+if (indicator == 's')
+{
+unsigned int sensor_1 = read_sensor(1);
+uart_write_unsigned_int(sensor_1);
+}
+delay_ms(500);
 }
 return;
 }

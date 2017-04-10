@@ -1,44 +1,56 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"199 micro_setup.h
+"198 micro_setup.h
 [v _setup_port `(v ~T0 @X0 0 ef ]
-"203
+"202
 [v _init_pin `(v ~T0 @X0 0 ef ]
+"12 C:\Program Files (x86)\Microchip\xc8\v1.38\include\conio.h
+[v _init_uart `(v ~T0 @X0 0 ef ]
 "5972 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic18f87j10.h
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
 "5751
 [v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
 "6193
 [v _TRISE `Vuc ~T0 @X0 0 e@3990 ]
-"8365
-[v _TXSTA `Vuc ~T0 @X0 0 e@4012 ]
-"8674
-[v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
-"8204
-[s S437 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S437 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"8214
-[s S438 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
-[n S438 . RCD8 . RC9 ]
-"8219
-[s S439 :6 `uc 1 :1 `uc 1 ]
-[n S439 . . NOT_RC8 ]
-"8223
-[s S440 :6 `uc 1 :1 `uc 1 ]
-[n S440 . . nRC8 ]
-"8227
-[s S441 :6 `uc 1 :1 `uc 1 ]
-[n S441 . . RC8_9 ]
-"8231
-[s S442 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S442 . RX9D1 OERR1 FERR1 ADDEN1 CREN1 SREN1 RX91 SPEN1 ]
-"8241
-[s S443 :5 `uc 1 :1 `uc 1 ]
-[n S443 . . SRENA ]
-"8203
-[u S436 `S437 1 `S438 1 `S439 1 `S440 1 `S441 1 `S442 1 `S443 1 ]
-[n S436 . . . . . . . . ]
-"8246
-[v _RCSTAbits `VS436 ~T0 @X0 0 e@4011 ]
+"6615
+[v _TRISG `Vuc ~T0 @X0 0 e@3992 ]
+"1585
+[v _TXSTA2 `Vuc ~T0 @X0 0 e@3948 ]
+"1758
+[v _SPBRG2 `Vuc ~T0 @X0 0 e@3951 ]
+"2157
+[v _BAUDCON2 `Vuc ~T0 @X0 0 e@3964 ]
+"1412
+[s S91 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S91 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"1422
+[s S92 :1 `uc 1 :5 `uc 1 :1 `uc 1 ]
+[n S92 . RCD8 . RC9 ]
+"1427
+[s S93 :6 `uc 1 :1 `uc 1 ]
+[n S93 . . NOT_RC8 ]
+"1431
+[s S94 :6 `uc 1 :1 `uc 1 ]
+[n S94 . . nRC8 ]
+"1435
+[s S95 :6 `uc 1 :1 `uc 1 ]
+[n S95 . . RC8_9 ]
+"1439
+[s S96 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S96 . RX9D2 OERR2 FERR2 ADDEN2 CREN2 SREN2 RX92 SPEN2 ]
+"1449
+[s S97 :6 `uc 1 :1 `uc 1 ]
+[n S97 . . RC8_92 ]
+"1453
+[s S98 :6 `uc 1 :1 `uc 1 ]
+[n S98 . . RC92 ]
+"1457
+[s S99 :1 `uc 1 ]
+[n S99 . RCD82 ]
+"1411
+[u S90 `S91 1 `S92 1 `S93 1 `S94 1 `S95 1 `S96 1 `S97 1 `S98 1 `S99 1 ]
+[n S90 . . . . . . . . . . ]
+"1461
+[v _RCSTA2bits `VS90 ~T0 @X0 0 e@3947 ]
 "3221
 [s S195 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S195 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
@@ -5452,8 +5464,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 [p x DEBUG=ON ]
 "65
-[v _ADC_RESULT `ui ~T0 @X0 -> 12 `i e ]
-[i _ADC_RESULT
+[v _CDC_RESULT_REGISTER `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT_REGISTER
 :U ..
 -> -> 11 `i `ui
 -> -> 12 `i `ui
@@ -5470,21 +5482,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 22 `i `ui
 ..
 ]
-[; ;micro_setup.h: 65: extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+[; ;micro_setup.h: 65: extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 [; ;micro_setup.h: 66: 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 "68
+[v _CDC_RESULT `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT
+:U ..
+-> -> 0 `i `ui
+..
+]
+[; ;micro_setup.h: 68: extern unsigned int CDC_RESULT[12] = 0;
+"69
 [v _AD7147Registers `ui ~T0 @X0 -> 23 `i e ]
 [i _AD7147Registers
 :U ..
 -> -> 0 `i `ui
 ..
 ]
-[; ;micro_setup.h: 68: extern unsigned int AD7147Registers[23] = 0;
-[; ;micro_setup.h: 197: void setup_mcu(void);
-[; ;micro_setup.h: 199: void setup_port(void);
-[; ;micro_setup.h: 201: void init_uart(void);
-[; ;micro_setup.h: 203: void init_pin(void);
-[; ;micro_setup.h: 205: void delay_ms(int n);
+[; ;micro_setup.h: 69: extern unsigned int AD7147Registers[23] = 0;
+[; ;micro_setup.h: 196: void setup_mcu(void);
+[; ;micro_setup.h: 198: void setup_port(void);
+[; ;micro_setup.h: 200: void init_uart(void);
+[; ;micro_setup.h: 202: void init_pin(void);
+[; ;micro_setup.h: 204: void delay_ms(int n);
 "4 micro_setup.c
 [v _setup_mcu `(v ~T0 @X0 1 ef ]
 "5
@@ -5499,6 +5519,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;micro_setup.c: 7: init_pin();
 "7
 [e ( _init_pin ..  ]
+[; ;micro_setup.c: 8: init_uart();
+"8
+[e ( _init_uart ..  ]
 [; ;micro_setup.c: 9: }
 "9
 [e :UE 710 ]
@@ -5520,109 +5543,112 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;micro_setup.c: 15: TRISE = 0b00000000;
 "15
 [e = _TRISE -> -> 0 `i `uc ]
-[; ;micro_setup.c: 16: }
+[; ;micro_setup.c: 16: TRISG = 0b00000100;
 "16
+[e = _TRISG -> -> 4 `i `uc ]
+[; ;micro_setup.c: 17: }
+"17
 [e :UE 711 ]
 }
-"18
-[v _init_uart `(v ~T0 @X0 1 ef ]
 "19
+[v _init_uart `(v ~T0 @X0 1 ef ]
+"20
 {
-[; ;micro_setup.c: 18: void init_uart(void)
-[; ;micro_setup.c: 19: {
+[; ;micro_setup.c: 19: void init_uart(void)
+[; ;micro_setup.c: 20: {
 [e :U _init_uart ]
 [f ]
-[; ;micro_setup.c: 20: TXSTA = 0b00100000;
-"20
-[e = _TXSTA -> -> 32 `i `uc ]
-[; ;micro_setup.c: 32: SPBRG = 12;
-"32
-[e = _SPBRG -> -> 12 `i `uc ]
-[; ;micro_setup.c: 45: RCSTAbits.SPEN=1;
-"45
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-[; ;micro_setup.c: 46: RCSTAbits.RX9=0;
-"46
-[e = . . _RCSTAbits 0 6 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 47: RCSTAbits.CREN=1;
-"47
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-[; ;micro_setup.c: 48: RCSTAbits.ADDEN=0;
-"48
-[e = . . _RCSTAbits 0 3 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 55: }
+[; ;micro_setup.c: 21: TXSTA2 = 0b00100000;
+"21
+[e = _TXSTA2 -> -> 32 `i `uc ]
+[; ;micro_setup.c: 33: SPBRG2 = 15;
+"33
+[e = _SPBRG2 -> -> 15 `i `uc ]
+[; ;micro_setup.c: 35: BAUDCON2 = 0b00000000;
+"35
+[e = _BAUDCON2 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 55: RCSTA2bits.SPEN=1;
 "55
+[e = . . _RCSTA2bits 0 7 -> -> 1 `i `uc ]
+[; ;micro_setup.c: 56: RCSTA2bits.RX9=0;
+"56
+[e = . . _RCSTA2bits 0 6 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 57: RCSTA2bits.CREN=1;
+"57
+[e = . . _RCSTA2bits 0 4 -> -> 1 `i `uc ]
+[; ;micro_setup.c: 64: }
+"64
 [e :UE 712 ]
 }
-"57
+"66
 [v _init_pin `(v ~T0 @X0 1 ef ]
-"58
+"67
 {
-[; ;micro_setup.c: 57: void init_pin(void)
-[; ;micro_setup.c: 58: {
+[; ;micro_setup.c: 66: void init_pin(void)
+[; ;micro_setup.c: 67: {
 [e :U _init_pin ]
 [f ]
-[; ;micro_setup.c: 59: PORTDbits.RD7 = 1;
-"59
+[; ;micro_setup.c: 68: PORTDbits.RD7 = 1;
+"68
 [e = . . _PORTDbits 0 7 -> -> 1 `i `uc ]
-[; ;micro_setup.c: 60: PORTDbits.RD6 = 0;
-"60
+[; ;micro_setup.c: 69: PORTDbits.RD6 = 0;
+"69
 [e = . . _PORTDbits 0 6 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 61: PORTDbits.RD5 = 0;
-"61
+[; ;micro_setup.c: 70: PORTDbits.RD5 = 0;
+"70
 [e = . . _PORTDbits 0 5 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 62: PORTDbits.RD4 = 0;
-"62
-[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 63: PORTDbits.RD3 = 0;
-"63
-[e = . . _PORTDbits 0 3 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 64: PORTDbits.RD2 = 0;
-"64
-[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 65: PORTDbits.RD1 = 0;
-"65
-[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 66: PORTDbits.RD0 = 0;
-"66
-[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
-[; ;micro_setup.c: 67: }
-"67
-[e :UE 713 ]
-}
-"69
-[v _delay_ms `(v ~T0 @X0 1 ef1`i ]
-"70
-{
-[; ;micro_setup.c: 69: void delay_ms(int n)
-[; ;micro_setup.c: 70: {
-[e :U _delay_ms ]
-"69
-[v _n `i ~T0 @X0 1 r1 ]
-"70
-[f ]
+[; ;micro_setup.c: 71: PORTDbits.RD4 = 0;
 "71
-[v _j `i ~T0 @X0 1 a ]
-[; ;micro_setup.c: 71: int j = n/10;
-[e = _j / _n -> 10 `i ]
-[; ;micro_setup.c: 72: while(j--)
+[e = . . _PORTDbits 0 4 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 72: PORTDbits.RD3 = 0;
 "72
-[e $U 715  ]
-[e :U 716 ]
-[; ;micro_setup.c: 73: {
+[e = . . _PORTDbits 0 3 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 73: PORTDbits.RD2 = 0;
 "73
-{
-[; ;micro_setup.c: 74: _delay((unsigned long)((10)*(10000000/4000.0)));
+[e = . . _PORTDbits 0 2 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 74: PORTDbits.RD1 = 0;
 "74
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+[e = . . _PORTDbits 0 1 -> -> 0 `i `uc ]
+[; ;micro_setup.c: 75: PORTDbits.RD0 = 0;
 "75
-}
-[e :U 715 ]
-"72
-[e $ != -- _j -> 1 `i -> 0 `i 716  ]
-[e :U 717 ]
-[; ;micro_setup.c: 75: }
+[e = . . _PORTDbits 0 0 -> -> 0 `i `uc ]
 [; ;micro_setup.c: 76: }
 "76
+[e :UE 713 ]
+}
+"78
+[v _delay_ms `(v ~T0 @X0 1 ef1`i ]
+"79
+{
+[; ;micro_setup.c: 78: void delay_ms(int n)
+[; ;micro_setup.c: 79: {
+[e :U _delay_ms ]
+"78
+[v _n `i ~T0 @X0 1 r1 ]
+"79
+[f ]
+"80
+[v _j `i ~T0 @X0 1 a ]
+[; ;micro_setup.c: 80: int j = n/10;
+[e = _j / _n -> 10 `i ]
+[; ;micro_setup.c: 81: while(j--)
+"81
+[e $U 715  ]
+[e :U 716 ]
+[; ;micro_setup.c: 82: {
+"82
+{
+[; ;micro_setup.c: 83: _delay((unsigned long)((10)*(10000000/4000.0)));
+"83
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+"84
+}
+[e :U 715 ]
+"81
+[e $ != -- _j -> 1 `i -> 0 `i 716  ]
+[e :U 717 ]
+[; ;micro_setup.c: 84: }
+[; ;micro_setup.c: 85: }
+"85
 [e :UE 714 ]
 }

@@ -1,35 +1,23 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"205 micro_setup.h
+"204 micro_setup.h
 [v _delay_ms `(v ~T0 @X0 0 ef1`i ]
-"197
+"196
 [v _setup_mcu `(v ~T0 @X0 0 ef ]
 "4 spi.h
 [v _setup_spi `(v ~T0 @X0 0 ef ]
-"10 main.c
-[v _setup_AD7147 `(i ~T0 @X0 0 ef ]
-"3052 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic18f87j10.h
-[s S188 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S188 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"3062
-[s S189 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S189 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
-"3072
-[s S190 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S190 . T13CKI CCP2 . SCL SDA . CK DT ]
-"3082
-[s S191 :2 `uc 1 :1 `uc 1 ]
-[n S191 . . PA1 ]
-"3086
-[s S192 :1 `uc 1 :1 `uc 1 ]
-[n S192 . . PA2 ]
-"3051
-[u S187 `S188 1 `S189 1 `S190 1 `S191 1 `S192 1 ]
-[n S187 . . . . . . ]
-"3091
-[v _PORTCbits `VS187 ~T0 @X0 0 e@3970 ]
-"6 spi.h
-[v _write_spi `(v ~T0 @X0 0 ef2`ui`ui ]
+"6 AD7147.h
+[v _setup_AD7147 `(v ~T0 @X0 0 ef ]
+"8 uart.h
+[v _uart_write_char `(v ~T0 @X0 0 ef1`uc ]
+"22
+[v _uart_read_char `(uc ~T0 @X0 0 ef ]
+"11 AD7147.h
+[v _get_ID `(ui ~T0 @X0 0 ef ]
+"12 uart.h
+[v _uart_write_unsigned_int `(v ~T0 @X0 0 ef1`ui ]
+"10 AD7147.h
+[v _read_sensor `(ui ~T0 @X0 0 ef1`i ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -5389,8 +5377,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 [p x DEBUG=ON ]
 "65
-[v _ADC_RESULT `ui ~T0 @X0 -> 12 `i e ]
-[i _ADC_RESULT
+[v _CDC_RESULT_REGISTER `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT_REGISTER
 :U ..
 -> -> 11 `i `ui
 -> -> 12 `i `ui
@@ -5407,86 +5395,138 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 22 `i `ui
 ..
 ]
-[; ;micro_setup.h: 65: extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+[; ;micro_setup.h: 65: extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 [; ;micro_setup.h: 66: 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 "68
+[v _CDC_RESULT `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT
+:U ..
+-> -> 0 `i `ui
+..
+]
+[; ;micro_setup.h: 68: extern unsigned int CDC_RESULT[12] = 0;
+"69
 [v _AD7147Registers `ui ~T0 @X0 -> 23 `i e ]
 [i _AD7147Registers
 :U ..
 -> -> 0 `i `ui
 ..
 ]
-[; ;micro_setup.h: 68: extern unsigned int AD7147Registers[23] = 0;
-[; ;micro_setup.h: 197: void setup_mcu(void);
-[; ;micro_setup.h: 199: void setup_port(void);
-[; ;micro_setup.h: 201: void init_uart(void);
-[; ;micro_setup.h: 203: void init_pin(void);
-[; ;micro_setup.h: 205: void delay_ms(int n);
+[; ;micro_setup.h: 69: extern unsigned int AD7147Registers[23] = 0;
+[; ;micro_setup.h: 196: void setup_mcu(void);
+[; ;micro_setup.h: 198: void setup_port(void);
+[; ;micro_setup.h: 200: void init_uart(void);
+[; ;micro_setup.h: 202: void init_pin(void);
+[; ;micro_setup.h: 204: void delay_ms(int n);
 [; ;spi.h: 4: void setup_spi(void);
-[; ;spi.h: 6: void write_spi(unsigned int, unsigned int);
-[; ;spi.h: 8: void write_spi_setup(unsigned int, unsigned int[]);
-[; ;spi.h: 10: void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
-[; ;spi.h: 12: void write_spi_solo(unsigned int message);
-[; ;spi.h: 14: unsigned int read_spi(void);
-[; ;spi.h: 16: unsigned int read_spi_solo(void);
-[; ;spi.h: 18: unsigned int cdc_signal(char, int);
-"5 main.c
+[; ;spi.h: 6: void w32_spi(unsigned int, unsigned int);
+[; ;spi.h: 8: void w16_spi(unsigned int);
+[; ;spi.h: 10: unsigned int r16_spi(void);
+[; ;spi.h: 12: unsigned int w16_r16_spi(unsigned int);
+[; ;uart.h: 6: unsigned int cdc_signal(char, int);
+[; ;uart.h: 8: void uart_write_char(char);
+[; ;uart.h: 10: void uart_write_int(int);
+[; ;uart.h: 12: void uart_write_unsigned_int(unsigned int);
+[; ;uart.h: 14: char uart_tx_empty(void);
+[; ;uart.h: 16: void uart_write_string(const char *text);
+[; ;uart.h: 18: char uart_int_to_string(int number);
+[; ;uart.h: 20: char uart_data_ready(void);
+[; ;uart.h: 22: char uart_read_char(void);
+[; ;uart.h: 24: void uart_read_text(char *Output, unsigned int length);
+[; ;AD7147.h: 6: void setup_AD7147(void);
+[; ;AD7147.h: 7: void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[]);
+[; ;AD7147.h: 8: void read_AD7147(const unsigned int, unsigned int, unsigned int);
+[; ;AD7147.h: 9: static int ServiceAD7147Isr(void);
+[; ;AD7147.h: 10: unsigned int read_sensor(int);
+[; ;AD7147.h: 11: unsigned int get_ID(void);
+[; ;AD7147.h: 12: void read_sensors(void);
+"6 main.c
 [v _main `(v ~T0 @X0 1 ef ]
-"6
+"7
 {
-[; ;main.c: 5: void main(void)
-[; ;main.c: 6: {
+[; ;main.c: 6: void main(void)
+[; ;main.c: 7: {
 [e :U _main ]
 [f ]
-[; ;main.c: 7: delay_ms(500);
-"7
-[e ( _delay_ms (1 -> 500 `i ]
-[; ;main.c: 8: setup_mcu();
+[; ;main.c: 8: delay_ms(500);
 "8
-[e ( _setup_mcu ..  ]
-[; ;main.c: 9: setup_spi();
+[e ( _delay_ms (1 -> 500 `i ]
+[; ;main.c: 9: setup_mcu();
 "9
-[e ( _setup_spi ..  ]
-[; ;main.c: 10: setup_AD7147();
+[e ( _setup_mcu ..  ]
+[; ;main.c: 10: setup_spi();
 "10
+[e ( _setup_spi ..  ]
+[; ;main.c: 11: setup_AD7147();
+"11
 [e ( _setup_AD7147 ..  ]
-"12
-[v _device `ui ~T0 @X0 1 a ]
-[; ;main.c: 12: unsigned int device = 0xE417;
-[e = _device -> 58391 `ui ]
 "13
-[v _blanks `ui ~T0 @X0 1 a ]
-[; ;main.c: 13: unsigned int blanks = 0x000;
-[e = _blanks -> -> 0 `i `ui ]
-[; ;main.c: 14: while(1)
+[v _ind `uc ~T0 @X0 1 a ]
+[; ;main.c: 13: char ind = 's';
+[e = _ind -> -> 115 `ui `uc ]
 "14
-[e :U 711 ]
-[; ;main.c: 15: {
+[v _indicator `uc ~T0 @X0 1 a ]
+[; ;main.c: 14: char indicator;
+[; ;main.c: 15: while(1)
 "15
-{
-[; ;main.c: 16: delay_ms(100);
+[e :U 711 ]
+[; ;main.c: 16: {
 "16
-[e ( _delay_ms (1 -> 100 `i ]
-[; ;main.c: 17: PORTCbits.RC2 = 0;
+{
+[; ;main.c: 17: uart_write_char(ind);
 "17
-[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 18: write_spi(device, blanks);
+[e ( _uart_write_char (1 _ind ]
+[; ;main.c: 18: indicator = uart_read_char();
 "18
-[e ( _write_spi (2 , _device _blanks ]
-[; ;main.c: 19: PORTCbits.RC2 = 1;
+[e = _indicator ( _uart_read_char ..  ]
+[; ;main.c: 19: if (indicator == 'i')
 "19
-[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[e $ ! == -> _indicator `ui -> 105 `ui 713  ]
+[; ;main.c: 20: {
 "20
+{
+"21
+[v _device_ID `ui ~T0 @X0 1 a ]
+[; ;main.c: 21: unsigned int device_ID = get_ID();
+[e = _device_ID ( _get_ID ..  ]
+[; ;main.c: 22: uart_write_unsigned_int(device_ID);
+"22
+[e ( _uart_write_unsigned_int (1 _device_ID ]
+"23
+}
+[e :U 713 ]
+[; ;main.c: 23: }
+[; ;main.c: 24: if (indicator == 's')
+"24
+[e $ ! == -> _indicator `ui -> 115 `ui 714  ]
+[; ;main.c: 25: {
+"25
+{
+"26
+[v _sensor_1 `ui ~T0 @X0 1 a ]
+[; ;main.c: 26: unsigned int sensor_1 = read_sensor(1);
+[e = _sensor_1 ( _read_sensor (1 -> 1 `i ]
+[; ;main.c: 27: uart_write_unsigned_int(sensor_1);
+"27
+[e ( _uart_write_unsigned_int (1 _sensor_1 ]
+"28
+}
+[e :U 714 ]
+[; ;main.c: 28: }
+[; ;main.c: 29: delay_ms(500);
+"29
+[e ( _delay_ms (1 -> 500 `i ]
+"30
 }
 [e :U 710 ]
-"14
+"15
 [e $U 711  ]
 [e :U 712 ]
-[; ;main.c: 20: }
-[; ;main.c: 21: return;
-"21
+[; ;main.c: 30: }
+[; ;main.c: 31: return;
+"31
 [e $UE 709  ]
-[; ;main.c: 22: }
-"22
+[; ;main.c: 32: }
+"32
 [e :UE 709 ]
 }

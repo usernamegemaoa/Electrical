@@ -131,76 +131,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISF `Vuc ~T0 @X0 0 e@3991 ]
 "11752
 [v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
-"3424
-[s S200 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S200 . RE0 RE1 RE2 RE3 RE4 RE5 RE6 RE7 ]
-"3434
-[s S201 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S201 . RD WR CS ]
-"3439
-[s S202 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S202 . AD8 AD9 AD10 AD11 AD12 AD13 AD14 AD15 ]
-"3449
-[s S203 :2 `uc 1 :1 `uc 1 ]
-[n S203 . . CCP10 ]
-"3453
-[s S204 :7 `uc 1 :1 `uc 1 ]
-[n S204 . . CCP2E ]
-"3457
-[s S205 :6 `uc 1 :1 `uc 1 ]
-[n S205 . . CCP6E ]
-"3461
-[s S206 :5 `uc 1 :1 `uc 1 ]
-[n S206 . . CCP7E ]
-"3465
-[s S207 :4 `uc 1 :1 `uc 1 ]
-[n S207 . . CCP8E ]
-"3469
-[s S208 :3 `uc 1 :1 `uc 1 ]
-[n S208 . . CCP9E ]
-"3473
-[s S209 :7 `uc 1 :1 `uc 1 ]
-[n S209 . . PA2E ]
-"3477
-[s S210 :6 `uc 1 :1 `uc 1 ]
-[n S210 . . PB1E ]
-"3481
-[s S211 :2 `uc 1 :1 `uc 1 ]
-[n S211 . . PB2 ]
-"3485
-[s S212 :4 `uc 1 :1 `uc 1 ]
-[n S212 . . PB3E ]
-"3489
-[s S213 :5 `uc 1 :1 `uc 1 ]
-[n S213 . . PC1E ]
-"3493
-[s S214 :1 `uc 1 :1 `uc 1 ]
-[n S214 . . PC2 ]
-"3497
-[s S215 :3 `uc 1 :1 `uc 1 ]
-[n S215 . . PC3E ]
-"3501
-[s S216 :1 `uc 1 ]
-[n S216 . PD2 ]
-"3504
-[s S217 :1 `uc 1 ]
-[n S217 . RDE ]
-"3507
-[s S218 :1 `uc 1 :1 `uc 1 ]
-[n S218 . . WRE ]
-"3423
-[u S199 `S200 1 `S201 1 `S202 1 `S203 1 `S204 1 `S205 1 `S206 1 `S207 1 `S208 1 `S209 1 `S210 1 `S211 1 `S212 1 `S213 1 `S214 1 `S215 1 `S216 1 `S217 1 `S218 1 ]
-[n S199 . . . . . . . . . . . . . . . . . . . . ]
-"3512
-[v _PORTEbits `VS199 ~T0 @X0 0 e@3972 ]
+"3052
+[s S188 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S188 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"3062
+[s S189 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S189 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
+"3072
+[s S190 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S190 . T13CKI CCP2 . SCL SDA . CK DT ]
+"3082
+[s S191 :2 `uc 1 :1 `uc 1 ]
+[n S191 . . PA1 ]
+"3086
+[s S192 :1 `uc 1 :1 `uc 1 ]
+[n S192 . . PA2 ]
+"3051
+[u S187 `S188 1 `S189 1 `S190 1 `S191 1 `S192 1 ]
+[n S187 . . . . . . ]
+"3091
+[v _PORTCbits `VS187 ~T0 @X0 0 e@3970 ]
 [; ;spi.h: 4: void setup_spi(void);
-[; ;spi.h: 6: void write_spi(unsigned int, unsigned int);
-[; ;spi.h: 8: void write_spi_setup(unsigned int, unsigned int[]);
-[; ;spi.h: 10: void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
-[; ;spi.h: 12: void write_spi_solo(unsigned int message);
-[; ;spi.h: 14: unsigned int read_spi(void);
-[; ;spi.h: 16: unsigned int read_spi_solo(void);
-[; ;spi.h: 18: unsigned int cdc_signal(char, int);
+[; ;spi.h: 6: void w32_spi(unsigned int, unsigned int);
+[; ;spi.h: 8: void w16_spi(unsigned int);
+[; ;spi.h: 10: unsigned int r16_spi(void);
+[; ;spi.h: 12: unsigned int w16_r16_spi(unsigned int);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -5560,8 +5515,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 [p x DEBUG=ON ]
 "65
-[v _ADC_RESULT `ui ~T0 @X0 -> 12 `i e ]
-[i _ADC_RESULT
+[v _CDC_RESULT_REGISTER `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT_REGISTER
 :U ..
 -> -> 11 `i `ui
 -> -> 12 `i `ui
@@ -5578,21 +5533,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 22 `i `ui
 ..
 ]
-[; ;micro_setup.h: 65: extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+[; ;micro_setup.h: 65: extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 [; ;micro_setup.h: 66: 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 "68
+[v _CDC_RESULT `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT
+:U ..
+-> -> 0 `i `ui
+..
+]
+[; ;micro_setup.h: 68: extern unsigned int CDC_RESULT[12] = 0;
+"69
 [v _AD7147Registers `ui ~T0 @X0 -> 23 `i e ]
 [i _AD7147Registers
 :U ..
 -> -> 0 `i `ui
 ..
 ]
-[; ;micro_setup.h: 68: extern unsigned int AD7147Registers[23] = 0;
-[; ;micro_setup.h: 197: void setup_mcu(void);
-[; ;micro_setup.h: 199: void setup_port(void);
-[; ;micro_setup.h: 201: void init_uart(void);
-[; ;micro_setup.h: 203: void init_pin(void);
-[; ;micro_setup.h: 205: void delay_ms(int n);
+[; ;micro_setup.h: 69: extern unsigned int AD7147Registers[23] = 0;
+[; ;micro_setup.h: 196: void setup_mcu(void);
+[; ;micro_setup.h: 198: void setup_port(void);
+[; ;micro_setup.h: 200: void init_uart(void);
+[; ;micro_setup.h: 202: void init_pin(void);
+[; ;micro_setup.h: 204: void delay_ms(int n);
 "4 spi.c
 [v _setup_spi `(v ~T0 @X0 1 ef ]
 "5
@@ -5645,12 +5608,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 709 ]
 }
 "26
-[v _write_spi `(v ~T0 @X0 1 ef2`ui`ui ]
+[v _w32_spi `(v ~T0 @X0 1 ef2`ui`ui ]
 "27
 {
-[; ;spi.c: 26: void write_spi(unsigned int address, unsigned int data)
+[; ;spi.c: 26: void w32_spi(unsigned int address, unsigned int data)
 [; ;spi.c: 27: {
-[e :U _write_spi ]
+[e :U _w32_spi ]
 "26
 [v _address `ui ~T0 @X0 1 r1 ]
 [v _data `ui ~T0 @X0 1 r2 ]
@@ -5658,975 +5621,305 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "28
 [v _address_low `ui ~T0 @X0 1 a ]
-[; ;spi.c: 28: unsigned int address_low = address & 0xFF;
-[e = _address_low & _address -> -> 255 `i `ui ]
-"29
 [v _address_high `ui ~T0 @X0 1 a ]
-[; ;spi.c: 29: unsigned int address_high = (address >> 8);
-[e = _address_high >> _address -> 8 `i ]
-"30
 [v _data_low `ui ~T0 @X0 1 a ]
-[; ;spi.c: 30: unsigned int data_low = data & 0xFF;
-[e = _data_low & _data -> -> 255 `i `ui ]
-"31
 [v _data_high `ui ~T0 @X0 1 a ]
-[; ;spi.c: 31: unsigned int data_high = (data >> 8);
-[e = _data_high >> _data -> 8 `i ]
-[; ;spi.c: 33: SSP1BUF = address_high;
+[; ;spi.c: 28: unsigned int address_low, address_high, data_low, data_high;
+[; ;spi.c: 30: address_low = address & 0xFF;
+"30
+[e = _address_low & _address -> -> 255 `i `ui ]
+[; ;spi.c: 31: address_high = (address >> 8) & 0xFF;
+"31
+[e = _address_high & >> _address -> 8 `i -> -> 255 `i `ui ]
+[; ;spi.c: 33: data_low = data & 0xFF;
 "33
-[e = _SSP1BUF -> _address_high `uc ]
-[; ;spi.c: 34: while(!SSP1STATbits.BF);
+[e = _data_low & _data -> -> 255 `i `ui ]
+[; ;spi.c: 34: data_high = (data >> 8) & 0xFF;;
 "34
+[e = _data_high & >> _data -> 8 `i -> -> 255 `i `ui ]
+[; ;spi.c: 36: SSP1BUF = address_high;
+"36
+[e = _SSP1BUF -> _address_high `uc ]
+[; ;spi.c: 37: while(!SSP1STATbits.BF);
+"37
 [e $U 711  ]
 [e :U 712 ]
 [e :U 711 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 712  ]
 [e :U 713 ]
-"35
-[v _p1 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 35: unsigned int p1 = SSP1BUF;
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 37: SSP1BUF = address_low;
-"37
-[e = _SSP1BUF -> _address_low `uc ]
-[; ;spi.c: 38: while(!SSP1STATbits.BF);
 "38
+[v _p1 `ui ~T0 @X0 1 a ]
+[; ;spi.c: 38: unsigned int p1 = SSP1BUF;
+[e = _p1 -> _SSP1BUF `ui ]
+[; ;spi.c: 40: SSP1BUF = address_low;
+"40
+[e = _SSP1BUF -> _address_low `uc ]
+[; ;spi.c: 41: while(!SSP1STATbits.BF);
+"41
 [e $U 714  ]
 [e :U 715 ]
 [e :U 714 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 715  ]
 [e :U 716 ]
-"39
-[v _p2 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 39: unsigned int p2 = SSP1BUF;
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 41: SSP1BUF = data_high;
-"41
-[e = _SSP1BUF -> _data_high `uc ]
-[; ;spi.c: 42: while(!SSP1STATbits.BF);
 "42
+[v _p2 `ui ~T0 @X0 1 a ]
+[; ;spi.c: 42: unsigned int p2 = SSP1BUF;
+[e = _p2 -> _SSP1BUF `ui ]
+[; ;spi.c: 44: SSP1BUF = data_high;
+"44
+[e = _SSP1BUF -> _data_high `uc ]
+[; ;spi.c: 45: while(!SSP1STATbits.BF);
+"45
 [e $U 717  ]
 [e :U 718 ]
 [e :U 717 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 718  ]
 [e :U 719 ]
-"43
-[v _p3 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 43: unsigned int p3 = SSP1BUF;
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 45: SSP1BUF = data_low;
-"45
-[e = _SSP1BUF -> _data_low `uc ]
-[; ;spi.c: 46: while(!SSP1STATbits.BF);
 "46
+[v _p3 `ui ~T0 @X0 1 a ]
+[; ;spi.c: 46: unsigned int p3 = SSP1BUF;
+[e = _p3 -> _SSP1BUF `ui ]
+[; ;spi.c: 48: SSP1BUF = data_low;
+"48
+[e = _SSP1BUF -> _data_low `uc ]
+[; ;spi.c: 49: while(!SSP1STATbits.BF);
+"49
 [e $U 720  ]
 [e :U 721 ]
 [e :U 720 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 721  ]
 [e :U 722 ]
-"47
+"50
 [v _p4 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 47: unsigned int p4 = SSP1BUF;
+[; ;spi.c: 50: unsigned int p4 = SSP1BUF;
 [e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 48: }
-"48
+[; ;spi.c: 51: }
+"51
 [e :UE 710 ]
 }
-"50
-[v _write_spi_setup `(v ~T0 @X0 1 ef2`ui`*ui ]
-"51
-{
-[; ;spi.c: 50: void write_spi_setup(unsigned int RegisterAddress, unsigned int data[])
-[; ;spi.c: 51: {
-[e :U _write_spi_setup ]
-"50
-[v _RegisterAddress `ui ~T0 @X0 1 r1 ]
-[v _data `*ui ~T0 @X0 1 r2 ]
-"51
-[f ]
-"52
-[v _address_low0 `ui ~T0 @X0 1 a ]
-[v _address_low1 `ui ~T0 @X0 1 a ]
-[v _address_low2 `ui ~T0 @X0 1 a ]
-[v _address_low3 `ui ~T0 @X0 1 a ]
-[v _address_low4 `ui ~T0 @X0 1 a ]
-[v _address_low5 `ui ~T0 @X0 1 a ]
-[v _address_low6 `ui ~T0 @X0 1 a ]
-[v _address_low7 `ui ~T0 @X0 1 a ]
 "53
-[v _address_high0 `ui ~T0 @X0 1 a ]
-[v _address_high1 `ui ~T0 @X0 1 a ]
-[v _address_high2 `ui ~T0 @X0 1 a ]
-[v _address_high3 `ui ~T0 @X0 1 a ]
-[v _address_high4 `ui ~T0 @X0 1 a ]
-[v _address_high5 `ui ~T0 @X0 1 a ]
-[v _address_high6 `ui ~T0 @X0 1 a ]
-[v _address_high7 `ui ~T0 @X0 1 a ]
+[v _w16_spi `(v ~T0 @X0 1 ef1`ui ]
 "54
-[v _data_low0 `ui ~T0 @X0 1 a ]
-[v _data_low1 `ui ~T0 @X0 1 a ]
-[v _data_low2 `ui ~T0 @X0 1 a ]
-[v _data_low3 `ui ~T0 @X0 1 a ]
-[v _data_low4 `ui ~T0 @X0 1 a ]
-[v _data_low5 `ui ~T0 @X0 1 a ]
-[v _data_low6 `ui ~T0 @X0 1 a ]
-[v _data_low7 `ui ~T0 @X0 1 a ]
+{
+[; ;spi.c: 53: void w16_spi(unsigned int address)
+[; ;spi.c: 54: {
+[e :U _w16_spi ]
+"53
+[v _address `ui ~T0 @X0 1 r1 ]
+"54
+[f ]
 "55
-[v _data_high0 `ui ~T0 @X0 1 a ]
-[v _data_high1 `ui ~T0 @X0 1 a ]
-[v _data_high2 `ui ~T0 @X0 1 a ]
-[v _data_high3 `ui ~T0 @X0 1 a ]
-[v _data_high4 `ui ~T0 @X0 1 a ]
-[v _data_high5 `ui ~T0 @X0 1 a ]
-[v _data_high6 `ui ~T0 @X0 1 a ]
-[v _data_high7 `ui ~T0 @X0 1 a ]
+[v _address_low `ui ~T0 @X0 1 a ]
+[v _address_high `ui ~T0 @X0 1 a ]
 "56
 [v _p1 `ui ~T0 @X0 1 a ]
 [v _p2 `ui ~T0 @X0 1 a ]
-[v _p3 `ui ~T0 @X0 1 a ]
-[v _p4 `ui ~T0 @X0 1 a ]
-"57
-[v _enable_word `ui ~T0 @X0 1 a ]
-[; ;spi.c: 52: unsigned int address_low0, address_low1, address_low2, address_low3, address_low4, address_low5, address_low6, address_low7;
-[; ;spi.c: 53: unsigned int address_high0, address_high1, address_high2, address_high3, address_high4, address_high5, address_high6, address_high7;
-[; ;spi.c: 54: unsigned int data_low0, data_low1, data_low2, data_low3, data_low4, data_low5, data_low6, data_low7;
-[; ;spi.c: 55: unsigned int data_high0, data_high1, data_high2, data_high3, data_high4, data_high5, data_high6, data_high7;
-[; ;spi.c: 56: unsigned int p1, p2, p3, p4;
-[; ;spi.c: 57: unsigned int enable_word = 0xE000;
-[e = _enable_word -> 57344 `ui ]
+[; ;spi.c: 55: unsigned int address_low, address_high;
+[; ;spi.c: 56: unsigned int p1, p2;
+[; ;spi.c: 58: address_low = address & 0xFF;
 "58
-[v _address0 `ui ~T0 @X0 1 a ]
-[v _address1 `ui ~T0 @X0 1 a ]
-[v _address2 `ui ~T0 @X0 1 a ]
-[v _address3 `ui ~T0 @X0 1 a ]
-[v _address4 `ui ~T0 @X0 1 a ]
-[v _address5 `ui ~T0 @X0 1 a ]
-[v _address6 `ui ~T0 @X0 1 a ]
-[v _address7 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 58: unsigned int address0, address1, address2, address3, address4, address5, address6, address7;
-[; ;spi.c: 60: address0 = enable_word + (RegisterAddress+0);
-"60
-[e = _address0 + _enable_word + _RegisterAddress -> -> 0 `i `ui ]
-[; ;spi.c: 61: address1 = enable_word + (RegisterAddress+1);
+[e = _address_low & _address -> -> 255 `i `ui ]
+[; ;spi.c: 59: address_high = (address >> 8) & 0xFF;
+"59
+[e = _address_high & >> _address -> 8 `i -> -> 255 `i `ui ]
+[; ;spi.c: 61: PORTCbits.RC2 = 0;
 "61
-[e = _address1 + _enable_word + _RegisterAddress -> -> 1 `i `ui ]
-[; ;spi.c: 62: address2 = enable_word + (RegisterAddress+2);
-"62
-[e = _address2 + _enable_word + _RegisterAddress -> -> 2 `i `ui ]
-[; ;spi.c: 63: address3 = enable_word + (RegisterAddress+3);
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;spi.c: 63: SSP1BUF = address_high;
 "63
-[e = _address3 + _enable_word + _RegisterAddress -> -> 3 `i `ui ]
-[; ;spi.c: 64: address4 = enable_word + (RegisterAddress+4);
+[e = _SSP1BUF -> _address_high `uc ]
+[; ;spi.c: 64: while(!SSP1STATbits.BF);
 "64
-[e = _address4 + _enable_word + _RegisterAddress -> -> 4 `i `ui ]
-[; ;spi.c: 65: address5 = enable_word + (RegisterAddress+5);
-"65
-[e = _address5 + _enable_word + _RegisterAddress -> -> 5 `i `ui ]
-[; ;spi.c: 66: address6 = enable_word + (RegisterAddress+6);
-"66
-[e = _address6 + _enable_word + _RegisterAddress -> -> 6 `i `ui ]
-[; ;spi.c: 67: address7 = enable_word + (RegisterAddress+7);
-"67
-[e = _address7 + _enable_word + _RegisterAddress -> -> 7 `i `ui ]
-[; ;spi.c: 70: address_low0 = address0 & 0xFF;
-"70
-[e = _address_low0 & _address0 -> -> 255 `i `ui ]
-[; ;spi.c: 71: address_high0 = (address0 >> 8);
-"71
-[e = _address_high0 >> _address0 -> 8 `i ]
-[; ;spi.c: 72: data_low0 = data[0] & 0xFF;
-"72
-[e = _data_low0 & *U + _data * -> -> 0 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 73: data_high0 = (data[0] >> 8);
-"73
-[e = _data_high0 >> *U + _data * -> -> 0 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 76: address_low1 = address1 & 0xFF;
-"76
-[e = _address_low1 & _address1 -> -> 255 `i `ui ]
-[; ;spi.c: 77: address_high1 = (address1 >> 8);
-"77
-[e = _address_high1 >> _address1 -> 8 `i ]
-[; ;spi.c: 78: data_low1 = data[1] & 0xFF;
-"78
-[e = _data_low1 & *U + _data * -> -> 1 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 79: data_high1 = (data[1] >> 8);
-"79
-[e = _data_high1 >> *U + _data * -> -> 1 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 82: address_low2 = address2 & 0xFF;
-"82
-[e = _address_low2 & _address2 -> -> 255 `i `ui ]
-[; ;spi.c: 83: address_high2 = (address2 >> 8);
-"83
-[e = _address_high2 >> _address2 -> 8 `i ]
-[; ;spi.c: 84: data_low2 = data[2] & 0xFF;
-"84
-[e = _data_low2 & *U + _data * -> -> 2 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 85: data_high2 = (data[2] >> 8);
-"85
-[e = _data_high2 >> *U + _data * -> -> 2 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 88: address_low3 = address3 & 0xFF;
-"88
-[e = _address_low3 & _address3 -> -> 255 `i `ui ]
-[; ;spi.c: 89: address_high3 = (address3 >> 8);
-"89
-[e = _address_high3 >> _address3 -> 8 `i ]
-[; ;spi.c: 90: data_low3 = data[3] & 0xFF;
-"90
-[e = _data_low3 & *U + _data * -> -> 3 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 91: data_high3 = (data[3] >> 8);
-"91
-[e = _data_high3 >> *U + _data * -> -> 3 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 94: address_low4 = address4 & 0xFF;
-"94
-[e = _address_low4 & _address4 -> -> 255 `i `ui ]
-[; ;spi.c: 95: address_high4 = (address4 >> 8);
-"95
-[e = _address_high4 >> _address4 -> 8 `i ]
-[; ;spi.c: 96: data_low4 = data[4] & 0xFF;
-"96
-[e = _data_low4 & *U + _data * -> -> 4 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 97: data_high4 = (data[4] >> 8);
-"97
-[e = _data_high4 >> *U + _data * -> -> 4 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 100: address_low5 = address5 & 0xFF;
-"100
-[e = _address_low5 & _address5 -> -> 255 `i `ui ]
-[; ;spi.c: 101: address_high5 = (address5 >> 8);
-"101
-[e = _address_high5 >> _address5 -> 8 `i ]
-[; ;spi.c: 102: data_low5 = data[5] & 0xFF;
-"102
-[e = _data_low5 & *U + _data * -> -> 5 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 103: data_high5 = (data[5] >> 8);
-"103
-[e = _data_high5 >> *U + _data * -> -> 5 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 106: address_low6 = address6 & 0xFF;
-"106
-[e = _address_low6 & _address6 -> -> 255 `i `ui ]
-[; ;spi.c: 107: address_high6 = (address6 >> 8);
-"107
-[e = _address_high6 >> _address6 -> 8 `i ]
-[; ;spi.c: 108: data_low6 = data[6] & 0xFF;
-"108
-[e = _data_low6 & *U + _data * -> -> 6 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 109: data_high6 = (data[6] >> 8);
-"109
-[e = _data_high6 >> *U + _data * -> -> 6 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 112: address_low7 = address7 & 0xFF;
-"112
-[e = _address_low7 & _address7 -> -> 255 `i `ui ]
-[; ;spi.c: 113: address_high7 = (address7 >> 8);
-"113
-[e = _address_high7 >> _address7 -> 8 `i ]
-[; ;spi.c: 114: data_low7 = data[7] & 0xFF;
-"114
-[e = _data_low7 & *U + _data * -> -> 7 `i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 115: data_high7 = (data[7] >> 8);
-"115
-[e = _data_high7 >> *U + _data * -> -> 7 `i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 118: SSP1BUF = address_high0;
-"118
-[e = _SSP1BUF -> _address_high0 `uc ]
-[; ;spi.c: 119: while(!SSP1STATbits.BF);
-"119
 [e $U 724  ]
 [e :U 725 ]
 [e :U 724 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 725  ]
 [e :U 726 ]
-[; ;spi.c: 120: p1 = SSP1BUF;
-"120
+[; ;spi.c: 65: p1 = SSP1BUF;
+"65
 [e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 122: SSP1BUF = address_low0;
-"122
-[e = _SSP1BUF -> _address_low0 `uc ]
-[; ;spi.c: 123: while(!SSP1STATbits.BF);
-"123
+[; ;spi.c: 67: SSP1BUF = address_low;
+"67
+[e = _SSP1BUF -> _address_low `uc ]
+[; ;spi.c: 68: while(!SSP1STATbits.BF);
+"68
 [e $U 727  ]
 [e :U 728 ]
 [e :U 727 ]
 [e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 728  ]
 [e :U 729 ]
-[; ;spi.c: 124: p2 = SSP1BUF;
-"124
+[; ;spi.c: 69: p2 = SSP1BUF;
+"69
 [e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 126: SSP1BUF = data_high0;
-"126
-[e = _SSP1BUF -> _data_high0 `uc ]
-[; ;spi.c: 127: while(!SSP1STATbits.BF);
-"127
-[e $U 730  ]
-[e :U 731 ]
-[e :U 730 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 731  ]
-[e :U 732 ]
-[; ;spi.c: 128: p3 = SSP1BUF;
-"128
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 130: SSP1BUF = data_low0;
-"130
-[e = _SSP1BUF -> _data_low0 `uc ]
-[; ;spi.c: 131: while(!SSP1STATbits.BF);
-"131
-[e $U 733  ]
-[e :U 734 ]
-[e :U 733 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 734  ]
-[e :U 735 ]
-[; ;spi.c: 132: p4 = SSP1BUF;
-"132
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 135: SSP1BUF = address_high1;
-"135
-[e = _SSP1BUF -> _address_high1 `uc ]
-[; ;spi.c: 136: while(!SSP1STATbits.BF);
-"136
-[e $U 736  ]
-[e :U 737 ]
-[e :U 736 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 737  ]
-[e :U 738 ]
-[; ;spi.c: 137: p1 = SSP1BUF;
-"137
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 139: SSP1BUF = address_low1;
-"139
-[e = _SSP1BUF -> _address_low1 `uc ]
-[; ;spi.c: 140: while(!SSP1STATbits.BF);
-"140
-[e $U 739  ]
-[e :U 740 ]
-[e :U 739 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 740  ]
-[e :U 741 ]
-[; ;spi.c: 141: p2 = SSP1BUF;
-"141
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 143: SSP1BUF = data_high1;
-"143
-[e = _SSP1BUF -> _data_high1 `uc ]
-[; ;spi.c: 144: while(!SSP1STATbits.BF);
-"144
-[e $U 742  ]
-[e :U 743 ]
-[e :U 742 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 743  ]
-[e :U 744 ]
-[; ;spi.c: 145: p3 = SSP1BUF;
-"145
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 147: SSP1BUF = data_low1;
-"147
-[e = _SSP1BUF -> _data_low1 `uc ]
-[; ;spi.c: 148: while(!SSP1STATbits.BF);
-"148
-[e $U 745  ]
-[e :U 746 ]
-[e :U 745 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 746  ]
-[e :U 747 ]
-[; ;spi.c: 149: p4 = SSP1BUF;
-"149
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 152: SSP1BUF = address_high2;
-"152
-[e = _SSP1BUF -> _address_high2 `uc ]
-[; ;spi.c: 153: while(!SSP1STATbits.BF);
-"153
-[e $U 748  ]
-[e :U 749 ]
-[e :U 748 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 749  ]
-[e :U 750 ]
-[; ;spi.c: 154: p1 = SSP1BUF;
-"154
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 156: SSP1BUF = address_low2;
-"156
-[e = _SSP1BUF -> _address_low2 `uc ]
-[; ;spi.c: 157: while(!SSP1STATbits.BF);
-"157
-[e $U 751  ]
-[e :U 752 ]
-[e :U 751 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 752  ]
-[e :U 753 ]
-[; ;spi.c: 158: p2 = SSP1BUF;
-"158
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 160: SSP1BUF = data_high2;
-"160
-[e = _SSP1BUF -> _data_high2 `uc ]
-[; ;spi.c: 161: while(!SSP1STATbits.BF);
-"161
-[e $U 754  ]
-[e :U 755 ]
-[e :U 754 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 755  ]
-[e :U 756 ]
-[; ;spi.c: 162: p3 = SSP1BUF;
-"162
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 164: SSP1BUF = data_low2;
-"164
-[e = _SSP1BUF -> _data_low2 `uc ]
-[; ;spi.c: 165: while(!SSP1STATbits.BF);
-"165
-[e $U 757  ]
-[e :U 758 ]
-[e :U 757 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 758  ]
-[e :U 759 ]
-[; ;spi.c: 166: p4 = SSP1BUF;
-"166
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 169: SSP1BUF = address_high3;
-"169
-[e = _SSP1BUF -> _address_high3 `uc ]
-[; ;spi.c: 170: while(!SSP1STATbits.BF);
-"170
-[e $U 760  ]
-[e :U 761 ]
-[e :U 760 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 761  ]
-[e :U 762 ]
-[; ;spi.c: 171: p1 = SSP1BUF;
-"171
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 173: SSP1BUF = address_low3;
-"173
-[e = _SSP1BUF -> _address_low3 `uc ]
-[; ;spi.c: 174: while(!SSP1STATbits.BF);
-"174
-[e $U 763  ]
-[e :U 764 ]
-[e :U 763 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 764  ]
-[e :U 765 ]
-[; ;spi.c: 175: p2 = SSP1BUF;
-"175
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 177: SSP1BUF = data_high3;
-"177
-[e = _SSP1BUF -> _data_high3 `uc ]
-[; ;spi.c: 178: while(!SSP1STATbits.BF);
-"178
-[e $U 766  ]
-[e :U 767 ]
-[e :U 766 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 767  ]
-[e :U 768 ]
-[; ;spi.c: 179: p3 = SSP1BUF;
-"179
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 181: SSP1BUF = data_low3;
-"181
-[e = _SSP1BUF -> _data_low3 `uc ]
-[; ;spi.c: 182: while(!SSP1STATbits.BF);
-"182
-[e $U 769  ]
-[e :U 770 ]
-[e :U 769 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 770  ]
-[e :U 771 ]
-[; ;spi.c: 183: p4 = SSP1BUF;
-"183
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 186: SSP1BUF = address_high4;
-"186
-[e = _SSP1BUF -> _address_high4 `uc ]
-[; ;spi.c: 187: while(!SSP1STATbits.BF);
-"187
-[e $U 772  ]
-[e :U 773 ]
-[e :U 772 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 773  ]
-[e :U 774 ]
-[; ;spi.c: 188: p1 = SSP1BUF;
-"188
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 190: SSP1BUF = address_low4;
-"190
-[e = _SSP1BUF -> _address_low4 `uc ]
-[; ;spi.c: 191: while(!SSP1STATbits.BF);
-"191
-[e $U 775  ]
-[e :U 776 ]
-[e :U 775 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 776  ]
-[e :U 777 ]
-[; ;spi.c: 192: p2 = SSP1BUF;
-"192
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 194: SSP1BUF = data_high4;
-"194
-[e = _SSP1BUF -> _data_high4 `uc ]
-[; ;spi.c: 195: while(!SSP1STATbits.BF);
-"195
-[e $U 778  ]
-[e :U 779 ]
-[e :U 778 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 779  ]
-[e :U 780 ]
-[; ;spi.c: 196: p3 = SSP1BUF;
-"196
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 198: SSP1BUF = data_low4;
-"198
-[e = _SSP1BUF -> _data_low4 `uc ]
-[; ;spi.c: 199: while(!SSP1STATbits.BF);
-"199
-[e $U 781  ]
-[e :U 782 ]
-[e :U 781 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 782  ]
-[e :U 783 ]
-[; ;spi.c: 200: p4 = SSP1BUF;
-"200
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 203: SSP1BUF = address_high5;
-"203
-[e = _SSP1BUF -> _address_high5 `uc ]
-[; ;spi.c: 204: while(!SSP1STATbits.BF);
-"204
-[e $U 784  ]
-[e :U 785 ]
-[e :U 784 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 785  ]
-[e :U 786 ]
-[; ;spi.c: 205: p1 = SSP1BUF;
-"205
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 207: SSP1BUF = address_low5;
-"207
-[e = _SSP1BUF -> _address_low5 `uc ]
-[; ;spi.c: 208: while(!SSP1STATbits.BF);
-"208
-[e $U 787  ]
-[e :U 788 ]
-[e :U 787 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 788  ]
-[e :U 789 ]
-[; ;spi.c: 209: p2 = SSP1BUF;
-"209
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 211: SSP1BUF = data_high5;
-"211
-[e = _SSP1BUF -> _data_high5 `uc ]
-[; ;spi.c: 212: while(!SSP1STATbits.BF);
-"212
-[e $U 790  ]
-[e :U 791 ]
-[e :U 790 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 791  ]
-[e :U 792 ]
-[; ;spi.c: 213: p3 = SSP1BUF;
-"213
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 215: SSP1BUF = data_low5;
-"215
-[e = _SSP1BUF -> _data_low5 `uc ]
-[; ;spi.c: 216: while(!SSP1STATbits.BF);
-"216
-[e $U 793  ]
-[e :U 794 ]
-[e :U 793 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 794  ]
-[e :U 795 ]
-[; ;spi.c: 217: p4 = SSP1BUF;
-"217
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 220: SSP1BUF = address_high6;
-"220
-[e = _SSP1BUF -> _address_high6 `uc ]
-[; ;spi.c: 221: while(!SSP1STATbits.BF);
-"221
-[e $U 796  ]
-[e :U 797 ]
-[e :U 796 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 797  ]
-[e :U 798 ]
-[; ;spi.c: 222: p1 = SSP1BUF;
-"222
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 224: SSP1BUF = address_low6;
-"224
-[e = _SSP1BUF -> _address_low6 `uc ]
-[; ;spi.c: 225: while(!SSP1STATbits.BF);
-"225
-[e $U 799  ]
-[e :U 800 ]
-[e :U 799 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 800  ]
-[e :U 801 ]
-[; ;spi.c: 226: p2 = SSP1BUF;
-"226
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 228: SSP1BUF = data_high6;
-"228
-[e = _SSP1BUF -> _data_high6 `uc ]
-[; ;spi.c: 229: while(!SSP1STATbits.BF);
-"229
-[e $U 802  ]
-[e :U 803 ]
-[e :U 802 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 803  ]
-[e :U 804 ]
-[; ;spi.c: 230: p3 = SSP1BUF;
-"230
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 232: SSP1BUF = data_low6;
-"232
-[e = _SSP1BUF -> _data_low6 `uc ]
-[; ;spi.c: 233: while(!SSP1STATbits.BF);
-"233
-[e $U 805  ]
-[e :U 806 ]
-[e :U 805 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 806  ]
-[e :U 807 ]
-[; ;spi.c: 234: p4 = SSP1BUF;
-"234
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 237: SSP1BUF = address_high7;
-"237
-[e = _SSP1BUF -> _address_high7 `uc ]
-[; ;spi.c: 238: while(!SSP1STATbits.BF);
-"238
-[e $U 808  ]
-[e :U 809 ]
-[e :U 808 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 809  ]
-[e :U 810 ]
-[; ;spi.c: 239: p1 = SSP1BUF;
-"239
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 241: SSP1BUF = address_low7;
-"241
-[e = _SSP1BUF -> _address_low7 `uc ]
-[; ;spi.c: 242: while(!SSP1STATbits.BF);
-"242
-[e $U 811  ]
-[e :U 812 ]
-[e :U 811 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 812  ]
-[e :U 813 ]
-[; ;spi.c: 243: p2 = SSP1BUF;
-"243
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 245: SSP1BUF = data_high7;
-"245
-[e = _SSP1BUF -> _data_high7 `uc ]
-[; ;spi.c: 246: while(!SSP1STATbits.BF);
-"246
-[e $U 814  ]
-[e :U 815 ]
-[e :U 814 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 815  ]
-[e :U 816 ]
-[; ;spi.c: 247: p3 = SSP1BUF;
-"247
-[e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 249: SSP1BUF = data_low7;
-"249
-[e = _SSP1BUF -> _data_low7 `uc ]
-[; ;spi.c: 250: while(!SSP1STATbits.BF);
-"250
-[e $U 817  ]
-[e :U 818 ]
-[e :U 817 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 818  ]
-[e :U 819 ]
-[; ;spi.c: 251: p4 = SSP1BUF;
-"251
-[e = _p4 -> _SSP1BUF `ui ]
-[; ;spi.c: 252: }
-"252
+[; ;spi.c: 71: PORTCbits.RC2 = 1;
+"71
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[; ;spi.c: 72: }
+"72
 [e :UE 723 ]
 }
-"255
-[v _write_spi_register `(v ~T0 @X0 1 ef3`*ui`ui`*ui ]
-"256
+"74
+[v _r16_spi `(ui ~T0 @X0 1 ef ]
+"75
 {
-[; ;spi.c: 255: void write_spi_register(unsigned int address[], unsigned int NumberOfRegisters, unsigned int data[])
-[; ;spi.c: 256: {
-[e :U _write_spi_register ]
-"255
-[v _address `*ui ~T0 @X0 1 r1 ]
-[v _NumberOfRegisters `ui ~T0 @X0 1 r2 ]
-[v _data `*ui ~T0 @X0 1 r3 ]
-"256
+[; ;spi.c: 74: unsigned int r16_spi(void)
+[; ;spi.c: 75: {
+[e :U _r16_spi ]
 [f ]
-"257
+"76
+[v _dummy `ui ~T0 @X0 1 a ]
+[; ;spi.c: 76: unsigned int dummy = 0x000;
+[e = _dummy -> -> 0 `i `ui ]
+"77
+[v _p1 `ui ~T0 @X0 1 a ]
+[v _p2 `ui ~T0 @X0 1 a ]
+[v _message `ui ~T0 @X0 1 a ]
+[; ;spi.c: 77: unsigned int p1, p2, message;
+[; ;spi.c: 79: PORTCbits.RC2 = 0;
+"79
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;spi.c: 81: SSP1BUF = dummy;
+"81
+[e = _SSP1BUF -> _dummy `uc ]
+[; ;spi.c: 82: while(!SSP1STATbits.BF);
+"82
+[e $U 731  ]
+[e :U 732 ]
+[e :U 731 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 732  ]
+[e :U 733 ]
+[; ;spi.c: 83: p1 = SSP1BUF;
+"83
+[e = _p1 -> _SSP1BUF `ui ]
+[; ;spi.c: 85: SSP1BUF = dummy;
+"85
+[e = _SSP1BUF -> _dummy `uc ]
+[; ;spi.c: 86: while(!SSP1STATbits.BF);
+"86
+[e $U 734  ]
+[e :U 735 ]
+[e :U 734 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 735  ]
+[e :U 736 ]
+[; ;spi.c: 87: p2 = SSP1BUF;
+"87
+[e = _p2 -> _SSP1BUF `ui ]
+[; ;spi.c: 89: PORTCbits.RC2 = 1;
+"89
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[; ;spi.c: 91: message = (p1<<8) + p2;
+"91
+[e = _message + << _p1 -> 8 `i _p2 ]
+[; ;spi.c: 93: return message;
+"93
+[e ) _message ]
+[e $UE 730  ]
+[; ;spi.c: 94: }
+"94
+[e :UE 730 ]
+}
+"96
+[v _w16_r16_spi `(ui ~T0 @X0 1 ef1`ui ]
+"97
+{
+[; ;spi.c: 96: unsigned int w16_r16_spi(unsigned int address)
+[; ;spi.c: 97: {
+[e :U _w16_r16_spi ]
+"96
+[v _address `ui ~T0 @X0 1 r1 ]
+"97
+[f ]
+"98
 [v _address_low `ui ~T0 @X0 1 a ]
-"258
 [v _address_high `ui ~T0 @X0 1 a ]
-"259
-[v _data_low `ui ~T0 @X0 1 a ]
-"260
-[v _data_high `ui ~T0 @X0 1 a ]
-"261
+[v _result `ui ~T0 @X0 1 a ]
+"99
+[v _blank_low `ui ~T0 @X0 1 a ]
+[; ;spi.c: 98: unsigned int address_low, address_high, result;
+[; ;spi.c: 99: unsigned int blank_low = 0x000;
+[e = _blank_low -> -> 0 `i `ui ]
+"100
+[v _blank_high `ui ~T0 @X0 1 a ]
+[; ;spi.c: 100: unsigned int blank_high = 0x000;
+[e = _blank_high -> -> 0 `i `ui ]
+"101
 [v _p1 `ui ~T0 @X0 1 a ]
 [v _p2 `ui ~T0 @X0 1 a ]
 [v _p3 `ui ~T0 @X0 1 a ]
 [v _p4 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 257: unsigned int address_low;
-[; ;spi.c: 258: unsigned int address_high;
-[; ;spi.c: 259: unsigned int data_low;
-[; ;spi.c: 260: unsigned int data_high;
-[; ;spi.c: 261: unsigned int p1, p2, p3, p4;
-[; ;spi.c: 263: for(int i=0; i<NumberOfRegisters; i++)
-"263
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 824  ]
-"264
-[e :U 821 ]
-[; ;spi.c: 264: {
-{
-[; ;spi.c: 265: address_low = address[i] & 0xFF;
-"265
-[e = _address_low & *U + _address * -> _i `x -> -> # *U _address `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 266: address_high = (address[i] >> 8);
-"266
-[e = _address_high >> *U + _address * -> _i `x -> -> # *U _address `i `x -> 8 `i ]
-[; ;spi.c: 267: data_low = data[i] & 0xFF;
-"267
-[e = _data_low & *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 255 `i `ui ]
-[; ;spi.c: 268: data_high = (data[i] >> 8);
-"268
-[e = _data_high >> *U + _data * -> _i `x -> -> # *U _data `i `x -> 8 `i ]
-[; ;spi.c: 270: SSP1BUF = address_high;
-"270
+[; ;spi.c: 101: unsigned int p1, p2, p3, p4;
+[; ;spi.c: 103: address_low = address & 0xFF;
+"103
+[e = _address_low & _address -> -> 255 `i `ui ]
+[; ;spi.c: 104: address_high = (address >> 8) & 0xFF;
+"104
+[e = _address_high & >> _address -> 8 `i -> -> 255 `i `ui ]
+[; ;spi.c: 107: PORTCbits.RC2 = 0;
+"107
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;spi.c: 110: SSP1BUF = address_high;
+"110
 [e = _SSP1BUF -> _address_high `uc ]
-[; ;spi.c: 271: while(!SSP1STATbits.BF);
-"271
-[e $U 825  ]
-[e :U 826 ]
-[e :U 825 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 826  ]
-[e :U 827 ]
-[; ;spi.c: 272: p1 = SSP1BUF;
-"272
+[; ;spi.c: 111: while(!SSP1STATbits.BF);
+"111
+[e $U 738  ]
+[e :U 739 ]
+[e :U 738 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 739  ]
+[e :U 740 ]
+[; ;spi.c: 112: p1 = SSP1BUF;
+"112
 [e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 274: SSP1BUF = address_low;
-"274
+[; ;spi.c: 114: SSP1BUF = address_low;
+"114
 [e = _SSP1BUF -> _address_low `uc ]
-[; ;spi.c: 275: while(!SSP1STATbits.BF);
-"275
-[e $U 828  ]
-[e :U 829 ]
-[e :U 828 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 829  ]
-[e :U 830 ]
-[; ;spi.c: 276: p2 = SSP1BUF;
-"276
+[; ;spi.c: 115: while(!SSP1STATbits.BF);
+"115
+[e $U 741  ]
+[e :U 742 ]
+[e :U 741 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 742  ]
+[e :U 743 ]
+[; ;spi.c: 116: p2 = SSP1BUF;
+"116
 [e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 278: SSP1BUF = data_high;
-"278
-[e = _SSP1BUF -> _data_high `uc ]
-[; ;spi.c: 279: while(!SSP1STATbits.BF);
-"279
-[e $U 831  ]
-[e :U 832 ]
-[e :U 831 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 832  ]
-[e :U 833 ]
-[; ;spi.c: 280: p3 = SSP1BUF;
-"280
+[; ;spi.c: 118: SSP1BUF = blank_high;
+"118
+[e = _SSP1BUF -> _blank_high `uc ]
+[; ;spi.c: 119: while(!SSP1STATbits.BF);
+"119
+[e $U 744  ]
+[e :U 745 ]
+[e :U 744 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 745  ]
+[e :U 746 ]
+[; ;spi.c: 120: p3 = SSP1BUF;
+"120
 [e = _p3 -> _SSP1BUF `ui ]
-[; ;spi.c: 282: SSP1BUF = data_low;
-"282
-[e = _SSP1BUF -> _data_low `uc ]
-[; ;spi.c: 283: while(!SSP1STATbits.BF);
-"283
-[e $U 834  ]
-[e :U 835 ]
-[e :U 834 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 835  ]
-[e :U 836 ]
-[; ;spi.c: 284: p4 = SSP1BUF;
-"284
+[; ;spi.c: 122: SSP1BUF = blank_low;
+"122
+[e = _SSP1BUF -> _blank_low `uc ]
+[; ;spi.c: 123: while(!SSP1STATbits.BF);
+"123
+[e $U 747  ]
+[e :U 748 ]
+[e :U 747 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 748  ]
+[e :U 749 ]
+[; ;spi.c: 124: p4 = SSP1BUF;
+"124
 [e = _p4 -> _SSP1BUF `ui ]
-"285
-}
-"263
-[e ++ _i -> 1 `i ]
-[e :U 824 ]
-[e $ < -> _i `ui _NumberOfRegisters 821  ]
-[e :U 822 ]
-"285
-}
-[; ;spi.c: 285: }
-[; ;spi.c: 286: }
-"286
-[e :UE 820 ]
-}
-"288
-[v _write_spi_solo `(v ~T0 @X0 1 ef1`ui ]
-"289
-{
-[; ;spi.c: 288: void write_spi_solo(unsigned int message)
-[; ;spi.c: 289: {
-[e :U _write_spi_solo ]
-"288
-[v _message `ui ~T0 @X0 1 r1 ]
-"289
-[f ]
-[; ;spi.c: 290: PORTEbits.RE0 = 0;
-"290
-[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-"291
-[v _low `ui ~T0 @X0 1 a ]
-[; ;spi.c: 291: unsigned int low = message & 0xFF;
-[e = _low & _message -> -> 255 `i `ui ]
-"292
-[v _high `ui ~T0 @X0 1 a ]
-[; ;spi.c: 292: unsigned int high = (message >> 8);
-[e = _high >> _message -> 8 `i ]
-[; ;spi.c: 294: SSP1BUF = high;
-"294
-[e = _SSP1BUF -> _high `uc ]
-[; ;spi.c: 295: while(!SSP1STATbits.BF);
-"295
-[e $U 838  ]
-[e :U 839 ]
-[e :U 838 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 839  ]
-[e :U 840 ]
-"296
-[v _p1 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 296: unsigned int p1 = SSP1BUF;
-[e = _p1 -> _SSP1BUF `ui ]
-[; ;spi.c: 298: SSP1BUF = low;
-"298
-[e = _SSP1BUF -> _low `uc ]
-[; ;spi.c: 299: while(!SSP1STATbits.BF);
-"299
-[e $U 841  ]
-[e :U 842 ]
-[e :U 841 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 842  ]
-[e :U 843 ]
-"300
-[v _p2 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 300: unsigned int p2 = SSP1BUF;
-[e = _p2 -> _SSP1BUF `ui ]
-[; ;spi.c: 302: PORTEbits.RE0 = 1;
-"302
-[e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
-[; ;spi.c: 303: }
-"303
-[e :UE 837 ]
-}
-"306
-[v _read_spi `(ui ~T0 @X0 1 ef ]
-"307
-{
-[; ;spi.c: 306: unsigned int read_spi(void)
-[; ;spi.c: 307: {
-[e :U _read_spi ]
-[f ]
-"308
-[v _dummy `ui ~T0 @X0 1 a ]
-[; ;spi.c: 308: unsigned int dummy = 0x00;
-[e = _dummy -> -> 0 `i `ui ]
-[; ;spi.c: 310: SSP1BUF = dummy;
-"310
-[e = _SSP1BUF -> _dummy `uc ]
-[; ;spi.c: 311: while(!SSP1STATbits.BF);
-"311
-[e $U 845  ]
-[e :U 846 ]
-[e :U 845 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 846  ]
-[e :U 847 ]
-"312
-[v _part1 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 312: unsigned int part1 = SSP1BUF;
-[e = _part1 -> _SSP1BUF `ui ]
-[; ;spi.c: 314: SSP1BUF = dummy;
-"314
-[e = _SSP1BUF -> _dummy `uc ]
-[; ;spi.c: 315: while(!SSP1STATbits.BF);
-"315
-[e $U 848  ]
-[e :U 849 ]
-[e :U 848 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 849  ]
-[e :U 850 ]
-"316
-[v _part2 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 316: unsigned int part2 = SSP1BUF;
-[e = _part2 -> _SSP1BUF `ui ]
-"318
-[v _message `ui ~T0 @X0 1 a ]
-[; ;spi.c: 318: unsigned int message = (part1<<8) + part2;
-[e = _message + << _part1 -> 8 `i _part2 ]
-[; ;spi.c: 319: return message;
-"319
-[e ) _message ]
-[e $UE 844  ]
-[; ;spi.c: 320: }
-"320
-[e :UE 844 ]
-}
-"321
-[v _read_spi_solo `(ui ~T0 @X0 1 ef ]
-"322
-{
-[; ;spi.c: 321: unsigned int read_spi_solo(void)
-[; ;spi.c: 322: {
-[e :U _read_spi_solo ]
-[f ]
-[; ;spi.c: 323: PORTEbits.RE0 = 0;
-"323
-[e = . . _PORTEbits 0 0 -> -> 0 `i `uc ]
-"325
-[v _dummy `ui ~T0 @X0 1 a ]
-[; ;spi.c: 325: unsigned int dummy = 0x00;
-[e = _dummy -> -> 0 `i `ui ]
-[; ;spi.c: 327: SSP1BUF = dummy;
-"327
-[e = _SSP1BUF -> _dummy `uc ]
-[; ;spi.c: 328: while(!SSP1STATbits.BF);
-"328
-[e $U 852  ]
-[e :U 853 ]
-[e :U 852 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 853  ]
-[e :U 854 ]
-"329
-[v _part1 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 329: unsigned int part1 = SSP1BUF;
-[e = _part1 -> _SSP1BUF `ui ]
-[; ;spi.c: 331: SSP1BUF = dummy;
-"331
-[e = _SSP1BUF -> _dummy `uc ]
-[; ;spi.c: 332: while(!SSP1STATbits.BF);
-"332
-[e $U 855  ]
-[e :U 856 ]
-[e :U 855 ]
-[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 856  ]
-[e :U 857 ]
-"333
-[v _part2 `ui ~T0 @X0 1 a ]
-[; ;spi.c: 333: unsigned int part2 = SSP1BUF;
-[e = _part2 -> _SSP1BUF `ui ]
-[; ;spi.c: 335: PORTEbits.RE0 = 1;
-"335
-[e = . . _PORTEbits 0 0 -> -> 1 `i `uc ]
-"337
-[v _message `ui ~T0 @X0 1 a ]
-[; ;spi.c: 337: unsigned int message = (part1<<8) + part2;
-[e = _message + << _part1 -> 8 `i _part2 ]
-[; ;spi.c: 338: return message;
-"338
-[e ) _message ]
-[e $UE 851  ]
-[; ;spi.c: 339: }
-"339
-[e :UE 851 ]
+[; ;spi.c: 126: PORTCbits.RC2 = 1;
+"126
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[; ;spi.c: 128: result = (p3 << 8) + p4;
+"128
+[e = _result + << _p3 -> 8 `i _p4 ]
+[; ;spi.c: 129: return result;
+"129
+[e ) _result ]
+[e $UE 737  ]
+[; ;spi.c: 130: }
+"130
+[e :UE 737 ]
 }

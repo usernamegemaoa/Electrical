@@ -6845,12 +6845,13 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config DEBUG = ON
 
 # 65
-extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 
+extern unsigned int CDC_RESULT[12] = 0;
 extern unsigned int AD7147Registers[23] = 0;
 
-# 197
+# 196
 void setup_mcu(void);
 
 void setup_port(void);
@@ -6864,26 +6865,22 @@ void delay_ms(int n);
 # 6 "AD7147.h"
 void setup_AD7147(void);
 void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[]);
-void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int *DataBuffer[]);
+void read_AD7147(const unsigned int, unsigned int, unsigned int);
 static int ServiceAD7147Isr(void);
-unsigned int read_Sensor(int sensor);
+unsigned int read_sensor(int);
+unsigned int get_ID(void);
+void read_sensors(void);
 
 # 4 "spi.h"
 void setup_spi(void);
 
-void write_spi(unsigned int, unsigned int);
+void w32_spi(unsigned int, unsigned int);
 
-void write_spi_setup(unsigned int, unsigned int[]);
+void w16_spi(unsigned int);
 
-void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
+unsigned int r16_spi(void);
 
-void write_spi_solo(unsigned int message);
-
-unsigned int read_spi(void);
-
-unsigned int read_spi_solo(void);
-
-unsigned int cdc_signal(char, int);
+unsigned int w16_r16_spi(unsigned int);
 
 # 5 "AD7147.c"
 void setup_AD7147(void)
@@ -7068,19 +7065,100 @@ write_AD7147(0x001, 1, AD7147Registers);
 
 }
 
-
 void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[])
 {
-unsigned int ControlValue[];
+unsigned int Register_Values[];
 unsigned int enable_word = 0xE000;
 
 
 for (int i=0; i<NumberOfRegisters; i++)
 {
-ControlValue[i] = enable_word + (RegisterAddress+i);
+
+Register_Values[i] = enable_word + (RegisterAddress+i);
 }
 
 
-write_spi_register(ControlValue, NumberOfRegisters, DataBuffer);
+}
+
+void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int sensor)
+{
+unsigned int Register_Values;
+unsigned int DataBuffer[];
+unsigned int enable_word = 0xE400;
+
+
+for (unsigned int i=0; i<NumberOfRegisters; i++)
+{
+
+
+Register_Values = enable_word + CDC_RESULT_REGISTER[i];
+
+}
+
+
+}
+
+unsigned int read_sensor(int sensor)
+{
+
+unsigned int register1 = 0x00B;
+unsigned int sensor_value = w16_r16_spi(register1);
+
+# 248
+return sensor_value;
+}
+
+# 256
+void read_sensors()
+{
+unsigned int Register_Values[12];
+unsigned int address_low[12];
+unsigned int address_high[12];
+unsigned int enable_word = 0xE400;
+unsigned int blank_low = 0x000;
+unsigned int blank_high = 0x000;
+unsigned int p1, p2, p3, p4;
+unsigned int temp_high, temp_low;
+
+for(int i=0; i<12; i++)
+{
+
+
+Register_Values[i] = enable_word + (0x00B+i);
+address_low[i] = Register_Values[i] & 0xFF;
+address_high[i] = Register_Values[i] >> 8;
+}
+
+PORTCbits.RC2 = 0;
+for(int i=0; i<12; i++)
+{
+temp_high = address_high[i];
+temp_low = address_low[i];
+
+SSP1BUF = temp_high;
+while(!SSP1STATbits.BF);
+p1 = SSP1BUF;
+
+SSP1BUF = temp_low;
+while(!SSP1STATbits.BF);
+p2 = SSP1BUF;
+
+SSP1BUF = blank_high;
+while(!SSP1STATbits.BF);
+p3 = SSP1BUF;
+
+SSP1BUF = blank_low;
+while(!SSP1STATbits.BF);
+p4 = SSP1BUF;
+
+CDC_RESULT[i] = (p3 << 8) + p4;
+}
+PORTCbits.RC2 = 1;
+}
+
+unsigned int get_ID()
+{
+unsigned int result = (w16_r16_spi(0xE400 + 0x017) & 0b1111111111110000) >> 4;
+return result;
 }
 

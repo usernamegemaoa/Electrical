@@ -41,30 +41,31 @@
 #define	STAGE_HIGH_LIMIT_INT		0x009	// R	High limit interrupt status register 1
 #define	STAGE_COMPLETE_LIMIT_INT	0x00A	// R	Interrupt status register 2
 
-#define	ADCRESULT_S0				0x00B	// R	ADC stage 0 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S1				0x00C	// R	ADC stage 1 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S2				0x00D	// R	ADC stage 2 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S3				0x00E	// R	ADC stage 3 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S0				0x00B	// R	CDC stage 0 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S1				0x00C	// R	CDC stage 1 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S2				0x00D	// R	CDC stage 2 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S3				0x00E	// R	CDC stage 3 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S4				0x00F	// R	CDC stage 4 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S5				0x010	// R	CDC stage 5 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S6				0x011	// R	CDC stage 6 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S7				0x012	// R	CDC stage 7 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S8				0x013	// R	CDC stage 8 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S9				0x014	// R	CDC stage 9 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S10				0x015	// R	CDC stage 10 result (uncompensated) actually located in SRAM
+#define	CDC_RESULT_S11				0x016	// R	CDC stage 11 result (uncompensated) actually located in SRAM
 
-#define	ADCRESULT_S4				0x00F	// R	ADC stage 4 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S5				0x010	// R	ADC stage 5 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S6				0x011	// R	ADC stage 6 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S7				0x012	// R	ADC stage 7 result (uncompensated) actually located in SRAM
-
-#define	ADCRESULT_S8				0x013	// R	ADC stage 8 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S9				0x014	// R	ADC stage 9 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S10				0x015	// R	ADC stage 10 result (uncompensated) actually located in SRAM
-#define	ADCRESULT_S11				0x016	// R	ADC stage 11 result (uncompensated) actually located in SRAM
-
-#define	DEVID						0x017	// R	I.D. Register
+#define	DEV_ID						0x017	// R	I.D. Register
+#define ENABLE_WRITE                0xE000  // W    Enable Word to Write
+#define ENABLE_READ                 0xE400  // R    Enable Word to Read
 
 #define	THRES_STAT_REG0				0x040	// R	Current threshold status register 0
 #define	THRES_STAT_REG1				0x041	// R	Current threshold status register 1
 #define	PROX_STAT_REG				0x042	// R	Current proximity status register 2
 
-extern unsigned int ADC_RESULT[12] = {ADCRESULT_S0, ADCRESULT_S1, ADCRESULT_S2, ADCRESULT_S3, ADCRESULT_S4,
-ADCRESULT_S5, ADCRESULT_S6, ADCRESULT_S7, ADCRESULT_S8, ADCRESULT_S9, ADCRESULT_S10, ADCRESULT_S11};
+extern unsigned int CDC_RESULT_REGISTER[12] = {CDC_RESULT_S0, CDC_RESULT_S1, CDC_RESULT_S2, CDC_RESULT_S3, CDC_RESULT_S4,
+CDC_RESULT_S5, CDC_RESULT_S6, CDC_RESULT_S7, CDC_RESULT_S8, CDC_RESULT_S9, CDC_RESULT_S10, CDC_RESULT_S11};
 
+extern unsigned int CDC_RESULT[12] = 0; // Result from the CDC 
 extern unsigned int AD7147Registers[23] = 0;
 // Ram map - these registers are defined as we go along
 //=====================================================
@@ -80,7 +81,6 @@ extern unsigned int AD7147Registers[23] = 0;
 #define STAGE9_CONNECTION           0xC8
 #define STAGE10_CONNECTION          0xD0
 #define STAGE11_CONNECTION          0xD8
-
 
 #define STAGE0                  	0xE0
 #define STAGE0_AMBIENT              0xF1
@@ -175,7 +175,7 @@ extern unsigned int AD7147Registers[23] = 0;
 #define LED6 PORTDbits.RD6        // Defined Pin RD6 to variable LED6
 #define LED7 PORTDbits.RD7        // Defined Pin RD7 to variable LED7
 
-#define CS_AD7147 PORTCbits.RC2         // Defined Pin RE0 to variable CS_AD7147
+#define CS_AD7147 PORTCbits.RC2   // Defined Pin RE0 to variable CS_AD7147
 
 #define NELEMS(x)  (sizeof(x) / sizeof((x)[0])) 
 
@@ -192,7 +192,6 @@ extern unsigned int AD7147Registers[23] = 0;
 #define RX PORTCbits.RC7         // Defined Pin RC7 to variable RX
 
 #define _XTAL_FREQ 10000000       // 10 MHz External Crystal 
-//#define BUAD_RATE_CALC ((F_CPU/16/BUAD) - 1) 
 
 void setup_mcu(void);
 

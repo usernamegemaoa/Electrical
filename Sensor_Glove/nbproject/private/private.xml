@@ -5,8 +5,13 @@
         <group>
             <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/micro_setup.c</file>
             <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/AD7147.c</file>
+            <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/spi.h</file>
+            <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/uart.c</file>
+            <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/AD7147.h</file>
             <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/spi.c</file>
             <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/main.c</file>
+            <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/uart.h</file>
+            <file>file:/C:/Users/Intern/Documents/GitHub/Electrical/Sensor_Glove/micro_setup.h</file>
         </group>
     </open-files>
 </project-private>

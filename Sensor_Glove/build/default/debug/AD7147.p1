@@ -1,8 +1,112 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "7 AD7147.h
 [v _write_AD7147 `(v ~T0 @X0 0 ef3`Cui`ui`*ui ]
-"10 spi.h
-[v _write_spi_register `(v ~T0 @X0 0 ef3`*ui`ui`*ui ]
+"6 spi.h
+[v _w32_spi `(v ~T0 @X0 0 ef2`ui`ui ]
+"12
+[v _w16_r16_spi `(ui ~T0 @X0 0 ef1`ui ]
+"3052 C:\Program Files (x86)\Microchip\xc8\v1.38\include\pic18f87j10.h
+[s S188 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S188 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"3062
+[s S189 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S189 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
+"3072
+[s S190 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S190 . T13CKI CCP2 . SCL SDA . CK DT ]
+"3082
+[s S191 :2 `uc 1 :1 `uc 1 ]
+[n S191 . . PA1 ]
+"3086
+[s S192 :1 `uc 1 :1 `uc 1 ]
+[n S192 . . PA2 ]
+"3051
+[u S187 `S188 1 `S189 1 `S190 1 `S191 1 `S192 1 ]
+[n S187 . . . . . . ]
+"3091
+[v _PORTCbits `VS187 ~T0 @X0 0 e@3970 ]
+"11752
+[v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
+"10801
+[s S576 :2 `uc 1 :1 `uc 1 ]
+[n S576 . . R_NOT_W ]
+"10805
+[s S577 :5 `uc 1 :1 `uc 1 ]
+[n S577 . . D_NOT_A ]
+"10809
+[s S578 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S578 . BF UA R_nW S P D_nA CKE SMP ]
+"10819
+[s S579 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S579 . . R_W . D_A ]
+"10825
+[s S580 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S580 . . I2C_READ I2C_START I2C_STOP I2C_DAT ]
+"10832
+[s S581 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S581 . . nW . nA ]
+"10838
+[s S582 :2 `uc 1 :1 `uc 1 ]
+[n S582 . . NOT_WRITE ]
+"10842
+[s S583 :5 `uc 1 :1 `uc 1 ]
+[n S583 . . NOT_ADDRESS ]
+"10846
+[s S584 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S584 . . nWRITE . nADDRESS ]
+"10852
+[s S585 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S585 . . READ_WRITE . DATA_ADDRESS ]
+"10858
+[s S586 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S586 . . R . D ]
+"10864
+[s S587 :1 `uc 1 ]
+[n S587 . BF1 ]
+"10867
+[s S588 :6 `uc 1 :1 `uc 1 ]
+[n S588 . . CKE1 ]
+"10871
+[s S589 :5 `uc 1 :1 `uc 1 ]
+[n S589 . . DA ]
+"10875
+[s S590 :5 `uc 1 :1 `uc 1 ]
+[n S590 . . DA1 ]
+"10879
+[s S591 :2 `uc 1 :1 `uc 1 ]
+[n S591 . . RW ]
+"10883
+[s S592 :2 `uc 1 :1 `uc 1 ]
+[n S592 . . RW1 ]
+"10887
+[s S593 :7 `uc 1 :1 `uc 1 ]
+[n S593 . . SMP1 ]
+"10891
+[s S594 :3 `uc 1 :1 `uc 1 ]
+[n S594 . . START ]
+"10895
+[s S595 :3 `uc 1 :1 `uc 1 ]
+[n S595 . . START1 ]
+"10899
+[s S596 :4 `uc 1 :1 `uc 1 ]
+[n S596 . . STOP ]
+"10903
+[s S597 :4 `uc 1 :1 `uc 1 ]
+[n S597 . . STOP1 ]
+"10907
+[s S598 :1 `uc 1 :1 `uc 1 ]
+[n S598 . . UA1 ]
+"10911
+[s S599 :2 `uc 1 :1 `uc 1 ]
+[n S599 . . NOT_W ]
+"10915
+[s S600 :5 `uc 1 :1 `uc 1 ]
+[n S600 . . NOT_A ]
+"10800
+[u S575 `S576 1 `S577 1 `S578 1 `S579 1 `S580 1 `S581 1 `S582 1 `S583 1 `S584 1 `S585 1 `S586 1 `S587 1 `S588 1 `S589 1 `S590 1 `S591 1 `S592 1 `S593 1 `S594 1 `S595 1 `S596 1 `S597 1 `S598 1 `S599 1 `S600 1 ]
+[n S575 . . . . . . . . . . . . . . . . . . . . . . . . . . ]
+"10920
+[v _SSP1STATbits `VS575 ~T0 @X0 0 e@4039 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -5362,8 +5466,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26
 [p x DEBUG=ON ]
 "65
-[v _ADC_RESULT `ui ~T0 @X0 -> 12 `i e ]
-[i _ADC_RESULT
+[v _CDC_RESULT_REGISTER `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT_REGISTER
 :U ..
 -> -> 11 `i `ui
 -> -> 12 `i `ui
@@ -5380,34 +5484,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 22 `i `ui
 ..
 ]
-[; ;micro_setup.h: 65: extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+[; ;micro_setup.h: 65: extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 [; ;micro_setup.h: 66: 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 "68
+[v _CDC_RESULT `ui ~T0 @X0 -> 12 `i e ]
+[i _CDC_RESULT
+:U ..
+-> -> 0 `i `ui
+..
+]
+[; ;micro_setup.h: 68: extern unsigned int CDC_RESULT[12] = 0;
+"69
 [v _AD7147Registers `ui ~T0 @X0 -> 23 `i e ]
 [i _AD7147Registers
 :U ..
 -> -> 0 `i `ui
 ..
 ]
-[; ;micro_setup.h: 68: extern unsigned int AD7147Registers[23] = 0;
-[; ;micro_setup.h: 197: void setup_mcu(void);
-[; ;micro_setup.h: 199: void setup_port(void);
-[; ;micro_setup.h: 201: void init_uart(void);
-[; ;micro_setup.h: 203: void init_pin(void);
-[; ;micro_setup.h: 205: void delay_ms(int n);
+[; ;micro_setup.h: 69: extern unsigned int AD7147Registers[23] = 0;
+[; ;micro_setup.h: 196: void setup_mcu(void);
+[; ;micro_setup.h: 198: void setup_port(void);
+[; ;micro_setup.h: 200: void init_uart(void);
+[; ;micro_setup.h: 202: void init_pin(void);
+[; ;micro_setup.h: 204: void delay_ms(int n);
 [; ;AD7147.h: 6: void setup_AD7147(void);
 [; ;AD7147.h: 7: void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[]);
-[; ;AD7147.h: 8: void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int *DataBuffer[]);
+[; ;AD7147.h: 8: void read_AD7147(const unsigned int, unsigned int, unsigned int);
 [; ;AD7147.h: 9: static int ServiceAD7147Isr(void);
-[; ;AD7147.h: 10: unsigned int read_Sensor(int sensor);
+[; ;AD7147.h: 10: unsigned int read_sensor(int);
+[; ;AD7147.h: 11: unsigned int get_ID(void);
+[; ;AD7147.h: 12: void read_sensors(void);
 [; ;spi.h: 4: void setup_spi(void);
-[; ;spi.h: 6: void write_spi(unsigned int, unsigned int);
-[; ;spi.h: 8: void write_spi_setup(unsigned int, unsigned int[]);
-[; ;spi.h: 10: void write_spi_register(unsigned int[], unsigned int, unsigned int[]);
-[; ;spi.h: 12: void write_spi_solo(unsigned int message);
-[; ;spi.h: 14: unsigned int read_spi(void);
-[; ;spi.h: 16: unsigned int read_spi_solo(void);
-[; ;spi.h: 18: unsigned int cdc_signal(char, int);
+[; ;spi.h: 6: void w32_spi(unsigned int, unsigned int);
+[; ;spi.h: 8: void w16_spi(unsigned int);
+[; ;spi.h: 10: unsigned int r16_spi(void);
+[; ;spi.h: 12: unsigned int w16_r16_spi(unsigned int);
 "5 AD7147.c
 [v _setup_AD7147 `(v ~T0 @X0 1 ef ]
 "6
@@ -5780,53 +5891,309 @@ Version 3.2 HI-TECH Software Intermediate Code
 "202
 [e :UE 709 ]
 }
-"205
+"204
 [v _write_AD7147 `(v ~T0 @X0 1 ef3`Cui`ui`*ui ]
-"206
-{
-[; ;AD7147.c: 205: void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[])
-[; ;AD7147.c: 206: {
-[e :U _write_AD7147 ]
 "205
+{
+[; ;AD7147.c: 204: void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[])
+[; ;AD7147.c: 205: {
+[e :U _write_AD7147 ]
+"204
 [v _RegisterAddress `Cui ~T0 @X0 1 r1 ]
 [v _NumberOfRegisters `ui ~T0 @X0 1 r2 ]
 [v _DataBuffer `*ui ~T0 @X0 1 r3 ]
-"206
+"205
 [f ]
+"206
+[v _Register_Values `ui ~T0 @X0 -> 0 `x a ]
 "207
-[v _ControlValue `ui ~T0 @X0 -> 0 `x a ]
-"208
 [v _enable_word `ui ~T0 @X0 1 a ]
-[; ;AD7147.c: 207: unsigned int ControlValue[];
-[; ;AD7147.c: 208: unsigned int enable_word = 0xE000;
+[; ;AD7147.c: 206: unsigned int Register_Values[];
+[; ;AD7147.c: 207: unsigned int enable_word = 0xE000;
 [e = _enable_word -> 57344 `ui ]
-[; ;AD7147.c: 211: for (int i=0; i<NumberOfRegisters; i++)
-"211
+[; ;AD7147.c: 210: for (int i=0; i<NumberOfRegisters; i++)
+"210
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 714  ]
-"212
-[e :U 711 ]
-[; ;AD7147.c: 212: {
-{
-[; ;AD7147.c: 213: ControlValue[i] = enable_word + (RegisterAddress+i);
-"213
-[e = *U + &U _ControlValue * -> -> _i `ui `ux -> -> # *U &U _ControlValue `ui `ux + _enable_word + _RegisterAddress -> _i `ui ]
-"214
-}
 "211
+[e :U 711 ]
+[; ;AD7147.c: 211: {
+{
+[; ;AD7147.c: 213: Register_Values[i] = enable_word + (RegisterAddress+i);
+"213
+[e = *U + &U _Register_Values * -> -> _i `ui `ux -> -> # *U &U _Register_Values `ui `ux + _enable_word + _RegisterAddress -> _i `ui ]
+[; ;AD7147.c: 214: w32_spi(Register_Values[i],DataBuffer[i]);
+"214
+[e ( _w32_spi (2 , *U + &U _Register_Values * -> -> _i `ui `ux -> -> # *U &U _Register_Values `ui `ux *U + _DataBuffer * -> _i `x -> -> # *U _DataBuffer `i `x ]
+"215
+}
+"210
 [e ++ _i -> 1 `i ]
 [e :U 714 ]
 [e $ < -> _i `ui _NumberOfRegisters 711  ]
 [e :U 712 ]
-"214
+"215
 }
-[; ;AD7147.c: 214: }
-[; ;AD7147.c: 217: write_spi_register(ControlValue, NumberOfRegisters, DataBuffer);
-"217
-[e ( _write_spi_register (3 , , &U _ControlValue _NumberOfRegisters _DataBuffer ]
+[; ;AD7147.c: 215: }
 [; ;AD7147.c: 218: }
 "218
 [e :UE 710 ]
+}
+"220
+[v _read_AD7147 `(v ~T0 @X0 1 ef3`Cui`ui`ui ]
+"221
+{
+[; ;AD7147.c: 220: void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int sensor)
+[; ;AD7147.c: 221: {
+[e :U _read_AD7147 ]
+"220
+[v _RegisterAddress `Cui ~T0 @X0 1 r1 ]
+[v _NumberOfRegisters `ui ~T0 @X0 1 r2 ]
+[v _sensor `ui ~T0 @X0 1 r3 ]
+"221
+[f ]
+"222
+[v _Register_Values `ui ~T0 @X0 1 a ]
+"223
+[v _DataBuffer `ui ~T0 @X0 -> 0 `x a ]
+"224
+[v _enable_word `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 222: unsigned int Register_Values;
+[; ;AD7147.c: 223: unsigned int DataBuffer[];
+[; ;AD7147.c: 224: unsigned int enable_word = 0xE400;
+[e = _enable_word -> 58368 `ui ]
+[; ;AD7147.c: 227: for (unsigned int i=0; i<NumberOfRegisters; i++)
+"227
+{
+[v _i `ui ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `ui ]
+[e $U 719  ]
+"228
+[e :U 716 ]
+[; ;AD7147.c: 228: {
+{
+[; ;AD7147.c: 231: Register_Values = enable_word + CDC_RESULT_REGISTER[i];
+"231
+[e = _Register_Values + _enable_word *U + &U _CDC_RESULT_REGISTER * -> _i `ux -> -> # *U &U _CDC_RESULT_REGISTER `ui `ux ]
+"233
+}
+"227
+[e ++ _i -> -> 1 `i `ui ]
+[e :U 719 ]
+[e $ < _i _NumberOfRegisters 716  ]
+[e :U 717 ]
+"233
+}
+[; ;AD7147.c: 233: }
+[; ;AD7147.c: 236: }
+"236
+[e :UE 715 ]
+}
+"238
+[v _read_sensor `(ui ~T0 @X0 1 ef1`i ]
+"239
+{
+[; ;AD7147.c: 238: unsigned int read_sensor(int sensor)
+[; ;AD7147.c: 239: {
+[e :U _read_sensor ]
+"238
+[v _sensor `i ~T0 @X0 1 r1 ]
+"239
+[f ]
+"241
+[v _register1 `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 241: unsigned int register1 = 0x00B;
+[e = _register1 -> -> 11 `i `ui ]
+"242
+[v _sensor_value `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 242: unsigned int sensor_value = w16_r16_spi(register1);
+[e = _sensor_value ( _w16_r16_spi (1 _register1 ]
+[; ;AD7147.c: 249: return sensor_value;
+"249
+[e ) _sensor_value ]
+[e $UE 720  ]
+[; ;AD7147.c: 250: }
+"250
+[e :UE 720 ]
+}
+"257
+[v _read_sensors `(v ~T0 @X0 1 ef ]
+"258
+{
+[; ;AD7147.c: 257: void read_sensors()
+[; ;AD7147.c: 258: {
+[e :U _read_sensors ]
+[f ]
+"259
+[v _Register_Values `ui ~T0 @X0 -> 12 `i a ]
+"260
+[v _address_low `ui ~T0 @X0 -> 12 `i a ]
+"261
+[v _address_high `ui ~T0 @X0 -> 12 `i a ]
+"262
+[v _enable_word `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 259: unsigned int Register_Values[12];
+[; ;AD7147.c: 260: unsigned int address_low[12];
+[; ;AD7147.c: 261: unsigned int address_high[12];
+[; ;AD7147.c: 262: unsigned int enable_word = 0xE400;
+[e = _enable_word -> 58368 `ui ]
+"263
+[v _blank_low `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 263: unsigned int blank_low = 0x000;
+[e = _blank_low -> -> 0 `i `ui ]
+"264
+[v _blank_high `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 264: unsigned int blank_high = 0x000;
+[e = _blank_high -> -> 0 `i `ui ]
+"265
+[v _p1 `ui ~T0 @X0 1 a ]
+[v _p2 `ui ~T0 @X0 1 a ]
+[v _p3 `ui ~T0 @X0 1 a ]
+[v _p4 `ui ~T0 @X0 1 a ]
+"266
+[v _temp_high `ui ~T0 @X0 1 a ]
+[v _temp_low `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 265: unsigned int p1, p2, p3, p4;
+[; ;AD7147.c: 266: unsigned int temp_high, temp_low;
+[; ;AD7147.c: 268: for(int i=0; i<12; i++)
+"268
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 12 `i 722  ]
+[e $U 723  ]
+"269
+[e :U 722 ]
+[; ;AD7147.c: 269: {
+{
+[; ;AD7147.c: 272: Register_Values[i] = enable_word + (0x00B+i);
+"272
+[e = *U + &U _Register_Values * -> -> _i `ui `ux -> -> # *U &U _Register_Values `ui `ux + _enable_word -> + -> 11 `i _i `ui ]
+[; ;AD7147.c: 273: address_low[i] = Register_Values[i] & 0xFF;
+"273
+[e = *U + &U _address_low * -> -> _i `ui `ux -> -> # *U &U _address_low `ui `ux & *U + &U _Register_Values * -> -> _i `ui `ux -> -> # *U &U _Register_Values `ui `ux -> -> 255 `i `ui ]
+[; ;AD7147.c: 274: address_high[i] = Register_Values[i] >> 8;
+"274
+[e = *U + &U _address_high * -> -> _i `ui `ux -> -> # *U &U _address_high `ui `ux >> *U + &U _Register_Values * -> -> _i `ui `ux -> -> # *U &U _Register_Values `ui `ux -> 8 `i ]
+"275
+}
+"268
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 12 `i 722  ]
+[e :U 723 ]
+"275
+}
+[; ;AD7147.c: 275: }
+[; ;AD7147.c: 277: PORTCbits.RC2 = 0;
+"277
+[e = . . _PORTCbits 0 2 -> -> 0 `i `uc ]
+[; ;AD7147.c: 278: for(int i=0; i<12; i++)
+"278
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 12 `i 725  ]
+[e $U 726  ]
+"279
+[e :U 725 ]
+[; ;AD7147.c: 279: {
+{
+[; ;AD7147.c: 280: temp_high = address_high[i];
+"280
+[e = _temp_high *U + &U _address_high * -> -> _i `ui `ux -> -> # *U &U _address_high `ui `ux ]
+[; ;AD7147.c: 281: temp_low = address_low[i];
+"281
+[e = _temp_low *U + &U _address_low * -> -> _i `ui `ux -> -> # *U &U _address_low `ui `ux ]
+[; ;AD7147.c: 283: SSP1BUF = temp_high;
+"283
+[e = _SSP1BUF -> _temp_high `uc ]
+[; ;AD7147.c: 284: while(!SSP1STATbits.BF);
+"284
+[e $U 728  ]
+[e :U 729 ]
+[e :U 728 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 729  ]
+[e :U 730 ]
+[; ;AD7147.c: 285: p1 = SSP1BUF;
+"285
+[e = _p1 -> _SSP1BUF `ui ]
+[; ;AD7147.c: 287: SSP1BUF = temp_low;
+"287
+[e = _SSP1BUF -> _temp_low `uc ]
+[; ;AD7147.c: 288: while(!SSP1STATbits.BF);
+"288
+[e $U 731  ]
+[e :U 732 ]
+[e :U 731 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 732  ]
+[e :U 733 ]
+[; ;AD7147.c: 289: p2 = SSP1BUF;
+"289
+[e = _p2 -> _SSP1BUF `ui ]
+[; ;AD7147.c: 291: SSP1BUF = blank_high;
+"291
+[e = _SSP1BUF -> _blank_high `uc ]
+[; ;AD7147.c: 292: while(!SSP1STATbits.BF);
+"292
+[e $U 734  ]
+[e :U 735 ]
+[e :U 734 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 735  ]
+[e :U 736 ]
+[; ;AD7147.c: 293: p3 = SSP1BUF;
+"293
+[e = _p3 -> _SSP1BUF `ui ]
+[; ;AD7147.c: 295: SSP1BUF = blank_low;
+"295
+[e = _SSP1BUF -> _blank_low `uc ]
+[; ;AD7147.c: 296: while(!SSP1STATbits.BF);
+"296
+[e $U 737  ]
+[e :U 738 ]
+[e :U 737 ]
+[e $ ! != -> . . _SSP1STATbits 2 0 `i -> -> -> 0 `i `Vuc `i 738  ]
+[e :U 739 ]
+[; ;AD7147.c: 297: p4 = SSP1BUF;
+"297
+[e = _p4 -> _SSP1BUF `ui ]
+[; ;AD7147.c: 299: CDC_RESULT[i] = (p3 << 8) + p4;
+"299
+[e = *U + &U _CDC_RESULT * -> -> _i `ui `ux -> -> # *U &U _CDC_RESULT `ui `ux + << _p3 -> 8 `i _p4 ]
+"300
+}
+"278
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 12 `i 725  ]
+[e :U 726 ]
+"300
+}
+[; ;AD7147.c: 300: }
+[; ;AD7147.c: 301: PORTCbits.RC2 = 1;
+"301
+[e = . . _PORTCbits 0 2 -> -> 1 `i `uc ]
+[; ;AD7147.c: 302: }
+"302
+[e :UE 721 ]
+}
+"304
+[v _get_ID `(ui ~T0 @X0 1 ef ]
+"305
+{
+[; ;AD7147.c: 304: unsigned int get_ID()
+[; ;AD7147.c: 305: {
+[e :U _get_ID ]
+[f ]
+"306
+[v _result `ui ~T0 @X0 1 a ]
+[; ;AD7147.c: 306: unsigned int result = (w16_r16_spi(0xE400 + 0x017) & 0b1111111111110000) >> 4;
+[e = _result >> & ( _w16_r16_spi (1 + -> 58368 `ui -> -> 23 `i `ui -> 65520 `ui -> 4 `i ]
+[; ;AD7147.c: 307: return result;
+"307
+[e ) _result ]
+[e $UE 740  ]
+[; ;AD7147.c: 308: }
+"308
+[e :UE 740 ]
 }

@@ -5,7 +5,7 @@ void setup_mcu(void)
 {
     setup_port();
     init_pin();
-    //init_uart();
+    init_uart();
 }
 
 void setup_port(void)
@@ -13,25 +13,35 @@ void setup_port(void)
     TRISD = 0b00000000;         // Port D: Output: 0-7
     TRISC = 0b00010000;
     TRISE = 0b00000000;         // Port E: Output: 0-7
+    TRISG = 0b00000100;
 }                   
 
 void init_uart(void)
 {
-    TXSTA = 0b00100000;         // Transmission Register
+    TXSTA2 = 0b00100000;         // Transmission Register
     // Bit 7=x, CSRC, Using UART (Asynchronous), Don't care about bit
     // Bit 6=0, TX9, 8-Bit transmission
     // Bit 5=1, TXEN, Transmit Enabled
     // Bit 4=0, SYNC, Asynchronous mode
     // Bit 3=-, -, Unimplemented
-    // Bit 2=1, BRGH, Baud Rate Select Bit, 1 = High Speed
+    // Bit 2=0, BRGH, Baud Rate Select Bit, 1 = High Speed
     // Bit 1=x, TRMT, Transmit Shift Register Status Bit
     // Bit 0=0, TX9D, No parity bit
     
-    //x = ((_XTAL_FREQ)/(BAUDRATE*64))-1;
-    // 9600 Baud Rate, x = 12
-    SPBRG = 12;          // Writing SPBRG Register
+    //x = ((_XTAL_FREQ/BAUDRATE)/64)-1;
+    // 9600 Baud Rate, x = 15
+    SPBRG2 = 15;          // Writing SPBRG Register
     
-    //RCSTA = 0b10010000;         // Receive Register
+    BAUDCON2 = 0b00000000;
+    // Bit 7=0
+    // Bit 6=
+    // Bit 5=0, unimplemented
+    // Bit 4=
+    // Bit 3=
+    // Bit 2=
+    // Bit 1=
+    // Bit 0=
+    //RCSTA2 = 0b10010000;         // Receive Register
     // Bit 7=1, SPEN, Serial Port Enabled
     // Bit 6=0, RX9, 8-Bit reception, RX9 = 0
     // Bit 5=x, SREN, Single Receive Enable Bit- Asynchronous Mode- Don't Care
@@ -42,16 +52,15 @@ void init_uart(void)
     // Bit 0=0, RX9D, Parity Bit, RX9D, 9th Bit of Received Data
     
     //RCSTA
-    RCSTAbits.SPEN=1;   //Serial port enabled
-    RCSTAbits.RX9=0;    //8 bit mode
-    RCSTAbits.CREN=1;   //Enable receive
-    RCSTAbits.ADDEN=0;  //Disable address detection
+    RCSTA2bits.SPEN=1;   //Serial port enabled
+    RCSTA2bits.RX9=0;    //8 bit mode
+    RCSTA2bits.CREN=1;   //Enable receive
+    //RCSTA2bits.ADDEN=0;  //Disable address detection
     
     
     //Receive interrupt
     //RCIE=1;       // USART Transmit Interrupt Enable bit
     //PEIE=1;       // Must be set to enable any peripheral interrupt
-    
 }
 
 void init_pin(void)

@@ -7,6 +7,7 @@
       <itemPath>AD7147.h</itemPath>
       <itemPath>micro_setup.h</itemPath>
       <itemPath>spi.h</itemPath>
+      <itemPath>uart.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

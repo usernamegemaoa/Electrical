@@ -6908,12 +6908,13 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config DEBUG = ON
 
 # 65
-extern unsigned int ADC_RESULT[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
+extern unsigned int CDC_RESULT_REGISTER[12] = {0x00B, 0x00C, 0x00D, 0x00E, 0x00F,
 0x010, 0x011, 0x012, 0x013, 0x014, 0x015, 0x016};
 
+extern unsigned int CDC_RESULT[12] = 0;
 extern unsigned int AD7147Registers[23] = 0;
 
-# 197
+# 196
 void setup_mcu(void);
 
 void setup_port(void);
@@ -6929,7 +6930,7 @@ void setup_mcu(void)
 {
 setup_port();
 init_pin();
-
+init_uart();
 }
 
 void setup_port(void)
@@ -6937,22 +6938,24 @@ void setup_port(void)
 TRISD = 0b00000000;
 TRISC = 0b00010000;
 TRISE = 0b00000000;
+TRISG = 0b00000100;
 }
 
 void init_uart(void)
 {
-TXSTA = 0b00100000;
+TXSTA2 = 0b00100000;
 
-# 32
-SPBRG = 12;
+# 33
+SPBRG2 = 15;
 
-# 45
-RCSTAbits.SPEN=1;
-RCSTAbits.RX9=0;
-RCSTAbits.CREN=1;
-RCSTAbits.ADDEN=0;
+BAUDCON2 = 0b00000000;
 
 # 55
+RCSTA2bits.SPEN=1;
+RCSTA2bits.RX9=0;
+RCSTA2bits.CREN=1;
+
+# 64
 }
 
 void init_pin(void)

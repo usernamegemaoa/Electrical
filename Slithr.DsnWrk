@@ -6,5 +6,3 @@ ProjectPath=Gate-Driver\GateDriverProject.PrjPcb
 ProjectPath=Mosfet-Inverter\MosfetInverterProject.PrjPcb
 [Project3]
 ProjectPath=QFN-SWAP\QFN-16\QFN-16.PrjPcb
-[Project4]
-ProjectPath=mother_board\mother_board_project .PrjPcb

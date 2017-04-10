@@ -25,7 +25,7 @@ def main():
     root = Tk()
     root.title("Slithr: BLDC")
     root.geometry("1000x750")
-    logo = PhotoImage(file="C:/Users/Intern-Carl/PycharmProjects/untitled/sw-caution.gif")
+    logo = PhotoImage(file="C:/Users/Intern/Documents/Github/Electrical/Sensor_Glove/Gui/sw-caution.gif")
     w = Label(root, text="Slithr!", fg="red", bg="dark green", font="Lobster").pack()
     w1 = Label(root, image=logo).pack(side="right")
     text1 = "Slithr: Customizable Electric Skateboard"

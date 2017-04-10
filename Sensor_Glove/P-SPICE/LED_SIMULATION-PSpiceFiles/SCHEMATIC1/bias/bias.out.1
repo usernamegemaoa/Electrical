@@ -1,0 +1,42 @@
+
+**** 03/06/17 18:11:13 ****** PSpice Lite (October 2012) ****** ID# 10813 ****
+
+ ** Profile: "SCHEMATIC1-bias"  [ C:\USERS\INTERN\DOCUMENTS\GITHUB\ELECTRICAL\SENSOR_GLOVE\P-SPICE\led_simulation-pspicefiles\schemat
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+* From [PSPICE NETLIST] section of C:\Users\Intern\AppData\Roaming\SPB_16.6\cdssetup\OrCAD_PSpice/16.6.0/PSpice.ini file:
+.lib "nomd.lib" 
+
+*Analysis directives: 
+.DC LIN 3.3V 0 3.3 0.1 
+--------$
+ERROR(ORPSIM-16063): Must be 'I' or 'V'
+.OPTIONS ADVCONV
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC1.net" 
+
+
+
+**** INCLUDING SCHEMATIC1.net ****
+* source LED_SIMULATION
+R_R1         N14443 N14345  1k TC=0,0 
+R_R2         0 N14345  1k TC=0,0 
+V_V1         N14443 0 3.3Vdc
+
+**** RESUMING bias.cir ****
+.END
+

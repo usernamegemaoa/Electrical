@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=3.3V Pin=J?-1
+Removed Pin From Net: NetName=MOSI Pin=J?-2
+Removed Pin From Net: NetName=MISO Pin=J?-3
+Removed Pin From Net: NetName=SCLK Pin=J?-4
+Removed Pin From Net: NetName=CS1 Pin=J?-5
+Removed Pin From Net: NetName=INT_1 Pin=J?-6
+Removed Member From Class: ClassName=Sheet Member=J?
+Added Component: Designator=J29(MOLEX-503480-1000)
+Added Pin To Net: NetName=3.3V Pin=J29-1
+Added Pin To Net: NetName=MOSI Pin=J29-2
+Added Pin To Net: NetName=MISO Pin=J29-3
+Added Pin To Net: NetName=SCLK Pin=J29-4
+Added Pin To Net: NetName=CS1 Pin=J29-5
+Added Pin To Net: NetName=INT_1 Pin=J29-6
+Added Member To Class: ClassName=Sheet Member=Component J29 Header 10 pin

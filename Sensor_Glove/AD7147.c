@@ -94,7 +94,7 @@ void setup_AD7147(void)
     StageBuffer[6]=4250;	//Register 0xAE
     StageBuffer[7]=4250;	//Register 0xAF
 	write_AD7147(STAGE5_CONNECTION, 8, StageBuffer);
-    
+
 	//===========================
     //= Stage 6 - CIN6 (+) S6
     //===========================
@@ -107,7 +107,7 @@ void setup_AD7147(void)
     StageBuffer[6]=4250;	//Register 0xB6
     StageBuffer[7]=4250;	//Register 0xB7
     write_AD7147(STAGE6_CONNECTION, 8, StageBuffer);
-	
+
     //===========================
     //= Stage 7 - CIN7 (+) S7
     //===========================
@@ -172,7 +172,7 @@ void setup_AD7147(void)
     StageBuffer[6]=4250;	//Register 0xDE
     StageBuffer[7]=4250;	//Register 0xDF
 	write_AD7147(STAGE11_CONNECTION, 8, StageBuffer);
-	
+
     //--------------------------------------------------------------------------//
     //-------------------------Bank 1 Registers---------------------------------//
     //--------------------------------------------------------------------------//
@@ -201,53 +201,113 @@ void setup_AD7147(void)
 	//read_AD7147(STAGE_LOW_LIMIT_INT, 3, AD7147Registers); //Registers 0x08 & 0x09 & 0x0A
 }
 
-
 void write_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int DataBuffer[])
 {
-	unsigned int ControlValue[];
+	unsigned int Register_Values[];
     unsigned int enable_word = 0xE000;
 
 	//Write out the Message in two individual 16 bit unsigned int messages
 	for (int i=0; i<NumberOfRegisters; i++)
 	{
-        ControlValue[i] = enable_word + (RegisterAddress+i);
+        //Sends 16-bit Signal containing Enable Word and Register Address
+        Register_Values[i] = enable_word + (RegisterAddress+i);
+        w32_spi(Register_Values[i],DataBuffer[i]);
 	}
      
-    //write_spi_setup(RegisterAddress, DataBuffer);
-    write_spi_register(ControlValue, NumberOfRegisters, DataBuffer);
-}
-/*
-void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int *DataBuffer[])
-{
-	unsigned int ControlValue;
-    unsigned int DataValue[]; // = [NumberOfRegisters]
-    unsigned int enable_word = 0xE400;
-    
-	//Write out the control word
-	for (int i=0; i<NumberOfRegisters; i++)
-	{
-        //Sends 16-bit Signal containing Enable Word and Register Address
-        ControlValue = enable_word + (RegisterAddress+i);
-        write_spi(ControlValue);
-        //Sends 16-bit Signal Containing Data Value
-        DataBuffer[i] = read_spi();
-	}
-}
-/*
-unsigned int read_Sensor(int sensor)
-{
-	//Read stage complete registers
-	read_AD7147(STAGE_COMPLETE_LIMIT_INT, 1, AD7147Registers);
-	
-	//Read 12 ADC Values
-	read_AD7147(ADCRESULT_S0, 12, AD7147Registers);
-	//This is how we access the ADC Values
-	//AD7147Registers[ADCRESULT_S0] corresponds to ADC Value of Stage 0
-    //.....
-	//AD7147Registers[ADCRESULT_S11] corresponds to ADC Value of Stage 11
-    return AD7147Registers[ADC_RESULT[sensor]];
+    //write_spi_register(Register_Values, NumberOfRegisters, DataBuffer);
 }
 
+void read_AD7147(const unsigned int RegisterAddress, unsigned int NumberOfRegisters, unsigned int sensor)
+{
+	unsigned int Register_Values;
+    unsigned int DataBuffer[];
+    unsigned int enable_word = 0xE400;
+    
+	// Write out the control word plus the register Addresses for all available ports
+	for (unsigned int i=0; i<NumberOfRegisters; i++)
+	{
+        //Sends 16-bit Signal containing Enable Word and Register Address
+        //Register_Values[i] = enable_word + (RegisterAddress+i);
+        Register_Values = enable_word + CDC_RESULT_REGISTER[i];
+        //unsigned int result = read_spi_solo(Register_Values);
+	}
+    
+    //read_spi_register(Register_Values, NumberOfRegisters, sensor);   
+}
+
+unsigned int read_sensor(int sensor)
+{	
+	//read_AD7147(CDC_RESULT_REGISTER[sensor], 1, sensor);
+    unsigned int register1 = 0x00B;
+	unsigned int sensor_value = w16_r16_spi(register1);
+    //This is how we access the ADC Values
+	//AD7147Registers[CDC_RESULT_S0] corresponds to ADC Value of Stage 0
+    //.....
+	//AD7147Registers[CDC_RESULT_S11] corresponds to ADC Value of Stage 11
+
+    //return CDC_RESULT[sensor];
+    return sensor_value;
+}
+/*
+void read_sensors()
+{
+    read_AD7147(CDC_RESULT_REGISTER[0], 3, 0);
+}
+*/
+void read_sensors()
+{
+    unsigned int Register_Values[12];
+    unsigned int address_low[12];
+    unsigned int address_high[12];
+    unsigned int enable_word = 0xE400;
+    unsigned int blank_low = 0x000;
+    unsigned int blank_high = 0x000;
+    unsigned int p1, p2, p3, p4;
+    unsigned int temp_high, temp_low;
+    
+    for(int i=0; i<12; i++)
+	{
+        //Sends 16-bit Signal containing Enable Word and Register Address
+        //Register_Values[i] = enable_word + CDC_RESULT_REGISTER[i];
+        Register_Values[i] = enable_word + (0x00B+i);
+        address_low[i] = Register_Values[i] & 0xFF;
+        address_high[i] = Register_Values[i] >> 8;
+	}
+    
+    CS_AD7147 = 0;   //set CS to low (transmit data)
+    for(int i=0; i<12; i++)
+	{   
+        temp_high = address_high[i];
+        temp_low = address_low[i];
+        
+        SSP1BUF = temp_high;
+        while(!SSP1STATbits.BF); // wait to complete 
+        p1 = SSP1BUF;
+        
+        SSP1BUF = temp_low;  // Command byte (write to pot 0)
+        while(!SSP1STATbits.BF); // wait to complete 
+        p2 = SSP1BUF;
+    
+        SSP1BUF = blank_high;  // Command byte (write to pot 0)
+        while(!SSP1STATbits.BF); // wait to complete 
+        p3 = SSP1BUF;
+    
+        SSP1BUF = blank_low;  // Command byte (write to pot 0)
+        while(!SSP1STATbits.BF); // wait to complete 
+        p4 = SSP1BUF;
+        
+        CDC_RESULT[i] = (p3 << 8) + p4;
+    }
+    CS_AD7147 = 1;   //set CS to low (transmit data)
+}
+
+unsigned int get_ID()
+{
+    unsigned int result = (w16_r16_spi(ENABLE_READ + DEV_ID) & 0b1111111111110000) >> 4;
+    return result;
+}
+
+/*
 static int ServiceAD7147Isr(void)
 {	
     unsigned int POWER_UP_INTERRUPT = 0x01FF;
